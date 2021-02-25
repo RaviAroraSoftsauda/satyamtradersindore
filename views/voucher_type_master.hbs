@@ -1,0 +1,257 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party Type List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" id="formheading">
+                                            <span></span> Voucer Type Master
+                                        </div>
+                                        <div class="panel-body"  >
+                                            {{!-- method="POST" action="/voucher_type_master/voucher_type_master_update/{{g_s_mast._id}}" --}}
+                                            <form  method="POST" action="/voucher_type_master/voucher_type_master_update?id={{vouchMast._id}}" class="">
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">Module Name</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control"  value="{{ModulName}}" name="Module" type="text" readonly>
+                                                            <input class="form-control ModuleName" id="ModuleName" name="ModuleName" value="{{ModuleNameId}}" type="text" style="display: none">
+                                                             {{!-- <input class="form-control vhpxproduct" id="vhpxproduct"
+                                                            name="vhpxproduct" value="{{g_s_mast.id}}" type="hidden"/> --}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="table-responsive adjustmentstable">
+                                                            <table class="tabler" style="width: 150%;overflow-x: hidden;overflow-x: auto;padding: 0px 0px 0px 0px;margin: 0px" >
+                                                            <thead >
+                                                                <tr>
+                                                                    <th >Description</th>
+                                                                    <th >Book</th>
+                                                                    <th >No Type</th>
+                                                                    <th >Start No</th>
+                                                                    <th >End No</th>
+                                                                    <th >Restart</th>
+                                                                    <th >Ldate</th>
+                                                                    <th >Active</th>
+                                                                    <th >Division</th>
+                                                                    <th >Iteam </th>
+                                                                    <th >Cash/Credit</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                {{#each vouchMast as |value key|}}
+                                                                <tr class='product_wrapper' id='prabal{{@index}}'>
+                                                                    <td>
+                                                                        <input type="hidden" name="cntrer" value="{{@index}}" id="cntrer{{@index}}">
+                                                                        <input type="hidden" name="vouchArray[{{@index}}][id]" value="{{this._id}}" id="id{{@index}}">
+                                                                        <input class="form-control vouchArray[{{@index}}][Vo_des]" id="Vo_des" placeholder="Description"
+                                                                        name="vouchArray[{{@index}}][Vo_des]" value="{{this.Vo_des}}" type="text" style='width:100%' />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control " placeholder="Book"
+                                                                        name="vouchArray[{{@index}}][Vo_book]"  value="{{this.Vo_book}}"  type="text" style='width:100%'/>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select class="form-control select2 prbank" name="vouchArray[{{@index}}][Vo_notyp]" placeholder="No Type" style='width:100%'>
+                                                                            <option {{#equal this.Vo_notyp 'Auto'}} selected="" {{/equal}}>Auto</option>
+                                                                            <option {{#equal this.Vo_notyp 'Menual'}} selected="" {{/equal}}>Menual</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control " placeholder="Start No"
+                                                                        name="vouchArray[{{@index}}][Vo_startNo]"  value="{{this.Vo_startNo}}"  type="text" style='width:100%'/>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control " placeholder="End No"
+                                                                        name="vouchArray[{{@index}}][Vo_endNo]"  value="{{this.Vo_endNo}}" type="text" style='width:100%'/>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select class="form-control select2 prbank" name="vouchArray[{{@index}}][Vo_ReStartNo]" placeholder="Restart" style='width:100%'>
+                                                                            {{!-- <option value="{{this.Vo_ReStartNo}}"></option> --}}
+                                                                            <option  {{#equal this.Vo_ReStartNo 'Daily'}} selected="" {{/equal}}>Daily</option>
+                                                                            <option  {{#equal this.Vo_ReStartNo 'Monthly'}} selected="" {{/equal}}>Monthly</option>
+                                                                            <option  {{#equal this.Vo_ReStartNo 'Yearly'}} selected="" {{/equal}}>Yearly</option>
+                                                                            <option  {{#equal this.Vo_ReStartNo 'Never'}} selected="" {{/equal}}>Never</option>
+                                                                            <option  {{#equal this.Vo_ReStartNo 'Last+One'}} selected="" {{/equal}}>Last+One</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control datepicker " placeholder="Last date"
+                                                                        name="vouchArray[{{@index}}][Vo_Ldate]" value="{{this.Vo_Ldate}}" type="text" style='width:100%'/>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select class="form-control select2 prbank" name="vouchArray[{{@index}}][Vo_Active]" placeholder="Active" style='width:100%'>
+                                                                            {{!-- <option value="{{this.Vo_Active}}"></option> --}}
+                                                                            <option {{#equal this.Vo_Active 'Y'}} selected="" {{/equal}}>Y</option>
+                                                                            <option {{#equal this.Vo_Active 'N'}} selected="" {{/equal}}>N</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select class="form-control prbank amountfocus  vouchArray[{{@index}}][Vo_Division]  select2" multiple="true"
+                                                                            name="vouchArray[{{@index}}][Vo_Division]" id="vouchArray[{{@index}}][Vo_Division]" placeholder="Division" style='width:100%;'>
+                                                                            <option value=""></option>
+                                                                            {{#each ../division}}
+                                                                            <option value="{{this.id}}" {{#equal ../this.Vo_Division id}} selected=""{{/equal}}>{{this.div_mast}}</option>
+                                                                            {{/each}}
+                                                                        </select>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select class="form-control select2 prbank" name="vouchArray[{{@index}}][Vo_ItemList]" placeholder="Item" style='width:100%'>
+                                                                            {{!-- <option value="{{this.Vo_ItemList}}"></option> --}}
+                                                                            <option {{#equal this.Vo_ItemList 'List With Packing'}} selected="" {{/equal}}>List With Packing</option>
+                                                                            <option {{#equal this.Vo_ItemList 'List W/O Packing'}} selected="" {{/equal}}>List W/O Packing</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select class="form-control select2 prbank" name="vouchArray[{{@index}}][Vo_CsCr]" placeholder="Cash Credit" style='width:100%'>
+                                                                            {{!-- <option value="{{this.Vo_CsCr}}"></option> --}}
+                                                                            <option {{#equal this.Vo_CsCr 'Credit'}} selected="" {{/equal}}>Credit</option>
+                                                                            <option {{#equal this.Vo_CsCr 'Debit'}} selected="" {{/equal}}>Debit</option>
+                                                                            <option {{#equal this.Vo_CsCr 'Both'}} selected="" {{/equal}}>Both</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    {{#notequal @index 0}}
+                                                                            <td><a onclick='remove_updateproduct({{@index}});' style='cursor:pointer;'><i class='fa fa-times nofocus' style='font-size: 20px;color: red;margin-left:12px;'></i></a></td>
+                                                                    {{/notequal}}
+                                                                </tr>
+                                                                {{/each}}
+                                                                <tr id="insert_product"></tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <button type="button" class="btn btn-primary addvoucher center-block nofocus" id="add">Add </button>  
+                                                </div>
+                                            </div> 
+                                            <div class="row">
+                                                <div class="form-group clearfix" style="margin:10px;">
+                                                    <div class="col-md-12" align="center">
+                                                        <button type="submit" name="save" class="btn btn-success ">Submit</button>
+                                                        <a href="/voucher_type_master/voucher_type_master" class="btn btn-danger">Cancel</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                </div>
+                                 <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" align="right">
+                                          Voucher Type List
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table id="product_detail_table" class="product_detail_table table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Action</th>
+                                                            <th>Module Name</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{#each moduleMast as |value key|}}
+                                                        <tr>
+                                                             <td>
+                                                                <div class="btn-group dropdown">
+                                                                    <button class="btn btn-xs blue dropdown-toggle"
+                                                                        type="button" data-toggle="dropdown"
+                                                                        aria-expanded="false"> Actions
+                                                                        <i class="fa fa-angle-down"></i>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu pull-down" role="menu"style="width:150px">
+                                                                        <li>
+                                                                            <a href="/voucher_type_master/edit_vouc/{{this._id}}" 
+                                                                                data-id="{{this._id}}">
+                                                                                <i class="icon-pencil"></i> Edit </a>
+                                                                        </li>
+                                                                        <li class="divider"> </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </td>
+                                                            <td>{{this.ModuleName}}</td>
+                                                        </tr>
+                                                        {{/each}}
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th class="excludesearch"></th>
+                                                            <th>Group Name</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}
+<style>
+    .tabler>tbody>tr>td, .tabler>tbody>tr>th, .tabler>tfoot>tr>td, .tabler>tfoot>tr>th {
+    padding: 0px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+strong{
+    font-size: 14px;
+}
+</style>

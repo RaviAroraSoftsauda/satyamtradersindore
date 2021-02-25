@@ -1,0 +1,250 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party Type List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" id="formheading" align="right">
+                                            <span></span> Add Less Parameter Master
+                                        </div>
+                                        <div class="panel-body"  >
+                                            {{!-- method="POST" action="/voucher_type_master/voucher_type_master_update/{{g_s_mast._id}}" --}}
+                                            <form  method="POST" action="/Add_Less_Parameter_Master/Add_Less_Parameter_Master_update?id={{vouchMast._id}}" class="">
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">Module Name</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control"  value="{{ModulName}}" name="Module" type="text" readonly>
+                                                            <input class="form-control ModuleName" id="ModuleName" name="ModuleName" value="{{ModuleNameId}}" type="text" style="display: none">
+                                                             {{!-- <input class="form-control vhpxproduct" id="vhpxproduct"
+                                                            name="vhpxproduct" value="{{g_s_mast.id}}" type="hidden"/> --}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="table-responsive adjustmentstable">
+                                                            <table class="tabler" style="overflow-x: hidden;overflow-x: auto;padding: 0px 0px 0px 0px;margin: 0px" >
+                                                            <thead >
+                                                                <tr>
+                                                                    <th style="width: 8em">Description</th>
+                                                                    <th style="width: 4em">Par_Type</th>
+                                                                    <th style="width: 3em">Order</th>
+                                                                    <th style="width: 3em">Value</th>
+                                                                    <th style="width: 8em">Calculation</th>
+                                                                    <th style="width: 3em">Active</th>
+                                                                    <th style="width: 20em">Posting Ac</th>
+                                                                    <th style="width: 3em">Deduction_Par</th>
+                                                                    <th >Division</th>
+                                                                    <th style="width: 2em">Del</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                {{#each vouchMast.Add_Less_Parameter_Master_Array as |value key|}}
+                                                                <tr class='product_wrapper' id='prabal{{@index}}'>
+                                                                    <td>
+                                                                        <input type="hidden" name="cntrer" value="{{@index}}" id="cntrer0">
+                                                                        <input type="hidden" name="vouchArray[{{@index}}][id]" value="{{this._id}}" id="">
+                                                                        <input class="form-control" id="Description" placeholder="Description"
+                                                                        name="vouchArray[{{@index}}][Description]" value="{{this.Description}}" type="text" style='width:100%' />
+                                                                    </td>
+                                                                    <td>
+                                                                        <select class="form-control prbank" name="vouchArray[{{@index}}][Parameter_Type]" id="Parameter_Type{{@index}}" placeholder="Parameter Type" style='width:100%'>
+                                                                            <option value=""></option>
+                                                                            <option {{#equal this.Parameter_Type '+'}} selected="" {{/equal}}>+</option>
+                                                                            <option {{#equal this.Parameter_Type '-'}} selected="" {{/equal}}>-</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control " placeholder="Order"
+                                                                        name="vouchArray[{{@index}}][Order]"  value="{{this.Order}}" id="Order{{@index}}"  type="text" style='width:100%'/>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control " placeholder="Value"
+                                                                        name="vouchArray[{{@index}}][Value]"  value="{{this.Value}}" id="Value{{@index}}" type="text" style='width:100%'/>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select class="form-control select2 prbank" name="vouchArray[{{@index}}][Calculation]" id="Calculation{{@index}}" placeholder="Calculation" style='width:100%'>
+                                                                            <option value=""></option>
+                                                                            <option value="SGST"  {{#equal this.Calculation 'SGST'}} selected="" {{/equal}}>SGST</option>
+                                                                            <option value="CGST"  {{#equal this.Calculation 'CGST'}} selected="" {{/equal}}>CGST</option>
+                                                                            <option value="IGST"  {{#equal this.Calculation 'IGST'}} selected="" {{/equal}}>IGST</option>
+                                                                            <option value="QTY"  {{#equal this.Calculation 'QTY'}} selected="" {{/equal}}>QTY</option>
+                                                                            <option value="WEIGHT"  {{#equal this.Calculation 'WEIGHT'}} selected="" {{/equal}}>WEIGHT</option>
+                                                                            <option value="% OF GROSS"  {{#equal this.Calculation '% OF GROSS'}} selected="" {{/equal}}>% OF GROSS</option>
+                                                                            <option value="ROUND OFF"  {{#equal this.Calculation 'ROUND OFF'}} selected="" {{/equal}}>ROUND OFF</option>
+                                                                            <option value="APMC"  {{#equal this.Calculation 'APMC'}} selected="" {{/equal}}>APMC</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select class="form-control select2 prbank" name="vouchArray[{{@index}}][Active]" placeholder="Active" style='width:100%'>
+                                                                            <option value=""></option>
+                                                                            <option {{#equal this.Active 'Y'}} selected="" {{/equal}}>Y</option>
+                                                                            <option {{#equal this.Active 'N'}} selected="" {{/equal}}>N</option>
+                                                                        </select>
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <select class="form-control Posting_Ac prbank" name="vouchArray[{{@index}}][Posting_Ac]" placeholder="Posting Ac" id="Posting_Ac{{@index}}" style='width:100%'>
+                                                                            <option value="{{this.Posting_Ac._id}}" selected>{{this.Posting_Ac.ACName}}</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select class="form-control select2 prbank" name="vouchArray[{{@index}}][Deduction_Par]" placeholder="Deduction" style='width:100%'>
+                                                                            <option value=""></option>
+                                                                            <option {{#equal this.Deduction_Par 'Y'}} selected="" {{/equal}}>Y</option>
+                                                                            <option {{#equal this.Deduction_Par 'N'}} selected="" {{/equal}}>N</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select class="form-control prbank amountfocus select2" multiple="true"
+                                                                            name="vouchArray[{{@index}}][Division]" id="Division{{@index}}" placeholder="Division" style='width:100%;'>
+                                                                            <option value=""></option>
+                                                                            {{#each ../division}}
+                                                                            <option value="{{this.id}}" {{#equal ../this.Division id}} selected=""{{/equal}}>{{this.div_mast}}</option>
+                                                                            {{/each}}
+                                                                        </select>
+                                                                    </td>
+                                                                    
+                                                                    {{!-- {{#notequal @index 0}} --}}
+                                                                            <td><a onclick='remove_updateproduct({{@index}});' style='cursor:pointer;'><i class='fa fa-times nofocus' style='font-size: 20px;color: red;margin-left:12px;'></i></a></td>
+                                                                    {{!-- {{/notequal}} --}}
+                                                                </tr>
+                                                                {{/each}}
+                                                                <tr id="insert_product"></tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <button type="button" class="btn btn-primary addAddLessParameter center-block nofocus" id="add">Add </button>  
+                                                </div>
+                                            </div> 
+                                            <div class="row">
+                                                <div class="form-group clearfix" style="margin:10px;">
+                                                    <div class="col-md-12" align="center">
+                                                        <button type="submit" name="save" class="btn btn-success ">Submit</button>
+                                                        <a href="/voucher_type_master/voucher_type_master" class="btn btn-danger">Cancel</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                </div>
+                                 <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" align="right">
+                                          Add Less Parameter List
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table id="product_detail_table" class="product_detail_table table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Action</th>
+                                                            <th>Module Name</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{#each moduleMast as |value key|}}
+                                                        <tr>
+                                                             <td>
+                                                                <div class="btn-group dropdown">
+                                                                    <button class="btn btn-xs blue dropdown-toggle"
+                                                                        type="button" data-toggle="dropdown"
+                                                                        aria-expanded="false"> Actions
+                                                                        <i class="fa fa-angle-down"></i>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu pull-down" role="menu"style="width:150px">
+                                                                        <li>
+                                                                            <a href="/Add_Less_Parameter_Master/edit_Add_Less_Parameter_Master/{{this._id}}" 
+                                                                                data-id="{{this._id}}">
+                                                                                <i class="icon-pencil"></i> Edit </a>
+                                                                        </li>
+                                                                        <li class="divider"> </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </td>
+                                                            <td>{{this.ModuleName}}</td>
+                                                        </tr>
+                                                        {{/each}}
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th class="excludesearch"></th>
+                                                            <th>Group Name</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}
+<style>
+    .tabler>tbody>tr>td, .tabler>tbody>tr>th, .tabler>tfoot>tr>td, .tabler>tfoot>tr>th {
+    padding: 0px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+strong{
+    font-size: 14px;
+}
+</style>

@@ -1,0 +1,8 @@
+@media(max-width:1400px) and (min-width:992px) {
+    
+.fileinput.fileinput-new .input-group{
+	display: unset;
+	white-space:unset;
+}
+
+}

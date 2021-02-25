@@ -1,0 +1,137 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<style>
+body { 
+  font-size: 12px; 
+}
+tr.noBorder td {
+  border: 0;
+}
+#tdhight{
+    line-height:2.4;
+}
+
+@media print {
+    @page{
+        margin-top: 1em;
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+   table{
+       width: 100%;
+   }
+}
+</style>
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <div class="page-container">
+            <div class="page-content-wrapper">
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <div class="page-title">
+                           <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                    </ul>
+                                </small>
+                            </h1>
+                        </div>
+                    </div>
+               </div>
+    <div style="width: 96%; margin: 1%" align="center" >
+        <table id="table1"  style="width: 100%">
+             <tr >
+                <td style="padding: 0%; height: 9em;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td style="padding: 0%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td style="padding: 0%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td style="padding: 0%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td style="padding: 0%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td style="padding: 0%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            </tr>
+            <tr>
+                <th colspan="6" style="text-align: left; font-size: 12px; padding-top: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 18px;">{{division.div_mast}}</b></th>
+            </tr>
+            <tr>
+                 <th colspan="2" style="text-align: left; font-size: 12px; padding-top: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 16px;">{{division.groceryMarketRegNo}}</b> </th>
+                 <th colspan="4" style="text-align: left; font-size: 12px; padding-top: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 16px;">&nbsp;&nbsp;{{division.ac_pho}}</b> </th>
+            </tr>
+              <tr>
+                 <th colspan="2" style="text-align: left; font-size: 12px; padding-top: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 16px;"> {{toliName}}</b></th>
+                  <th colspan="4" style="text-align: left; font-size: 12px; padding-top: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 16px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{toliCode}}</b> </th>
+            </tr>
+            <tr>
+                 <th colspan="6" style="text-align: left; font-size: 12px; padding-top: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 18px;">{{ start_date }}&nbsp;&nbsp;To&nbsp;&nbsp;{{ end_date}} </b></th>
+            </tr>
+        </table >
+        {{!-- Table Start --}}
+        <table  align="center" id="groceryPrint"  style="width: 100%">
+            <thead >
+               <tr>
+                 <th style="text-align: center; font-size: 12px; ; width: 2px; height: 9em;"></th>
+                 <th style="text-align: center; font-size: 12px;  width: 9em; "></th>
+                 <th style="text-align: center; font-size: 12px; width: 9em"></th>
+                 <th style="text-align: center; font-size: 12px; width: 9em"></th>
+                 <th style="text-align: center; font-size: 12px; width: 9em"></th>
+                 <th style="text-align: center; font-size: 12px; width: 9em"></th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr id="tdhight">
+                    <td   style="text-align: left; font-size: 13px; height: 29em; padding-top: 0px; " valign="top">{{#each GrocArray as |groupvalue key|}}{{groupvalue.date}}</br> {{/each}}</td>
+                    <td   style="text-align: center; font-size: 13px; padding-top: 0px; " valign="top">{{#each GrocArray as |groupvalue key|}} {{groupvalue.tot_basic}}</br> {{/each}}</td>
+                    <td   style="text-align: center; font-size: 13px; padding-top: 0px; " valign="top">{{#each GrocArray as |groupvalue key|}} {{groupvalue.tot_levy}}</br> {{/each}}</td>
+                    <td   style="text-align: center; font-size: 13px; padding-top: 0px; " valign="top">{{#each GrocArray as |groupvalue key|}} --&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</br> {{/each}}</td>
+                    <td   style="text-align: center; font-size: 13px; padding-top: 0px; " valign="top">{{#each GrocArray as |groupvalue key|}} --&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</br> {{/each}}</td>
+                    <td   style="text-align: right; font-size: 13px;  padding-top: 0px; " valign="top">{{#each GrocArray as |groupvalue key|}} {{groupvalue.tot_Amt}}</br> {{/each}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                 <tr>
+                     <th style="text-align: left; font-size: 17px;"></th>
+                     <th style="text-align: center; font-size: 17px;">{{totbasic}}</th>
+                     <th style="text-align: center; font-size: 17px;">{{totlevy}}</th>
+                     <th></th>
+                     <th></th>
+                     <th style="text-align: right; font-size: 17px;">{{totAmt}}</th>
+                 </tr>
+                 <tr>
+                     <td style="height: 4em;"></td>
+                 </tr>
+                  <tr class="noBorder">
+                     <td  colspan="2"  style="font-size:14px; text-align: left; font-size: 16px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{totbasic}}</td>
+                       <td  colspan="2"  style="font-size:14px; text-align: left; font-size: 16px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                       <td  colspan="2"  style="font-size:14px; text-align: left; font-size: 16px;"></td>
+                 </tr>
+                 <tr class="noBorder">
+                     <td  colspan="2"  style="font-size:14px; text-align: left; font-size: 16px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{totlevy}}</td>
+                       <td  colspan="2" valign="top"  style="font-size:14px; text-align: left; font-size: 16px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{dateformat Date.now "DD/MM/YYYY"}}</td>
+                       <td  colspan="2"  style="font-size:14px; text-align: left; font-size: 16px;"></td>
+                 </tr >
+                 <tr class="noBorder">
+                     <td colspan="2"  style="font-size:14px; text-align: left; font-size: 16px;"></td>
+                       <td colspan="2"  style="font-size:14px; text-align: left; font-size: 16px;"></td>
+                       <td colspan="2"  style="font-size:14px; text-align: left; font-size: 16px;"></td>
+                 </tr>
+                  <tr class="noBorder">
+                     <td colspan="2" valign="bottom" style="font-size:14px; height: 4em; text-align: left; font-size: 16px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{totAmt}}</td>
+                       <td colspan="2" valign="bottom"  style="font-size:14px; text-align: center; font-size: 16px;"></td>
+                       <td colspan="2" valign="bottom" style="font-size:14px; text-align: center; font-size: 16px;"></td>
+                 </tr>
+            </tfoot>
+        </table>
+        {{!-- Table End --}}
+                    <a class="btn btn-lg blue hidden-print margin-bottom-5" onclick="printinvoice()" id="hideprintbtn" style="margin-top: 2em"> Print
+                    <i class="fa fa-print"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

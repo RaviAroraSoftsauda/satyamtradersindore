@@ -1,0 +1,523 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb pull-right">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                           
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+               <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{#if err}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{err}}</strong>
+                                    </div>
+                                    {{/if}}
+                                    {{#if errors}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{errors}}</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            {{!-- end of alerts row --}}
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" style="height: 2em">
+                                            <div class="misc pull-left">
+                                                <div class="buttons">
+                                                     Bill Collection Update
+                                                </div>
+                                            </div>
+                                            <div class="misc pull-right">
+                                                <div class="buttons">
+                                                    Chq Return - F4
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <form method="POST" action="/Bill_CollectionEntry/update" class="" novalidate enctype="" id="contract_sauda">
+                                        {{#each cashmast as |value key|}}
+                                         {{#ifCond this.srno "0"}} 
+                                           <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-2 control-label">Ret No</label>
+                                                            <div class="col-md-5">
+                                                                <select name="c_j_s_p" placeholder="Idn No & Mode" id="c_j_s_p" class="form-control select2" required >
+                                                                    {{!-- <option value="BillColl" {{#equal this.c_j_s_p "BillColl"}} selected=""{{/equal}}>BillColl</option>  data-Module="Bill Collection" onchange="getBookNo()"--}}
+                                                                    {{#each ../vouchMast}}
+                                                                        <option value="{{this.Vo_book}}" {{#equal ../this.c_j_s_p Vo_book}} selected=""{{/equal}}>{{this.Vo_book}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>
+                                                             <div class="col-md-5">
+                                                                <input type="number" name="vouc_code" id="vouc_code"  placeholder="Idn Number" autofocus required
+                                                                    value="{{this.vouc_code}}" class="form-control vouc_code"
+                                                                    tabindex="2"/>
+                                                                    <input type="hidden" name="Form" id="Form" value="BillCollUpdate">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-2 control-label">Date</label>
+                                                             <div class="col-md-10">
+                                                                    <input type="text" class="form-control datemask" 
+                                                                    name="cash_date" id="offerstartdate" value="{{dateformat this.cash_date 'DD/MM/YYYY'}}"
+                                                                    autocomplete="off" tabindex="3" required/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                <div class="row" style="width: 98%;margin-left: 0.8em;background-color: greenyellow" id="showAdjustEntryInBCUpdate">
+                                                </div>
+                                                {{/ifCond}}
+                                                {{/each}}
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="table-responsive adjustmentstable addbillColl" style="margin-top:0px;background-color:whitesmoke">
+                                                            <table class="tabler domes_invoice_repete_row" id="GaruAddTable">
+                                                                {{!-- <thead>
+                                                                    <tr>
+                                                                       <th colspan="11"></th> 
+                                                                    </tr>
+                                                                </thead> --}}
+                                                                <tbody>
+                                                                     {{#each cashmast as |value key|}}
+                                                                     <tr id="GaruTr0{{@index}}" style="background-color: #337ab7">
+                                                                       <th colspan="11">&nbsp;</th> 
+                                                                    </tr>
+                                                                    <tr id="GaruTr10" {{#ifCond this.Chaq_Return 'Y'}}style="background-color:#ff6666"{{/ifCond}}>
+                                                                        <td>
+                                                                            {{#ifCondNot this.Chaq_Return 'Y'}}
+                                                                            <input type="radio" name="CheckReturn" id="CheckReturn{{@index}}" value="{{@index}}" style="margin-left: 10px">
+                                                                            {{/ifCondNot}}
+                                                                            <strong>Bill No</strong>
+                                                                            <input type="hidden" name="BillColl_Id[{{@index}}]" id="BillColl_Id{{@index}}" value="{{this._id}}">
+                                                                            <input type="hidden" name="cashtrn" value="{{@index}}" id="dsirn0">
+                                                                            <input type="text" name="Bill_No[{{@index}}]" id="Bill_No{{@index}}"  
+                                                                            class="form-control" style="text-align: -webkit-right;" placeholder="Bill_No" value="{{this.Bill_No}}"/> 
+                                                                            {{!-- onkeydown="getBillData(0,event)" --}}
+                                                                        </td> 
+                                                                        <td>
+                                                                            <strong>Date</strong>
+                                                                            <input type="text" name="Date[{{@index}}]"  id="Date{{@index}}"  class="form-control datemask" value="{{dateformat this.Date 'DD/MM/YYYY'}}" style="text-align: -webkit-right;" placeholder="Date"/>
+                                                                        </td>
+                                                                        <td colspan="3">
+                                                                            <strong>Name Of The Party</strong>
+                                                                            <select  name="cashac_name[{{@index}}]" id="cashac_name{{@index}}"  class="form-control partynamename prbank select2" style="width:100%"
+                                                                                placeholder="Select Purchase AC" style="width: 100%"> 
+                                                                                <option value="{{this.cashac_name._id}}">{{this.cashac_name.ACName}}</option>
+                                                                                {{!-- {{#each puchaseAc}}  BillDate
+                                                                                <option value="{{this.id}}" data-serialnum="{{this._id}}">{{this.ACName}}</option>
+                                                                                {{/each}} --}}
+                                                                            </select>
+                                                                        </td>
+                                                                        <td colspan="1">
+                                                                            <strong>Place</strong>
+                                                                            <input type="text" name="place[{{@index}}]" placeholder="Place"  id="place{{@index}}" class="form-control" 
+                                                                             style="text-align: -webkit-right;" value="{{this.place}}"/>
+                                                                        </td>
+                                                                        <td colspan="3">
+                                                                            <strong>Name Of The Broker</strong>
+                                                                            <input type="hidden" name="out_id[{{@index}}]" id="out_id{{@index}}">
+                                                                            <select  name="broker_Code[{{@index}}]" id="broker_Code{{@index}}"  class="form-control broker_Code prbank select2" style="width:100%"
+                                                                                placeholder="Select Purchase AC" style="width: 100%"> 
+                                                                                <option value="{{this.broker_Code._id}}">{{this.broker_Code.ACName}}</option>
+                                                                                {{!-- {{#each puchaseAc}}
+                                                                                <option value="{{this.id}}" data-serialnum="{{this._id}}">{{this.ACName}}</option>
+                                                                                {{/each}} --}}
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Bill Amount</strong>
+                                                                            <input type="hidden" name="OutMain_id[{{@index}}]" id="OutMain_id{{@index}}">
+                                                                            <input type="hidden" name="OutstandingAmt[{{@index}}]" id="OutstandingAmt{{@index}}">
+                                                                            <input type="number" name="Bill_Amt[{{@index}}]" placeholder="Bill Amount"  id="Bill_Amt{{@index}}" class="form-control" 
+                                                                            style="text-align: -webkit-right;"  oninput="calBillCollection({{@index}})" value="{{this.Bill_Amt}}"/>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr id="GaruTr20" {{#ifCond this.Chaq_Return 'Y'}}style="background-color:#ff6666"{{/ifCond}}>
+                                                                        <td>
+                                                                            <strong>Balance Due</strong>
+                                                                            <input type="text" name="Balance_Due[{{@index}}]" placeholder="Balance Due"  id="Balance_Due{{@index}}" class="form-control" 
+                                                                            style="text-align: -webkit-right;" oninput="calBillCollection({{@index}})" value="{{this.Balance_Due}}"/>
+                                                                            <input type="hidden" value="{{this.op_main_bk}}" name="op_main_bk[{{@index}}]"/>
+                                                                            <input type="hidden" value="{{this.op_c_j_s_p}}" name="op_c_j_s_p[{{@index}}]"/>
+                                                                            <input type="hidden" value="{{this.op_co_code}}" name="op_co_code[{{@index}}]"/>
+                                                                            <input type="hidden" value="{{this.op_div_code}}" name="op_div_code[{{@index}}]"/>
+                                                                        </td>
+                                                                        {{!-- <td>
+                                                                            <strong>Int Due</strong>
+                                                                            <input type="text" name="Int_Due[0]" placeholder="Int Due"  id="Int_Due0" class="form-control" 
+                                                                             style="text-align: -webkit-right;" oninput="calBillCollection({{@index}})"/>
+                                                                        </td>
+                                                                        <td style="width: 10em">
+                                                                            <strong>Bal Int</strong>
+                                                                            <input type="text" name="Bal_Int[0]"  id="Bal_Int0" placeholder="Days" class="form-control" 
+                                                                            style="text-align: -webkit-right;" oninput="calBillCollection({{@index}})"/>
+                                                                        </td> --}}
+                                                                         <td>
+                                                                            <strong>Days</strong>
+                                                                            <input type="text" name="Days[{{@index}}]"  id="Days{{@index}}" placeholder="Days" class="form-control" 
+                                                                            style="text-align: -webkit-right;" oninput="calBillCollection({{@index}})" value="{{this.Days}}"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Int %</strong>
+                                                                            <input type="text" name="Int_Per[{{@index}}]"  id="Int_Per{{@index}}" placeholder="Int %" class="form-control" 
+                                                                            style="text-align: -webkit-right;" oninput="calBillCollection({{@index}})" value="{{this.Int_Per}}"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Intrest</strong>
+                                                                            <input type="text" name="Intrest[{{@index}}]"  id="Intrest{{@index}}" placeholder="Amount" class="form-control" 
+                                                                            style="text-align: -webkit-right;" oninput="calBillCollection({{@index}})" value="{{this.Intrest}}"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Discount</strong>
+                                                                            <input type="hidden" name="Dis_Amt[{{@index}}]"  id="Dis_Amt{{@index}}"/>
+                                                                            <input type="text" name="discount[{{@index}}]" placeholder="Discount"  id="discount0"  value="{{this.discount}}"
+                                                                            class="form-control" value="0" style="text-align: -webkit-right;" oninput="calBillCollection({{@index}})"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>CRChgs</strong>
+                                                                            <input type="text" name="CRChgs[{{@index}}]" placeholder="CRChgs"  id="CRChgs{{@index}}" value="{{this.CRChgs}}"
+                                                                            class="form-control" style="text-align: -webkit-right;" oninput="calBillCollection({{@index}})" />
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Chithi</strong>
+                                                                            <input type="text" name="Chithi[{{@index}}]" placeholder="Chithi"  id="Chithi{{@index}}" value="{{this.Chithi}}"
+                                                                            class="form-control" style="text-align: -webkit-right;" oninput="calBillCollection({{@index}})"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Amt Settled</strong>
+                                                                            <input type="text" name="Amt_Settled[{{@index}}]" placeholder="Amt Settled"  id="Amt_Settled{{@index}}" value="{{this.Amt_Settled}}"
+                                                                            class="form-control" style="text-align: -webkit-right;" oninput="calBillCollection({{@index}})"/>
+                                                                        </td>
+                                                                         <td>
+                                                                            <strong>Kasar</strong>
+                                                                            {{#ifLessThen this.srno ../length}} 
+                                                                                <input type="text" name="Kasar[{{@index}}]" placeholder="Kasar"  id="Kasar{{@index}}" oninput="calBillCollection({{@index}})"
+                                                                                class="form-control" style="text-align: -webkit-right;" value="{{this.Kasar}}" onkeydown="FocusNextBillInUpdate(event,{{@index}})"/>
+                                                                            {{/ifLessThen}}
+                                                                            {{#ifLessThenEqualTo this.srno ../length}} 
+                                                                                <input type="text" name="Kasar[{{@index}}]" placeholder="Kasar"  id="Kasar{{@index}}" oninput="calBillCollection({{@index}})"
+                                                                                class="form-control addBillColfocus" style="text-align: -webkit-right;" value="{{this.Kasar}}" onkeydown="FocusNextBillSeccond(event,{{@index}})"/>
+                                                                            {{/ifLessThenEqualTo}}
+                                                                        </td>
+                                                                        <td></br></br><a onclick='deleteBilColGroupEntry({{@index}})' style='cursor:pointer;'><i class='fa fa-times' style='font-size: 20px;color: red;margin-left:12px;'></i></a></td>
+                                                                    </tr>
+                                                                    {{/each}}
+                                                                    <tr id="Garu_Aavak_Entry_Group_Add">
+                                                                        <th colspan="3"><strong>Total Net Amt</strong></th>
+                                                                        <td>
+                                                                            <input type="hidden" name="tot_DisAmt"  id="tot_DisAmt"/>
+                                                                            <input type="hidden" name="tot_AmtBeforeDis"  id="tot_AmtBeforeDis"/>
+                                                                        </td>
+                                                                        <td><button type="button" class="btn btn-primary addBillCollectionEntry center-block nofocus" id="addgaru">Add Item</button></td>
+                                                                        <td colspan="2"></td>
+                                                                        <td> 
+                                                                            {{#each cashmast as |value key|}}
+                                                                            {{#ifCond this.srno "0"}}  
+                                                                            <input type="text" name="tot_Amt" placeholder="Tot Net Amt" id="tot_Amt" value="{{this.totcash_amt}}"
+                                                                            class="form-control" style="text-align: -webkit-right;" readonly oninput="calBillCollection(1)"/>
+                                                                            {{/ifCond}}
+                                                                            {{/each}}
+                                                                        </td>
+                                                                        <td colspan="2"></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            {{!-- <div class="row">
+                                                                <div class="col-sm-12">
+                                                                    <button type="button" class="btn btn-primary addBillCollectionEntry center-block nofocus" id="addgaru">Add Item</button>  
+                                                                </div>
+                                                            </div>  --}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                {{#each cashmast as |value key|}}
+                                                    {{#ifCond this.srno "0"}} 
+                                                            <div class="row">
+                                                                <div class="col-sm-12 col-md-6">
+                                                                    <div class="form-group  form-md-line-input">
+                                                                        <label class="col-sm-3 control-label">Cash Amount</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" id="tot_Cash_Amount" name="tot_Cash_Amount" value="{{this.Cash_Amt}}" class="form-control" onblur="calCashAmt()">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-12 col-md-6">
+                                                                    <div class="form-group form-md-line-input">
+                                                                        <label class="col-sm-3 control-label">Cheque Amout</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" id="Cheq_Amount" name="Cheq_Amount" value="{{this.Cheq_Amt}}" class="form-control" onblur="calChqAmt()">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-12 col-md-6" style="margin-top: 5px">
+                                                                    <div class="form-group  form-md-line-input">
+                                                                        <label class="col-sm-2 control-label">Chq No.</label>
+                                                                        <div class="col-md-4">
+                                                                            <div class="input-group">
+                                                                                <input type="text" id="Chq_No" name="Chq_No"  value="{{this.Chq_No}}" class="form-control delv_load" onblur="chqAmt()">
+                                                                            </div>
+                                                                        </div>
+                                                                        <label class="col-sm-2 control-label">Date</label>
+                                                                        <div class="col-md-4">
+                                                                                <input type="text" class="form-control datemask BillDate" 
+                                                                                name="chq_date" id="chq_date" value="{{dateformat this.chq_date 'DD/MM/YYYY'}}"
+                                                                                autocomplete="off" tabindex="3"/>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                 <div class="col-sm-12 col-md-6" style="margin-top: 5px">
+                                                                    <div class="form-group  form-md-line-input">
+                                                                        <label class="col-sm-2 control-label">Drawee bank:</label>
+                                                                        <div class="col-md-10">
+                                                                            <div class="input-group">
+                                                                                    <select name="Drawee_Bank" id="Drawee_Bank" class="form-control DraweeBank" onchange="focusDraweeBank()">
+                                                                                    <option value="{{this.Drawee_Bank._id}}" selected>{{this.Drawee_Bank.bankName}},({{this.Drawee_Bank.ifscCode}}),{{this.Drawee_Bank.branchName}}</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>  
+                                                                
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-12 col-md-6" style="margin-top: 5px">
+                                                                    {{!-- <div class="form-group form-md-line-input">
+                                                                    <label class="col-sm-3 control-label">Drawee Branch</label>
+                                                                        <div cla/ss="input-group select2-bootstrap-prepend">
+                                                                            <div class="col-md-9">
+                                                                                <input type="text" id="draw_branch" name="draw_branch" value="{{this.draw_branch}}" class="form-control">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div> --}}
+                                                                    <label class="control-label col-md-2">Deposited Bank</label>
+                                                                    <div class="col-md-10">
+                                                                        <div class="input-group select2-bootstrap-prepend">
+                                                                            <select name="cash_bank_name" id="cash_bank_name" class="form-control cashbankname" required>
+                                                                                <option value="{{this.cash_bank_name._id}}">{{this.cash_bank_name.ACName}}</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <div class="col-sm-12 col-md-6" style="margin-top: 5px">
+                                                                    <div class="form-group form-md-line-input">
+                                                                        <label class="col-sm-2 control-label">Deposit Dt</label>
+                                                                        <div class="col-md-10">
+                                                                            {{!-- BillDate --}}
+                                                                                <input type="text" class="form-control datemask" 
+                                                                                name="deposit_date" id="deposit_date" value="{{dateformat this.deposit_date 'DD/MM/YYYY'}}"
+                                                                                autocomplete="off"/>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-12 col-md-6" style="margin-top: 5px;margin-bottom: 5px">
+                                                                    <div class="form-group  form-md-line-input">
+                                                                        <label class="col-sm-3 control-label">Remarks: </label>
+                                                                        <div class="col-md-9">
+                                                                            <textarea name="cash_remarks" id="cash_remarks" class="form-control">{{this.cash_remarks}}</textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-12 col-md-6" style="margin-top: 25px" align="center">
+                                                                    <button type="submit"  name="save" class="btn btn-success save">Submit</button>
+                                                                    <button type="reset" class="btn btn-danger" >Cancel</button>
+                                                                    <a href="/Bill_CollectionEntry/Bill_CollectionEntry_list" class="btn btn-info">Back</a>
+                                                                </div>
+                                                            </div>
+                                                            {{/ifCond}} 
+                                                        {{/each}}
+                                                        {{!-- <div class="panel-footer">
+                                                            <div class="action clearfix">
+                                                                <div class="row">
+                                                                    <div class="col-md-12" align="center">
+                                                                        <button type="submit"  name="save" class="btn btn-success save">Submit</button>
+                                                                        <button type="reset" class="btn btn-danger" >Cancel</button>
+                                                                        <a href="/Bill_CollectionEntry/Bill_CollectionEntry_list" class="btn btn-info" style="margin-top: 1.5em">Back</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div> --}}
+                                        </form>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="CheqReturn">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" style="margin-left: -38px; width: 1232px;">
+            <div class="modal-header" tyle="height: 1em">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Cheque Return Entry</h4>
+            </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form action="">
+                            <div class="col-md-12">
+                                <div class="form-group clearfix">
+                                    <input type="radio" checked name="chaqReturnEntryRadio" id="chaqReturnEntryRadio1" value="Mark Chaq Return">&nbsp; Mark Chaq Return &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" name="chaqReturnEntryRadio" id="" value="Pass Return Voucher">&nbsp; Pass Return Voucher &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" name="chaqReturnEntryRadio" id="" value="Pass Represent Voucher">&nbsp; Pass Represent Voucher
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group  clearfix">
+                                    <label class="col-sm-2 control-label">Entry No:</label>
+                                        <div class="col-md-3">
+                                            <select class="form-control" name="cashtypebank" id="c_j_s_p_chaq" data-Module="Bill Collection" onchange="getBookInCheqReturn()">
+                                                {{#each vouchMast}}
+                                                    <option value="{{this.Vo_book}}">{{this.Vo_book}}</option>
+                                                {{/each}}
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" name="vouc_code" id="vouc_code_chaq"
+                                            value="" class="form-control vouc_code" tabindex="2" autofocus/>
+                                            <input type="hidden" name="ChaqReturnSno" id="ChaqReturnSno">
+                                        </div>
+                                        <label class="col-sm-1 control-label">Date:</label>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control datemask cash_edate BillDate"
+                                                name="cash_edate" id="ReturnDate_chaq" value="{{dateformat this.cash_date 'DD/MM/YYYY'}}"
+                                                autocomplete="off" tabindex="3" />
+                                        </div>  
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group clearfix">
+                                    <label class="col-sm-2 control-label">Remarks: </label>
+                                    <div class="col-md-10">
+                                        <input name="cash_remarks" id="cash_remarks_chaq" class="form-control" onkeydown="focusChaqReturnSaveButton(event)">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="hideSaleModel">Close</button>
+                    <button type="button" class="btn btn-primary" id="SaveChaqReturnEntry" onclick="SaveChaqReturnEntryInBC()"> Save </button>
+                </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal" tabindex="-1" role="dialog" id="billCollactionModal" >
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" style="margin-left: -38px; width: 1232px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Pending Bills</h4>
+            </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive">
+                                <div class="brand_add_container clearfix">
+                                    <div class="table-responsive adjustmentstable" style="margin-top: 0px;">
+                                        <table class="tabler">
+                                            <thead style="background-color:#4b77be;color: white;">
+                                                <tr>
+                                                    <th>Selection</br>(A/U)</th>
+                                                    <th style="width: 4em;">Status</th>
+                                                    <th style="padding: 0px"></th>
+                                                    <th style="width: 6em;">Bill No</th>
+                                                    <th style="padding: 0px"></th>
+                                                    <th style="width: 7.5em;">Bill Date</th>
+                                                    <th style="width: 10em;">Bill Amt</th>
+                                                    <th style="width: 10em;">Balance Due</th>
+                                                    <th style="width: 8em;">Int Due</th>
+                                                    <th>Broker</th>
+                                                    <th>Firm</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="Bill_Collection_Modal"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                {{!-- <div class='addsauda'></div> --}}
+                            </div>
+                        </div>
+                    </div>
+                                                {{!-- end of row --}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="BillCollectionEntryData" onclick="setBillData()">Save changes</button>
+                </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+{{> footer_new}}
+{{> scripts_new}}
+<style>
+    .tabler>tbody>tr>td, .tabler>tbody>tr>th, .tabler>tfoot>tr>td, .tabler>tfoot>tr>th, .tabler>thead>tr>td, .tabler>thead>tr>th {
+    padding: 0px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+strong{
+    font-size: 14px;
+}
+</style>

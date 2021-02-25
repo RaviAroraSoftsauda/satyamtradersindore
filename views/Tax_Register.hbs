@@ -1,0 +1,154 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Contract List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{#if err}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{err}}</strong>
+                                    </div>
+                                    {{/if}}
+                                    {{#if errors}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{errors}}</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary table light " id="tableportlet">
+                                        <div class="panel-heading">
+                                           Tax Register
+                                        </div>
+                                        <div class="panel-body" id="portletbody">
+                                            <form>    
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Period</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control" name="filterstartdate" 
+                                                                    value="{{dateformat  sdate 'DD/MM/YYYY'}} to {{dateformat Date.now 'DD/MM/YYYY'}}" id="contractrange"
+                                                                    autocomplete="off" autofocus/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- <div class="col-md-5">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-4">Party Name</label>
+                                                            <div class="col-md-8">
+                                                                <select class="form-control prbank AllAccountWithOutCashBank" name="party"
+                                                                    placeholder="Please Select"  id="party" autofocus>
+                                                                    <option value=""></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-4">Tax Type</label>
+                                                            <div class="col-md-8">
+                                                                <select class="form-control prbank Tax_Master" name="Tax_Type"
+                                                                    placeholder="Please Select" id= "Tax_Type">
+                                                                    <option value=""></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Division</label>
+                                                            <div class="col-md-9">
+                                                                <select class="form-control prbank Division select2" name="Division"
+                                                                    placeholder="Please Select" id= "Division">
+                                                                    <option value=""></option>
+                                                                    {{#each division as |value key|}}
+                                                                    <option value="{{this._id}}">{{this.div_mast}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group clearfix">
+                                                            <div class="col-md-1"><input type="radio" name="challan_No" id="challan_No" value="Sent"></div><label for="" class="control-label col-md-2">Sent</label>
+                                                            <div class="col-md-1"><input type="radio" name="challan_No" id="challan_No" value="Due"></div><label for="" class="control-label col-md-2">Due</label>
+                                                            <div class="col-md-1"><input checked type="radio" name="challan_No" id="challan_No" value="All"></div><label for="" class="control-label col-md-2">All</label>
+                                                        </div>
+                                                    </div> --}}
+                                                    <div class="col-md-1">
+                                                        <div class="form-group clearfix">
+                                                            <button type="button" class="btn btn-success" name="filtersubmit"
+                                                                id="Show_Tax_Register" value="submit">Proceed..</button>
+                                                        </div>
+                                                    </div> 
+                                                    {{!-- <div class="col-md-1">
+                                                        <div class="form-group clearfix">
+                                                            <button type="button" class="btn btn-success" name="filtersubmit"
+                                                                id="ShowTds_Challan_List_Return" value="submit">Return</button>
+                                                        </div>
+                                                    </div> --}}
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- END EXAMPLE TABLE PORTLET-->
+                                </div>
+                            </div>
+                            <div id="Tax_Register_List"></div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+{{> footer_new}}
+{{> scripts_new}}

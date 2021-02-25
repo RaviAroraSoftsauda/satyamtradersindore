@@ -1,0 +1,490 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Courier Inward
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-md-12">
+                                     {{#scuritylogin   security 'Courier Inward' 'V'}}
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            Courier Inward List
+                                            <div class="misc pull-right">
+                                                <div class="buttons">
+                                                    <div class="btn-group dropdown">
+                                                        <button class="btn btn-xs blue dropdown-toggle" type="button"
+                                                            data-toggle="dropdown" aria-expanded="false"> Actions
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu pull-right" role="menu">
+                                                            {{#scuritylogin   security 'Courier Inward' 'E'}}
+                                                            <li>
+                                                                <a href="" class="edit_courier_inword_btn">
+                                                                    <i class="icon-pencil"></i> Edit </a>
+                                                            </li>
+                                                            {{/scuritylogin}}
+                                                            <li class="divider"> </li>
+                                                            {{#scuritylogin   security 'Courier Inward' 'D'}}
+                                                            <li>
+                                                                <a href="" class="delete_courier_inword">
+                                                                    <i class="icon-trash"></i> Delete
+                                                                </a>
+                                                            </li>
+                                                            {{/scuritylogin}}
+                                                        </ul>
+                                                    </div>
+                                                     {{#scuritylogin   security 'Courier Inward' 'A'}}
+                                                    <a href="#add" class="animatescroll">
+                                                        <button class="btn btn-link" type="button"><i class="fa fa-plus"></i>Add
+                                                            Courier</button>
+                                                    </a>
+                                                    {{/scuritylogin}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table id="product_detail_table" class="product_detail_table table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="excludesearch"><input type="checkbox"></th>
+                                                            <th>Sno.</th>
+                                                            <th>Party Name</th>
+                                                            <th>Product</th>
+                                                            <th>Brand</th>
+                                                            <th>Courier Name</th>
+                                                            <th>Courier Receipt</th>
+                                                            <th>Courier Content</th>
+                                                            <th>Remarks</th>
+                                                            <th>Courier Charges</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{#each courier_inword as |value key|}}
+                                                        <tr>
+                                                            <td><input type="checkbox" class="trowcheck" name="" id="" value="{{this._id}}" data-sauda2=""></td>
+                                                            <td>{{sum @index 1}}</td>
+                                                            <td>{{this.party_sno.party_name}}</td>
+                                                            <td>{{this.cou_product.product_name}}</td>
+                                                            <td>{{this.cou_brand.brand_name}}</td>
+                                                            <td>{{this.cou_nm.courier_name}}</td>
+                                                            <td>{{this.cou_rcpt}}</td>
+                                                            <td>{{this.cou_content}}</td>
+                                                            <td>{{this.remarks}}</td>
+                                                            <td>{{this.cou_crgs}}</td>
+                                                        </tr>
+                                                        {{/each}}
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th class="excludesearch"></th>
+                                                            <th>Sno.</th>
+                                                            <th>Party Name</th>
+                                                            <th>Product</th>
+                                                            <th>Brand</th>
+                                                            <th>Courier Name</th>
+                                                            <th>Courier Receipt</th>
+                                                            <th>Courier Content</th>
+                                                            <th>Remarks</th>
+                                                            <th>Courier Charges</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{/scuritylogin}}
+                                </div>
+                            </div>
+                            {{!-- end of row --}}
+                            <div class="row"  id="courier_inword" >
+                                <div class="col-md-12">
+                                     {{#scuritylogin   security 'Courier Inward' 'A'}}
+                                    <div class="panel panel-primary" id="add">
+                                        <div class="panel-heading" id="formheading">
+                                            <span>Add</span> Courier Inward
+                                        </div>
+                                        <div class="panel-body">
+                                            <form method="POST" action="/courier_inword/courier_inword_add" enctype="" class="validate">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Date</label>
+                                                            <div class="col-md-9">
+                                                                <input class="form-control datep datemask" placeholder=""
+                                                                    name="cou_date" type="text" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Name</label>
+                                                            <div class="col-md-9">
+                                                                <select name="party_sno" id="inparty_sno" class="form-control select2 party_name" placeholder="Name">
+                                                                    <option value=""></option>
+                                                                    {{#each party}}
+                                                                    <option value="{{this._id}}" data-serialnum="{{this.party_name}}">{{this.party_name}}&nbsp;&nbsp;&nbsp;&nbsp;({{this.city_name.city_name}})</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Courier:</label>
+                                                            <div class="col-md-9">
+                                                              <select name="cou_nm" id="incou_nm" class="form-control select2" placeholder="Select Courier">
+                                                                    <option value=""></option>
+                                                                    {{#each courier}}
+                                                                    <option value="{{this._id}}"
+                                                                        data-serialnum="{{this.courier_name}}">{{this.courier_name}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Lot No(Vakal):</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="cou_lotno" id="cou_lotno"
+                                                                    class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Product:</label>
+                                                            <div class="col-md-9">
+                                                                <select name="cou_product" id="incou_product" class="form-control select2" placeholder="Select Product">
+                                                                    <option value=""></option>
+                                                                    {{#each product}}
+                                                                    <option value="{{this._id}}" data-serialnum="{{this.product_name}}">{{this.product_name}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Brand:</label>
+                                                            <div class="col-md-9">
+                                                                 <select name="cou_brand" list="cou_brand" id="incou_brand"
+                                                                    class="form-control select2" placeholder="Select Brand">
+                                                                    <option value=""></option>
+                                                                    {{#each brand}}
+                                                                    <option value="{{this._id}}" data-serialnum="{{this._id}}">{{this.brand_name}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Rate:</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="cou_rate" id="cou_rate" class="form-control number">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Rate
+                                                                (condition):</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="cou_contdition" id="cou_contdition"
+                                                                    class="form-control number">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Courier
+                                                                Receipt:</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="cou_rcpt" id="cou_rcpt" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Courier
+                                                                Content:</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="cou_content" id="cou_content"
+                                                                    class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Remarks:</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="remarks" id="remarks" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Courier
+                                                                Charges:</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="cou_crgs" id="cou_crgs" class="form-control digits">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-1"></label>
+                                                        <div class="col-md-9">
+                                                            <button type="submit" name="save" class="btn btn-success">Submit</button>
+                                                            <button type="reset" class="btn btn-danger cancelmaster"
+                                                                data-form-ad-action="/expense/expense_add">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    {{/scuritylogin}}
+                                </div>
+                            </div>
+                            {{!-- end of row --}}
+                             {{!-- hidden class hides the div --}}
+                            <div class="row hiddenel"  id="edit_courier_inword" >
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary" id="edit">
+                                        <div class="panel-heading" id="formheading">
+                                            <span>Edit</span> Courier Inward
+                                        </div>
+                                        <div class="panel-body">
+                                            <form method="POST" action="" enctype="" class="edit_courier_inword">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Date</label>
+                                                            <div class="col-md-9">
+                                                                <input class="form-control datep datemask cou_date" placeholder=""
+                                                                    name="cou_date" type="text">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Name</label>
+                                                            <div class="col-md-9">
+                                                                  <select name="party_sno"  class="form-control party_sno">
+                                                                    <option value="">Select None</option>
+                                                                    {{#each party}}
+                                                                    <option value="{{this._id}}" data-serialnum="{{this.party_name}}">{{this.party_name}}&nbsp;&nbsp;&nbsp;&nbsp;({{this.city_name.city_name}})</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Courier:</label>
+                                                            <div class="col-md-9">
+                                                                 <select name="cou_nm"  class="form-control cou_nm">
+                                                                    <option value="">Select None</option>
+                                                                     {{#each courier}}
+                                                                    <option value="{{this._id}}"
+                                                                        data-serialnum="{{this.courier_name}}">{{this.courier_name}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Lot No(Vakal):</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="cou_lotno"
+                                                                    class="form-control cou_lotno digits">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Product:</label>
+                                                            <div class="col-md-9">
+                                                                <select name="cou_product" class="form-control cou_product">
+                                                                    <option value="">Select Name </option>
+                                                                     {{#each product}}
+                                                                    <option value="{{this._id}}" data-serialnum="{{this.product_name}}">{{this.product_name}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Brand:</label>
+                                                            <div class="col-md-9">
+                                                                <select name="cou_brand" class="form-control cou_brand">
+                                                                    <option value="">Select Brand </option>
+                                                                    {{#each brand}}
+                                                                    <option value="{{this._id}}" data-serialnum="{{this._id}}">{{this.brand_name}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Rate:</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="cou_rate" class="form-control cou_rate number">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Rate
+                                                                (condition):</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="cou_contdition" 
+                                                                    class="form-control cou_contdition number">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Courier
+                                                                Receipt:</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="cou_rcpt" class="form-control cou_rcpt">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Courier
+                                                                Content:</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="cou_content" 
+                                                                    class="form-control cou_content">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Remarks:</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="remarks" class="form-control remarks">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Courier
+                                                                Charges:</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="cou_crgs" class="form-control cou_crgs number">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-1"></label>
+                                                        <div class="col-md-9">
+                                                            <button type="submit" name="update" class="btn btn-success">Update</button>
+                                                            <button type="reset" class="btn btn-danger cancelmaster" >Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

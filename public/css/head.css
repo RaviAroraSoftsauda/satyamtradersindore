@@ -1,0 +1,42 @@
+body{
+    background: rgb(179,38,209);
+    background: linear-gradient(90deg, rgba(179,38,209,1) 0%, rgba(0,121,255,1) 100%);
+    background-image: url('../img/apmcImg.jpg');
+}
+
+.login{
+    width: 480px;
+    /* height: 140px; */
+    margin:auto;
+    background-color: rgba(255,255,255,1);
+    padding: 15px;
+    box-shadow: 0 2px 12px 1px rgba(255,255,255,0.6);
+    margin-top: 180px;
+    position: relative;
+}
+
+.login .head{
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.login form{
+    width: 400px;
+    margin: auto;   
+}
+
+.panel{
+    /* width: 800px; */
+    margin: auto;
+    margin-top: 50px;
+}
+
+#division{
+    display: none;
+}
+
+.longLogo{
+    position: absolute;
+    top:-72px;
+    left: 116px;
+}

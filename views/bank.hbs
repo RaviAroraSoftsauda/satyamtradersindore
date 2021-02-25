@@ -1,0 +1,344 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-md-4">
+                                     {{#scuritylogin   security 'Bank Master' 'A'}}
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" id="formheading">
+                                            <span>Add</span> Bank
+                                        </div>
+                                        <div class="panel-body">
+                                            <form method="POST" action="/bank/bank_add" enctype="" id="addbrand" class="validate">
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Bank</label>
+                                                        <div class="col-md-8">
+                                                            <input class="form-control bank_name" placeholder="Bank Name"
+                                                                name="bank_name" type="text">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Bank Branch</label>
+                                                        <div class="col-md-8">
+                                                            <input class="form-control bnk_brnch" placeholder="Bank Branch"
+                                                                name="bnk_brnch" type="text">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Bank IFSC Code</label>
+                                                        <div class="col-md-8">
+                                                            <input class="form-control bnk_ifsc" placeholder="Bank IFSC Code"
+                                                                name="bnk_ifsc" type="text">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Bank Micr Code</label>
+                                                        <div class="col-md-8">
+                                                            <input class="form-control bnk_micr" placeholder="Bank Micr Code"
+                                                                name="bnk_micr" type="text">
+                                                        </div>
+                                                    </div>
+                                                     <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Bank Center</label>
+                                                        <div class="col-md-8">
+                                                            <input class="form-control bnk_center" placeholder="Bank Center"
+                                                                name="bnk_center" type="text">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Bank Address</label>
+                                                        <div class="col-md-8">
+                                                            <textarea class="form-control bnk_add" placeholder="Bank Address"
+                                                                name="bnk_add"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Bank Address1</label>
+                                                        <div class="col-md-8">
+                                                            <textarea class="form-control bnk_add1" placeholder="Bank Address1"
+                                                                name="bnk_add1"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Bank District</label>
+                                                        <div class="col-md-8">
+                                                        <select class="form-control bnk_dist select2" required name="bnk_dist" id="dis_name">
+                                                        <option>Bank District</option>
+                                                        {{#each district_master}}
+                                                        <option value="{{this._id}}" data-dis_id="{{this.state_id}}">{{this.dis_name}}</option>
+                                                        {{/each}}
+                                                        </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Bank State</label>
+                                                        <div class="col-md-8 state_name_div">
+                                                        <select class="form-control state_name select2" required name="state_name" id="state_name">
+                                                        {{#each state_master}}
+                                                        <option value="{{this._id}}">{{this.state_name}}</option>
+                                                        {{/each}}
+                                                        </select>
+                                                        </div>
+                                                    </div>
+                                                     <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Contract Details</label>
+                                                        <div class="col-md-8">
+                                                            <input class="form-control bnk_cont" placeholder="Bank Center"
+                                                                name="bnk_cont" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4"></label>
+                                                        <div class="col-md-8">
+                                                            <button type="submit" name="save" class="btn btn-success">Submit</button>
+                                                            <button type="reset" class="btn btn-primary cancelmaster"
+                                                                data-form-ad-action="/bank/bank_add">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                             <form method="POST" action="" enctype="" id="editbank" style="display:none" class="validate">
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Bank</label>
+                                                        <div class="col-md-8">
+                                                            <input class="form-control bank_name" placeholder="Bank Name"
+                                                                name="bank_name" type="text">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Bank Branch</label>
+                                                        <div class="col-md-8">
+                                                            <input class="form-control bnk_brnch" placeholder="Bank Branch"
+                                                                name="bnk_brnch" type="text">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Bank IFSC Code</label>
+                                                        <div class="col-md-8">
+                                                            <input class="form-control bnk_ifsc" placeholder="Bank IFSC Code"
+                                                                name="bnk_ifsc" type="text">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Bank Micr Code</label>
+                                                        <div class="col-md-8">
+                                                            <input class="form-control bnk_micr" placeholder="Bank Micr Code"
+                                                                name="bnk_micr" type="text">
+                                                        </div>
+                                                    </div>
+                                                     <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Bank Center</label>
+                                                        <div class="col-md-8">
+                                                            <input class="form-control bnk_center" placeholder="Bank Center"
+                                                                name="bnk_center" type="text">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Bank Address</label>
+                                                        <div class="col-md-8">
+                                                            <textarea class="form-control bnk_add" placeholder="Bank Address"
+                                                                name="bnk_add"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Bank Address1</label>
+                                                        <div class="col-md-8">
+                                                            <textarea class="form-control bnk_add1" placeholder="Bank Address1"
+                                                                name="bnk_add1"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Bank District</label>
+                                                        <div class="col-md-8">
+                                                        <select class="form-control bnk_dist select2" required name="bnk_dist" id="dis_name">
+                                                        <option>Bank District</option>
+                                                        {{#each district_master}}
+                                                        <option value="{{this._id}}" data-dis_id="{{this.state_id}}">{{this.dis_name}}</option>
+                                                        {{/each}}
+                                                        </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Bank State</label>
+                                                        <div class="col-md-8 state_name_div">
+                                                        <select class="form-control state_name select2" required name="state_name" id="state_name">
+                                                        {{#each state_master}}
+                                                        <option value="{{this._id}}">{{this.state_name}}</option>
+                                                        {{/each}}
+                                                        </select>
+                                                        </div>
+                                                    </div>
+                                                     <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Contract Details</label>
+                                                        <div class="col-md-8">
+                                                            <input class="form-control bnk_cont" placeholder="Bank Center"
+                                                                name="bnk_cont" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4"></label>
+                                                        <div class="col-md-8">
+                                                            <button type="submit" name="save" class="btn btn-success">Submit</button>
+                                                            <button type="reset" class="btn btn-primary cancelmaster"
+                                                                data-form-ad-action="/bank/bank_add">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    {{/scuritylogin}}
+                                </div>
+                                <div class="col-md-8">
+                                    {{#scuritylogin   security 'Bank Master' 'V'}}
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            Bank List
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table id="product_detail_table" class="product_detail_table table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Sno.</th>
+                                                            <th>Bank Name</th>
+                                                            <th>Bank Branch</th>
+                                                            <th>Bank IFSC Code</th>
+                                                            <th>Bank Micr Code</th>
+                                                            <th>Bank Center</th>
+                                                            <th>Bank Address</th>
+                                                            <th>Bank Address1</th>
+                                                            <th>Bank District</th>
+                                                            <th>Bank State</th>
+                                                            <th>Contract Details</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{#each bank as |value key|}}
+                                                        <tr>
+                                                            <td>{{sum @index 1}}</td>
+                                                            <td>{{this.bank_name}}</td>
+                                                            <td>{{this.bnk_brnch}}</td>
+                                                            <td>{{this.bnk_ifsc}}</td>
+                                                            <td>{{this.bnk_micr}}</td>
+                                                            <td>{{this.bnk_add}}</td>
+                                                            <td>{{this.bnk_add1}}</td>
+                                                            <td>{{this.bnk_center}}</td>
+                                                            <td>{{this.bnk_dist.dis_name}}</td>
+                                                            <td>{{this.state_name.state_name}}</td>
+                                                            <td>{{this.bnk_cont}}</td>
+                                                            <td>
+                                                                <div class="btn-group dropdown">
+                                                                    <button class="btn btn-xs blue dropdown-toggle"
+                                                                        type="button" data-toggle="dropdown"
+                                                                        aria-expanded="false"> Actions
+                                                                        <i class="fa fa-angle-down"></i>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu pull-right" role="menu">
+                                                                        {{#scuritylogin   ../security 'Bank Master' 'E'}}
+                                                                        <li>
+                                                                            <a href="javascript:void(0);" class="edit_bank_btn"
+                                                                                data-id="{{this._id}}">
+                                                                                <i class="icon-pencil"></i> Edit </a>
+                                                                        </li>
+                                                                        {{/scuritylogin}}
+                                                                        <li class="divider"> </li>
+                                                                         {{#scuritylogin   ../security 'Bank Master' 'D'}}
+                                                                        <li>
+                                                                            <a href="javascript:void(0);" class="delete-bank"
+                                                                                data-id="{{this._id}}">
+                                                                                <i class="icon-trash"></i> Delete
+                                                                            </a>
+                                                                        </li>
+                                                                        {{/scuritylogin}}
+                                                                    </ul>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        {{/each}}
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th>Sno.</th>
+                                                            <th>Bank Name</th>
+                                                            <th>Bank Branch</th>
+                                                            <th>Bank IFSC Code</th>
+                                                            <th>Bank Micr Code</th>
+                                                            <th>Bank Center</th>
+                                                            <th>Bank Address</th>
+                                                            <th>Bank Address1</th>
+                                                            <th>Bank District</th>
+                                                            <th>Bank State</th>
+                                                            <th>Contract Details</th>
+                                                            <th class="excludesearch"></th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{/scuritylogin}}
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

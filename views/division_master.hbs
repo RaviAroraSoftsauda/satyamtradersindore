@@ -1,0 +1,1263 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb pull-right">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Add Form
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading" id="add">
+                                   Division Master
+                                </div>
+                                 <div class="panel-heading" id="edit" style="display:none">
+                                  Update Division Master
+                                </div>
+                                 <div class="panel-body">
+                                <form method="POST" action="/division_master/submit" enctype="multipart/form-data" id="divisionadd">
+                                   
+                                        <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Div Name:</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="div_mast" class="form-control"
+                                                                    placeholder="Div Name">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-sm-12 col-md-3 control-label">Div Code</label>
+                                                            <div class="col-sm-12 col-md-9">
+                                                                <div class="input-group" id="">
+                                                                    <input type="text" class="form-control"
+                                                                        name="div_code" placeholder="Div Code">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Address</label>
+                                                            <div class="col-md-9">
+                                                                <textarea name="ac_add2" id="" placeholder="Address2" class="form-control"></textarea>
+                                                                {{!-- <input type="text" name="ac_add2" class="form-control"
+                                                                    placeholder="Address2"> --}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                        </div>
+                                         <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Place:</label>
+                                                            <div class="col-md-9">
+                                                                <select name="ac_place" id="ac_place" class="form-control select2"
+                                                                required>
+                                                                <option value=""></option>
+                                                                    {{#each city}}
+                                                                    <option value="{{this._id}}">{{this.CityName}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-sm-12 col-md-3 control-label">State</label>
+                                                            <div class="col-sm-12 col-md-9">
+                                                                    <select name="ac_state" id="ac_state" class="form-control ac_state select2">
+                                                                    <option value="">Select State</option>
+                                                                    {{#each state}}
+                                                                    <option value="{{this._id}}">{{this.StateName}}</option>
+                                                                    {{/each}}
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Pin</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="ac_pin" class="form-control"
+                                                                    placeholder="Pin">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                        
+                                         <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Proprietor:</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="propreietor" class="form-control"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-sm-12 col-md-3 control-label">PAN</label>
+                                                            <div class="col-sm-12 col-md-9">
+                                                                <div class="input-group" id="">
+                                                                    <input type="text" class="form-control"
+                                                                        name="ac_pan">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Phone(Office)</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="ac_pho" class="form-control"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                        </div>
+                                         <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Phone(Fax):</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="ac_phfax" class="form-control"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-sm-12 col-md-3 control-label">Mobile Number</label>
+                                                            <div class="col-sm-12 col-md-9">
+                                                                <div class="input-group" id="">
+                                                                    <input type="text" class="form-control"
+                                                                        name="ac_mobno">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">GSTIN</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="ac_gstin" class="form-control"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                        </div>
+                                          <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Date FIle</label>
+                                                            <div class="col-md-9">
+                                                                <input type="file" name="datafile" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-sm-12 col-md-3 control-label">Prv. Yr data File</label>
+                                                            <div class="col-sm-12 col-md-9">
+                                                                <div class="input-group" id="">
+                                                                    <input type="text" class="form-control"
+                                                                        name="prvyr_datafile">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Website</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="ac_wbsite" class="form-control"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                        </div>
+                                          <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Email Id</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="ac_email" class="form-control"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-sm-12 col-md-3 control-label">Interface Language</label>
+                                                            <div class="col-sm-12 col-md-9">
+                                                               <select name="ac_interfclanguge" id="" class="form-control">
+                                                                   <option value="EN-English">EN-English</option>
+                                                                   <option value="HI-Hindi">HI-Hindi</option>
+                                                                   <option value="GU-Gujrati">GU-Gujrati</option>
+                                                                   <option value="MA-Marathi">MA-Marathi</option>
+                                                                   <option value="PA-Panjabi">PA-Panjabi</option>
+                                                               </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">SMS Domain</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="ssevadomain" class="form-control"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                        </div>
+                                         <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">SMS User</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="ssevausr" class="form-control"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-sm-12 col-md-3 control-label">Password</label>
+                                                            <div class="col-sm-12 col-md-9">
+                                                                <div class="input-group" id="">
+                                                                    <input type="text" class="form-control"
+                                                                        name="ssevapwd">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">SMS Port No</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="sms_port_no" class="form-control"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                        </div>
+                                          <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">SMTP Client</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="smttp_client" class="form-control"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-sm-12 col-md-3 control-label">Email User</label>
+                                                            <div class="col-sm-12 col-md-9">
+                                                                <div class="input-group" id="">
+                                                                    <input type="text" class="form-control"
+                                                                        name="email_user">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Email Pwd</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="email_pwd" class="form-control"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                        </div>
+                                         <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Email Port</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="email_port" class="form-control"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-sm-12 col-md-3 control-label">Jurisdiction</label>
+                                                            <div class="col-sm-12 col-md-9">
+                                                                <div class="input-group" id="">
+                                                                    <input type="text" class="form-control"
+                                                                        name="jurisdiction">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Top Line Head</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="ac_topline" class="form-control"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                        </div>
+                                         <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Middile Line</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="ac_midline" class="form-control"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-sm-12 col-md-3 control-label">Bottom(Footer)</label>
+                                                            <div class="col-sm-12 col-md-9">
+                                                                <div class="input-group" id="">
+                                                                    <input type="text" class="form-control"
+                                                                        name="ac_bottline">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Contract Qty</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="contract_qty" class="form-control"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                        </div>
+                                         <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Weight Calculation</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="weight_calcution" class="form-control"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-sm-12 col-md-3 control-label">Character Case</label>
+                                                            <div class="col-sm-12 col-md-9">
+                                                                    <select name="character_case" class="form-control" id="character_case">
+                                                                        <option value="Title Case">Title Case</option>
+                                                                        <option value="Upper Case">Upper Case</option>
+                                                                    </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Fix Term & Condition</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="fix" class="form-control"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                         </div> 
+                                                    {{!-- <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Contact Person</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="comp_con_person" class="form-control"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div> --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">FSSAINo</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="FSSAINo" class="form-control"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">NMMCNo</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="NMMCNo" class="form-control"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Regn No</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="groceryMarketRegNo" id="groceryMarketRegNo" class="form-control groceryMarketRegNo"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Delivery</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="Delivery" id="Delivery" class="form-control Delivery"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="repeat clearfix">
+                                            <div class="form-group clearfix">
+                                                <div class="col-lg-12">
+                                                    <h3 class="form-section">Bank Accounts
+                                                </div>
+                                            </div>
+                                                <div class="form-group bankrow clearfix">
+                                                          <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                             <label class="control-label col-md-3">Bank Name</label>
+                                                            <div class="col-md-9">
+                                                                <input class="form-control prbank bank_name" name="bank1"
+                                                                    placeholder="Bank Name" id="bank1">
+                                                                    {{!-- <option value="">Select Bank</option>select2
+                                                                    {{#each bank}}
+                                                                    <option value="{{this._id}}" data-serialnum="{{this._id}}">{{this.bank_name}}</option>
+                                                                    {{/each}} --}}
+                                                                {{!-- </select> --}}
+                                                            </div>
+                                                 </div>
+                                            </div>
+                                                    {{!-- end of col --}}
+                                                   <div class="col-sm-12 col-md-8">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-2">Bank Add</label>
+                                                    <div class="col-md-10">
+                                                        <input type="text"  class="form-control bank_add" name="bank_add"
+                                                            placeholder="Bank Address" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                </div>
+
+  
+                                                  <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                          <label class="control-label col-md-3 itsalink">City</label>
+                                                    <div class="col-md-9">
+                                                        <!-- city_name -->
+                                                       <select class="form-control prbank select2 bank_city" name="bank_city" 
+                                                                    id="bank_city" placeholder="Select city">
+                                                                    <option value=""></option>
+                                                                    {{#each city}}
+                                                                   <option value="{{this._id}}">{{this.CityName}}</option>
+                                                                 {{/each}}
+                                                            </select>
+                                                     </div>
+                                                 </div>
+                                            </div>
+                                                    {{!-- end of col --}}
+                                                    {{!-- <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                             <label class="control-label col-md-3">PIN NO</label>
+                                                               <div class="col-md-9">
+                                                                  <input type="text" class="form-control digits" name="bank_pin"
+                                                                        placeholder="PIN NO" value="">
+                                                             </div>
+                                                        </div>
+                                                    </div> --}}
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                             <label class="control-label col-md-3">FAX/PH</label>
+                                                                <div class="col-md-9">
+                                                                 <input type="text" class="form-control bank_fax" name="bank_fax" placeholder="Fax/Ph"
+                                                                     value="">
+                                                              </div>
+                                                        </div>
+                                                    </div>
+                                               
+                                                   <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                           <label class="control-label col-md-3">Account number</label>
+                                                               <div class="col-md-9">
+                                                                  <input type="text" class="form-control " name="bank2"
+                                                                        placeholder="Account number" value="">
+                                                             </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                           <label class="control-label col-md-3">IFSC</label>
+                                                               <div class="col-md-9">
+                                                                  <input type="text" class="form-control bank_ifsc" name="bank3"
+                                                                        placeholder="IFSC" value="">
+                                                             </div>
+                                                    </div>
+                                            </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                             <label class="control-label col-md-3">BNK CODE</label>
+                                                               <div class="col-md-9">
+                                                                  <input type="text" class="form-control bank_code" name="bank_code"
+                                                                        placeholder="BNK CODE" value="">
+                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                             <label class="control-label col-md-3">SWIFT CODE</label>
+                                                                <div class="col-md-9">
+                                                                 <input type="text" class="form-control swift_code" name="swift_code" placeholder="SWIFT CODE"
+                                                                     value="">
+                                                              </div>
+                                                        </div>
+                                                </div>
+                                                {{!-- end of repeater item --}}
+                                            </div>
+                                        </div>   
+                                       
+                                     
+                                            </div>
+                                                    {{!-- end of col --}}
+                                        </div>
+                                       {{!-- <div class="panel-footer" id="btn_add"> --}}
+                                        <div class="action clearfix">
+                                            <div class="col-md-12" align="center" style="margin-bottom: 2em;">
+                                                {{!-- <div class="col-md-9 col-md-push-3"> --}}
+                                                    <button type="submit" name="save" class="btn btn-success btn_add" id="btn_add">Submit</button>
+                                                    <button type="reset" class="btn btn-danger btn_add">Cancel</button>
+                                                {{!-- </div> --}}
+                                            </div>
+                                        </div>
+                                    {{!-- </div>  --}}
+                                </form>
+                                 {{!-- </div> --}}
+
+
+
+                                 <form method="POST" action="" enctype="multipart/form-data" id="divisionedit" style="display:none">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Div Name:</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="div_mast" class="form-control div_mast"
+                                                                    placeholder="Div Name">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-sm-12 col-md-3 control-label">Div Code</label>
+                                                            <div class="col-sm-12 col-md-9">
+                                                                <div class="input-group" id="">
+                                                                    <input type="text" class="form-control div_code"
+                                                                        name="div_code" placeholder="Div Code">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Address</label>
+                                                            <div class="col-md-9">
+                                                                <textarea name="ac_add2" id="" class="form-control ac_add2" placeholder="Address2"></textarea>
+                                                                {{!-- <input type="text" name="ac_add2" class="form-control ac_add2"
+                                                                    placeholder="Address2"> --}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                        </div>
+                                         <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Place:</label>
+                                                            <div class="col-md-9">
+                                                                <select name="ac_place" id="ac_place" class="form-control ac_place select2" style="width: 100%">
+                                                                {{!-- <option value="">Select Place</option> --}}
+                                                                {{#each city}}
+                                                                <option value="{{this._id}}">{{this.CityName}}</option>
+                                                                {{/each}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-sm-12 col-md-3 control-label">State</label>
+                                                            <div class="col-sm-12 col-md-9">
+                                                                    <select name="ac_state" id="ac_state" class="form-control ac_state select2" style="width: 100%">
+                                                                    {{!-- <option value="">Select State</option> --}}
+                                                                    {{#each state}}
+                                                                    <option value="{{this._id}}">{{this.StateName}}</option>
+                                                                    {{/each}}
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Pin</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="ac_pin" class="form-control ac_pin"
+                                                                    placeholder="Pin">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                        
+                                         <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Proprietor:</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="propreietor" class="form-control propreietor"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-sm-12 col-md-3 control-label">PAN</label>
+                                                            <div class="col-sm-12 col-md-9">
+                                                                <div class="input-group" id="">
+                                                                    <input type="text" class="form-control ac_pan"
+                                                                        name="ac_pan">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Phone(Office)</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="ac_pho" class="form-control ac_pho"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                        </div>
+                                         <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Phone(Fax):</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="ac_phfax" class="form-control ac_phfax"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-sm-12 col-md-3 control-label">Mobile Number</label>
+                                                            <div class="col-sm-12 col-md-9">
+                                                                <div class="input-group" id="">
+                                                                    <input type="text" class="form-control ac_mobno"
+                                                                        name="ac_mobno">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">GSTIN</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="ac_gstin" class="form-control ac_gstin"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                        </div>
+                                          <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Date FIle</label>
+                                                            <div class="col-md-9">
+                                                                <input type="file" name="datafile" class="form-control">
+                                                                 <input type="hidden" name="previousfilename" value="" class="edit_filename"/>
+                                                                 <img src="" class="edit_div_img"  height="50px" width="50px">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-sm-12 col-md-3 control-label">Prv. Yr data File</label>
+                                                            <div class="col-sm-12 col-md-9">
+                                                                <div class="input-group" id="">
+                                                                    <input type="text" class="form-control prvyr_datafile"
+                                                                        name="prvyr_datafile">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Website</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="ac_wbsite" class="form-control ac_wbsite"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                        </div>
+                                          <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Email Id</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="ac_email" class="form-control ac_email"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-sm-12 col-md-3 control-label">Interface Language</label>
+                                                            <div class="col-sm-12 col-md-9">
+                                                               <select name="ac_interfclanguge" id="" class="form-control ac_interfclanguge">
+                                                                   <option value="EN-English">EN-English</option>
+                                                                   <option value="HI-Hindi">HI-Hindi</option>
+                                                                   <option value="GU-Gujrati">GU-Gujrati</option>
+                                                                   <option value="MA-Marathi">MA-Marathi</option>
+                                                                   <option value="PA-Panjabi">PA-Panjabi</option>
+                                                               </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">SMS Domain</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="ssevadomain" class="form-control ssevadomain"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                        </div>
+                                         <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">SMS User</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="ssevausr" class="form-control ssevausr"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-sm-12 col-md-3 control-label">Password</label>
+                                                            <div class="col-sm-12 col-md-9">
+                                                                <div class="input-group" id="">
+                                                                    <input type="text" class="form-control ssevapwd"
+                                                                        name="ssevapwd">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">SMS Port No</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="sms_port_no" class="form-control sms_port_no"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                        </div>
+                                          <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">SMTP Client</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="smttp_client" class="form-control smttp_client"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-sm-12 col-md-3 control-label">Email User</label>
+                                                            <div class="col-sm-12 col-md-9">
+                                                                <div class="input-group" id="">
+                                                                    <input type="text" class="form-control email_user"
+                                                                        name="email_user">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Email Pwd</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="email_pwd" class="form-control email_pwd" 
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                        </div>
+                                         <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Email Port</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="email_port" class="form-control email_port"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-sm-12 col-md-3 control-label">Jurisdiction</label>
+                                                            <div class="col-sm-12 col-md-9">
+                                                                <div class="input-group" id="">
+                                                                    <input type="text" class="form-control jurisdiction"
+                                                                        name="jurisdiction">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Top Line Head</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="ac_topline" class="form-control ac_topline"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                        </div>
+                                        <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Middile Line</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="ac_midline" class="form-control ac_midline"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-sm-12 col-md-3 control-label">Bottom(Footer)</label>
+                                                            <div class="col-sm-12 col-md-9">
+                                                                <div class="input-group" id="">
+                                                                    <input type="text" class="form-control ac_bottline"
+                                                                        name="ac_bottline">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Contract Qty</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="contract_qty" class="form-control contract_qty"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                        </div>
+                                         <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Weight Calculation</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="weight_calcution" class="form-control weight_calcution"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-sm-12 col-md-3 control-label">Character Case</label>
+                                                            <div class="col-sm-12 col-md-9">
+                                                                    <select name="character_case" class="form-control character_case" id="character_case">
+                                                                        <option value="Title Case">Title Case</option>
+                                                                        <option value="Upper Case">Upper Case</option>
+                                                                    </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Fix Term & Condition</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="fix" class="form-control fix"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                                  {{!-- <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">CIN</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="ac_cin" class="form-control ac_cin"
+                                                                    value="" >
+                                                            </div>
+                                                        </div>
+                                                    </div>  --}}
+                                                     {{!-- <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Contact Person</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="comp_con_person" class="form-control comp_con_person"
+                                                                    value="" >
+                                                            </div>
+                                                        </div>
+                                                    </div> --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">FSSAINo</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="FSSAINo" class="form-control FSSAINo"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">NMMCNo</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="NMMCNo" class="form-control NMMCNo"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Regn No</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="groceryMarketRegNo" id="groceryMarketRegNo" class="form-control groceryMarketRegNo"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>  
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Delivery</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="Delivery" id="Delivery" class="form-control Delivery"
+                                                                    >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                      <div class="repeat clearfix">
+                                            <div class="form-group clearfix">
+                                                <div class="col-lg-12">
+                                                    <h3 class="form-section">Bank Accounts
+                                                </div>
+                                            </div>
+                                                <div class="form-group bankrow clearfix">
+                                                          <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                             <label class="control-label col-md-3">Bank Name</label>
+                                                            <div class="col-md-9">
+                                                                <input class="form-control prbank bank1" name="bank1"
+                                                                    placeholder="Bank Name">
+                                                                    {{!-- <option value="">Select Bank</option> --}}
+                                                                    {{!-- {{#each bank}}
+                                                                    <option value="{{this._id}}" data-serialnum="{{this._id}}">{{this.bank_name}}</option>
+                                                                    {{/each}} --}}
+                                                                {{!-- </select> --}}
+                                                            </div>
+                                                 </div>
+                                            </div>
+                                            
+                                                    {{!-- end of col --}}
+                                                   <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Bank Address</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text"  class="form-control bank_add" name="bank_add"
+                                                            placeholder="Bank Address" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                </div>
+
+  
+                                                  <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                          <label class="control-label col-md-3 itsalink">City</label>
+                                                    <div class="col-md-9">
+                                                        <!-- city_name -->
+                                                       <select class="form-control prbank select2 bank_city" name="bank_city" 
+                                                                    id="bank_city" placeholder="Select city" style="width: 100%">
+                                                                    <option value=""></option>
+                                                                    {{#each city}}
+                                                                   <option value="{{this._id}}">{{this.CityName}}</option>
+                                                                 {{/each}}
+                                                            </select>
+                                                     </div>
+                                                 </div>
+                                            </div>
+                                                    {{!-- end of col --}}
+                                                    
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                             <label class="control-label col-md-3">Fax/Ph</label>
+                                                                <div class="col-md-9">
+                                                                 <input type="text" class="form-control bank_fax" name="bank_fax" placeholder="Fax/Ph"
+                                                                     value="">
+                                                              </div>
+                                                        </div>
+                                                    </div>
+                                                      <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                           <label class="control-label col-md-3">Account number</label>
+                                                               <div class="col-md-9">
+                                                                  <input type="text" class="form-control bank2" name="bank2"
+                                                                        placeholder="Account number"  value="">
+                                                             </div>
+                                                    </div>
+                                                    </div>
+                                            </div>
+
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                           <label class="control-label col-md-3">IFSC</label>
+                                                               <div class="col-md-9">
+                                                                  <input type="text" class="form-control bank3" name="bank3"
+                                                                        placeholder="IFSC" value="">
+                                                             </div>
+                                                    </div>
+                                            </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                             <label class="control-label col-md-3">BNK CODE</label>
+                                                               <div class="col-md-9">
+                                                                  <input type="text" class="form-control bank_code" name="bank_code"
+                                                                        placeholder="BNK CODE" value="">
+                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                             <label class="control-label col-md-3">SWIFT CODE</label>
+                                                                <div class="col-md-9">
+                                                                 <input type="text" class="form-control swift_code" name="swift_code" placeholder="SWIFT CODE"
+                                                                     value="">
+                                                              </div>
+                                                        </div>
+                                                </div>
+                                                {{!-- end of repeater item --}}
+                                            </div>
+                                        </div>   
+                                       
+                                     
+                                            </div>
+                                                    {{!-- end of col --}}
+                                        </div>
+                                        
+                                       <div class="panel-footer">
+                                        <div class="action clearfix">
+                                            <div class="col-md-12" align="center">
+                                                {{!-- <div class="col-md-9 col-md-push-3"> --}}
+                                                    <button type="submit" name="save" class="btn btn-success">Submit</button>
+                                                    <button type="reset" class="btn btn-danger">Cancel</button>
+                                                {{!-- </div> --}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                  
+                                    
+                                </form>
+                                </div>
+                                </div> 
+                            </div>
+                             <div class="col-md-12">
+
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            Division List
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table id="product_detail_table" class="product_detail_table table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Sno.</th>
+                                                            <th>Div Name</th>
+                                                            <th>Div Code</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{#each division as |value key|}}
+                                                        <tr>
+                                                            <td>{{sum @index 1}}</td>
+                                                            <td>{{this.div_mast}}</td>
+                                                            <td>{{this.div_code}}</td>
+                                                            <td>
+                                                                <div class="btn-group dropdown">
+                                                                    <button class="btn btn-xs blue dropdown-toggle"
+                                                                        type="button" data-toggle="dropdown"
+                                                                        aria-expanded="false"> Actions
+                                                                        <i class="fa fa-angle-down"></i>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu pull-right" role="menu">
+                                                                        <li>
+                                                                            <a href="javascript:void(0);" class="edit_division_master"
+                                                                                data-id="{{this._id}}">
+                                                                                <i class="icon-pencil"></i> Edit </a>
+                                                                        </li>
+                                                                        <li class="divider"> </li>
+                                                                        <li>
+                                                                            <a href="/division_master/delete_divisionmaster/{{this._id}}" class="delbutton">
+                                                                                <i class="icon-trash"></i> Delete
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        {{/each}} 
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                        <th>Sno.</th>
+                                                        <th>Div Name</th>
+                                                        <th>Div Code</th>
+                                                        <th class="excludesearch"></th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+{{> footer_new}}
+{{> scripts_new}}

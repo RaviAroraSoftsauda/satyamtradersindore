@@ -1,0 +1,158 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-md-4">
+                                     {{#scuritylogin   security 'Brand Master' 'A'}}
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" id="formheading">
+                                            <span>Add</span> Brand
+                                        </div>
+                                        <div class="panel-body">
+                                            <form method="POST" action="/brand/brand_add" enctype="" id="addbrand" class="validate">
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Brand</label>
+                                                        <div class="col-md-8">
+                                                                <input class="form-control brand_name" placeholder="Brand Name" name="brand_name" type="text" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4"></label>
+                                                        <div class="col-md-8">
+                                                            <button type="submit" name="save" class="btn btn-success">Submit</button>
+                                                            <button type="reset" class="btn btn-primary cancelmaster"
+                                                                data-form-ad-action="/brand/brand_add">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    {{/scuritylogin}}
+                                </div>
+                                <div class="col-md-8">
+                                    {{#scuritylogin   security 'Brand Master' 'V'}}
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            Brand List
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table id="product_detail_table" class="product_detail_table table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Sno.</th>
+                                                            <th>Brand Name</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                            {{#each brand as |value key|}}
+                                                            <tr>
+                                                                <td>{{sum @index 1}}</td>
+                                                                <td>{{this.brand_name}}</td>
+                                                                <td>
+                                                                <div class="btn-group dropdown">
+                                                                    <button class="btn btn-xs blue dropdown-toggle"
+                                                                        type="button" data-toggle="dropdown"
+                                                                        aria-expanded="false"> Actions
+                                                                        <i class="fa fa-angle-down"></i>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu pull-right" role="menu">
+                                                                         {{#scuritylogin   ../security 'Brand Master' 'E'}}
+                                                                        <li>
+                                                                            <a href="javascript:void(0);" class="edit_brand_btn"
+                                                                                data-id="{{this._id}}">
+                                                                                <i class="icon-pencil"></i> Edit </a>
+                                                                        </li>
+                                                                        {{/scuritylogin}}
+                                                                        <li class="divider"> </li>
+                                                                        {{#scuritylogin   ../security 'Brand Master' 'D'}}
+                                                                        <li>
+                                                                            <a href="javascript:void(0);" class="delete-brand"
+                                                                                data-id="{{this._id}}">
+                                                                                <i class="icon-trash"></i> Delete
+                                                                            </a>
+                                                                        </li>
+                                                                        {{/scuritylogin}}
+                                                                    </ul>
+                                                                </div>
+                                                            </td>
+                               </tr>
+                              {{/each}} 
+                                                      
+
+
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                            <th>Sno.</th>
+                            <th>Brand Name</th>
+                                                            <th class="excludesearch"></th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{/scuritylogin}}
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

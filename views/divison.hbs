@@ -1,0 +1,45 @@
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <!-- MetisMenu CSS -->
+    <link href="css/metisMenu.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link href="css/sb-admin-2.css" rel="stylesheet" type="text/css">
+    <!-- Morris Charts CSS -->
+    <link href="css/morris.css" rel="stylesheet" type="text/css">
+    <!-- Custom Fonts -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.timepicker.min.css" />
+    <link rel="stylesheet" href="css/jquery.dataTables.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <div class="col-lg-12" style="margin-top: 22px;">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bell fa-fw"></i>Divison Master
+                </div>
+                <div class="table-responsive">
+                    <table class="product_detail_table">
+                        <thead>
+                        <tr>
+                        <th>Divison Name</th>
+                        <th>Divison Code</th>
+                        <th>Click</th>
+                      </tr>  
+                        </thead>
+                        <tbody>
+                             {{#divcom div_mast div_code}}
+                            
+                              <tr>
+                                    <td>{{this.div_mast}}</td>
+                                    <td>{{this.div_code}}</td>
+                                    <td><a href="/userright/division?divid={{this._id}}&amp;divname={{this.div_code}}">Click Here</a></td>
+                            </tr>
+                          {{/divcom}}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                </div>
+        </div>  
+        </div>

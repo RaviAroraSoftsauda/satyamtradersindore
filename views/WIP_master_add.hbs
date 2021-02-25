@@ -1,0 +1,215 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading" align="center">
+                                   Add WIP Master 
+                                    <div class="misc pull-right">
+                                        {{!-- <div class="buttons">
+                                            <a href="/party/party_add">
+                                                <button class="btn btn-link" type="button"><i class="fa fa-plus"></i>Add
+                                                    Product</button>
+                                            </a>
+                                        </div> method="POST" action="/product_mast/product_mast_add" enctype="multipart/form-data"--}}
+                                    </div>
+                                </div>
+                                <form  class="form-horozintal validate" id="product_mast">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Product Code: </label>
+                                                    <div class="col-md-9">
+                                                        <input class="form-control p_code" placeholder="Product Code"required  value="{{product_mast}}"
+                                                            name="p_code"  type="number" style="text-transform: uppercase"autofocus>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Product Description: </label>
+                                                    <div class="col-md-9">
+                                                        <input class="form-control" placeholder="Product Description"required
+                                                            name="prdt_desc" value="" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                        </div>
+                                        {{!-- end of row --}}
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                   <label for="" class="control-label col-md-3">Model:</label>
+                                                        <div class="col-md-9">
+                                                        <select class="form-control model  prbank select2" name="model" id="model" placeholder="Select Model">
+                                                            <option value=""></option>
+                                                            {{#each model}}
+                                                            <option value="{{this.id}}">{{this.Description}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                   <label for="" class="control-label col-md-3">Brand:</label>
+                                                        <div class="col-md-9">
+                                                        <select class="form-control brand  prbank select2" name="brand" id="brand" placeholder="Select Brand">
+                                                            <option value=""></option>
+                                                            {{#each brand}}
+                                                            <option value="{{this.id}}">{{this.Description}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                   <label for="" class="control-label col-md-3">Unit:</label>
+                                                        <div class="col-md-9">
+                                                        <select class="form-control sku_name  prbank select2" name="sku_name" id="sku_name" placeholder="Select Unit">
+                                                            <option value=""></option>
+                                                            {{#each Stock_Unit}}
+                                                            <option value="{{this.id}}">{{this.SKUName}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6">
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                 <div class="table-responsive adjustmentstable">
+                                                <table class="table" >
+                                                    <thead >
+                                                        <tr>
+                                                            <th>Raw Material</th>
+                                                            <th>Qty/Pcs</th>
+                                                            <th>Unit</th>
+                                                            <th>Price</th>
+                                                            
+                                                            </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="hidden" name="cntrer" value="0" id="cntrer0">
+                                                            <select class="form-control sku_name select2"  name="product_mast_group[0][raw_matrl_nm]" 
+                                                            id="product_mast_group[0][raw_matrl_nm]"
+                                                            value="" class="form-control" style='width:100%;'>
+                                                           
+                                                            {{#each rawMat_mast}}
+                                                            <option value="{{this.id}}">{{this.Rm_Des}}</option>
+                                                            {{/each}}
+                                                            </select>
+
+                                                        </td>
+                                                    <td>
+                                                        <input class="form-control" placeholder="Qty/Pcs"
+                                                        name="product_mast_group[0][qty_pcs]" type="text" style='width:100%'/>
+                                                        </td>
+                                                    <td>  <select class="form-control sku_name select2"  name="product_mast_group[0][sku]"
+                                                        id="product_mast_group[0][sku]" style='width:100%'>
+                                                        {{!-- <option value=""></option> --}}
+                                                        {{#each Stock_Unit}}
+                                                        <option value="{{this.id}}">{{this.SKUName}}</option>
+                                                        {{/each}}
+                                                    </td>
+
+                                                    <td>
+                                                        <input class="form-control amountfocus" placeholder="Price"
+                                                        name="product_mast_group[0][price]" type="text" style='width:100%'/></td>
+
+                                                    </tr>
+                                                    <tr id="insert_product">
+                                                    </tr>
+                                                    </body>
+                                                </table>
+                                            </div>
+                                            </div>
+                                        </div>
+                                   
+                                     <div class="row">
+                                    <div class="col-sm-12">
+                                        <button type="button" class="btn btn-primary addWIP center-block nofocus" id="add">Add Product</button>  
+                                        
+                                    </div>
+                                    {{!-- end of col --}}
+                                </div> 
+                                    {{!-- end of body lock-product--}}  
+                                    <div class="panel-footer" align="center">
+                                        <div class="action clearfix">
+                                            <div class="col-md-12" align="center">
+                                                <button type="submit" name="save" class="btn btn-success delv_load lock-WIP">Submit</button>
+                                                <button type="reset" class="btn btn-danger">Cancel</button>
+                                                <a href="/WIP_master/WIP_master" style="margin-top: 1.5em" class="btn btn-info">Back</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     </div>
+                                </form>
+                            </div>
+
+
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

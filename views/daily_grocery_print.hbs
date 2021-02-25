@@ -1,0 +1,116 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<style>
+
+@media print {
+    @page{
+        margin-top: 1em;
+        margin-left: 1em;
+        margin-right: 1em;
+        margin-bottom: 1em;
+    }
+    table{
+        width: 100%;
+    }
+}
+</style>
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <div class="page-container">
+            <div class="page-content-wrapper">
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <div class="page-title">
+                           <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                    </ul>
+                                </small>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+    <div style="width: 95%;margin: 1%" align="center" >
+        <table border="1" id="table1" style="width: 100%">
+            <tr>
+                <th colspan="10" style="text-align: center; font-size: 18px; padding: 0%">Form No 1</th>
+            </tr>
+            <tr>
+                  <th colspan="10" style="text-align: left; font-size: 18px; padding: 0%">GROCERY MARKETS & SHOPS BOARD</th> 
+            </tr>
+            <tr>
+                <td colspan="6" style="text-align: left; font-size: 14px;">(For Greater Bombay, Thane & Rajgad Districts)</br>Madhyavarti Suvidha Imarat .6th Floor, Fruit Market</br>
+                Turbhe, Navi Mumbai - 400 705.</br>Tel No :- 2784 2376 * 2784 4119 * 2784 4188</td>
+                <td colspan="4" style="text-align: left; font-size: 14px;">Name & Regn No : {{division.div_mast}}</br>{{division.ac_add2}}
+                </br>Toli No :- <b style="font-size: 18px">{{daily_grocery_entry.toliCode.ToliName}}</b>, Table No :- <b style="font-size: 18px">{{daily_grocery_entry.toliCode.ToliCode}}</b></br>Telephone No :- {{division.ac_pho}}</td>
+            </tr>
+            <tr>
+                <th colspan="6" style="text-align: left; font-size: 12px;"> Name Of the Employer/Institution </br><b style="font-size: 18px;">{{division.div_mast}}</b></th>
+                <th colspan="2" style="text-align: left; font-size: 12px;">Regn No <b style="font-size: 18px;">{{division.groceryMarketRegNo}}</b> </th>
+                <th colspan="2" style="text-align: left; font-size: 12px;">Date &nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 18px;">{{dateformat daily_grocery_entry.date "DD/MM/YYYY"}}</b></th>
+            </tr>
+        </table>
+        {{!-- Table Start --}}
+        <table align="center" border="1" id="groceryPrint" style="width: 100%">
+             <thead >
+                 <tr>
+                 <th style="width: 1em;">Sr No</th>
+                 <th style="text-align: left; font-size: 12px;width: 20em ">Nature Of Work</th>
+                 <th style="text-align: right; font-size: 12px;width: 3em">Kgs</th>
+                 <th style="text-align: right; font-size: 12px; width: 8em">Rate/100</br>Pcs/1 Ton</th>
+                 <th style="text-align: right; font-size: 12px; width: 3em">Work</br>Done</th>
+                 <th style="text-align: right; font-size: 12px; width: 4em">Labour</br>Charges</th>
+                 <th style="text-align: right; font-size: 12px; width: 4em">Levy</br>Amount</th>
+                 <th style="text-align: center; font-size: 12px; width: 8em">Cash Depo</br>Lab-Chgs</th>
+                 <th style="text-align: center; font-size: 12px; width: 8em">by-Toli</br>Levy-Amt</th>
+                 <th style="text-align: right; font-size: 12px; width: 3em">Total</br>Amount</th>
+                 </tr>
+             </thead>
+             <tbody>
+                 <tr >
+                    <td style="text-align: center; height: 23em; font-size: 14px;" valign="top">{{#each daily_grocery_entry.daily_grocery_entry_group as |groupvalue key|}} {{sum @index 1}}</br> {{/each}}</td>
+                    <td style="text-align: left; font-size: 14px;" valign="top">{{#each daily_grocery_entry.daily_grocery_entry_group as |groupvalue key|}} {{groupvalue.natureOfWork.natureOfWork}}</br> {{/each}}</td>
+                    <td style="text-align: right; font-size: 14px;" valign="top">{{#each daily_grocery_entry.daily_grocery_entry_group as |groupvalue key|}} {{groupvalue.pck}}</br> {{/each}}</td>
+                    <td style="text-align: right; font-size: 14px;" valign="top">{{#each daily_grocery_entry.daily_grocery_entry_group as |groupvalue key|}} {{groupvalue.masterRate}}</br> {{/each}}</td>
+                    <td style="text-align: right; font-size: 14px;" valign="top">{{#each daily_grocery_entry.daily_grocery_entry_group as |groupvalue key|}} {{groupvalue.qty}}</br> {{/each}}</td>
+                    <td style="text-align: right; font-size: 14px;" valign="top">{{#each daily_grocery_entry.daily_grocery_entry_group as |groupvalue key|}} {{groupvalue.basic}}</br> {{/each}}</td>
+                    <td style="text-align: right; font-size: 14px;" valign="top">{{#each daily_grocery_entry.daily_grocery_entry_group as |groupvalue key|}} {{groupvalue.levy}}</br> {{/each}}</td>
+                    <td style="text-align: center; font-size: 14px;" valign="top">{{#each daily_grocery_entry.daily_grocery_entry_group as |groupvalue key|}}--</br> {{/each}}</td>
+                    <td style="text-align: center; font-size: 14px;" valign="top">{{#each daily_grocery_entry.daily_grocery_entry_group as |groupvalue key|}}--</br> {{/each}}</td>
+                    <td style="text-align: right; font-size: 14px;" valign="top">{{#each daily_grocery_entry.daily_grocery_entry_group as |groupvalue key|}} {{groupvalue.Amt}}</br> {{/each}}</td>
+                 </tr>
+             </tbody>
+             <tfoot>
+                 <tr>
+                     <th></th>
+                     <th></th>
+                     <th></th>
+                     <th colspan="2" style="text-align: right; font-size: 17px;">Day Totals</th>
+                     <th style="text-align: right; font-size: 17px;">{{daily_grocery_entry.tot_basic}}</th>
+                     <th style="text-align: right; font-size: 17px;">{{daily_grocery_entry.tot_levy}}</th>
+                     <th></th>
+                     <th></th>
+                     <th style="text-align: right; font-size: 17px;">{{daily_grocery_entry.tot_Amt}}</th>
+                 </tr>
+                 <tr>
+                     <td colspan="5" valign="top"  style="font-size:14px; text-align: left;height: 5em; font-size: 15px;">Overtime labour Charges to be calculated</br>at overtime rates</td>
+                     <td colspan="5" valign="bottom" style="font-size:14px; text-align: right ; font-size: 15px;">Signature of Employer/Accountant</td>
+                 </tr>
+             </tfoot>
+
+        </table>
+    <a class="btn btn-lg blue hidden-print margin-bottom-5" id="DailyGroccPrint" onclick="printinvoice()" id="hideprintbtn" style="margin-top: 2em"> Print
+    <i class="fa fa-print"></i></a>
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

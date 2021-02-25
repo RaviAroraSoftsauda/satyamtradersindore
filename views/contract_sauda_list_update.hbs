@@ -1,0 +1,856 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb pull-right">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{#if err}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{err}}</strong>
+                                    </div>
+                                    {{/if}}
+                                    {{#if errors}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{errors}}</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            {{!-- end of alerts row --}}
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            Update Contract Sauda
+                                        </div>
+                                        <form method="POST" action="/contract_sauda/update/{{contract.id}}" class="validate"
+                                            novalidate enctype="" id="contract_sauda">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group  form-md-line-input clearfix">
+
+                                                            <label class="col-sm-3 control-label">Sauda Number: </label>
+                                                            <div class="col-md-5">
+                                                                <input name="c_j_s_p" placeholder="Sauda Name" value="{{contract.c_j_s_p}}"
+                                                                    class="form-control item_name">
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input type="text" name="vouc_code" placeholder="Sauda Number"
+                                                                    value="{{contract.vouc_code}}" class="form-control item_name number">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+
+                                                            <label class="col-sm-3 control-label">Sauda Date: </label>
+                                                            <div class="col-md-4">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control datemask"
+                                                                        name="sd_date" id="offerstartdate" value="{{dateformat contract.sd_date 'DD/MM/YYYY'}}"
+                                                                        autocomplete="off" />
+                                                                    <span class="input-group-btn">
+                                                                        <button class="btn default date-range-toggle nofocus"
+                                                                            type="button" id="offerstartdatebtn"
+                                                                            tabindex="-1">
+                                                                            <i class="fa fa-calendar"></i>
+                                                                        </button>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <input type="checkbox"
+                                                                    {{chkdel contract.brok_yn "Yes" }} name="brok_yn"
+                                                                    value="Yes" class="make-switch" data-on-text="Brokerage"
+                                                                    data-off-text="Brokerage" data-size="small">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Seller</label>
+                                                            <div class="col-md-9">
+                                                                <div class="input-group select2-bootstrap-prepend">
+                                                                    <span class="input-group-addon">
+                                                                        <input type="checkbox" name="sl_brok" id="sl_brok"
+                                                                            value="Yes"
+                                                                            {{chkdel contract.sl_brok "Yes"}} class="contractpartycheckbox">
+                                                                    </span>
+                                                                     <select name="sl_code" id="kind" class="form-control party"
+                                                                        required>
+                                                                        <option value="{{contract.sl_code._id}}" selected>{{contract.sl_code.party_name}}</option>
+                                                                        </select>
+                                                                    {{!-- {{#list party 'S' contract.sl_code 'kind' 'sl_code'}}
+                                                                            {{this.party_name}},{{this.city_name.city_name}}
+                                                                        {{/list}} --}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Kind Attn: </label>
+                                                            <div class="col-md-9 kind_name_div">
+                                                                <input type="text" name="sl_cont" id="sl_cont" value="{{contract.sl_cont}}"
+                                                                    class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Seller Broker</label>
+                                                            <div class="col-md-9">
+                                                                <div class="input-group select2-bootstrap-prepend">
+                                                                    <span class="input-group-addon">
+                                                                        <input type="checkbox" name="sb_brok" id="sb_brok"
+                                                                            value="Yes"
+                                                                            {{chkdel contract.sb_brok "Yes"}} class="contractpartycheckbox">
+                                                                    </span>
+                                                                    <select name="sb_code" id="sb_code" class="form-control sbparty">
+                                                                        <option value="{{contract.sb_code._id}}" selected>{{contract.sb_code.party_name}}</option>
+                                                                        </select>
+                                                                    {{!-- {{#list party 'T' contract.sb_code 'sb_code' 'sb_code'}}
+                                                                        {{this.party_name}},{{this.city_name.city_name}}
+                                                                    {{/list}} --}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Kind Attn: </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="sb_cont" id="sb_cont" value="{{contract.sb_cont}}"
+                                                                    class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Buyer</label>
+                                                            <div class="col-md-9">
+                                                                <div class="input-group select2-bootstrap-prepend">
+                                                                    <span class="input-group-addon">
+                                                                        <input type="checkbox"
+                                                                            {{chkdel contract.br_brok "Yes"}} name="br_brok"
+                                                                            id="br_brok" value="Yes" class="contractpartycheckbox">
+                                                                    </span> 
+                                                                     <select name="br_code" id="brcont" class="form-control brparty"
+                                                                        required>
+                                                                        <option value="{{contract.br_code._id}}" selected>{{contract.br_code.party_name}}</option>
+                                                                        </select>
+                                                                    {{!-- {{#list party 'B' contract.br_code 'brcont' 'br_code'}}
+                                                                                {{this.party_name}},{{this.city_name.city_name}}
+                                                                    {{/list}} --}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Kind Attn: </label>
+                                                            <div class="col-md-9 br_cont_div">
+                                                                <input type="text" name="br_cont" id="br_cont" value="{{contract.br_cont}}"
+                                                                    class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Buyer Broker</label>
+                                                            <div class="col-md-9">
+                                                                <div class="input-group select2-bootstrap-prepend">
+                                                                    <span class="input-group-addon">
+                                                                        <input type="checkbox" name="bb_brok[]" id="bb_brok"
+                                                                            value="Yes"
+                                                                            {{chkdel contract.bb_brok "Yes"}} class="contractpartycheckbox">
+                                                                    </span>
+                                                                    <select name="bb_code" id="bbcount" class="form-control bbparty">
+                                                                        <option value="{{contract.bb_code._id}}" selected>{{contract.bb_code.party_name}}</option>
+                                                                        </select>
+                                                                    {{!-- {{#list party 'R' contract.bb_code 'bbcount' 'bb_code'}}
+                                                                        {{this.party_name}},{{this.city_name.city_name}}
+                                                                    {{/list}} --}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Kind Attn: </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="bb_cont" id="bb_cont" value="{{contract.bb_cont}}"
+                                                                    class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">P.O Number: </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="pono" id="pono" value="{{contract.pono}}"
+                                                                    class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">P.O Date: </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="podt" id="podt" class="form-control datemask datepicker"
+                                                                    value="{{contract.podt}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Buy' Warehouse:
+                                                            </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="buy_whouse" id="buy_whouse"
+                                                                    class="form-control" value="{{contract.buy_whouse}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Remarks: </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="rmks" id="remarks" class="form-control"
+                                                                    value="{{contract.rmks}}">
+                                                                    {{!-- {{contract.sauda2}} --}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="col-md-12">
+
+                                                        <div class="table-responsive adjustmentstable">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Product</th>
+                                                                        <th>Brand</th>
+                                                                        <th>Bag</th>
+                                                                        <th>Pack</th>
+                                                                        <th>Unit</th>
+                                                                        <th>Wght</th>
+                                                                        <th>Rate</th>
+                                                                        <th>S Rate</th>
+                                                                        <th>B Rate</th>
+                                                                        <th>R/Type</th>
+                                                                        <th>Q/Tons</th>
+                                                                        <th>Per</th>
+                                                                        <th>Amount</th>
+                                                                        <th>Type</th>
+                                                                        <th>Old/New</th>
+                                                                        <th>IPack</th>
+                                                                        <th>SI Brok Rt</th>
+                                                                        <th>Type</th>
+                                                                        <th>SL.Brok</th>
+                                                                        <th>By Brok Rt</th>
+                                                                        <th>Type</th>
+                                                                        <th>By Brok</th>
+                                                                        {{!-- <th>SI Brok Rt</th>
+                                                                        <th>Type</th> --}}
+                                                                        <th>Delete</th>
+                                                                    </tr>
+                                                                    
+                                                                </thead>
+                                                                {{!-- {{contract}} --}}
+
+                                                                <tbody>{{#each contract.sauda2.contract_sauda_group as
+                                                                    |value key|}}
+                                                                    <tr class="sauda_variation_row-{{sum @index 1}}" id="sauda_variation_row-{{sum @index 1}}-{{sum @index 1}}">
+                                                                        <td>
+                                                                            <select name="contract_sauda_group[{{sum @index 1}}][p_code]"
+                                                                                id="inp_code{{sum @index 1}}" onchange='chgcombo({{sum @index 1}})'
+                                                                                class="form-control select2" style="width:162px;" placeholder="Select Product">
+                                                                                <option value=""></option>
+                                                                                {{#each ../product_mast}}
+                                                                                <option value="{{this._id}}"
+                                                                                    data-product_id="{{this._id}}"
+                                                                                    {{#equal ../p_code this.id}}
+                                                                                    selected="" {{/equal}}>{{this.product_name}}</option>
+                                                                                {{/each}}
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <select name="contract_sauda_group[{{sum @index 1}}][brand_code]"
+                                                                                list="brand_name" class="form-control select2 brand_name"
+                                                                                style="width: 142px;" placeholder="Select Brand">
+                                                                                <option value=""></option>
+                                                                                {{#each ../brand}}
+                                                                                <option value="{{this._id}}"
+                                                                                    data-serialnum="{{this._id}}"
+                                                                                    {{#equal ../brand_code this.id}}
+                                                                                    selected="" {{/equal}}>{{this.brand_name}}</option>
+                                                                                {{/each}}
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" name="contract_sauda_group[{{sum @index 1}}][bag]"
+                                                                                value="{{this.bag}}" oninput='calc({{sum @index 1}})'
+                                                                                id="bag{{sum @index 1}}" class="form-control"
+                                                                                style="width: 72px;text-align: -webkit-right;">
+                                                                        </td>
+                                                                        <input type="hidden" name="cntr{{sum @index 1}}"
+                                                                            value="{{sum @index 1}}" id="cntr{{sum @index 1}}"
+                                                                            class="form-control" style="width: 102px;">
+                                                                        <td class="pack_name{{sum @index 1}}">
+                                                                            <input type="text" name="contract_sauda_group[{{sum @index 1}}][pck]"
+                                                                                 value="{{this.pck}}"
+                                                                                oninput='calc({{sum @index 1}})' id="pck{{sum @index 1}}"
+                                                                                class="form-control" style="width: 72px;text-align: -webkit-right;">
+                                                                        </td>
+                                                                        <td>
+                                                                            <select name="contract_sauda_group[{{sum @index 1}}][pck_unit]"
+                                                                                list="pck_unit" id="inbrnd_code{{sum @index 1}}"
+                                                                                value="{{this.brnd_code}}" class="form-control"
+                                                                                style="width: 72px;">
+                                                                                <option value="KG">KG</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td><input type="text" name="contract_sauda_group[{{sum @index 1}}][wght]"
+                                                                                 id="wght{{sum @index 1}}"
+                                                                                oninput='calc({{sum @index 1}})' value="{{this.wght}}"
+                                                                                class="form-control wght" style="width: 82px;text-align: -webkit-right;"></td>
+                                                                        <td><input type="text" name="contract_sauda_group[{{sum @index 1}}][sd_rate]"
+                                                                                 id="sel_rate{{sum @index 1}}"
+                                                                                oninput='calc({{sum @index 1}})' value="{{this.sd_rate}}"
+                                                                                class="form-control wght" style="width: 72px;text-align: -webkit-right;"></td>
+                                                                        <td><input type="text" name="contract_sauda_group[{{sum @index 1}}][s_rate]"
+                                                                                 id="seler_rate{{sum @index 1}}"
+                                                                                value="{{this.s_rate}}" class="form-control"
+                                                                                style="width: 72px;text-align: -webkit-right;"></td>
+                                                                        <td><input type="text" name="contract_sauda_group[{{sum @index 1}}][b_rate]"
+                                                                                 id="buy_rate{{sum @index 1}}"
+                                                                                value="{{this.b_rate}}" class="form-control"
+                                                                                style="width: 72px;text-align: -webkit-right;"></td>
+                                                                        <td>
+                                                                            <select name="contract_sauda_group[{{sum @index 1}}][w_q]"
+                                                                                id="w_q{{sum @index 1}}" oninput='calc({{sum @index 1}})'
+                                                                                class="form-control w_q" style="width: 72px;">
+                                                                                {{!-- <option value="{{this.w_q}}">{{this.w_q}}</option>
+                                                                                --}}
+                                                                                <option value="W"
+                                                                                    {{#equal this.w_q "W"}} selected=""
+                                                                                    {{/equal}}>W</option>
+                                                                                <option value="Q"
+                                                                                    {{#equal this.w_q "Q"}} selected=""
+                                                                                    {{/equal}}>Q</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <select name="contract_sauda_group[{{sum @index 1}}][wghtunit]"
+                                                                                id="wghtunit{{sum @index 1}}" oninput='calc({{sum @index 1}})'
+                                                                                class="form-control" style="width: 72px;">
+                                                                                {{!-- <option value="{{this.wghtunit}}">{{this.wghtunit}}</option>
+                                                                                --}}
+                                                                                <option value="Qtl"
+                                                                                    {{#equal this.wghtunit "Qtl"}}
+                                                                                    selected="" {{/equal}}>Qtl</option>
+                                                                                <option value="Tons"
+                                                                                    {{#equal this.wghtunit "Tons"}}
+                                                                                    selected="" {{/equal}}>Tons</option>
+                                                                                <option value="Kg"
+                                                                                    {{#equal this.wghtunit "Kg"}}
+                                                                                    selected="" {{/equal}}>Kg</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <select name="contract_sauda_group[{{sum @index 1}}][rateper]"
+                                                                                id="rateper{{sum @index 1}}" class="form-control"
+                                                                                style="width: 62px;">
+                                                                                {{!-- <option value="{{this.rateper}}">{{this.rateper}}</option>
+                                                                                --}}
+                                                                                <option value="1"
+                                                                                    {{#equal this.rateper "1"}}
+                                                                                    selected="" {{/equal}}>1</option>
+                                                                                <option value="10"
+                                                                                    {{#equal this.rateper "10"}}
+                                                                                    selected="" {{/equal}}>10</option>
+                                                                                <option value="100"
+                                                                                    {{#equal this.rateper "100"}}
+                                                                                    selected="" {{/equal}}>100</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td><input type="text" name="contract_sauda_group[{{sum @index 1}}][amount]"
+                                                                                 value="{{this.amount}}"
+                                                                                id="amount{{sum @index 1}}" class="form-control amount"
+                                                                                style="width: 102px;text-align: -webkit-right;"></td>
+                                                                        <td>
+                                                                            <select name="contract_sauda_group[{{sum @index 1}}][pcktype]"
+                                                                                id="pcktype" class="form-control" style="width: 102px;">
+                                                                                <option value="Gross"
+                                                                                    {{#equal this.pcktype "Gross"}}
+                                                                                    selected="" {{/equal}}>Gross</option>
+                                                                                <option value="Net"
+                                                                                    {{#equal this.pcktype "Net"}}
+                                                                                    selected="" {{/equal}}>Net</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <select name="contract_sauda_group[{{sum @index 1}}][g_n]"
+                                                                                id="g_n{{sum @index 1}}" class="form-control"
+                                                                                style="width: 102px;">
+                                                                                <option value="O"
+                                                                                    {{#equal this.g_n "O"}} selected=""
+                                                                                    {{/equal}}>O</option>
+                                                                                <option value="N"
+                                                                                    {{#equal this.g_n "N"}} selected=""
+                                                                                    {{/equal}}>N</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td><input type="text" name="contract_sauda_group[{{sum @index 1}}][ipack]"
+                                                                                 value="{{this.ipack}}"
+                                                                                class="form-control" style="width: 102px;text-align: -webkit-right;"></td>
+                                                                        <td class="slbrk_name{{sum @index 1}}"><input
+                                                                                type="text" name="contract_sauda_group[{{sum @index 1}}][slbrk_rt]"
+                                                                                 oninput='calc({{sum @index 1}})'
+                                                                                value="{{this.slbrk_rt}}" id="slbrk_rt{{sum @index 1}}"
+                                                                                class="form-control" style="width: 102px;text-align: -webkit-right;"></td>
+                                                                        <td class="slbrk_type{{sum @index 1}}">
+                                                                            <select name="contract_sauda_group[{{sum @index 1}}][slbrk_type]"
+                                                                                oninput='calc({{sum @index 1}})' id="slbrk_type{{sum @index 1}}"
+                                                                                class="form-control" style="width: 102px;">
+                                                                                <option value="%"
+                                                                                    {{#equal this.slbrk_type "%"}}
+                                                                                    selected="" {{/equal}}>%</option>
+                                                                                <option value="PBag"
+                                                                                    {{#equal this.slbrk_type "PBag"}}
+                                                                                    selected="" {{/equal}}>PBag</option>
+                                                                                <option value="PQtl"
+                                                                                    {{#equal this.slbrk_type "PQtl"}}
+                                                                                    selected="" {{/equal}}>PQtl</option>
+                                                                                <option value="Fix"
+                                                                                    {{#equal this.slbrk_type "Fix"}}
+                                                                                    selected="" {{/equal}}>Fix</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td><input type="text" name="contract_sauda_group[{{sum @index 1}}][slbrk_amt]"
+                                                                                 value="{{this.slbrk_amt}}"
+                                                                                id="slbrk_amt{{sum @index 1}}" class="form-control"
+                                                                                style="width: 102px;text-align: -webkit-right;"></td>
+                                                                        <td class="brbrk_rt{{sum @index 1}}"><input
+                                                                                type="text" name="contract_sauda_group[{{sum @index 1}}][brbrk_rt]"
+                                                                                 oninput='calc({{sum @index 1}})'
+                                                                                value="{{this.brbrk_rt}}" id="brbrk_rt{{sum @index 1}}"
+                                                                                class="form-control" style="width: 102px;text-align: -webkit-right;"></td>
+                                                                        <td class="brbrk_typ{{sum @index 1}}">
+                                                                            <select name="contract_sauda_group[{{sum @index 1}}][brbrk_typ]"
+                                                                                value="{{this.brbrk_typ}}" oninput='calc({{sum @index 1}})'
+                                                                                id="brbrk_typ{{sum @index 1}}" class="form-control"
+                                                                                style="width: 102px;">
+                                                                                <option value="%"
+                                                                                    {{#equal this.brbrk_typ "%"}}
+                                                                                    selected="" {{/equal}}>%</option>
+                                                                                <option value="PBag"
+                                                                                    {{#equal this.brbrk_typ "PBag"}}
+                                                                                    selected="" {{/equal}}>PBag</option>
+                                                                                <option value="PQtl"
+                                                                                    {{#equal this.brbrk_typ "PQtl"}}
+                                                                                    selected="" {{/equal}}>PQtl</option>
+                                                                                <option value="Fix"
+                                                                                    {{#equal this.brbrk_typ "Fix"}}
+                                                                                    selected="" {{/equal}}>Fix</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td><input type="text" name="contract_sauda_group[{{sum @index 1}}][brbrk_amt]"
+                                                                                value="{{this.brbrk_amt}}" 
+                                                                                id="brbrk_amt{{sum @index 1}}" class="form-control"
+                                                                                style="width: 102px;text-align: -webkit-right;"></td>
+                                                                        {{!-- <td><input type="text" name="contract_sauda_group[{{sum @index 1}}][slbrk_rte]"
+                                                                                value="{{this.slbrk_rte}}" id="slbrk_rte{{sum @index 1}}"
+                                                                                class="form-control" style="width: 102px;"></td>
+                                                                        --}}
+                                                                        {{!-- <td>
+                                                                            <select name="contract_sauda_group[{{sum @index 1}}][slbrk_typ]"
+                                                                                id="slbrk_typ{{sum @index 1}}" class="form-control"
+                                                                                style="width: 102px;">
+                                                                                <option value="%"
+                                                                                    {{#equal this.slbrk_typ "%"}}
+                                                                                    selected="" {{/equal}}>%</option>
+                                                                                <option value="PBag"
+                                                                                    {{#equal this.slbrk_typ "PBag"}}
+                                                                                    selected="" {{/equal}}>PBag</option>
+                                                                                <option value="PQtl"
+                                                                                    {{#equal this.slbrk_typ "PQtl"}}
+                                                                                    selected="" {{/equal}}>PQtl</option>
+                                                                                <option value="Fix"
+                                                                                    {{#equal this.slbrk_typ "Fix"}}
+                                                                                    selected="" {{/equal}}>Fix</option>
+                                                                            </select>
+                                                                        </td> --}}
+                                                                        <td>
+                                                                            {{#notequal @index 0}}
+                                                                            <a data-repeater-delete="inner-field-{{sum @index 1}}-{{sum @index 1}}"
+                                                                                data-brand-index="{{sum @index 1}}"
+                                                                                class='sauda_delete_btn' style='cursor:pointer;'><i
+                                                                                    class='fa fa-times' style='font-size: 20px;color: red;margin-left:12px;'></i></a>
+                                                                            {{/notequal}}
+                                                                        </td>
+                                                                    </tr>
+                                                                    {{/each}}
+                                                                    <tr id="contract_div">
+                                                                        <th>Total</th>
+                                                                        <td></td>
+                                                                        <td><input name="tot_bags" id="tot_bags"
+                                                                                placeholder="Total Bags" value="{{contract.tot_bags}}" class="form-control"
+                                                                                readonly></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td> <input type="text" name="tot_wght" value="{{contract.tot_wght}}" id="tot_wght"
+                                                                                placeholder="Total tot_wght" class="form-control item_name"
+                                                                                readonly></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td> <input type="text" name="tot_ammount" value="{{contract.tot_ammount}}" id="tot_ammount"
+                                                                                placeholder="Total Amount" class="form-control tot_ammount"
+                                                                                readonly></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        {{!-- <td>SI Brok Rt</td>
+                                                                        <td>Type</td> --}}
+                                                                        <td></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        {{!-- end of table --}}
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <center><a id="add" class="addSauda" style="font-size: 30px;cursor:pointer;"><i
+                                                                    class="fa fa-plus" aria-hidden="true"></i></a></center>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                {{!-- end of row --}}
+                                                {{!-- <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group  form-md-line-input">
+                                                            <label class="col-sm-12 col-md-4 control-label">Total Bags:</label>
+                                                            <div class="col-sm-12 col-md-8">
+                                                                <input name="tot_bags" id="tot_bags" placeholder="Total Bags"
+                                                                    class="form-control" readonly>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group  form-md-line-input">
+                                                            <label class="col-sm-12 col-md-4 control-label">Total Wght:</label>
+                                                            <div class="col-sm-12 col-md-8">
+
+                                                                <input type="text" name="tot_wght" id="tot_wght"
+                                                                    placeholder="Total tot_wght" class="form-control item_name"
+                                                                    readonly>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group  form-md-line-input">
+                                                            <label class="col-sm-12 col-md-4 control-label">Total
+                                                                Amount:</label>
+                                                            <div class="col-sm-12 col-md-8">
+
+                                                                <input type="text" name="tot_ammount" id="tot_ammount"
+                                                                    placeholder="Total Amount" class="form-control tot_ammount"
+                                                                    readonly>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> --}}
+                                                {{!-- end of row --}}
+
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Delv/Loading</label>
+                                                            <div class="col-md-9">
+                                                                <select name="delv_load" class="form-control select2">
+                                                                    <option value="">--Select Delv/Loading--</option>
+                                                                    <option value="delivery"
+                                                                        {{#equal contract.delv_load "delivery"}}
+                                                                        selected="" {{/equal}}>Delivery</option>
+                                                                    <option value="loading"
+                                                                        {{#equal contract.delv_load "loading"}}
+                                                                        selected="" {{/equal}}>Loading</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-12 col-md-3 control-label">Period/Upto</label>
+                                                            <div class="col-sm-12 col-md-5">
+                                                                <div class="input-group" id="contractrange">
+                                                                    <input type="text" class="form-control" name="delv_to"
+                                                                        id="party_up_to" value="{{contract.delv_fr}} - {{contract.delv_to}}">
+                                                                    <span class="input-group-btn">
+                                                                        <button class="btn default date-range-toggle"
+                                                                            type="button">
+                                                                            <i class="fa fa-calendar"></i>
+                                                                        </button>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <select name="term" id="party_up_terms" class="select2 form-control">
+                                                               <option value="">--Select Terms--</option>
+                                                                {{#each term}}
+                                                                <option value="{{this._id}}" {{#equal ../contract.term id}}selected=""{{/equal}}>{{this.term_name}}</option>
+                                                                {{/each}}
+                                                                {{!-- {{#listrt term contract.term  'term' }}
+                                                                {{this.term_name}}
+                                                                {{/listrt}}  --}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Details: </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="delvdt" id="party_details"
+                                                                    value="{{contract.delvdt}}" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Station: </label>
+                                                            <div class="col-md-4">
+                                                                {{!-- {{#if contract.from_ct}}
+                                                                {{#listrt city contract.from_ct 'from_ct' }}
+                                                                {{this.city_name}}
+                                                                {{/listrt}}
+                                                                {{else}} --}}
+                                                            <select name="from_ct" id="from_ct" class="form-control city"
+                                                            required>
+                                                            <option value="{{contract.from_ct.id}}" selected >{{contract.from_ct.city_name}}</option>
+                                                            </select>
+                                                                {{!-- <select name="from_ct" id="from_ct" class="form-control from_ct select2">
+                                                                {{#each city}}
+                                                                <option value="{{this._id}}" {{#equal ../contract.from_ct id}}selected=""{{/equal}}>{{this.city_name}}</option>
+                                                                {{/each}}
+                                                                </select> --}}
+                                                                {{!-- {{/if}}  --}}
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <div class="mtop8">To</div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                {{!-- {{#if contract.to_ct}}
+                                                                {{#listrt city contract.to_ct 'to_ct'}}
+                                                                {{this.city_name}}
+                                                                {{/listrt}}
+                                                                {{else}} --}}
+                                                            <select name="to_ct" id="to_ct" placeholder="Please select City"
+                                                            class="form-control select2 city">
+                                                            <option value=""></option>
+                                                            <option value="{{contract.to_ct.id}}" selected >{{contract.to_ct.city_name}}</option>
+                                                          </select>
+                                                                {{!-- <select name="to_ct" id="to_ct" class="form-control to_ct select2">
+                                                                {{#each city}}
+                                                                <option value="{{this._id}}" {{#equal ../contract.to_ct id}}selected=""{{/equal}}>{{this.city_name}}</option>
+                                                                {{/each}}
+                                                                </select> --}}
+                                                                {{!-- {{/if}}  --}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Discount/<br>Credit:
+                                                            </label>
+                                                            <div class="col-md-9">
+                                                                <input type="checkbox" name="paycond" {{#equal contract.paycond "Yes"}} checked="" {{/equal}} value="Yes" class="make-switch"
+                                                                    data-on-text="Discount" data-off-text="Credit"
+                                                                    data-size="small" data-off-color="primary">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Discount: </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control number" name="paydiscrt"
+                                                                    value="{{contract.paydiscrt}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Credit(Days): </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control digits" name="cre_days"
+                                                                    value="{{contract.cre_days}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Details: </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="paydet" id="paydet" class="form-control"
+                                                                    value="{{contract.paydet}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Other Terms &
+                                                                condition: </label>
+                                                            <div class="col-md-9">
+                                                                <select name="party_terms" id="party_terms" class="form-control party_terms select2">
+                                                                     <option value="">--Select Other Terms--</option>
+                                                                {{#each narration}}
+                                                                <option value="{{this._id}}" {{#equal ../contract.party_terms id}}selected=""{{/equal}}>{{this.narration_name}}</option>
+                                                                {{/each}}
+                                                                </select>
+                                                              
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Remarks: </label>
+                                                            <div class="col-md-9">
+                                                                <textarea name="party_remarks" id="" class="form-control">{{contract.party_remarks}}</textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                {{!-- end of row --}}
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="" class="control-label col-md-3"></label>
+                                                    <div class="col-md-9">
+                                                        <div class="btn-group">
+                                                            <input type="hidden" name="printormessage" id="printormessage" value="submit">
+                                                            <button type="button" class="btn btn-default submitn activeevent shiftfocus" data-act="submit">Submit</button>
+                                                            <button type="button" class="btn btn-default submitn shiftfocus" data-act="print">Submit & Print</button>
+                                                            <button type="button" class="btn btn-default submitn shiftfocus" data-act="msg">Submit & Message</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+                                            </div>
+                                            {{!-- end of panel body --}}
+                                            <div class="panel-footer">
+                                                <div class="action clearfix">
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-9 col-md-push-3">
+                                                            <button type="submit" name="save" class="btn btn-success">Submit</button>
+                                                            <button type="reset" class="btn btn-danger">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- end of form group --}}
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+
+
+
+
+{{> footer_new}}
+{{> scripts_new}}

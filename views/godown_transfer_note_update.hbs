@@ -1,0 +1,444 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb pull-right">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+               <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{#if err}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{err}}</strong>
+                                    </div>
+                                    {{/if}}
+                                    {{#if errors}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{errors}}</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            {{!-- end of alerts row --}}
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                       Godown Transfer Note Update
+                                        </div>
+                                          <form  method="POST" action="/godown_transfer_note/update/{{purchaseorder._id}}" class="" novalidate
+                                            enctype="" id="contract_sauda">
+                                           <div class="panel-body">
+                                              
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group clearfix">
+                                                            <label class="col-sm-3 control-label">GTN No </label>
+                                                            <div class="col-md-5">
+                                                                <select name="so_no" readonly placeholder="Order No" id="so_no" class="form-control snoonly" onchange="getBookNo()" required>
+                                                                     {{#each vouchMast}}
+                                                                        <option value="{{this.Vo_book}}" {{#equal ../purchaseorder.so_no Vo_book}} selected=""{{/equal}}  data-Module="Godown Transfer Note">{{this.Vo_book}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>
+                                                             <div class="col-md-4">
+                                                                 {{!-- id="vouc_code" id="vouchcodeid" vouc_code --}}
+                                                                   <input type="hidden"  value="{{purchaseorder._id}}" id="purchaseid"/>
+                                                                <input type="number" name="vouc_code"  readonly  placeholder="GRN No" autofocus required
+                                                                    value="{{purchaseorder.vouc_code}}"  class="form-control "
+                                                                    tabindex="2"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group clearfix">
+                                                            <label class="col-sm-3 control-label">Date</label>
+                                                             <div class="col-md-9">
+                                                                    <input type="text" class="form-control datepicker datemask" name="so_date"  value="{{dateformat purchaseorder.so_date 'DD/MM/YYYY'}}"
+                                                                        autocomplete="off" tabindex="3" required />
+                                                                  
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                   {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group clearfix">
+                                                           <label class="control-label col-md-3">Source Warehouse</label>
+                                                            <div class="col-md-9">
+                                                                <div class="input-group select2-bootstrap-prepend">
+                                                                <select class="form-control prbank select2" onchange="getsamedestion()" name="source_warehouse" id="source_warehouse"
+                                                                    placeholder="Please Select Source Warehouse">
+                                                                    <option value=""></option>
+                                                                    {{#each Subwarehouse}}
+                                                                    <option value="{{this.id}}" {{#equal ../purchaseorder.source_Warehouse id}} selected=""{{/equal}} data-serialnum="{{this._id}}">{{this.Description}}</option>
+                                                                    {{/each}}   
+                                                                </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                   
+                                                    <div class="col-sm-12 col-md-5">
+                                                         <div class="form-group clearfix">
+                                                           <label class="control-label col-md-3">Destination/Location</label>
+                                                            <div class="col-md-9">
+                                                                <select class="form-control prbank select2" onchange="getsamedestion()" name="destination_location" id="destination_location"
+                                                                    placeholder="Please Select Destination Location">
+                                                                    <option value=""></option>
+                                                                    {{#each Subwarehouse}}
+                                                                    <option value="{{this.id}}" {{#equal ../purchaseorder.destination_warehouse id}} selected=""{{/equal}} data-serialnum="{{this._id}}">{{this.Description}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group clearfix">
+                                                            <label class="col-sm-3 control-label">Remarks</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" placeholder="Remarks" value="{{purchaseorder.garu_Remarks}}" name="remarks" id="remarks" class="form-control"/>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="table-responsive adjustmentstable">
+                                                            <table class="table grn_invoice_repete_row">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Lot.no</th>
+                                                                        <th>Product Name</th>
+                                                                        <th>Std Qty</th>
+                                                                        {{!-- <th>Std Unit</th> --}}
+                                                                        <th>Pck Qty</th>
+                                                                        {{!-- <th>Pck Unit</th> --}}
+                                                                        <th>Pur Qty</th>
+                                                                        {{!-- <th>Pur Unit</th> --}}
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    {{#each purchaseorder.garu_Aavak_Group as |value key|}}
+                                                                    <tr id="godowntrnsfr{{@index}}">
+                                                                        <td>
+                                                                        <input type="text"  placeholder="Lot.no" name="grn_group[{{@index}}][lot_no]" value="{{this.lot_No}}"  id="lot_no{{@index}}" class="form-control numerals" style="width:70px"   >
+                                                                        </td>
+                                                                        <td>
+                                                                              <input type="hidden" name="grncntr" value="{{@index}}">
+                                                                              
+                                                                                <select name="gtn_product[{{@index}}][so_disc]" onchange="getunitgodown({{@index}})" id="so_disc{{@index}}" class="form-control prbank ItenCodeName" style="width:610px">
+                                                                                <option value={{this.item_Code_Desc.id}}></option>
+                                                                                {{#each ../RawMast}}
+                                                                                <option value="{{this.id}}" {{#equal ../this.item_Code_Desc.id this.id}} selected=""{{/equal}}  data-serialnum="{{this._id}}">{{this.item_title}}</option>
+                                                                                {{/each}}
+                                                                                {{!-- <option value="{{this.item_Code_Desc}}"  {{#equal ../Raw_Mast id}}  selected>{{this.item_title}}</option> --}}
+                                                                              </select>
+                                                                        </td>
+                                                                        <td >
+                                                                            <input type="text"  placeholder="Qty" id="stdqty{{@index}}" name="grn_group[{{@index}}][actual_qty]" value="{{this.qntty}}" oninput="getgodontrnsfrcala({{@index}})" class="form-control actualamt numerals">
+                                                                        </td>
+                                                                        
+                                                                         <td>
+                                                                            <input type="text" class="form-control getfocusqtypurcshasegodown numerals"  oninput="getQtyPackcal({{@index}})" data-id="{{@index}}0" data-index="{{@index}}" placeholder="Pck Qty" name="grn_group[{{@index}}][roundup_pckqty]" value="{{this.pkng}}" id="qtyrecadd{{@index}}">
+                                                                        </td>
+                                                                        
+                                                                         <td >
+                                                                            <input type="text"  placeholder="Net_Wt" name="grn_group[{{@index}}][net_Wt]" value="{{this.net_Wt}}" id="net_Wt{{@index}}" class="form-control Net_Wt amountfocuspgrnselectgodown2 numerals">
+                                                                        </td>
+                                                                        
+                                                                         {{#notequal @index 0}}
+                                                                       <td>
+                                                                        <a onclick="remove_godowntrnfer('{{@index}}0','{{@index}}')" style='cursor:pointer;' class='nofocus'><i class='fa fa-times' style='font-size: 20px;color: red;margin-left:12px;margin-top: 10px;'></i></a>
+                                                                    </td>
+                                                                    {{/notequal}}
+                                                                    </tr>
+                                                                    
+                                                                     
+                                                                    {{/each}}
+                                                                    <tr id="grn_div">
+                                                                        <th></th>
+                                                                        <th>Total Qty</th>
+                                                                        <th><input type="text" name="tot_amtso" id="tot_amtso" value="{{purchaseorder.tot_Qty}}" placeholder="Total" class="form-control numerals" readonly   tabindex="-1"></th>
+                                                                        <th><button type="button" class="btn btn-primary addgodowntrnsfr center-block nofocus" id="add">Add Item</button></th>
+                                                                        {{!-- <th></th> --}}
+                                                                        <th><input type="text" name="net_wt_to" id="net_wt_to" placeholder="Wt.Total" class="form-control numerals" readonly   tabindex="-1"></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                                {{!-- <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="adjustmentstableadd">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Particular(ADD)</th>
+                                                                            <th>Amount</th>
+                                                                            <th></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                 <input type="hidden"  id="modulename" value="GRN Entry"/>
+                                                                                <input type="hidden" name="addcntr" value="0" oninput='getparticularaddcalc(0)' id="addcntr0"/>
+                                                                                <select name="add_details[0][particular_add]" style="width: 412px;" id="particular_add" class="form-control dlv_loadadd select2" placeholder="Particular(ADD)">
+                                                                                    <option value=""></option>
+                                                                                   {{#each AddLessParameter}}
+                                                                                    {{#ifCond this.Parameter_Type '+'}}
+                                                                                    <option value="{{this._id}}" data-val="{{this.Posting_Ac}}">{{this.Description}}</option>
+                                                                                    {{/ifCond}}
+                                                                                {{/each}}
+                                                                                </select>
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" name="add_details[0][particular_amount]" id="AmountParticular0" oninput="getparticularaddcalc(0)"  class="form-control amtfousadd" value="0" style="text-align: -webkit-right;"/>
+                                                                            </td>
+                                                                            <td>
+                                                                                <button type="button" class="btn btn-primary adddetails center-block nofocus" id="addparticular"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                                            </td>
+                                                                            </tr>
+                                                                            <tr id="add_div"></tr>
+                                                                        </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                            <div class="col-md-6">
+                                                            <div class="adjustmentstableless">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                                <th>Particular(Less)</th>
+                                                                                <th>Amount</th>
+                                                                                <th></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <input type="hidden" name="lesscntr" value="0" oninput='getparticularaddcalc(0)' id="lesscntr0"/>
+                                                                                <select name="less_details[0][particular_less]" style="width: 412px;" id="particular_less" class="form-control dlv_loadless select2 lessbak" placeholder="Particular(Less)">
+                                                                                    <option value=""></option>
+                                                                                     {{#each AddLessParameter}}
+                                                                                    {{#ifCond this.Parameter_Type '-'}}
+                                                                                        <option value="{{this._id}}" data-val="{{this.Posting_Ac}}">{{this.Description}} {{this.Value}}</option>
+                                                                                    {{/ifCond}}
+                                                                                    {{/each}}
+                                                                                </select>
+                                                                            </td>
+                                                                            <td >
+                                                                                <input type="text" name="less_details[0][particular_amtless]" oninput="getparticularaddcalc(0)"  id="lessamtParticular0" class="form-control amtfousless"  value="0" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        <td>
+                                                                            <button type="button" class="btn btn-primary lessdetails center-block nofocus" id="lessparticular"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <tr id="addless_div"></tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div> 
+                                                        </div> --}}
+                                                    {{!-- <div class="row" >
+                                                        <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  clearfix">
+                                                            <label class="col-sm-3 control-label">Remarks: </label>
+                                                            <div class="col-md-9">
+                                                                <textarea name="so_remarks" id="so_remarks" class="form-control remdelv_load"></textarea>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  clearfix">
+                                                            <label class="col-sm-3 control-label">Total Qty: </label>
+                                                                <div class="col-md-9">
+                                                                <input  readonly name="grand_total" id="totalgrand"  class="form-control  nofocus"></input>
+                                                            </div>
+                                                            </div>
+                                                            </div>
+                                                </div>  --}}
+                                            <div class="panel-footer">
+                                                <div class="action clearfix">
+                                                    <div class="row">
+                                                        <div class="col-md-12" align="center">
+                                                            <button type="submit"  name="save" class="btn btn-success dlv_load">Submit</button>
+                                                            <button type="reset" class="btn btn-danger" >Cancel</button>
+                                                            <a href="/godown_transfer_note/godown_transfer_note_list" class="btn btn-info" style="margin-top: 1.5em">Back</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                             </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+ 
+<div class="modal" tabindex="-1" role="dialog" id="grnsupport" >
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content" style="margin-left: -38px; width: 1232px;">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Pending PO</h4>
+        </div>
+          <form method="POST" action="#" enctype="">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="table-responsive" id="delivery">
+                            <div class="brand_add_container clearfix">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead style="background-color:#4b77be;color: white;">
+                                            <tr>
+                                                <th>Product Name</th>
+                                                <th>PO Date</th>
+                                                <th>PO #</th>
+                                                <th>PO Qty Pending</th>
+                                                <th>Actual Qty Rcvd</th>
+                                                <th>Excess/Pending</th>
+                                                <th>Remarks</th>
+                                                <th>PO Rate Display [Auto]</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="grn_repeat_row">
+                                            <tr></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default nofocus" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="grnpo_entry">Save changes</button>
+            </div>
+            </form>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+{{> footer_new}}
+{{> scripts_new}}
+<style>
+    .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 0px solid #ddd;
+    text-align: center;
+}
+    .select2-selection--single {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+     .adjustmentstableadd thead {
+    background-color: #4b77be;
+    color: #fff;
+    }
+    .adjustmentstableless thead {
+    background-color: #4b77be;
+    color: #fff;
+    }
+.adjustmentstableadd table.table thead tr th {
+    line-height: 36px !important;
+}
+.adjustmentstableless table.table thead tr th {
+    line-height: 36px !important;
+}
+    thead th {
+ text-align: left;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 0px solid #ddd;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 0px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 0px solid #ddd;
+}
+.adjustmentstable table.tabler thead tr th {
+    line-height: 20px !important;
+}
+tbody td {
+     padding: 0px;
+}
+.form-group {
+    margin-bottom: 0px;
+}
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 0px;
+}
+.adjustmentstable {
+     margin-top: 0px; 
+     margin-bottom: 0px;
+    box-shadow: 0 0px 0px 0px #ccc; 
+}
+</style>

@@ -1,0 +1,344 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                           <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                    <style>
+    body{
+	background-color:#333;
+	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	color:#333;
+    margin-right: auto;
+    margin-left: auto;
+   
+		margin:0;
+}
+.container{
+	margin:0 auto;
+	padding:40px;
+    margin-right: auto;
+    margin-left: auto;
+	height:auto;
+	background-color:#fff;
+}
+caption{
+	font-size:28px;
+   text-align: center;
+	margin-bottom:15px;
+}
+
+ tr, th{
+	padding:2px;
+	border:2px solid #333;
+  
+}
+ thead {display: table-header-group;}
+   table {
+            -fs-table-paginate: paginate;
+        }
+th{
+	background-color: #f0f0f0;
+     } 
+td{
+	  padding:2px;
+	border:1px solid #333;
+	 font-size: 12px;
+    font-weight: normal!important;		
+}
+h4 {
+	margin:0px;
+}
+ @page
+        {
+            size: auto; /* auto is the initial value */
+            margin: 2mm 4mm 0mm 0mm; /* this affects the margin in the printer settings */
+        }
+        thead
+        {
+            display: table-header-group;
+        }
+        tfoot
+        {
+            display: table-footer-group;
+        }
+   </style>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner" >
+
+                                               <div class="invoice" style=" font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size:18px;">
+                                                  
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <b >WorkSheet No :-</b> {{workmast.ws_no}}
+                            </div>
+                            <div class="col-xs-3">
+                                <b>Date:- </b> {{dateformat workmast.work_sheetdt 'DD/MM/YYYY'}}
+                            </div>
+                            <div class="col-xs-6 invoice-payment">
+                                <b>Customer Name:- </b> {{workmast.ws_cus_name.ac_name}}
+                            </div>
+                           
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <b>P.O Number:- </b> {{workmast.pono}}
+                            </div>
+                            <div class="col-xs-3">
+                                <b>P.O Date:- </b> {{dateformat workmast.podt 'DD/MM/YYYY'}}
+                            </div>
+                            <div class="col-xs-3 invoice-payment">
+                                <b>Dollar price:- </b> {{workmast.w_doller}}
+                            </div>
+                             <div class="col-xs-3 invoice-payment">
+                                <b>Total freight:- </b> {{workmast.w_totaFr}}
+                            </div>
+                        </div>
+                         <div class="row">
+                            <div class="col-xs-3">
+                                  <b>Overseas freight$:</b>{{workmast.w_overseasFPB}}
+                            </div>
+                            <div class="col-xs-3">
+                                 <b>Container cbm:</b>{{workmast.con_cbm}}
+                            </div>
+                            <div class="col-xs-3 invoice-payment">
+                                  <b>Remarks:</b>{{workmast.w_rmks}}
+                            </div>
+                          
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="table-responsive">
+                                {{!-- <table class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Prod</th>
+                                            <th>innerqty</th>
+                                             <th>{{p}}</th>
+                                            <th>cost</th>
+                                            <th>profit%</th>
+                                            <th>profitamt</th>
+                                            <th>slpricers</th>
+                                            <th>sellingprice$</th>
+                                            <th>ExPrice/CRTN$</th>
+                                            <th>totboxcontainer</th>
+                                            <th>PerBoxINLD</th>
+                                            <th>perboxfreight$</th>
+                                            <th>overseas$perbox</th>
+                                            <th>Finalcost</th>
+                                            <th>FOBAmount</th>
+                                            <th>CNFAmount</th>
+                                            <th>Total cbm</th>
+                                            <th>Freight[cbm]</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                         {{#each workmast as |workmastvalue key|}}
+                                           {{#each workmastvalue.work_sheet_group as |groupvalue key|}}
+                                        <tr>
+                                            <td align="">{{groupvalue.w_pname.prdt_desc}}</td>
+                                            <td>{{groupvalue.in_qty}}</td>
+                                            <td>{{groupvalue.perc_cbm}}</td>
+                                            <td>{{groupvalue.or_qty}}</td>
+                                            <td>{{groupvalue.w_cost}}</td>
+                                            <td>{{groupvalue.w_profit}}</td>
+                                            <td>{{groupvalue.w_profitamt}}</td>
+                                            <td>{{groupvalue.w_sellprice}}</td>
+                                            <td>{{groupvalue.w_sellpriceD}}</td>
+                                            <td>{{groupvalue.w_boxpricedoller}}</td>
+                                            <td>{{groupvalue.w_boxperC}}</td>
+                                            <td>{{groupvalue.w_boxperFR}}</td>
+                                            <td>{{groupvalue.w_boxperFD}}</td>
+                                            <td>{{groupvalue.w_finalb}}</td>
+                                            <td>{{groupvalue.w_finalc}}</td>
+                                            <td>{{groupvalue.w_fobAmt}}</td>
+                                            <td>{{groupvalue.w_cnfAmt}}</td>
+                                            <td>{{groupvalue.tot_cbm}}</td>
+                                            <td>{{groupvalue.fr_cbm}}</td>
+                                        </tr>
+                                          {{/each}}   
+                                            {{/each}}
+                                        <tr>
+                                            <th>Total</th>
+                                            <td></td>
+                                            <td></td>
+                                            <td>{{workmast.tot_order}}</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>{{workmast.tot_pamt}} </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>{{workmast.tot_fobamt}} </td>
+                                            <td>{{workmast.tot_cnfamt}}</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>   
+                                    </tbody>
+                                </table> --}}
+                                <table >
+		 <thead>
+			 <tr>
+			                                 <th>Prod</th>
+                                            <th>Inner</br>qty</th>
+                                            <th>Order</br>Qty</th>
+                                            <th>Cost</th>
+                                            <th>Prft</br>%</th>
+                                            <th>Prft</br>amt</th>
+                                            <th>sl</br>price</br>rs</th>
+                                            <th>sl</br>price</br>$</th>
+                                            <th>Ex</br>Price</th>
+                                            <th>totbox</br>cont.</th>
+                                            <th>Per</br>Box</br>INLD</th>
+                                            <th>Per</br>box</br>freight$</th>
+                                            <th>Final</br>cost</th>
+                                            <th>FOB</br>Amt</th>
+                                            <th>CNF</br>Amt</th>
+                                            <th>Total</br>cbm</th>
+                                            <th>Freight</br>[cbm]</th>
+			</tr> 
+            </thead>	
+           <tbody>
+             {{#each workmast as |workmastvalue key|}}
+          {{#each workmastvalue.work_sheet_group as |groupvalue key|}}
+			<tr>
+                                            <td>{{groupvalue.w_pname.prdt_desc}}</td>
+                                            <td align="right">{{groupvalue.in_qty}}</td>
+                                            <td align="right">{{groupvalue.or_qty}}</td>
+                                            <td align="right">{{groupvalue.w_cost}}</td>
+                                            <td align="right">{{groupvalue.w_profit}}</td>
+                                            <td align="right">{{groupvalue.w_profitamt}}</td>
+                                            <td align="right">{{groupvalue.w_sellprice}}</td>
+                                            <td align="right">{{groupvalue.w_sellpriceD}}</td>
+                                            <td align="right">{{groupvalue.w_boxpricedoller}}</td>
+                                            <td align="right">{{groupvalue.w_boxperC}}</td>
+                                            <td align="right">{{groupvalue.w_boxperFR}}</td>
+                                            <td align="right">{{groupvalue.w_boxperFD}}</td>
+                                            <td align="right">{{groupvalue.w_finalc}}</td>
+                                            <td align="right">{{groupvalue.w_fobAmt}}</td>
+                                            <td align="right">{{groupvalue.w_cnfAmt}}</td>
+                                            <td align="right">{{groupvalue.tot_cbm}}</td>
+                                            <td align="right">{{groupvalue.fr_cbm}}</td>
+			</tr>
+             {{/each}}   
+             {{/each}}
+            <tr >
+                 <td align="center"><h4>Total</h4></td>
+                                            <td></td>
+                                            <td align="right">{{workmast.tot_order}}</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td align="right">{{workmast.tot_pamt}} </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                             <td></td>
+                                            <td align="right">{{workmast.tot_fobamt}} </td>
+                                            <td align="right">{{workmast.tot_cnfamt}}</td>
+                                            <td></td>
+                                            <td></td>
+                                            
+			</tr>
+            
+              
+            </tbody>
+		<tfoot>
+		      		
+		</tfoot>
+	</table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                {{!-- <div class="well">
+                                    <address>
+                                        <strong>Loop, Inc.</strong>
+                                        <br/> 795 Park Ave, Suite 120
+                                        <br/> San Francisco, CA 94107
+                                        <br/>
+                                        <abbr title="Phone">P:</abbr> (234) 145-1810 </address>
+                                    <address>
+                                        <strong>Full Name</strong>
+                                        <br/>
+                                        <a href="mailto:#"> first.last@email.com </a>
+                                    </address>
+                                </div> --}}
+                            </div>
+                            <div class="col-xs-8 invoice-block">
+                                {{!-- <ul class="list-unstyled amounts">
+                                    <li>
+                                        <strong>Sub - Total amount:</strong> $9265 </li>
+                                    <li>
+                                        <strong>Discount:</strong> 12.9% </li>
+                                    <li>
+                                        <strong>VAT:</strong> ----- </li>
+                                    <li>
+                                        <strong>Grand Total:</strong> $12489 </li>
+                                </ul> --}}
+                                <br/>
+                                <a class="btn btn-lg blue hidden-print margin-bottom-5" onclick="javascript:window.print();"> Print
+                                    <i class="fa fa-print"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div> 
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+
+{{> footer_new}}
+{{> scripts_new}}

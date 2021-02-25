@@ -1,0 +1,165 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            {{!-- Party List --}}
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading" align="center">
+                                   Godown Wise Opening Stock
+                                </div>
+                                <form  class="form-horozintal validate" method="POST" action="/stock_opening_module_rm/stock_opening_module_add" id="product_raw_master">
+                                    <div class="panel-body">
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Godown Name</label>
+                                                <div class="col-md-9">
+                                                        <select class="form-control select2" required placeholder="Select Godown Name" id="Godown" name="Godown"  type="Text">
+                                                            <option value=""></option>
+                                                            {{#each gowdown}}
+                                                                <option value="{{this._id}}">{{this.Description}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-group  form-md-line-input clearfix">
+                                                <label for="" class="control-label col-md-3">Item Group</label>
+                                                <div class="col-md-9">
+                                                <select class="form-control brand  prbank select2" name="item_group" id="item_group" placeholder="Select Item Group">
+                                                    <option value=""></option>
+                                                    {{#each Rmcategory}}
+                                                    <option value="{{this.id}}">{{this.Description}}</option>
+                                                    {{/each}}
+                                                </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-group  form-md-line-input clearfix">
+                                                <label for="" class="control-label col-md-3">Sub Quality</label>
+                                                <div class="col-md-9">
+                                                    <select class="form-control brand  prbank select2" name="subquality" id="subquality" placeholder="Select Sub Quality">
+                                                        <option value=""></option>
+                                                        {{#each Rmattyp}}
+                                                        <option value="{{this._id}}">{{this.Description}}</option>
+                                                        {{/each}}
+                                                    </select>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-group  form-md-line-input clearfix">
+                                                <div class="col-md-2">
+                                                        <button type="button" class="btn btn-success" onclick="getproductdesc()">Proceed..</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        <div class="row stockdescpritiondetail" style="display: none">
+                                            <div class="col-md-12">
+                                                <div class="table-responsive adjustmentstable">
+                                                    <table class="tabler stock_repeat_row" >
+                                                        <thead >
+                                                            <tr style="font-family: Courier New', Courier, monospace;">
+                                                                <th>Item Title</th>
+                                                                <th>Qty</th>
+                                                                <th>Rate</th>
+                                                                <th>Unit</th>
+                                                                <th>Min Stk Qty</th>
+                                                                <th>Re-Order Qty</th>
+                                                                <th>Max Stk Qty</th>
+                                                                <th>Order Multiple</th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr id="insert_product"></tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                              {{!-- <div class="col-sm-12">
+                                                <button type="button" class="btn btn-primary addStockOpening center-block nofocus" id="add">Add Stock</button>  
+                                            </div> --}}
+                                        </div>
+                                    {{!-- end of body lock-product--}}  
+                                    <div class="panel-footer" align="center">
+                                        <div class="action clearfix">
+                                            <div class="col-md-12" align="center">
+                                                <button type="submit" name="save" id="sevid" style="display: none" class="btn btn-success delv_load">Submit</button>
+                                                <button type="reset" class="btn btn-danger">Cancel</button>
+                                                <a href="/stock_opening_module_rm/stock_opening_module_rm" style="margin-top: 1.5em" class="btn btn-info">Back</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}
+<style>
+    .table thead tr th {
+    font-size: 13px;
+    font-weight: 600;
+}
+.tabler>tbody>tr>td, .tabler>tbody>tr>th, .tabler>tfoot>tr>td, .tabler>tfoot>tr>th, .tabler>thead>tr>td {
+    padding: 0px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.adjustmentstable table.table thead tr th {
+    line-height: 15px !important;
+}
+</style>

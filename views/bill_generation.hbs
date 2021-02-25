@@ -1,0 +1,304 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Bill Generation
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" id="formheading">
+                                            Bill Generation
+                                        </div>
+                                        <div class="panel-body">
+                                            <form method="POST" action="" enctype="" id="order_filter_form"
+                                                class="validate">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-5">From Date</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control datep datemask" placeholder=""
+                                                                    name="from_dt" id="from_dt" type="text" required value="{{dateformat  sdate 'DD/MM/YYYY'}}">
+                                                            </div>
+                                                        </div>
+                                                        {{!-- end of form-group --}}
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-md-3">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-5">To Date</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control datep datemask" placeholder=""
+                                                                    name="to_dt" id="to_dt" type="text" required value="{{dateformat edate 'DD/MM/YYYY'}}">
+                                                            </div>
+                                                        </div>
+                                                        {{!-- end of form-group --}}
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-md-3">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-5">Bill Date</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control datep datemask" placeholder=""
+                                                                    name="bill_dt" id="bill_dt" type="text" required  value="{{dateformat Date.now 'DD/MM/YYYY'}}">
+                                                            </div>
+                                                        </div>
+                                                        {{!-- end of form-group --}}
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-md-3">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-5">Generated</label>
+                                                            <div class="col-md-7">
+                                                                <input class="form-control" placeholder=""
+                                                                    name="to_begented" id="to_begented" type="text" required value="1">
+                                                            </div>
+                                                        </div>
+                                                        {{!-- end of form-group --}}
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-2">Based on</label>
+                                                            <div class="col-md-10">
+                                                                    <label for="contract" class="radio-inline checkboxradiotop"><input type="radio" name="formfilter" value="contract" id="contract" >Contract</label>
+                                                                {{!-- end of radio --}}
+                                                                    <label for="delivery" class="radio-inline checkboxradiotop"><input type="radio" checked name="formfilter" value="delivery" id="delivery" >Delivery</label>
+                                                                {{!-- end of radio --}}
+                                                                    <label for="direct" class="radio-inline checkboxradiotop"><input type="radio" name="formfilter" value="direct" id="direct" >Direct</label>
+                                                                {{!-- end of radio --}}
+                                                                    <label for="local" class="radio-inline checkboxradiotop"><input type="radio" name="formfilter" value="local" >Local</label>
+                                                                {{!-- end of radio --}}
+                                                                    <label for="local" class="radio-inline checkboxradiotop"><input type="radio" name="formfilter" value="deal" >Deal Entry</label>
+                                                            </div>
+                                                        </div>
+                                                        {{!-- end of form-group --}}
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-2">Marked</label>
+                                                            <div class="col-md-10">
+                                                                    <label for="marked" class="checkbox-inline checkboxradiotop"><input type="checkbox" name="marked" id="marked" value="marked">Marked</label>
+                                                                {{!-- end of radio --}}
+                                                                    <label for="curcomp" class="checkbox-inline checkboxradiotop"><input type="checkbox" checked name="curcomp" id="curcomp" value="curcomp">Current Company</label>
+                                                                {{!-- end of radio --}}
+                                                                    <label for="subbrok" class="checkbox-inline checkboxradiotop"><input type="checkbox" name="subbrok" id="subbrok" value="subbrok">Skip Sub-Broker</label>
+                                                                {{!-- end of radio --}}
+                                                                    <label for="allprty" class="checkbox-inline checkboxradiotop"><input type="checkbox" name="allprty" id="allprty" value="allprty">All Party</label>
+                                                                {{!-- end of radio --}}
+                                                            </div>
+                                                        </div>
+                                                        {{!-- end of form-group --}}
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-2">Based on 2</label>
+                                                            <div class="col-md-10">
+                                                                    <label for="all_party" class="radio-inline checkboxradiotop"><input type="radio" checked name="radioformfilter" id="all_party" value="all_party">All Party</label>
+                                                                {{!-- end of radio --}}
+                                                                    <label for="br_brok" class="radio-inline checkboxradiotop"><input type="radio" name="radioformfilter" id="br_brok" value="br_brok">Buyer Wise</label>
+                                                                {{!-- end of radio --}}
+                                                                    <label for="bb_brok" class="radio-inline checkboxradiotop"><input type="radio" name="radioformfilter" id="bb_brok" value="bb_brok">Buyer Brok Wise</label>
+                                                                {{!-- end of radio --}}
+                                                                    <label for="sr_brok" class="radio-inline checkboxradiotop"><input type="radio" name="radioformfilter" id="sr_brok" value="sr_brok">Seller Wise</label>
+                                                                {{!-- end of radio --}}
+                                                                    <label for="sb_brok" class="radio-inline checkboxradiotop"><input type="radio" name="radioformfilter" id="sb_brok" value="sb_brok">Seller Brok Wise</label>
+                                                                {{!-- end of radio --}}
+                                                                    <label for="itemwse" class="radio-inline checkboxradiotop"><input type="radio" name="radioformfilter" id="itemwse" value="itemwse">Item Wise</label>
+                                                                {{!-- end of radio --}}
+                                                            </div>
+                                                        </div>
+                                                        {{!-- end of form-group --}}
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                {{!-- end of row --}}
+                                                {{!-- <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-2">Station Wise</label>
+                                                            <div class="col-md-10">
+                                                                <select name="from_ct" id="citywise"class="form-checkbox select2 ">
+                                                                    {{#each city}}
+                                                                    <option value="{{this._id}}" date-city="{{this._id}}">{{this.city_name}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                         end of form-group 
+                                                    </div>
+                                                     end of col 
+                                                </div> --}}
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <h4>Party List</h4>
+                                                        <hr>
+                                                        <select name="party_name" id="party_name" class="form-control select2 party_name" multiple="" placeholder="Select Party">
+                                                            <option value=""></option>
+                                                            {{#each party}}
+                                                             <option value="{{this._id}}" data-id="{{this._id}}">{{this.party_name}}</option>
+                                                            {{/each}}
+                                                           
+                                                        </select>
+                                                        {{!-- <div class="table-responsive">
+                                                            <table id="product_detail_table" class="product_detail_table table table-striped table-bordered table-hover">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="excludesearch mastercheckbox"><input type="checkbox" name="" id="" class=""></th>
+                                                                        <th>Sno</th>
+                                                                        <th>Party Name</th>
+                                                                        <th class="excludesearch">Delete</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    {{#each party}}
+                                                                    <tr>
+                                                                    <td><input type="checkbox" id="" name="partyAllcheck" value="{{this._id}}"></td>
+                                                                    <td>1</td>
+                                                                    <td>{{this.party_name}}</td>
+                                                                    <td>delete</td>
+                                                                    </tr>
+                                                                    {{/each}}
+                                                                </tbody>
+                                                                <tfoot>
+                                                                    <tr>
+                                                                        <th class="excludesearch"></th>
+                                                                        <th>Sno</th>
+                                                                        <th>Party Name</th>
+                                                                        <th class="excludesearch">Delete</th>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div> --}}
+                                                        {{!-- end of table-responsive --}}
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-md-6">
+                                                        <h4>Item List</h4>
+                                                        <hr>
+                                                         <select name="item_name" id="item_name" class="form-control select2" multiple="" placeholder="Select Item">
+                                                            <option value=""></option>
+                                                            {{#each product_mast}}
+                                                             <option value="{{this._id}}">{{this.product_name}}</option>
+                                                            {{/each}}
+                                                           
+                                                        </select>
+                                                        {{!-- <div class="table-responsive">
+                                                            <table id="product_detail_table2" class="product_detail_table table table-striped table-bordered table-hover">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="excludesearch mastercheckbox"><input type="checkbox" name="" id="" class=""></th>
+                                                                        <th>Sno</th>
+                                                                        <th>Item Name</th>
+                                                                        <th class="excludesearch">Delete</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    {{#each product_mast}}
+                                                                        <tr>
+                                                                            <td><input type="checkbox" id="Allcheck" name="allcheck" value="{{this._id}}"></td>
+                                                                            <td>01</td>
+                                                                            <td>{{this.product_name}}</td>
+                                                                            <td>Delete</td>
+                                                                        </tr>
+                                                                    {{/each}}
+                                                                </tbody>
+                                                                <tfoot>
+                                                                    <tr>
+                                                                        <th class="excludesearch"></th>
+                                                                        <th>Sno</th>
+                                                                        <th>Item Name</th>
+                                                                        <th class="excludesearch">Delete</th>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div> --}}
+                                                        {{!-- end of table-responsive --}}
+                                                    </div>
+                                                </div>
+                                                {{!-- end of row --}}
+                                            </form>
+                                        </div>
+                                        {{!-- end of panel-body --}}
+                                        <div class="panel-footer">
+                                            <div class="action clearfix">
+                                                <div class="col-md-6">
+                                                    <div class="col-md-9 col-md-push-3">
+                                                        <button type="submit" name="save" id="billfiltersubmit" class="btn btn-success">Submit</button>
+                                                        <button type="reset" class="btn btn-danger">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of form group --}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{!-- end of row --}}
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+
+{{> footer_new}}
+{{> scripts_new}}

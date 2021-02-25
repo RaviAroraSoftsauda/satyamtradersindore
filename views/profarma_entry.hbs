@@ -1,0 +1,640 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb pull-right">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+               <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{#if err}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{err}}</strong>
+                                    </div>
+                                    {{/if}}
+                                    {{#if errors}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{errors}}</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            {{!-- end of alerts row --}}
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                       Proforma Entry
+                                        </div>
+                                        <form method="POST" action="/profarma/add" class="" novalidate
+                                            enctype="" id="contract_sauda">
+                                           <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group  form-md-line-input clearfix">
+
+                                                            <label class="col-sm-3 control-label">Proforma No: </label>
+                                                            <div class="col-md-5">
+                                                                <input name="pro_no" placeholder="Proforma No" id="pro_no" class="form-control pro_no" tabindex="1" value="PF"/>
+                                                            </div>
+                                                             <div class="col-md-4">
+                                                                <input type="text" name="vouc_code" checked placeholder="Deal Number"
+                                                                    value="{{profmaxno promast}}" class="form-control vouc_code"
+                                                                    tabindex="2"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+
+                                                            <label class="col-sm-3 control-label">Proforma Date: </label>
+                                                            
+                                                             <div class="col-md-4">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control datemask"
+                                                                        name="pro_formadt" id="offerstartdate" value="{{dateformat Date.now 'DD/MM/YYYY'}}"
+                                                                        autocomplete="off" tabindex="3" autofocus />
+                                                                    <span class="input-group-btn">
+                                                                        <button class="btn default date-range-toggle isprop"
+                                                                            type="button" id="offerstartdatebtn"
+                                                                            tabindex="-1">
+                                                                            <i class="fa fa-calendar"></i>
+                                                                        </button>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                              <label class="col-sm-3 control-label">WorkSheet No.: </label>
+                                                            <div class="col-md-2">
+                                                                <input name="ws_no" placeholder="W No" id="ws_no" class="form-control ws_no" tabindex="1" value="{{maxcjspname workmast}}"autofocus/>
+                                                            </div>
+                                                           
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group clearfix">
+                                                           <label class="control-label col-md-3">Customer Name</label>
+                                                            <div class="col-md-9">
+                                                                <div class="input-group select2-bootstrap-prepend"  >
+                                                                <select id="profarmaByer" class="form-control  prbank pro_cus_name select2 " name="pro_cus_name"
+                                                                    placeholder="Please Select customer">
+                                                                    <option value=""></option>
+                                                                    {{#each acmast}}
+                                                                    <option value="{{this.id}}">{{this.ac_name}}.................{{this.ac_city.city_name}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                   
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Remarks: </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" placeholder="remarks" name="pro_rmks" id="premarks" class="form-control">
+                                                            </div>
+                                                    </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">P.O Number: </label>
+                                                            <div class="col-md-9" id="proponopppp">
+                                                                <input type="text" placeholder="PO NO"name="pro_pono" id="pro_pono" class="form-control"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                     <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">P.O Date: </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="pro_podt" id="podt" class="form-control datemask"
+                                                                      value="{{dateformat Date.now 'DD/MM/YYYY'}}"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                          <label class="col-sm-3 control-label">Dollar price: </label>
+                                                            <div class="col-md-9">
+                                                                 <input type="text" name="w_doller"
+                                                                                id="wdoller" oninput='calc(1)'placeholder="Dollar price"
+                                                                                class="form-control "
+                                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                      <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Total freight: </label>
+                                                            <div class="col-md-9">
+                                                                 <input type="text" name="w_totaFr"
+                                                                                id="wtotaFr" oninput='calc(1)'placeholder="total freight"
+                                                                                class="form-control" 
+                                                                                />
+                                                            </div>
+                                                    </div>
+                                                    </div>
+                                                     <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                          <label class="col-sm-3 control-label">Overseas freight$: </label>
+                                                            <div class="col-md-9">
+                                                               <input type="text" name="w_overseasFPB"
+                                                                                id="woverseasFPB" oninput='calc(1)'
+                                                                                class="form-control" placeholder="Overseas freight$"
+                                                                               />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                      <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Container cbm:</label>
+                                                            <div class="col-md-9">
+                                                                  <input type="text"oninput='calc(1)' placeholder="Container cbm" name="con_cbm" id="con_cbm" class="form-control con_cbm" value="65">
+                                                            </div>
+                                                    </div>
+                                                    </div> 
+                                                    </div>
+                                                  -->
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="table-responsive adjustmentstable">
+                                                            <table class="table worksheet_repeat_row">
+                                                                <thead>
+                                                                    <tr>
+                                                                       <th>Item Name</th>
+                                                                        <th>innerqty</th>
+                                                                        <th>percartonCBM</th>
+                                                                        <th>OrderQty</th>
+                                                                        <th>Total cbm(p/i) </th>
+                                                                        <th>Carton price$</th>
+                                                                        <th>Total amount($)</th>
+                                                                         <th>Delete</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>
+                                                                             <input type="hidden" name="pntr1" value="1" id="cntr1" oninput='calproforma(1)'
+                                                                            class="form-control" style="width: 102px;text-align: -webkit-right;">
+                                                                             
+                                                                                
+                                                                          
+                                                                           <select  name="pro_forma_group[1][item_name]" id="iname1" onchange='getproduct(1)' class="form-control  prbank select2" style="width:162px"
+                                                                             placeholder="Select Product"> 
+                                                                            <option value=""></option>
+                                                                            {{#each product}}
+                                                                                <option value="{{this.id}}"data-serialnum="{{this._id}}">{{this.prdt_desc}}</option>
+                                                                                {{/each}}
+                                                                            </select>
+                                                                        </td id="innerqty1">
+                                                                        <td>
+                                                                            <input type="text" name="pro_forma_group[1][in_qty]" id="inqtypq1" oninput='calproforma(1)'
+                                                                                class="form-control" style="width: 142px;text-align: -webkit-right;"
+                                                                                 />
+                                                                        </td>
+                                                                        <td id="cmblprt1" >
+                                                                            <input type="text" name="pro_forma_group[1][perc_cbm]"
+                                                                                id="percbmpq1"       oninput='calproforma(1)'
+                                                                                class="form-control" style="width: 142px;ext-align: -webkit-right;"
+                                                                                />
+                                                                        </td>
+                                                                        <td>
+                                                                           <input type="text" name="pro_forma_group[1][or_qty]"
+                                                                                id="orqtymn1" oninput='calproforma(1)'
+                                                                                class="form-control" style="width: 178px;text-align: -webkit-right;"
+                                                                                />
+                                                                        </td>
+                                                                        <td >
+                                                                             <input type="text" name="pro_forma_group[1][cbm_perItem]"
+                                                                                id="cbmperItem1"  oninput='calproforma(1)'
+                                                                                class="form-control" style="width: 185px;text-align: -webkit-right;"
+                                                                                />
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" name="pro_forma_group[1][carton_price]"
+                                                                                id="cartonPrice1" oninput='calproforma(1)'
+                                                                                class="form-control" value="10" style="width:170px;text-align: -webkit-right;"
+                                                                                >
+                                                                        </td>
+                                                                        <td>
+                                                                             <input type="text" name="pro_forma_group[1][total_amount]"
+                                                                                id="totalAmount1" oninput='calproforma(1)'
+                                                                                class="form-control" style="width:170px;text-align: -webkit-right;"
+                                                                                />
+                                                                        </td>
+                                                                   
+                                                                    </tr>
+                                                                    <tr id="contract_div">
+                                                                            <th>Total</th>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                             <td> <input type="text" name="tot_poq" id="totpoq"
+                                                                            placeholder="Total" class="form-control tot_poq" oninput='calproforma(1)' style="text-align: -webkit-right;"
+                                                                            readonly  tabindex="-1"></td>
+                                                                             <td> <input type="text" name="tot_picbm" id="tot_picbm"
+                                                                            placeholder="Total" class="form-control tot_picbm"style="text-align: -webkit-right;"
+                                                                            readonly   oninput='calproforma(1)' tabindex="-1"></td>
+                                                                           <td></td>
+                                                                           <td> <input type="text" name="tot_amt" id="tot_amt"
+                                                                            placeholder="Total" class="form-control tot_amt"style="text-align: -webkit-right;"
+                                                                            readonly  oninput='calproforma(1)'  tabindex="-1"></td>
+                                                                           
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                 <div class="row">
+                                                    <div class="col-sm-12">
+                                                      <button type="button" class="btn btn-primary addproforma center-block nofocus" id="add">Add Item</button>  
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div> 
+                                                
+                                         <div class="row">
+                                                      <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Remarks: </label>
+                                                            <div class="col-md-9">
+                                                                <textarea name="pro_remarks" id="pro_remarks" class="form-control delv_load"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                   
+                                              
+                                                </div>
+                                                {{!-- end of row --}}
+                                               <!-- <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-2 control-label">CGST </label>
+                                                            <div class="col-md-5 cgst">
+                                                                <input type="text" class="form-control plus number" name="add2_amt"
+                                                                    id="add2_amt" oninput="calc()" placeholder="CGST">
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <input type="text" class="form-control number" name="cgst_tax" id="cgst_tax"
+                                                                    placeholder="CGST TAX">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-2 control-label">Others1 </label>
+                                                            <div class="col-md-5">
+                                                                <input type="text" class="form-control" name="less1_rmk"
+                                                                    placeholder="Less1">
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <input type="text" class="form-control minus number" name="less1_amt"
+                                                                    id="less1deal_amt" oninput="calc()" placeholder="Amount">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-2 control-label">IGST </label>
+                                                            <div class="col-md-5 igst">
+                                                                <input type="text" class="form-control plus number" name="add3_amt"
+                                                                    id="add3_amt" oninput="calc()" placeholder="IGST">
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <input type="text" class="form-control" name="igst_tax" id="igst_tax"
+                                                                    placeholder="IGST TAX">
+                                                            </div>
+                                                             
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-2 control-label">Others2 </label>
+                                                              <div class="col-md-5">
+                                                                <input type="text" class="form-control " name="less3_rmk"
+                                                                    placeholder="Others2">
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <input type="text" class="form-control minus number" name="less3_amt"
+                                                                    id="less3deal_amt" oninput="calc()" placeholder="Amount">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Discount/<br>Credit:
+                                                            </label>
+                                                            <div class="col-md-9">
+                                                                <input type="checkbox" name="paycond" value="Yes" class="make-switch"
+                                                                    data-on-text="Discount" data-off-text="Credit"
+                                                                    data-size="small" data-off-color="primary">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Discount: </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control" name="paydiscrt">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Remarks: </label>
+                                                            <div class="col-md-9">
+                                                                <textarea name="party_remarks" id="party_remarks" class="form-control"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Bill Amt(Party Bill):
+                                                            </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control number" name="bill_amt"
+                                                                    id="bill_amtdeal">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>  -->
+                                            <div class="panel-footer">
+                                                <div class="action clearfix">
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-9 col-md-push-3">
+                                                            <button type="submit" name="save" class="btn btn-success">Submit</button>
+                                                            <button type="reset" class="btn btn-danger">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+               </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+
+{{!-- Party Modal --}}
+
+<div class="modal fade" role="dialog" id="addparty">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Add Party</h4>
+            </div>
+            <form method="POST" action="/party/contractlink_add" enctype="">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group form-md-line-input clearfix">
+                                <label for="" class="col-md-3 control-label">Party Type<span class="required"
+                                        aria-required="true">*</span></label>
+                                <div class="col-sm-12 col-md-8">
+                                    <div class="btn-group partymasterbuttons" role="group">
+                                        <button class="btn btn-default" data-active="no"
+                                            data-value="B" type="button">Buyer</button>
+                                        <button class="btn btn-default" data-active="no" data-value="S"
+                                            type="button">Seller</button>
+                                        <button class="btn btn-default" data-active="no" data-value="R"
+                                            type="button">Buyer
+                                            Broker</button>
+                                        <button class="btn btn-default" data-active="no" data-value="T"
+                                            type="button">Seller
+                                            Broker</button>
+                                    </div>
+                                    <input type="hidden" name="p_type[]" value="" id="bsrt" class=""
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group form-md-line-input clearfix">
+                                <label class="control-label col-md-3">Party Name<span class="required" aria-required="true">*</span></label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" required name="party_name" placeholder="Party Name"
+                                        value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group form-md-line-input clearfix">
+                                <label class="control-label col-md-3">Address 1</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="address1" placeholder="Address 1"
+                                        value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group form-md-line-input clearfix">
+                                <label class="control-label col-md-3">Address 2</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="address2" placeholder="Address 2"
+                                        value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group form-md-line-input clearfix">
+                                <label class="control-label col-md-3">Area Name</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="area_name" placeholder="Area Name"
+                                        value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group form-md-line-input clearfix">
+                                <label class="control-label col-md-3 itsalink" data-toggle="modal" data-target="#addcity">City
+                                    Name<span class="required" aria-required="true">*</span></label>
+                                <div class="col-md-9">
+                                    <!-- city_name -->
+                                    <select name="city_name" id="city_name" class="form-control city" required>
+                                        <option value=""></option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group form-md-line-input clearfix">
+                                <label class="control-label col-md-3">State Name<span class="required" aria-required="true">*</span></label>
+                                <div class="col-md-9">
+                                    <select name="state_name" id="state_name" placeholder="Please select state" class="form-control select2 state_name">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group form-md-line-input clearfix">
+                                <label class="control-label col-md-3">Pin Code</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control digits" name="pin_code" placeholder="Pin Code"
+                                        value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group form-md-line-input clearfix">
+                                <label class="control-label col-md-3">Credit Limit</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control digits" name="credit_limit" placeholder="Credit Limit"
+                                        value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group form-md-line-input clearfix">
+                                <label class="control-label col-md-3">PAN</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="pan_no" placeholder="PAN Number"
+                                        value="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group form-md-line-input clearfix">
+                                <label class="control-label col-md-3">GSTIN</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="gstin" placeholder="GSTIN" value="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                       
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary save-partyp">Save changes</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="deliverysupport" data-backdrop="static">
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content" style="margin-left: -38px; width: 1232px;">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Pending Worksheet</h4>
+        </div>
+            <div class="modal-body">
+                                            {{!-- table that hides and shows on select --}}
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="table-responsive" style="display:none" id="delivery">
+                            <div class="brand_add_container clearfix">
+                                <div class="table-responsive adjustmentstable" style="margin-top: 40px;">
+                                    <table class="table">
+                                        <thead style="background-color:#4b77be;color: white;">
+                                            <tr>
+                                                <th>Product</th>
+                                                <th>innerqty</th>
+                                                <th>percartonCBM</th>
+                                                <th>OrderQty</th>
+                                                <th>cost</th>
+                                                <th>profit%</th>
+                                                <th>profitamt</th>
+                                                <th>slpricers</th>
+                                                <th>sellingprice$</th>
+                                                <th>Boxprice$</th>
+                                                <th>totboxcontainer</th>
+                                                <th>perboxfreightRs</th>
+                                                <th>perboxfreight$</th>
+                                                <th>overseas$perbox</th>
+                                                <th>Finalcost</th>
+                                                <th>FOBAmount</th>
+                                                <th>CNFAmount</th>
+                                                <th>Total cbm</th>
+                                                <th>Freight[cbm]</th>
+                                                <th>New OrderQty</th>
+                                                 </tr>
+                                        </thead>
+                                        <tbody class="delivery_repeat_row">
+                                            <tr>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class='addsauda'></div>
+
+                        </div>
+                    </div>
+                </div>
+                                            {{!-- end of row --}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" id="worksheet_entry" >Save changes</button>
+            </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+{{> footer_new}}
+{{> scripts_new}}

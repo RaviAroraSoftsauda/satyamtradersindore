@@ -1,0 +1,137 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Enquiry List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            {{#scuritylogin   security 'Enquiry List' 'V'}}
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    Enquiry List
+                                    <div class="misc pull-right">
+                                        {{!-- <div class="buttons">
+                                            <a href="/product_mast/add_product">
+                                                <button class="btn btn-link" type="button"><i class="fa fa-plus"></i>Add
+                                                    Product Master</button>
+                                            </a>
+                                        </div> --}}
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <table id="product_detail_table" class="product_detail_table table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Sno.</th>
+                                                <th>Station Name</th>
+                                                <th>Product Name</th>
+                                                <th>Product Specifications</th>
+                                                <th>Minimum Rate</th>
+                                                <th>Maximum Rate</th>
+                                                <th>Condition</th>
+                                                <th>Submit</th>
+                                                {{!-- <th>Action</th> --}}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each enquiry as |value key|}}
+                                            <tr>
+                                                 <td>{{sum @index 1}}</td>
+                                                <td>{{this.st_name}}</td>
+                                                <td>{{this.item_name.product_name}}</td>
+                                                <td>{{this.prod_spec}}</td>
+                                                <td>{{this.rate_min}}</td>
+                                                <td>{{this.rate_max}}</td>
+                                                <td>{{this.rate_condtion}}</td>
+                                                <td>{{this.main_bk}}</td>
+                                                {{!-- <td>
+                                                    <div class="btn-group dropdown">
+                                                        <button class="btn btn-xs blue dropdown-toggle" type="button"
+                                                            data-toggle="dropdown" aria-expanded="false"> Actions
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu pull-right" role="menu">
+                                                            <li>
+                                                                <a href="/product_mast/add_product?id={{this._id}}" class="edit_product_mast_btn"
+                                                                    data-id="{{this._id}}">
+                                                                    <i class="icon-pencil"></i> Edit </a>
+                                                            </li>
+                                                            <li class="divider"> </li>
+                                                            <li>
+                                                                <a href="javascript:void(0);" class="delbutton delete_product_mast"
+                                                                    data-id="{{this._id}}">
+                                                                    <i class="icon-trash"></i> Delete
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td> --}}
+                                            </tr>
+                                            {{/each}}
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                 <th>Sno.</th>
+                                                <th>Station Name</th>
+                                                <th>Product Name</th>
+                                                <th>Product Specifications</th>
+                                                <th>Minimum Rate</th>
+                                                <th>Maximum Rate</th>
+                                                <th>Condition</th>
+                                                 <th>Submit</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            {{/scuritylogin}}
+
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

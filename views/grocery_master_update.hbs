@@ -1,0 +1,185 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    Product Master Update
+                                    <div class="misc pull-right">
+                                     
+                                    </div>
+                                </div>
+                                <form method="POST" action="product_master/edit_product_master/{{product_master.id}}" class="form-horozintal validate"
+                                    enctype="multipart/form-data">
+                                    <div class="panel-body">
+                                       
+                                      
+                                            {{!-- end of col --}}
+                                          
+
+                                             <div class="col-sm-12 col-md-12">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Product Name </label>
+                                                    <div class="col-md-9">
+                                                         <input class="form-control" placeholder="Product Name"required
+                                                            name="product_name" value="{{product_master.product_name}}" type="text"/>
+                                                            <input class="form-control vhpxproduct" id="vhpxproduct"
+                                                            name="vhpxproduct" value="{{product_master.id}}" type="hidden"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-12 col-md-12">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Description of Product </label>
+                                                    <div class="col-md-9">
+                                                         <textarea rows="4" cols="50" class="form-control" placeholder="Description of Product"required
+                                                            name="d_product" value="{{product_master.d_product}}" type="text"/>{{product_master.d_product}}</textarea>
+                                                            
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                              <div class="col-sm-12 col-md-12">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                   <label for="" class="control-label col-md-3">Jobs</label>
+                                                        <div class="col-md-9">
+                                                        <select class="form-control brand sku_name prbank select2" multiple="true"  name="jobs" id="jobs" placeholder="Select Jobs" >
+                                                            
+                                                        {{#each job_master}}
+                                                        <option value="{{this.id}}"  {{#equal ../product_master.jobs._id id}} selected=""{{/equal}}>{{this.job_name}}</option>
+                                                        {{/each}}
+                                                        </select>
+                                                        </div>
+                                                </div>
+                                                  
+                                            </div>
+                                     
+                                       
+                                        </div>
+                                        
+                                       
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Width</th>
+                                                            <th>Pur Rt</th>
+                                                            <th>Stock</th>
+                                                            <th>Rate</th>
+                                                            <th>Value</th>
+                                                           
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{#each product_master.product_master_group as |value key|}}
+                                                        <tr class='product_wrapper' id='prabal{{@index}}'>
+                                                            <td>
+                                                                <input type="hidden" name="cntrer" value="{{@index}}" id="cntrer0">
+                                                               <input class="form-control  product_master_group[{{@index}}][width]" placeholder="Width"
+                                                                name="product_master_group[{{@index}}][width]" value="{{this.width}}" type="text" style='width:100%'/>
+                                                            </td>
+                                                             <td>
+                                                               <input class="form-control  product_master_group[{{@index}}][pur_rt]" placeholder="Pur Rt"
+                                                                name="product_master_group[{{@index}}][pur_rt]" value="{{this.pur_rt}}" type="text" style='width:100%'/>
+                                                            </td>
+                                                             <td>
+                                                               <input class="form-control  product_master_group[{{@index}}][stock]" placeholder="Stock"
+                                                                name="product_master_group[{{@index}}][stock]" value="{{this.stock}}" type="text" style='width:100%'/>
+                                                            </td>
+                                                            <td>
+                                                               <input class="form-control  product_master_group[{{@index}}][rate]" placeholder="Rate"
+                                                                name="product_master_group[{{@index}}][rate]" value="{{this.rate}}" type="text" style='width:100%'/>
+                                                            </td>
+                                                             <td>
+                                                               <input class="form-control amountfocus product_master_group[{{@index}}][value]" placeholder="Value"
+                                                                name="product_master_group[{{@index}}][value]" value="{{this.value}}" type="text" style='width:100%'/>
+                                                            </td>
+                                                             
+                                                             {{#notequal @index 0}}
+                                                                <td><a onclick='remove_updateproduct({{@index}});' style='cursor:pointer;'><i class='fa fa-times nofocus' style='font-size: 20px;color: red;margin-left:12px;'></i></a></td>
+                                                             {{/notequal}}
+                                                        </tr>
+                                                        {{/each}}
+                                                        <tr id="insert_product">
+                                                        </tr>
+                                                    </tbody>
+                                                    <tr>
+                                                    </tr>
+                                                </table>
+                                                    <center><a class="addproduct1" style="font-size: 30px;cursor:pointer;"><i class="fa fa-plus nofocus" aria-hidden="true"></i></a></center>
+                                            </div>
+                                        </div>
+                                   
+                                    {{!-- end of body --}}
+                                    <div class="panel-footer">
+                                        <div class="action clearfix">
+                                            <div class="col-md-12" align="center">
+                                                
+                                                    <button type="submit" name="save" class="btn btn-success lock-product1">Submit</button>
+                                                    <button type="reset" class="btn btn-danger">Cancel</button>
+                                                    <a href="/product_master/product_master" style="margin-top: 1.5em" class="btn btn-info">Back</a>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    
+                                </form>
+                                 </div>
+                            </div>
+
+
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

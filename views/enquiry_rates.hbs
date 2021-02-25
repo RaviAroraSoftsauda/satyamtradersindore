@@ -1,0 +1,290 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Add Enquiry Form
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-md-5">
+
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" id="formheading">
+                                            <span>Add</span> Enquiry Form
+                                        </div>
+                                        <div class="panel-body">
+                                            <form method="POST" action="/enquiry_rates/enquiry_add" enctype="" id="daily_rates"
+                                                class="validate">
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">Station Name</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control" placeholder="Station Name"
+                                                                name="st_name" type="text" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">Product Name:</label>
+                                                        <div class="col-md-9">
+                                                              <select class="form-control item_name select2" list="item_name" name="item_name">  
+                                                            <option value="">Select Name </option>
+                                                            {{#each product}}
+                                                                    <option value="{{this._id}}" data-serialnum="{{this.product_name}}">{{this.product_name}}</option>
+                                                                {{/each}}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">Product Specifications</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control prod_spec" placeholder="Product Specifications" name="prod_spec" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">Minimum Rate</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control rate_min" placeholder="Minimum Rate" name="rate_min" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">Maximum Rate</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control rate_max" placeholder="Maximum Rate" name="rate_max" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">Condition</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control rate_condtion" placeholder="Condition" name="rate_condtion" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3"></label>
+                                                        <div class="col-md-9">
+                                                            <button type="submit" name="save" class="btn btn-success">Submit</button>
+                                                            <button type="reset" class="btn btn-primary cancelmaster" >Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <form method="POST" action="" enctype="" id="edit_daily_rates"
+                                                class="edit_daily_rates" style="display:none">
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">Station Name</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control st_name" placeholder="Station Name"
+                                                                name="st_name" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">Product Name:</label>
+                                                        <div class="col-md-9">
+                                                             <select class="form-control item_name" list="item_name" name="item_name">  
+                                                            <option value="">Select Name </option>
+                                                            {{#each product}}
+                                                                    <option value="{{this._id}}" data-serialnum="{{this.product_name}}">{{this.product_name}}</option>
+                                                                {{/each}}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">Product Specifications</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control prod_spec" placeholder="Product Specifications" name="prod_spec" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">Minimum Rate</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control rate_min" placeholder="Minimum Rate" name="rate_min" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">Maximum Rate</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control rate_max" placeholder="Maximum Rate" name="rate_max" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">Condition</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control rate_condtion" placeholder="Condition" name="rate_condtion" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3"></label>
+                                                        <div class="col-md-9">
+                                                            <button type="submit" name="save" class="btn btn-success">Update</button>
+                                                            <button type="reset" class="btn btn-danger cancelmaster" >Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                           Enquiry List
+                                        </div>
+                                        <div class="panel-body">
+                                                <table id="product_detail_table" class="product_detail_table table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="excludesearch mastercheckbox"><input type="checkbox"></th>
+                                                            <th>Sno.</th>
+                                                            <th>Station Name</th>
+                                                            <th>Product Name</th>
+                                                            <th>Product Specifications</th>
+                                                            <th>Minimum Rate</th>
+                                                            <th>Maximum Rate</th>
+                                                            <th>Condition</th>
+                                                            <th>Submit</th>
+                                                             <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{#each enquiry as |value key|}}
+                                                            <tr>
+                                                                <td><input type="checkbox" name="" value="{{this._id}}" id=""></td>
+                                                                <td>{{sum @index 1}}</td>
+                                                                <td>{{this.st_name}}</td>
+                                                                <td>{{this.item_name.product_name}}</td>
+                                                                <td>{{this.prod_spec}}</td>
+                                                                <td>{{this.rate_min}}</td>
+                                                                <td>{{this.rate_max}}</td>
+                                                                <td>{{this.rate_condtion}}</td>
+                                                                <td>{{this.main_bk}}</td>
+                                                                <td>
+                                                                <div class="btn-group dropdown">
+                                                                    <button class="btn btn-xs blue dropdown-toggle"
+                                                                        type="button" data-toggle="dropdown"
+                                                                        aria-expanded="false"> Actions
+                                                                        <i class="fa fa-angle-down"></i>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu pull-right" role="menu">
+                                                                        <li>
+                                                                            <a href="javascript:void(0);" class="edit_enquiry_rates_btn" data-id="{{this._id}}">
+                                                                                <i class="icon-pencil"></i> Edit </a>
+                                                                        </li>
+                                                                        <li class="divider"> </li>
+                                                                        <li>
+                                                                            <a href="javascript:void(0);" class="delete_enquiry_rates" data-id="{{this._id}}">
+                                                                                <i class="icon-trash"></i> Delete
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </td>
+                                                            </tr>
+                                                        {{/each}} 
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th class="excludesearch mastercheckbox"></th>
+                                                            <th>Sno.</th>
+                                                            <th>Station Name</th>
+                                                            <th>Product Name</th>
+                                                            <th>Product Specifications</th>
+                                                            <th>Minimum Rate</th>
+                                                            <th>Maximum Rate</th>
+                                                            <th>Condition</th>
+                                                            <th>Submit</th>
+                                                             <th>Action</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

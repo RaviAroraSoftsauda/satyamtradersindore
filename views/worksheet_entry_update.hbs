@@ -1,0 +1,596 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb pull-right">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{#if err}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{err}}</strong>
+                                    </div>
+                                    {{/if}}
+                                    {{#if errors}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{errors}}</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            {{!-- end of alerts row --}}
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                           WorkSheet Entry
+                                        </div>
+                                        <form method="POST" action="/worksheet_entry/update/{{workmast.id}}" class="form validate"
+                                      novalidate>
+                                        <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group  form-md-line-input clearfix">
+
+                                                            <label class="col-sm-3 control-label">WorkSheet No.: </label>
+                                                            <div class="col-md-5">
+                                                                <input name="ws_no" placeholder="WorkSheet No"
+                                                                    class="form-control ws_no" tabindex="1"value="{{workmast.ws_no}}"/>
+                                                            </div>
+                                                             <div class="col-md-4">
+                                                                <input type="text" name="vouc_code" checked placeholder="Deal Number"
+                                                                    value="{{workmast.vouc_code}}" class="form-control vouc_code"
+                                                                    />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+
+                                                            <label class="col-sm-3 control-label">WorkSheet Date: </label>
+                                                            <div class="col-md-4">
+                                                                <div class="input-group"> 
+                                                                    <input type="text" class="form-control datemask"
+                                                                        name="work_sheetdt" id="offerstartdate"  value="{{dateformat workmast.work_sheetdt 'DD/MM/YYYY'}}"
+                                                                        autocomplete="off" tabindex="3" autofocus />
+                                                                    <span class="input-group-btn">
+                                                                        <button class="btn default date-range-toggle isprop"
+                                                                            type="button" id="offerstartdatebtn"
+                                                                            tabindex="-1">
+                                                                            <i class="fa fa-calendar"></i>
+                                                                        </button>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                           
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group clearfix">
+                                                           <label class="control-label col-md-3">Customer Name</label>
+                                                            <div class="col-md-9">
+                                                                <div class="input-group select2-bootstrap-prepend">
+                                                                    
+                                                                <select class="form-control ws_cus_name select2" name="ws_cus_name"id="ws_cus_name" 
+                                                                    placeholder="Please Select customer">
+                                                                    <option value=""></option>
+                                                                    {{#each acmast}}
+                                                                    <option value="{{this.id}}" {{#equal ../workmast.ws_cus_name id}} selected=""{{/equal}}
+                                                                    >{{this.ac_name}}.................{{this.ac_city.city_name}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                                     {{!-- {{#listbsrt party 'B' 'br_code' 'brcont'}}
+                                                                    {{this.party_name}},{{this.city_name.city_name}}
+                                                                    {{/listbsrt}} --}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                   
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Remarks: </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" placeholder="remarks" name="w_rmks" id="remarks" class="form-control w_rmks"
+                                                                 value="{{workmast.w_rmks}}"/>
+                                                            </div>
+                                                    </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">P.O Number: </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" placeholder="PO NO"name="pono" id="pono" class="form-control pono" value="{{workmast.pono}}"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                     <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">P.O Date: </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="podt" id="podt" class="form-control datemask"
+                                                                    value="{{dateformat workmast.podt 'DD/MM/YYYY'}}"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                     <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                          <label class="col-sm-3 control-label">Dollar price: </label>
+                                                            <div class="col-md-3">
+                                                                 <input type="text" name="w_doller"
+                                                                                id="wmrkprice" oninput='calc(1)'placeholder="Dollar price"value="{{workmast.w_doller}}"
+                                                                                class="form-control w_doller"
+                                                                                />
+                                                            </div>
+                                                            <label class="col-sm-3 control-label">Market price: </label>
+                                                               <div class="col-md-3">
+                                                                 <input type="text" name="market_price"
+                                                                                id="wdoller" oninput='calc(1)'placeholder="Market price"value="{{workmast.market_price}}"
+                                                                                class="form-control market_price"
+                                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                      <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Total freight: </label>
+                                                            <div class="col-md-9">
+                                                                 <input type="text" name="w_totaFr"
+                                                                                id="wtotaFr" oninput='calc(1)'placeholder="total freight"value="{{workmast.w_totaFr}}"
+                                                                                class="form-control w_totaFr" 
+                                                                                />
+                                                            </div>
+                                                    </div>
+                                                    </div>
+                                                     <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                          <label class="col-sm-3 control-label">Overseas freight$: </label>
+                                                            <div class="col-md-9">
+                                                               <input type="text" name="w_overseasFPB"
+                                                                                id="woverseasFPB" oninput='calc(1)'
+                                                                                class="form-control w_overseasFPB" placeholder="Overseas freight$"value="{{workmast.w_overseasFPB}}"
+                                                                               />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                      <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Container cbm:</label>
+                                                            <div class="col-md-9">
+                                                                  <input type="text"oninput='calc(1)' placeholder="Container cbm" name="con_cbm" id="con_cbm"
+                                                                  value="{{workmast.con_cbm}}" class="form-control con_cbm" value="65">
+                                                            </div>
+                                                    </div>
+                                                    </div>
+                                                    </div>
+                                                
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="table-responsive adjustmentstable">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                       <th>Product</th>
+                                                                        <th>innerqty</th>
+                                                                        <th>percartonCBM</th>
+                                                                        <th>OrderQty</th>
+                                                                        <th>cost</th>
+                                                                        <th>profit%</th>
+                                                                        <th>profitamt</th>
+                                                                        <th>slpricers</th>
+                                                                       <th>sellingprice$</th>
+                                                                       <th>ExPrice/CRTN$</th>
+                                                                       <th>totboxcontainer</th>
+                                                                       <th>PerBoxINLDRs</th>
+                                                                        <th>PerBoxINLD$</th>
+                                                                        <th>overseas$perbox</th>
+                                                                        <th>Finalcost</th>
+                                                                        <th>FOBAmount</th>
+                                                                        <th>CNFAmount</th>
+                                                                         <th>Total cbm</th>
+                                                                        <th>Freight[cbm]</th>
+                                                                          <th>Delete</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                 
+                                                                <tbody>
+                                                                     {{#each workmast.work_sheet_group as |value key|}}
+                                                                    <tr class="worksheet_row-{{@index}}" id="worksheet_row-{{@index}}-{{@index}}">
+                                                                        <td>
+                                                                           
+                                                                             <input type="hidden" name="cntr{{@index}}" value="{{@index}}" id="cntr{{@index}}"
+                                                                                     class="form-control">
+                                                                           <select  name="work_sheet_group[{{@index}}][w_pname]"id="wpname{{@index}}" onchange='getproduct({{@index}})' class="form-control select2" style="width:162px"
+                                                                             placeholder="Select Product"> 
+                                                                            <option value=""></option>
+                                                                            {{#each ../product}}
+                                                                                <option value="{{this.id}}"data-serialnum="{{this._id}}"{{#equal ../this.w_pname id}} selected=""
+                                                                                    {{/equal}}>{{this.prdt_desc}}</option>
+                                                                                {{/each}}
+                                                                            </select>
+                                                                        </td>
+                                                                        <td id="innerqty{{@index}}">
+                                                                            <input type="text" name="work_sheet_group[{{@index}}][in_qty]" id="inqty{{@index}}" oninput='calc({{@index}})'
+                                                                                class="form-control work_sheet_group[{{@index}}][in_qty]" style="width: 142px;text-align: -webkit-right;" value="{{this.in_qty}}"
+                                                                                 />
+                                                                        </td>
+                                                                        <td id="cmblprt{{@index}}">
+                                                                            <input type="text" name="work_sheet_group[{{@index}}][perc_cbm]"
+                                                                                id="perccbm{{@index}}"       oninput='calc({{@index}})' value="{{this.perc_cbm}}"
+                                                                                class="form-control work_sheet_group[{{@index}}][perc_cbm]" style="width: 135px;text-align: -webkit-right;"
+                                                                                />
+                                                                        </td>
+                                                                        <td id="orqtytrtr{{@index}}">
+                                                                           <input type="text" name="work_sheet_group[{{@index}}][or_qty]"
+                                                                                id="orqty{{@index}}" oninput='calc({{@index}})' value="{{this.or_qty}}"
+                                                                                class="form-control   work_sheet_group[{{@index}}][or_qty]" style="width: 92px;text-align: -webkit-right;"
+                                                                                />
+                                                                        </td>
+                                                                        <td id="wcostrtrt{{@index}}">
+                                                                             <input type="text" name="work_sheet_group[{{@index}}][w_cost]"
+                                                                                id="wcost{{@index}}"  oninput='calc({{@index}})' value="{{this.w_cost}}"
+                                                                                class="form-control work_sheet_group[{{@index}}][w_cost]" style="width: 87px;text-align: -webkit-right;"
+                                                                                />
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" name="work_sheet_group[{{@index}}][w_profit]"
+                                                                                id="wprofit{{@index}}" oninput='calc({{@index}})' value="{{this.w_profit}}"
+                                                                                class="form-control  work_sheet_group[{{@index}}][w_profit]"  style="width: 72px;text-align: -webkit-right;"
+                                                                                >
+                                                                        </td>
+                                                                        <td>
+                                                                             <input type="text" name="work_sheet_group[{{@index}}][w_profitamt]"
+                                                                                id="wprofitamt{{@index}}" oninput='calc({{@index}})' value="{{this.w_profitamt}}"
+                                                                                class="form-control  work_sheet_group[{{@index}}][w_profitamt]" style="width: 92px;text-align: -webkit-right;"
+                                                                                />
+                                                                        </td>
+                                                                        <td>
+                                                                             <input type="text" name="work_sheet_group[{{@index}}][w_sellprice]"
+                                                                                id="wsellprice{{@index}}" oninput='calc({{@index}})' value="{{this.w_sellprice}}"
+                                                                                class="form-control   work_sheet_group[{{@index}}][w_sellprice]" style="width: 84px;text-align: -webkit-right;"
+                                                                                />
+                                                                        </td>
+                                                                        {{!-- <td>
+                                                                             <input type="text" name="work_sheet_group[1][w_doller]"
+                                                                                id="wdoller1" oninput='calc(1)'
+                                                                                class="form-control" style="width: 102px;text-align: -webkit-right;"
+                                                                                />
+                                                                        </td> --}}
+                                                                        <td>
+                                                                             <input type="text" name="work_sheet_group[{{@index}}][w_sellpriceD]"
+                                                                                id="wsellpriceD{{@index}}" oninput='calc({{@index}})' value="{{this.w_sellpriceD}}"
+                                                                                class="form-control  work_sheet_group[{{@index}}][w_sellpriceD]" style="width: 115px;text-align: -webkit-right;"
+                                                                                />
+                                                                        </td>
+                                                                        <td>
+                                                                             <input type="text" name="work_sheet_group[{{@index}}][w_boxpricedoller]"
+                                                                                id="boxpricedoller{{@index}}" oninput='calc({{@index}})' value="{{this.w_boxpricedoller}}"
+                                                                                class="form-control  work_sheet_group[{{@index}}][w_boxpricedoller]" style="width: 129px;text-align: -webkit-right;"
+                                                                                />
+                                                                        </td>
+                                                                        {{!-- <td>
+                                                                             <input type="text" name="work_sheet_group[1][w_totaFr]"
+                                                                                id="wtotaFr1" oninput='calc(1)'
+                                                                                class="form-control" style="width: 102px;text-align: -webkit-right;"
+                                                                                required/>
+                                                                        </td> --}}
+                                                                        <td>
+                                                                            <input type="text" name="work_sheet_group[{{@index}}][w_boxperC]"
+                                                                                id="wboxperC{{@index}}" oninput='calc({{@index}})' value="{{this.w_boxperC}}"
+                                                                                class="form-control work_sheet_group[{{@index}}][w_boxperC]" style="width: 142px;text-align: -webkit-right;"
+                                                                                required/>
+                                                                        </td>
+                                                                        <td>
+                                                                              <input type="text" name="work_sheet_group[{{@index}}][w_boxperFR]"
+                                                                                id="perbxfrghtrs{{@index}}" oninput='calc({{@index}})' value="{{this.w_boxperFR}}"
+                                                                                class="form-control work_sheet_group[{{@index}}][w_boxperFR]" style="width: 142px;text-align: -webkit-right;"
+                                                                                required/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" name="work_sheet_group[{{@index}}][w_boxperFD]"
+                                                                                id="wboxperFD{{@index}}" oninput='calc({{@index}})' value="{{this.w_boxperFD}}"
+                                                                                class="form-control work_sheet_group[{{@index}}][w_boxperFD]" style="width: 132px;text-align: -webkit-right;"
+                                                                                required/>
+                                                                        </td>
+                                                                        {{!-- <td>
+                                                                             <input type="text" name="work_sheet_group[1][w_overseasFPB]"
+                                                                                id="woverseasFPB1" oninput='calc(1)'
+                                                                                class="form-control" style="width: 162px;text-align: -webkit-right;"
+                                                                                required/>
+                                                                        </td> --}}
+                                                                        <td>
+                                                                             <input type="text" name="work_sheet_group[{{@index}}][w_finalb]"
+                                                                                id="wfinalb{{@index}}" oninput='calc({{@index}})' value="{{this.w_finalb}}"
+                                                                                class="form-control work_sheet_group[{{@index}}][w_finalb]" style="width: 152px;text-align: -webkit-right;"
+                                                                                required/>
+                                                                        </td>
+                                                                        <td>
+                                                                             <input type="text" name="work_sheet_group[{{@index}}][w_finalc]"
+                                                                                id="wfinalc{{@index}}" oninput='calc({{@index}})' value="{{this.w_finalc}}"
+                                                                                class="form-control work_sheet_group[{{@index}}][w_finalc]" style="width: 87px;text-align: -webkit-right;"
+                                                                                required/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" name="work_sheet_group[{{@index}}][w_fobAmt]"
+                                                                                id="wfobAmt{{@index}}" oninput='calc({{@index}})' value="{{this.w_fobAmt}}"
+                                                                                class="form-control work_sheet_group[{{@index}}][w_fobAmt]" style="width: 108px;text-align: -webkit-right;"
+                                                                                required>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" name="work_sheet_group[{{@index}}][w_cnfAmt]"
+                                                                                id="wcnfAmt{{@index}}" oninput='calc({{@index}})' value="{{this.w_cnfAmt}}"
+                                                                                class="form-control work_sheet_group[{{@index}}]][w_cnfAmt]" style="width: 112px;text-align: -webkit-right;"
+                                                                                required/>
+                                                                        </td>
+                                                                          <td>
+                                                                            <input type="text" name="work_sheet_group[{{@index}}][tot_cbm]"
+                                                                                id="totelcbm{{@index}}" oninput='calc({{@index}})' value="{{this.tot_cbm}}"
+                                                                                class="form-control work_sheet_group[{{@index}}][tot_cbm]" style="width: 102px;text-align: -webkit-right;"
+                                                                                required>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" name="work_sheet_group[{{@index}}][fr_cbm]"
+                                                                                id="frcbm{{@index}}" oninput='calc({{@index}})'value="{{this.fr_cbm}}"
+                                                                                class="form-control work_sheet_group[{{@index}}][fr_cbm] amountfocus" style="width: 112px;text-align: -webkit-right;"
+                                                                                required/>
+                                                                        </td>
+                                                                        <td> {{#notequal @index 0}}
+                                                                            <a  data-repeater-delete="inner-field-{{@index}}-{{@index}}"  data-brand-index="{{@index}}" class="worksheet_delete_btn"  style='cursor:pointer;'>
+                                                                                <i class='fa fa-times' style='font-size: 20px;color: red;margin-left:12px;'></i>
+                                                                                </a>
+                                                                                {{/notequal}}
+                                                                            </td>
+                                                                    </tr>
+                                                                     {{/each}}
+                                                                   {{!-- <td>
+                                                                            {{#notequal @index 0}}
+                                                                            <a data-repeater-delete="inner-field-{{sum @index 1}}-{{sum @index 1}}"
+                                                                                data-brand-index="{{sum @index 1}}"
+                                                                                class='sauda_delete_btn' style='cursor:pointer;'><i
+                                                                                    class='fa fa-times' style='font-size: 20px;color: red;margin-left:12px;'></i></a>
+                                                                            {{/notequal}}
+                                                                        </td> --}}
+                                                                    <tr id="contract_div">
+                                                                        <th>Total</th>
+                                                                        <td></td>
+                                                                         <td></td>
+                                                                          <td><input name="tot_order" id="tot_order" value="{{workmast.tot_order}}"  
+                                                                                placeholder="Total order" class="form-control tot_order"style="text-align: -webkit-right;"
+                                                                                readonly  tabindex="-1"></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                         <td> <input type="text" name="tot_pamt" id="tot_pamt" value="{{workmast.tot_pamt}}" oninput='calc(1)'
+                                                                                placeholder="Total profitamt" class="form-control tot_pamt" style="text-align: -webkit-right;"
+                                                                                readonly  tabindex="-1"></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td> <input type="text" name="tot_fobamt" id="tot_fobamt" value="{{workmast.tot_fobamt}}" oninput='calc(1)'
+                                                                                placeholder="Total fobamt" class="form-control tot_fobamt"style="text-align: -webkit-right;"
+                                                                                readonly  tabindex="-1"></td>
+                                                                        <td> <input type="text" name="tot_cnfamt" id="tot_cnfamt" value="{{workmast.tot_cnfamt}}" oninput='calc(1)'
+                                                                                placeholder="Total cnfamt" class="form-control tot_cnfamt"style="text-align: -webkit-right;"
+                                                                                readonly  tabindex="-1"></td>
+                                                                       <td></td>
+                                                                        <td></td>
+                                                                         <td></td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                 <div class="row">
+                                                    <div class="col-sm-12">
+                                                      <button type="button" class="btn btn-primary addworksheet center-block nofocus" id="add">Add Product</button>  
+                                                     
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div> 
+                                               <!--  <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-2 control-label">SGST </label>
+                                                            <div class="col-md-5 sgsttax">
+                                                                <input type="text" class="form-control plus number delv_load add1_amt" name="add1_amt"
+                                                                    id="add1_amt" oninput="calc()" placeholder="SGST"value="{{workmast.add1_amt}}">
+                                                            </div>
+                                                             <div class="col-md-5">
+                                                                <input type="text" class="form-control number" name="sgst_tax" id="sgst_tax"
+                                                                    placeholder="SGST TAX"value="{{workmast.add1_amt}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-2 control-label">Others </label>
+                                                            <div class="col-md-5">
+                                                                <input type="text" class="form-control minus number" name="less_rmk"
+                                                                    id="less_rmk" oninput="calc()" placeholder="Others"value="{{workmast.add1_amt}}">
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <input type="text" class="form-control number less_amt" name="less_amt" id="less_amt"
+                                                                    placeholder="Amount"value="{{workmast.less_amt}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-2 control-label">CGST </label>
+                                                            <div class="col-md-5 cgst">
+                                                                <input type="text" class="form-control plus number add2_amt" name="add2_amt"
+                                                                    id="add2_amt" oninput="calc()" placeholder="CGST"value="{{workmast.add2_amt}}">
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <input type="text" class="form-control number cgst_tax" name="cgst_tax" id="cgst_tax"
+                                                                    placeholder="CGST TAX"value="{{workmast.cgst_tax}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-2 control-label">Others1 </label>
+                                                            <div class="col-md-5">
+                                                                <input type="text" class="form-control  less1_rmk" name="less1_rmk"
+                                                                    placeholder="Less1"value="{{workmast.less1_rmk}}">
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <input type="text" class="form-control minus number less1_amt" name="less1_amt"
+                                                                    id="less1deal_amt" oninput="calc()" placeholder="Amount"value="{{workmast.less1_amt}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-2 control-label">IGST </label>
+                                                            <div class="col-md-5 igst">
+                                                                <input type="text" class="form-control plus number add3_amt" name="add3_amt"
+                                                                    id="add3_amt" oninput="calc()" placeholder="IGST"value="{{workmast.add3_amt}}">
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <input type="text" class="form-control igst_tax" name="igst_tax" id="igst_tax"
+                                                                    placeholder="IGST TAX"value="{{workmast.igst_tax}}">
+                                                            </div>
+                                                             
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-2 control-label">Others2 </label>
+                                                              <div class="col-md-5">
+                                                                <input type="text" class="form-control  less3_rmk" name="less3_rmk"
+                                                                    placeholder="Others2"value="{{workmast.less3_rmk}}">
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <input type="text" class="form-control minus number less3_amt" name="less3_amt"
+                                                                    id="less3deal_amt" oninput="calc()" placeholder="Amount"value="{{workmast.less3_amt}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Discount/<br>Credit:
+                                                            </label>
+                                                            <div class="col-md-9">
+                                                                <input type="checkbox" name="paycond" value="Yes" class="make-switch"
+                                                                    data-on-text="Discount" data-off-text="Credit"
+                                                                    data-size="small" data-off-color="primary">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Discount: </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control paydiscrt" name="paydiscrt"value="{{workmast.paydiscrt}}">
+                                                            </div>
+                                                        </div>
+                                                    </div> -->
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Remarks: </label>
+                                                            <div class="col-md-9">
+                                                                <textarea name="party_remarks" id="party_remarks" 
+                                                                class="form-control" >{{workmast.party_remarks}}</textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                   <!-- <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Bill Amt(Party Bill):
+                                                            </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control number bill_amt" name="bill_amt"
+                                                                    id="bill_amtdeal"value="{{workmast.bill_amt}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>-->
+                                                </div>
+                                            </div>              <div class="panel-footer">
+                                                <div class="action clearfix">
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-9 col-md-push-3">
+                                                            <button type="submit" name="save" id="contsubmit" class="btn btn-success">Submit</button>
+                                                            <button type="reset" class="btn btn-danger">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

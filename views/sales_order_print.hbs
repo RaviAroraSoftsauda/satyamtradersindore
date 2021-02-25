@@ -1,0 +1,338 @@
+
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+
+<style>
+body { 
+  font-size: 15px; 
+}
+.container{
+    width:fit-content;
+    margin-right: auto;
+    margin-left: auto;
+	height:auto;
+	
+}
+@media print {
+    table tr.highlighted > td {
+        background-color: rgba(247, 202, 24, 0.3) !important;
+    }
+     table thead.highprint  {
+        background-color: rgba(228, 227, 225, 0.3) !important;
+    }
+     table tr.addallvalues {
+        background-color:rgb(255, 214, 251) !important;
+    }
+     table tr.totalamt77 > th {
+        background-color:rgba(228, 227, 225, 0.3) !important;
+    }
+     table tr.addcloumn {
+        background-color:rgba(228, 227, 225, 0.3) !important;
+    }
+      table tr.rmarks66 {
+        background-color:rgba(228, 227, 225, 0.3) !important;
+    }
+    tbody tr.highlighted:nth-child(odd) >td{
+    background-color: rgb(181, 231, 171) !important;;
+    }
+    table { border-collapse: collapse; }
+    table {
+        page-break-inside: avoid !important;
+        white-space: nowrap;
+        overflow: hidden;
+        padding: 1px;
+        font-size: 1em;
+        width: 95%;
+    }
+}
+
+h2 {
+  text-align: center;
+  padding: 20px 0;
+}
+
+
+table caption {
+	padding: .5em 0;
+}
+
+table.dataTable th,
+table.dataTable td {
+  white-space: nowrap;
+}
+.head{
+    background-color:rgb(230, 230, 230);
+}
+.p {
+  text-align: center;
+  padding-top: 140px;
+  font-size: 14px;
+}
+
+
+
+
+tr.group,
+tr.group:hover {
+    background-color:greenyellow;
+}
+</style>
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+     
+        <div class="page-container">
+           
+
+                <div class="page-head">
+                    <div class="container-fluid">
+                 
+                        <div class="page-title">
+                           <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                    </ul>
+                                  
+                                </small>
+                            </h1>
+                        </div>
+                     
+                    </div>
+                   
+
+                </div>
+
+{{!-- <div class="container">
+    <div text align="center">
+        <b  style="font-size:27px;align-items: center">{{divname}}</b></br>
+        <b  style="font-size:15px;align-items: center">{{add}}</b></br>
+        <div class="row">
+            <div class="col-xs-12">
+                <table  border="2" cellspacing="3" align="center" width="100%">
+                    <thead>
+                    <tr>
+                        <td colspan="2"  style="text-align: center" ><strong>Entry No.___{{somast.vouc_code}}/{{somast.main_bk}}</strong>
+                        <td colspan="2" style="text-align: center"  class="text-uppercase"><strong>Party Name:- </br>{{somast.buy_cus_name.ACName}},{{somast.buy_cus_name.ac_city.city_name}} </strong>     	
+                        <td colspan="2"  style="text-align: center"><strong>Entry DATE:   {{dateformat somast.so_date 'DD.MM.YYYY'}}</strong>
+                    </tr>
+                    <tr>
+                        <td colspan="2"  style="text-align: center" ><strong> Bill No.{{somast.buy_pono}}</strong>
+                        <td colspan="2" style="text-align: center"  class="text-uppercase">     	
+                        <td colspan="2"  style="text-align: center"><strong>Bill DATE:   {{dateformat somast.buy_podt 'DD.MM.YYYY'}}</strong>
+                    </tr>
+                    <tr>
+                        <th>  Product Name</th>
+                        <th>  Rate</th>
+                        <th>  QTY</th>
+                
+                        <th>  VALUE</th>
+                        <th>  DIS</th>
+                        <th>  VALUE</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each somast as |somastvalue key|}}
+            
+                    {{#each somastvalue.sales_or_group as |groupvalue key|}}
+                        <tr bgcolor="#FFFFCC" class="highlighted">
+                            <td  class="text-left"colspan="1" align="center" ><font color="red">{{groupvalue.so_fg_disc.Fg_Des}}
+                            <td class="text-right" colspan="1" align="center" ><font color="black">{{groupvalue.order_price}}
+                            <td class="text-right" colspan="1" align="center" ><font color="black">{{groupvalue.so_qty}}
+                            <td class="text-right" colspan="1" align="center" ><font color="black">{{groupvalue.total_amt_before}}
+                            <td class="text-right" colspan="1" align="center" ><font color="black">{{groupvalue.so_discount}}
+              
+              
+                            <td align="right">{{groupvalue.total_amt}}</td>
+                        </tr>
+                    {{/each}}   
+                    {{/each}}
+
+                    </tbody>
+                    <tfoot>   
+                    <tr class="totalamt77" >
+                        <th  colspan="2" >{{somast.so_disc}}<b>TOTAL CASES & VALUE</b>
+                        <th class="text-right"  colspan="1" align="right">{{somast.tot_sooq}}
+                        <th class="text-right"  colspan="1" >{{somast.tot_amtbefore}}
+                        <th   class="text-right" colspan="1" >{{somast.tot_discount}}
+                        <th  class="text-right" colspan="1" align="right">{{somast.tot_amtso}}
+			        </tr>
+                    </tfoot>
+                    <tr class="addcloumn" >
+                        <td colspan="2" ; style="text-align: center" ><b></b><strong>Particular(ADD)</strong>
+                        <th colspan="1" ; style="text-align: center"><b>Amount
+                        <td colspan="1" ; style="text-align: center"><b>Particular(Less)
+                        <td colspan="2" ; style="text-align: right"><b>Amount
+                    </tr>   
+   
+                    {{#each somast as |somastvalue key|}}
+                        {{#each somastvalue.add_details as |groupvalue key|}}
+                            {{#each somastvalue.less_details as |groupvaluea key|}}   
+                    <tr bgcolor="#ffd6fb"  class="addallvalues">
+                        <td  colspan="1" align="center" ><font color="black">{{groupvalue.particular_add}}
+                        <th  class="text-right" colspan="2"  align="right" ><font color="black">{{groupvalue.particular_amount}}
+                        <td  colspan="2" align="center" ><font color="black">{{groupvaluea.particular_less}}
+                        <th  class="text-right" colspan="2" align="right" ><font color="black">{{groupvaluea.particular_amtless}}
+                    </tr>
+                            {{/each}} 
+                        {{/each}}  
+                    {{/each}}
+                    <tr  class="rmarks66">
+                        <td  colspan="4" ; style="text-align: left" ><strong> Remarks:</strong>{{somast.so_remarks}}
+                        <td  colspan="6" ; style="text-align: center" ><font color="red"><strong>Grand Total:</strong> {{somast.grand_total}}
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div><br/>
+    <a class="btn btn-lg blue hidden-print margin-bottom-5" onclick="javascript:window.print();"> Print
+    <i class="fa fa-print"></i></a>
+</div> --}}
+
+<div class="container">
+    {{#each somast as |somastindex key|}}
+    <div align="center">
+        <div class="row">
+            <div class="col-xs-12" style="width: 95%">
+                <table  border="2" cellspacing="2" align="center" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <td colspan="4" align="center">
+                            <div class="row">
+                                <div class="col-md-12 col-md-1" align="left">
+                                    <img style="padding-top: 2px" src="logo/gg.jpg" alt="logo" class="logo-default">
+                                </div>
+                                <div class="col-md-12 col-md-10">
+                                    <b  style="font-size:28px;align-items: center;font-family: Times New Roman, Times, serif;">{{somastindex.div_code.div_mast}}</b></br>
+                                    <b  style="font-size:15px;align-items: center;font-family: Times New Roman, Times, serif;">{{somastindex.div_code.ac_add2}}</b></br>
+                                    <b  style="font-size:15px;align-items: center;font-family: Times New Roman, Times, serif;">{{somastindex.main_bk}}</b></br>
+                                </div>
+                                <div class="col-md-12 col-md-1"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1"  style="text-align: center" ><strong>Entry No:- </strong>{{somastindex.vouc_code}}</td>
+                        <td colspan="2" style="text-align: center"  class="text-uppercase"><strong>Party Name:- </strong>{{somastindex.buy_cus_name.ACName}}</td>     	
+                        <td colspan="1"  style="text-align: center"><strong>Entry DATE:- </strong>   {{dateformat somastindex.so_date 'DD.MM.YYYY'}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1"  style="text-align: center" ><strong> Bill No:- </strong>{{somastindex.buy_pono}}</td>
+                        <td colspan="2" style="text-align: center"  class="text-uppercase"><strong>Add:-</strong>{{somastindex.buy_cus_name.Address1}}</td>   	
+                        <td colspan="1"  style="text-align: center"><strong>Bill DATE:-   </strong>{{dateformat somastindex.buy_podt 'DD.MM.YYYY'}}</td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">Product Name</th>
+                        {{!-- <th></th> --}}
+                        <th>  Unit</th>
+                        <th>  QTY</th>
+                        {{!-- <th>  DIS</th> --}}
+                        {{!-- <th>  Ammount</th> --}}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each somastindex as |somastvalue key|}}
+            
+                    {{#each somastvalue.sales_or_group as |groupvalue key|}}
+                        <tr bgcolor="#FFFFCC" class="highlighted">
+                            <td   colspan="2" style="text-align: center" ><font color="red">{{groupvalue.so_fg_disc.Fg_Des}}</td>
+                            {{!-- <td class="text-right" colspan="1" align="center" ><font color="black">{{groupvalue.order_price}} --}}
+                            <td style="text-align: center">{{groupvalue.so_fg_disc.Fg_Unit.SKUName}}</td>
+                            <td class="text-right" style="text-align: center" ><font color="black">{{groupvalue.so_qty}}</td>
+                            {{!-- <td class="text-right" colspan="1" align="center" ><font color="black">{{groupvalue.total_amt_before}} --}}
+                            {{!-- <td class="text-right" colspan="1" align="center" ><font color="black">{{groupvalue.so_discount}} --}}
+                            {{!-- <td align="right">{{groupvalue.total_amt}}</td> --}}
+                        </tr>
+                    {{/each}}   
+                    {{/each}}
+
+                    </tbody>
+                    <tfoot>   
+                    <tr class="totalamt77" >
+                        <th  colspan="2" ><b>TOTAL</b></th>
+                        <th class="text-right"  colspan="1" align="right"></th>
+                        {{!-- <th   class="text-right"  colspan="1" >{{somastindex.tot_discount}} --}}
+                        <th style="text-align: center"  colspan="2" >{{somastindex.tot_sooq}}</th>
+                        {{!-- <th   class="text-right" colspan="1" >{{somastindex.tot_discount}} --}}
+                        {{!-- <th  class="text-right" colspan="1" align="right">{{somastindex.tot_amtso}} --}}
+			        </tr>
+                    </tfoot>
+                    <tr class="addcloumn" >
+                        <td colspan="1" ; style="text-align: center" ><strong>Particular(ADD)</strong></td>
+                        <th colspan="1" ; style="text-align: center"><b>Amount</b></th>
+                        <td colspan="1" ; style="text-align: center"><b>Particular(Less)</b></td>
+                        <td colspan="1" ; style="text-align: center"><b>Amount</b></td>
+                    </tr>   
+   
+                    {{!-- {{#each somastindex as |somastvalue key|}} --}}
+                    {{!-- {{#each somastindex.add_details as |groupvalue key|}} --}}
+                        {{!-- {{#each somastindex.less_details as |groupvaluea key|}}    --}}
+                    <tr bgcolor="#ffd6fb"  class="addallvalues">
+                        
+                        <td  colspan="1" align="center" >
+                            {{#each somastindex.add_details as |groupvalue key|}}
+                            <font color="black">{{groupvalue.particular_add}}</font></br>
+                            {{/each}}
+                        </td>
+                        
+                        
+                        <th  style="text-align: center" colspan="1">
+                            {{#each somastindex.add_details as |groupvalue key|}}
+                            <font color="black">{{groupvalue.particular_amount}}</font></br>
+                            {{/each}}
+                        </th>
+                        
+                        
+                        <td  colspan="1" align="center" >
+                            {{#each somastindex.less_details as |groupvaluea key|}}
+                            <font color="black">{{groupvaluea.particular_less}}</font></br>
+                            {{/each}}
+                        </td>
+                        
+                        
+                        <th  style="text-align: center" colspan="1">
+                            {{#each somastindex.less_details as |groupvaluea key|}}
+                            <font color="black">{{groupvaluea.particular_amtless}}</font></br>
+                            {{/each}}
+                        </th>
+                        
+                    </tr>
+                        {{!-- {{/each}}  --}}
+                    {{!-- {{/each}}   --}}
+                    {{!-- {{/each}} --}}
+                    {{!-- {{#each somastindex.less_details as |groupvaluea key|}}
+                    <tr>
+                        <td  colspan="2" align="center" ><font color="black">{{groupvaluea.particular_less}}
+                        <th  class="text-right" colspan="2" align="right" ><font color="black">{{groupvaluea.particular_amtless}}
+                    </tr>
+                    {{/each}} --}}
+                    <tr  class="rmarks66">
+                        <td  colspan="3" ; style="text-align: left" ><strong> Remarks:</strong>{{somastindex.so_remarks}}</td>
+                        <td  colspan="1" ; style="text-align: center" ><font color="red"> </font></td>
+                        {{!-- <strong>Grand Total:</strong>{{somastindex.grand_total}} --}}
+                    </tr>
+                </table>
+                
+            </div>
+        </div>
+    </div><br/>
+    {{/each}} 
+    <a class="btn btn-lg blue hidden-print margin-bottom-5" onclick="javascript:window.print();"> Print
+    <i class="fa fa-print"></i></a>
+</div>
+        
+        </div>
+       
+    </div>
+</div>
+
+{{> footer_new}}
+{{> scripts_new}}

@@ -1,0 +1,208 @@
+
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+
+<style>
+{{!-- .container{
+    width:fit-content;
+    margin-right: auto;
+    margin-left: auto;
+	height:auto;
+} --}}
+@media print {
+    @page{
+        margin-left: 10px;
+        margin-right: 0px;
+        margin-top: 0px;
+    }
+    table{
+        width: 100%;
+    }
+}
+
+h2 {
+  text-align: center;
+  padding: 20px 0;
+}
+
+table th{
+  white-space: nowrap;
+  padding: 0px;
+  font-size: 15px;
+}
+table td{
+  white-space: nowrap;
+  padding: 0px;
+  font-size: 12px;
+}
+.head{
+    background-color:rgb(230, 230, 230);
+}
+.p {
+  text-align: center;
+  padding-top: 140px;
+  font-size: 14px;
+}
+tr.group,
+tr.group:hover {
+    background-color:greenyellow;
+}
+.tabler>tbody>tr>td, .tabler>tbody>tr>th, .tabler>tfoot>tr>td, .tabler>tfoot>tr>th, .tabler>thead>tr>td, .tabler>thead>tr>th {
+    padding: 0px;
+}
+</style>
+<div class="page-wrapper-row full-height" >
+    
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+         
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                           <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+
+            <div class="container" >
+                <div class="row">
+                    <div  class="col-md-12">
+                        <table width="100%" class="tabler">
+                            <thead>
+                                <tr>
+                                    <td colspan="5"  style="text-align: left;padding-bottom: 0px;padding-top: 0px;margin-top: -10px;" valign="bottom"><b style="font-size: 12px;padding-top: 7px;float: left">&nbsp;&nbsp;{{div.div_code}}</b><b style="font-size: 14px;padding-top: 0px;float: right">{{div.div_mast}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></td>
+                                    <td colspan="1" style="text-align: left;width: 4em"><br><b style="float: left">{{div.ac_pho}}</b></td>
+                                    <td colspan="5" style="text-align: left;padding-bottom: 0pxpadding-top: 0px;margin: -10;" valign="bottom"><b style="font-size: 12px;padding-top: 7px;float: left">&nbsp;&nbsp;&nbsp;&nbsp;{{div.div_code}}</b><b style="font-size: 14px;padding-top: 0px;float: right">{{div.div_mast}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></td>
+                                    <td colspan="1" style="text-align: left;width: 4em"><br><b style="float: left">{{div.ac_pho}}</b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="12" style="height: 5px;text-align: left"></td>
+                                </tr>
+                            {{#each cashmast as |value key|}}
+                                {{#ifCond this.srno "0"}} 
+                                <tr>
+                                    <td colspan="5" rowspan="2" style="text-align: left; width: 350px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{this.cashac_name.ACName}}</br>&nbsp;&nbsp;{{this.cashac_name.CityName.CityName}},{{this.broker_Code.ACName}}</td>
+                                    <td colspan="1" style="text-align: center;width: 4em">{{this.vouc_code}}</td>
+                                    <td colspan="5" rowspan="2" style="text-align: left; width: 350px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{this.cashac_name.ACName}}</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{this.cashac_name.CityName.CityName}},{{this.broker_Code.ACName}}</td>
+                                    <td colspan="1" style="text-align: center;width: 4em">{{this.vouc_code}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1" style="text-align: left;width: 4em">{{dateformat this.cash_date 'DD.MM.YY'}}</td> 
+                                    <td colspan="1" style="text-align: left;width: 4em">{{dateformat this.cash_date 'DD.MM.YY'}}</td>   	
+                                </tr>
+                                {{/ifCond}}
+                            {{/each}}
+                            <tr>
+                                 <th colspan="12" style="height: 13px"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr bgcolor="#FFFFCC" class="highlighted">
+                                    <td class="text-left" style="height: 7.2em; width: 10em;" valign="top">&nbsp;&nbsp;&nbsp;{{#each cashmast as |value key|}}{{this.Bill_No}}</br>{{/each}}</td>
+                                    <td class="text-center" style="height: 7.2em; width: 7em" valign="top">{{#each cashmast as |value key|}}{{dateformat this.Date 'DD.MM.YY'}}</br>{{/each}}</td>
+                                    <td class="text-center" style="height: 7.2em; width: 8em" valign="top">{{#each cashmast as |value key|}}{{#toFixed2 this.Bill_Amt}}{{/toFixed2}}</br>{{/each}}</td>
+                                    <td class="text-right" style="height: 7.2em; width: 7em" valign="top">{{#each cashmast as |value key|}}{{#toFixed2 this.Intrest}}{{/toFixed2}}</br>{{/each}}</td>
+                                    <td class="text-right" style="height: 7.2em; width: 3em" valign="top">{{#each cashmast as |value key|}}{{#toFixed2 this.Chithi}}{{/toFixed2}}</br>{{/each}}</td>
+                                    <td class="text-right" style="height: 7.2em; width: 4em" valign="top">{{#each cashmast as |value key|}}{{#toFixed2 this.Amt_Settled}}{{/toFixed2}}&nbsp;&nbsp;</br>{{/each}}</td>
+ 
+                                    <td class="text-center" style="height: 7.2em; width: 10em" valign="top">&nbsp;{{#each cashmast as |value key|}}{{this.Bill_No}}</br>{{/each}}</td>
+                                    <td class="text-center" style="height: 7.2em; width: 7em" valign="top">{{#each cashmast as |value key|}}{{dateformat this.Date 'DD.MM.YY'}}</br>{{/each}}</td>
+                                    <td class="text-center" style="height: 7.2em; width: 8em" valign="top">{{#each cashmast as |value key|}}{{#toFixed2 this.Bill_Amt}}{{/toFixed2}}</br>{{/each}}</td>
+                                    <td class="text-right" style="height: 7.2em; width: 7em" valign="top">{{#each cashmast as |value key|}}{{#toFixed2 this.Intrest}}{{/toFixed2}}</br>{{/each}}</td>
+                                    <td class="text-right" style="height: 7.2em; width: 3em" valign="top">{{#each cashmast as |value key|}}{{#toFixed2 this.Chithi}}{{/toFixed2}}</br>{{/each}}</td>
+                                    <td class="text-right" style="height: 7.2em; width: 4em" valign="top">{{#each cashmast as |value key|}}{{#toFixed2 this.Amt_Settled}}{{/toFixed2}}&nbsp;&nbsp;&nbsp;</br>{{/each}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>  
+                            {{#each cashmast as |value key|}}
+                                {{#ifCond this.srno "0"}} 
+                                <tr class="totalamt77">
+                                    <th colspan="2"></th>
+                                    <th class="text-right" colspan="1"></th>
+                                    <th class="text-right" colspan="1"></th>
+                                    <th class="text-right" colspan="1"></th>
+                                    <td class="text-right" colspan="1">{{#toFixed2 this.totcash_amt}}{{/toFixed2}}&nbsp;</td>
+
+                                    <th colspan="2"></th>
+                                    <th class="text-right" colspan="1"></th>
+                                    <th class="text-right" colspan="1"></th>
+                                    <th class="text-right" colspan="1"></th>
+                                    <td class="text-right" colspan="1">{{#toFixed2 this.totcash_amt}}{{/toFixed2}}&nbsp;&nbsp;&nbsp;</td>
+                                </tr>
+                                {{/ifCond}}
+                            {{/each}}
+                            </tfoot>
+                            {{#each cashmast as |value key|}}
+                                {{#ifCond this.srno "0"}} 
+                                <tr class="addcloumn">
+                                    <td colspan="1" style="text-align: left"></td>
+                                    <td colspan="2" style="text-align: center">{{this.Cash_Amt}}</td>
+                                    <td colspan="1" style="text-align: left"></td>
+                                    <td colspan="2" style="text-align: right">{{this.Cheq_Amt}}&nbsp;</td>
+                                    <td colspan="1" style="text-align: left"></td>
+                                    <td colspan="2" style="text-align: center">{{this.Cash_Amt}}</td>
+                                    <td colspan="1" style="text-align: left"></td>
+                                    <td colspan="2" style="text-align: right">{{this.Cheq_Amt}}&nbsp;&nbsp;&nbsp;</td>
+                                </tr>  
+                                {{/ifCond}}
+                            {{/each}} 
+                            {{#each cashmast as |value key|}}
+                                {{#ifCond this.srno "0"}} 
+                                <tr bgcolor="#ffd6fb"  class="addallvalues">
+                                    <td colspan="1"></td>
+                                    <td colspan="5" style="text-align: left" >&nbsp;{{this.Drawee_Bank.bankName}}</td>
+                                    <td colspan="1"></td>
+                                    <td colspan="5" style="text-align: left" >&nbsp;{{this.Drawee_Bank.bankName}}</td>
+                                </tr>
+                                {{/ifCond}}
+                            {{/each}} 
+                            {{#each cashmast as |value key|}}
+                                {{#ifCond this.srno "0"}} 
+                                <tr  class="rmarks66">
+                                    <td  colspan="1" style="text-align: left">&nbsp;</td>
+                                    <td  colspan="2" style="text-align: left">&nbsp;{{this.Drawee_Bank.branchName}}</td>
+                                    <td  colspan="1" style="text-align: left"></td>
+                                    <td  colspan="2" style="text-align: right">&nbsp;{{this.Chq_No}}&nbsp;</td>
+                                    <td  colspan="1" style="text-align: left"></td>
+                                    <td  colspan="2" style="text-align: left">&nbsp;{{this.Drawee_Bank.branchName}}</td>
+                                    <td  colspan="1" style="text-align: left"></td>
+                                    <td  colspan="2" style="text-align: right">&nbsp;{{this.Chq_No}}&nbsp;&nbsp;&nbsp;</td>
+                                </tr>
+                                {{/ifCond}}
+                            {{/each}} 
+                        </table>
+                    </div>
+                </div>
+                <div class="row" align="center" style="margin-top: 1em">
+                    <a class="btn btn-lg blue hidden-print margin-bottom-5" id="BillCollPrintButton" onclick="javascript:window.print();"> Print
+                        <i class="fa fa-print"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{> footer_new}}
+{{> scripts_new}}

@@ -1,0 +1,213 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Contract List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{#if err}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{err}}</strong>
+                                    </div>
+                                    {{/if}}
+                                    {{#if errors}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{errors}}</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                                    <div class="panel panel-primary table light " id="tableportlet">
+                                        <div class="panel-heading">
+                                            Selas Order List
+                                            <div class="misc pull-right">
+                                                <div class="buttons">
+                                                    {{!-- <a href="/sales_order_mast/sales_order_mast">
+                                                        <button class="btn btn-link" type="button">Print
+                                                            Sales Order</button>
+                                                    </a> --}}
+                                                    <a href="/sales_order_mast/sales_order_mast">
+                                                        <button class="btn btn-link" type="button"><i class="fa fa-plus"></i>Add
+                                                            Sales Order Entry</button>
+                                                    </a>
+                                                  </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body" id="portletbody">
+                                            <table class="product_detail_table dttable table table-striped table-bordered table-hover"
+                                                id="product_detail_table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Action</th>
+                                                        <th>Sno</th>
+                                                        <th>Entry No</th>
+                                                        <th>Entry Date</th>
+                                                        <th>Party Name</th>
+                                                        <th>Party City</th>
+                                                        <th>Remarks</th>
+                                                        <th>Bill Number</th>
+                                                        <th>Bill Date</th>
+                                                       
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{#each somast as |value key|}}
+                                                    <tr>
+                                                          <td class="excludesearch">
+                                                            <div class="btn-group dropdown">
+                                                                <button class="btn btn-xs blue dropdown-toggle" type="button"
+                                                                    data-toggle="dropdown" aria-expanded="false">
+                                                                    Actions
+                                                                    <i class="fa fa-angle-down"></i>
+                                                                </button>
+                                                                <ul class="dropdown-menu pull-left" role="menu" style="width:150px">
+                                                                    <li>
+                                                                        <a href="/sales_order_mast/selas_orderupdate/{{value._id}}">
+                                                                            <i class="fa fa-pencil"></i> Edit
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="divider"> </li>
+                                                                    <li>
+                                                                        <a href="javascript:void(0);" class="delbutton delete_sales"
+                                                                         data-id="{{this._id}}">
+                                                                    <i class="icon-trash"></i> Delete
+                                                                </a>
+                                                                        </a>
+                                                                    </li>
+                                                                     <li class="divider"> </li>
+                                                                     <li>
+                                                                        {{!-- <a href="/sales_order_mast/sales_order_print/{{value._id}}">
+                                                                            <i class="fa fa-print"></i> Print
+                                                                        </a> --}}
+                                                                        <a data-toggle="modal" data-target="#myModal">
+                                                                            <i class="fa fa-print"></i> Print
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td> 
+                                                        <td>{{sum @index 1}}</td>
+                                                        
+                                                        <td>{{this.vouc_code}}/{{this.so_no}}</td>
+                                                        <td>{{dateformat this.so_date 'DD/MM/YYYY'}}</td>
+                                                        <td>{{this.buy_cus_name.ACName}}</td>
+                                                        <td>{{this.buy_cus_name.CityName.CityName}}</td>
+                                                        <td>{{this.buy_rmks}}</td>
+                                                        <td>{{this.buy_pono}}</td>
+                                                        <td>{{dateformat this.buy_podt 'DD/MM/YYYY'}}</td>
+                                                       
+                                                    </tr>
+                                                    {{/each}}
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th class="excludesearch mastercheckbox"></th>
+                                                        <th>Sno</th>
+                                                        <th>Entry No</th>
+                                                        <th>Entry Date</th>
+                                                        <th>Party Name</th>
+                                                         <th>Party City</th>
+                                                        <th>Remarks</th>
+                                                         <th>Bill Number</th>
+                                                         <th>Bill Date</th>
+                                                        {{!-- <th class="excludesearch noExport">Action</th> --}}
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- END EXAMPLE TABLE PORTLET-->
+                                    <div class="modal" id="myModal">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+
+                                                <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Set Date Period</h4>
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+
+                                                <!-- Modal body -->
+                                                <form method="POST" action="/sales_order_mast/sales_order_print" enctype="">
+                                                {{!-- <div class="modal-body"> --}}
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">Period</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control" name="filterstartdate"
+                                                                value="{{dateformat Date.now '01/04/2018'}}" id="contractrange"
+                                                                autocomplete="off" />
+                                                            </div>
+                                                    </div>
+                                                {{!-- </div> --}}
+
+                                                <!-- Modal footer onclick="saleprint()" -->
+                                                {{!-- <div class="modal-footer"> --}}
+                                                    <div class="form-group clearfix" align="right">
+                                                        <button type="submit" class="btn btn-success">Print</button>
+                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                                    </div>
+                                                {{!-- </div> --}}
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+ </div>
+</div>
+
+{{> footer_new}}
+{{> scripts_new}}

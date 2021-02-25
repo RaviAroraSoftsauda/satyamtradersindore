@@ -1,0 +1,267 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" id="formheading">
+                                            <span>Add</span> Less Master
+                                        </div>
+                                        <div class="panel-body">
+                                            <form method="POST" action="/addless_mast/addless_mast_add" enctype="" class="validate" id="addlessmast">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-md-6">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Description</label>
+                                                            <div class="col-md-9">
+                                                                <input class="form-control type_descr" placeholder="Description"required
+                                                                    name="type_descr" type="text" autofocus>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-md-6">
+                                                        <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">Type</label>
+                                                        <div class="col-md-9">
+                                                           <select name="addlesstype" required id="addlesstype" class="form-control addlesstype">
+                                                               <option value="+">+</option>
+                                                               <option value="-">-</option>
+                                                           </select>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 col-md-6">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Sales Posting A/C</label>
+                                                            <div class="col-md-9">
+                                                            <select name="sales_posting_ac" id="sales_posting_ac" class="form-control select2 sales_posting_ac" placeholder="--Select A/C--">
+                                                                <option value=""></option>
+                                                                    {{#each ac_mast}}
+                                                                        <option value="{{this._id}}">{{this.ACName}}</option>
+                                                                    {{/each}}
+                                                            </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-md-6">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Purchase Posting A/C</label>
+                                                            <div class="col-md-9">
+                                                            <select name="pur_posting_ac" id="pur_posting_ac" class="form-control select2 pur_posting_ac" placeholder="--Select A/C--">
+                                                                <option value=""></option>
+                                                                    {{#each ac_mast}}
+                                                                        <option value="{{this._id}}">{{this.ACName}}</option>
+                                                                    {{/each}}
+                                                            </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 col-md-6">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">SR Posting A/C</label>
+                                                            <div class="col-md-9">
+                                                            <select name="SR_posting_ac" id="SR_posting_ac" class="form-control select2 SR_posting_ac" placeholder="--Select A/C--">
+                                                                <option value=""></option>
+                                                                    {{#each ac_mast}}
+                                                                    <option value="{{this._id}}">{{this.ACName}}</option>
+                                                                    {{/each}}
+                                                            </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-md-6">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">PR Posting A/C</label>
+                                                            <div class="col-md-9">
+                                                            <select name="PR_posting_ac" id="PR_posting_ac  " class="form-control select2 PR_posting_ac" placeholder="--Select A/C--">
+                                                                <option value=""></option>
+                                                                    {{#each ac_mast}}
+                                                                    <option value="{{this._id}}">{{this.ACName}}</option>
+                                                                    {{/each}}
+                                                            </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 col-md-6">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Parameter Posting</label>
+                                                            <div class="col-md-9">
+                                                            <select name="Parameter_posting" id="Parameter_posting" class="form-control select2 Parameter_posting" placeholder="--Select--">
+                                                                <option value=""></option>
+                                                                <option value="Y">Y</option>
+                                                                <option value="N" selected>N</option>
+                                                            </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-md-6">
+                                                        {{!-- <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">PR Posting A/C</label>
+                                                            <div class="col-md-9">
+                                                            <select name="PR_posting_ac" id="PR_posting_ac  " class="form-control select2 PR_posting_ac" placeholder="--Select A/C--">
+                                                                <option value=""></option>
+                                                                    {{#each ac_mast}}
+                                                                    <option value="{{this._id}}">{{this.ACName}}</option>
+                                                                    {{/each}}
+                                                            </select>
+                                                            </div>
+                                                        </div> --}}
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3"></label>
+                                                        <div class="col-md-9">
+                                                            <button type="submit" name="save" class="btn btn-success">Submit</button>
+                                                            <button type="reset" class="btn btn-primary cancelmaster"
+                                                                data-form-ad-action="/add_city/city_add">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                           Add Less Master
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table id="product_detail_table" class="product_detail_table table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Action</th>
+                                                            <th>Sno.</th>
+                                                            <th>Description</th>
+                                                            <th>Type</th>
+                                                            <th>Sales Posting A/C</th>
+                                                            <th>Purchase Posting A/C</th>
+                                                            <th>SR Posting A/C</th>
+                                                            <th>PR Posting A/C</th>
+                                                            <th>Parameter_posting</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{#each addlessmast as |value key|}}
+                                                        <tr>
+                                                            <td>
+                                                                <div class="btn-group dropdown">
+                                                                    <button class="btn btn-xs blue dropdown-toggle"
+                                                                        type="button" data-toggle="dropdown"
+                                                                        aria-expanded="false"> Actions
+                                                                        <i class="fa fa-angle-down"></i>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu pull-left" role="menu" style="width:150px">
+                                                                        <li>
+                                                                            <a href="javascript:void(0);" class="edit_addless_tbtn"
+                                                                                data-id="{{this._id}}">
+                                                                                <i class="icon-pencil"></i> Edit </a>
+                                                                        </li>
+                                                                        <li class="divider"> </li>
+                                                                        <li>
+                                                                            
+                                                                            <a href="javascript:void(0);" class="delete_addless_btn"
+                                                                                data-id="{{this._id}}">
+                                                                                <i class="icon-trash"></i> Delete
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </td>
+                                                            <td>{{sum @index 1}}</td>
+                                                            <td>{{this.type_descr}}</td>
+                                                            <td>{{this.addlesstype}}</td>
+                                                            <td>{{this.sales_posting_ac.ACName}}</td>
+                                                            <td>{{this.pur_posting_ac.ACName}}</td>
+                                                            <td>{{this.SR_posting_ac.ACName}}</td>
+                                                            <td>{{this.PR_posting_ac.ACName}}</td>
+                                                            <td>{{this.Parameter_posting}}</td>
+                                                        </tr>
+                                                        {{/each}}
+
+
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                             <th class="excludesearch"></th>
+                                                            <th>Sno.</th>
+                                                            <th>Description</th>
+                                                            <th>Code</th>
+                                                            <th>Sales Posting A/C</th>
+                                                            <th>Purchase Posting A/C</th>
+                                                            <th>SR Posting A/C</th>
+                                                            <th>PR Posting A/C</th>
+                                                            <th>Parameter_posting</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

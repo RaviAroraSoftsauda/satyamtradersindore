@@ -1,0 +1,192 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{#if err}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{err}}</strong>
+                                    </div>
+                                    {{/if}}
+                                    {{#if errors}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{errors}}</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                                    <div class="panel panel-primary table light " id="tableportlet">
+                                        <div class="panel-heading">
+                                            Finish Goods List
+                                            <div class="misc pull-right">
+                                                <div class="buttons">
+                                                    {{!-- <div class="btn-group dropdown">
+                                                        <button class="btn btn-xs blue dropdown-toggle" type="button"
+                                                            data-toggle="dropdown" aria-expanded="false"> Actions
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu pull-right" role="menu">
+                                                            <li>
+                                                                <a href="" data-link="/customer/customer_list_update/" class="editaction">
+                                                                    <i class="icon-pencil"></i> Edit </a>
+                                                            </li>
+                                                            <li class="divider"> </li>
+                                                            <li>
+                                                                <a href="" data-link="/customer/delete_customer?data="class="deleteaction">
+                                                                    <i class="icon-trash"></i> Delete
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div> --}}
+                                                    <a href="/finish_goods/finish_goods_add">
+                                                        <button class="btn btn-link" type="button"><i class="fa fa-plus"></i>Add
+                                                            Finish Goods</button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                        <table id="product_detail_table" class="product_detail_table table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                        <th>Action</th>
+                                        <th >Sno.</th>
+                                        <th>Product Code</th>
+                                        <th>Modal</th>
+                                        <th>Description</th>
+                                        <th>Brand</th>
+                                        <th>Pack</th>
+                                         <th>Unit</th>
+                                        <th>Price</th>
+                                        <th>Mrp</th>
+                                        <th>Length</th>
+                                         <th>width</th>
+                                        <th>Height</th>
+                                       
+                                           </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each finishgood as |value key|}}
+                                            <tr>
+                                                <td>
+                                                    <div class="btn-group dropdown">
+                                                        <button class="btn btn-xs blue dropdown-toggle" type="button"
+                                                            data-toggle="dropdown" aria-expanded="false"> Actions
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu pull-left" role="menu" style="width:150px">
+                                                        
+                                                            <li>
+                                                                <a href="/customer/customer_list_update/{{this._id}}"
+                                                                    data-id="{{this._id}}">
+                                                                    <i class="icon-pencil"></i> Edit </a>
+                                                            </li>
+                                                           
+                                                            <li class="divider"> </li>
+                                                          
+                                                            <li>
+                                                                <a href="javascript:void(0);" class="delete_customer_mast"
+                                                                    data-id="{{this._id}}">
+                                                                    <i class="icon-trash"></i> Delete
+                                                                </a>
+                                                            </li>
+                                                         
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                                <td>{{sum @index 1}}</td>
+                                                <td>{{this.Fg_PrCode}}</td>
+                                                 <td>{{this.Fg_Model.Description}}</td>
+                                                <td>{{this.Fg_Des}}</td>
+                                                <td>{{this.Fg_Brand.Description}}</td>
+                                                <td>{{this.Fg_Pack}}</td>
+                                                <td>{{this.Fg_Unit.SKUName}}</td>
+                                                <td>{{this.Fg_SPrice}}</td>
+                                                <td>{{this.Fg_MRP}}</td>
+                                                <td>{{this.Fg_Length}}</td>
+                                                <td>{{this.Fg_Width}}</td>
+                                                <td>{{this.Fg_Height}}</td>
+                                            </tr>
+                                            {{/each}}
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                    <th  class="excludesearch">Action</th>
+                                           <th >Sno.</th>
+                                        <th>Product Code</th>
+                                        <th>Modal</th>
+                                        <th>Description</th>
+                                        <th>Brand</th>
+                                        <th>Pack</th>
+                                         <th>Unit</th>
+                                        <th>Price</th>
+                                        <th>Mrp</th>
+                                        <th>Length</th>
+                                         <th>width</th>
+                                        <th>Height</th>
+                                       
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                        </div>
+                                    </div>
+                                    <!-- END EXAMPLE TABLE PORTLET-->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+{{> footer_new}}
+{{> scripts_new}}

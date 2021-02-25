@@ -1,0 +1,200 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" id="formheading" style="text-align: right">
+                                            <span>Add</span> District
+                                        </div>
+                                        {{!-- method="POST" action="/country_mast/country_mast_add" --}}
+                                        <div class="panel-body">
+                                            <form  enctype="" id="countrymast"
+                                                class="validate">
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">District Name:</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control DistrictName" placeholder="District Name"
+                                                                name="DistrictName" type="text" autofocus required>
+                                                                 <input class="form-control vhpxcountry" id="vhpxcountry" 
+                                                                name="vhpxcountry" type="hidden" >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">State Name</label>
+                                                        <div class="col-md-9">
+                                                           <select class="form-control StateName  prbank select2"  name="StateName" id="StateName" placeholder="Select State">
+                                                                <option value=""></option>
+                                                            {{#each state_mast}}
+                                                            <option value="{{this.id}}">{{this.StateName}}</option>
+                                                            {{/each}}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- end of row --}}
+                                               
+                                                
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">Population</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control Population" placeholder="Population" value="" name="Population" type="text" >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">Area</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control Area" placeholder="Area" value="" name="Area" type="text" >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- end of row --}}
+                                               
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3"></label>
+                                                        <div class="col-md-9">
+                                                            <button type="submit" name="save" class="btn btn-success lock-country">Submit</button>
+                                                            <button type="reset" class="btn btn-primary cancelmaster"
+                                                                data-form-ad-action="/district_mast/district_mast_add">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" style="text-align: right">
+                                            District List
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table id="product_detail_table" class="product_detail_table table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                             <th>Action</th>
+                                                            <th>Sno.</th>
+                                                            <th>District Name</th>
+                                                            <th>State Name</th>
+                                                            <th>Population</th>
+                                                            <th>Area</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{#each c_mast as |value key|}}
+                                                        <tr>
+                                                             <td>
+                                                                <div class="btn-group dropdown">
+                                                                    <button class="btn btn-xs blue dropdown-toggle"
+                                                                        type="button" data-toggle="dropdown"
+                                                                        aria-expanded="false"> Actions
+                                                                        <i class="fa fa-angle-down"></i>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu pull-left" role="menu" style="width:150px">
+                                                                        <li>
+                                                                            <a href="javascript:void(0);" class="edit_country_btn"
+                                                                                data-id="{{this._id}}">
+                                                                                <i class="icon-pencil"></i> Edit </a>
+                                                                        </li>
+                                                                        <li class="divider"> </li>
+                                                                        <li>
+                                                                            
+                                                                            <a href="javascript:void(0);" class="delete_district"
+                                                                                data-id="{{this._id}}">
+                                                                                <i class="icon-trash"></i> Delete
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </td>
+                                                            <td>{{sum @index 1}}</td>
+                                                            <td>{{this.DistrictName}}</td>
+                                                            <td>{{this.StateName.StateName}}</td>
+                                                            <td>{{this.Population}}</td>
+                                                            <td>{{this.Area}}</td>
+                                                            
+                                                           
+                                                        </tr>
+                                                        {{/each}}
+
+
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                          <th class="excludesearch"></th>
+                                                            <th>Sno.</th>
+                                                            <th>Country Name</th>
+                                                            <th>Code</th>
+                                                            
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

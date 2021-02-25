@@ -1,0 +1,250 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party Type List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+
+                               {{!-- unit_setup_master_update/{{unit_setup_master._id}} --}}
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" id="formheading">
+                                            <span></span> Unit Setup Master
+                                        </div>
+                                        <div class="panel-body"  >
+                                            {{!-- method="POST" action="/voucher_type_master/voucher_type_master_update/{{g_s_mast._id}}" --}}
+                                            <form  method="POST" action="/unit_setup_master/unit_setup_master_update/{{unit_setup_master._id}}" class="">
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">Entry Module</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control EntryModule" id="EntryModule" name="EntryModule" value="{{unit_setup_master.EntryModule}}" type="text" readonly>
+                                                            <input class="form-control group_id" name="group_id" value="{{unit_setup_master.id}}" id="group_id" type="text" style="display: none">
+                                                             {{!-- <input class="form-control vhpxproduct" id="vhpxproduct"
+                                                            name="vhpxproduct" value="{{g_s_mast.id}}" type="hidden"/> --}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- readonly --}}
+                                                {{!-- end of row --}}
+                                                {{!-- unitArray --}}
+                                               
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="table-responsive adjustmentstable">
+                                                            <table class="tabler" style="width: 120%;overflow-x: hidden;overflow-x: auto;padding: 0px 0px 0px 0px;margin: 0px" >
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th >Qty Unit</th>
+                                                                        <th >Multiply Packing</th>
+                                                                        <th >Weight Division Factor</th>
+                                                                        <th >Est. Cap Per Unit</th>
+                                                                        <th >Sub(Weight) Unit</th>
+                                                                        <th >Default Balancing</th>
+                                                                        <th >Division Name</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                {{#each unit_setup_master.unitArray as |value key|}}
+                                                                <tr class='product_wrapper' id='prabal{{@index}}'>
+                                                                    <td>
+                                                                        <input type="hidden" name="cntrer" value="{{@index}}" id="cntrer0">
+                                                                        <select class="form-control select2 prbank" name="unitArray[{{@index}}][Qty_Unit]" placeholder="Qty Unit" style='width:100%'>
+                                                                            {{!-- <option value="{{this.Vo_ReStartNo}}"></option> --}}
+                                                                            <option  {{#equal this.Qty_Unit 'PCS'}} selected="" {{/equal}}>PCS</option>
+                                                                            <option  {{#equal this.Qty_Unit 'Truck'}} selected="" {{/equal}}>Truck</option>
+                                                                            <option  {{#equal this.Qty_Unit 'KG'}} selected="" {{/equal}}>KG</option>
+                                                                            <option  {{#equal this.Qty_Unit 'Ton'}} selected="" {{/equal}}>Ton</option>
+                                                                            <option  {{#equal this.Qty_Unit 'Box'}} selected="" {{/equal}}>Box</option>
+                                                                            <option  {{#equal this.Qty_Unit 'GMS'}} selected="" {{/equal}}>GMS</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select class="form-control select2 prbank" name="unitArray[{{@index}}][M_Packing]" placeholder="Multiply Packing" style='width:100%'>
+                                                                            {{!-- <option value="{{this.Vo_Active}}"></option> --}}
+                                                                            <option {{#equal this.M_Packing 'Y'}} selected="" {{/equal}}>Y</option>
+                                                                            <option {{#equal this.M_Packing 'N'}} selected="" {{/equal}}>N</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control " placeholder="Weight Division"
+                                                                        name="unitArray[{{@index}}][W_Division]" value="{{this.W_Division}}" type="text" style='width:100%'/>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control " placeholder="Est.Cap Unit"
+                                                                        name="unitArray[{{@index}}][Est_Capunit]" value="{{this.Est_Capunit}}" type="text" style='width:100%'/>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select class="form-control select2 prbank" name="unitArray[{{@index}}][Sub_Unit]" placeholder="Sub Unit" style='width:100%'>
+                                                                            {{!-- <option value="{{this.Vo_ReStartNo}}"></option> --}}
+                                                                            <option  {{#equal this.Sub_Unit 'PCS'}} selected="" {{/equal}}>PCS</option>
+                                                                            <option  {{#equal this.Sub_Unit 'Truck'}} selected="" {{/equal}}>Truck</option>
+                                                                            <option  {{#equal this.Sub_Unit 'KG'}} selected="" {{/equal}}>KG</option>
+                                                                            <option  {{#equal this.Sub_Unit 'Ton'}} selected="" {{/equal}}>Ton</option>
+                                                                            <option  {{#equal this.Sub_Unit 'Box'}} selected="" {{/equal}}>Box</option>
+                                                                            <option  {{#equal this.Sub_Unit 'GMS'}} selected="" {{/equal}}>GMS</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select class="form-control select2 prbank" name="unitArray[{{@index}}][D_Balancing]" placeholder="Default Balancing" style='width:100%'>
+                                                                            {{!-- <option value="{{this.Vo_Active}}"></option> --}}
+                                                                            <option {{#equal this.D_Balancing 'Q'}} selected="" {{/equal}}>Q</option>
+                                                                            <option {{#equal this.D_Balancing 'W'}} selected="" {{/equal}}>W</option>
+                                                                        </select>
+                                                                    
+                                                                    </td>
+                                                                    <td>
+                                                                        <select class="form-control prbank amountfocus  unitArray[{{@index}}][Division_Name]  select2" 
+                                                                                name="unitArray[{{@index}}][Division_Name]" id="unitArray[{{@index}}][Division_Name]" placeholder="Division Name" style='width:100%;'>
+                                                                                    <option value=""></option>
+                                                                                    {{#each ../division}}
+                                                                                        <option value="{{this.id}}" {{#equal ../this.Division_Name id}} selected=""{{/equal}}>{{this.div_mast}}</option>
+                                                                                    {{/each}}
+                                                                        </select>
+                                                                    </td>
+                                                                        {{#notequal @index 0}}
+                                                                            <td><a onclick='remove_updateproduct({{@index}});' style='cursor:pointer;'><i class='fa fa-times nofocus' style='font-size: 20px;color: red;margin-left:12px;'></i></a></td>
+                                                                        {{/notequal}}
+                                                                </tr>
+                                                                {{/each}}
+                                                                <tr id="insert_product"></tr>
+                                                            </tbody>
+                                                        </table>
+                                                
+                                            </div>
+                                            </div>
+                                        </div> 
+                                         
+                                        <div class="row">
+                                    <div class="col-sm-12">
+                                        <button type="button" class="btn btn-primary addunit center-block nofocus" id="add">Add </button>  
+                                        
+                                    </div>
+                                    {{!-- end of col --}}
+                                </div> 
+                                                
+                                                <div class="row" style="margin:10px;">
+                                                    <div class="form-group clearfix">
+                                                        <div class="col-md-12"  align="center">
+                                                            <button  type="submit" name="save" class="btn btn-success ">Submit</button>
+                                                            <a href="/unit_setup_master/unit_setup_master" class="btn btn-danger">Cancel</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" align="right">
+                                          Unit Setup List
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table id="product_detail_table" class="product_detail_table table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Action</th>
+                                                            <th>Entry Module</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{#each unit_setup as |value key|}}
+                                                        <tr>
+                                                             <td>
+                                                                <div class="btn-group dropdown">
+                                                                    <button class="btn btn-xs blue dropdown-toggle"
+                                                                        type="button" data-toggle="dropdown"
+                                                                        aria-expanded="false"> Actions
+                                                                        <i class="fa fa-angle-down"></i>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu pull-down" role="menu"style="width:150px">
+                                                                        <li>
+                                                                            <a href="/unit_setup_master/edit_unit/{{this._id}}" 
+                                                                                data-id="{{this._id}}">
+                                                                                <i class="icon-pencil"></i> Edit </a>
+                                                                        </li>
+                                                                        <li class="divider"> </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </td>
+                                                            <td>{{this.EntryModule}}</td>
+                                                        </tr>
+                                                        {{/each}}
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th class="excludesearch"></th>
+                                                            <th>Entry Module</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER , .tabler>thead>tr>td, .tabler>thead>tr>th-->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}
+<style>
+    .tabler>tbody>tr>td, .tabler>tbody>tr>th, .tabler>tfoot>tr>td, .tabler>tfoot>tr>th {
+    padding: 0px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+strong{
+    font-size: 14px;
+}
+</style>

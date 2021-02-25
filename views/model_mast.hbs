@@ -1,0 +1,175 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party Type List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+
+                               
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" id="formheading">
+                                            <span>Add</span> Model Master
+                                        </div>
+                                        <div class="panel-body">
+                                            <form method="POST" action="/model_mast/model_mast_add" enctype="" id="ptypemast"
+                                                class="validate">
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">Description</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control ptype_descr" required placeholder="Description"
+                                                                name="ptype_descr" type="text"  autofocus>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- end of row --}}
+                                               
+                                                
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">Code</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control ptype_Code" placeholder="Code" value="" name="ptype_Code" type="text" >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- end of row --}}
+                                               
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3"></label>
+                                                        <div class="col-md-9">
+                                                            <button type="submit" name="save" class="btn btn-success">Submit</button>
+                                                            <button type="reset" class="btn btn-primary cancelmaster"
+                                                                data-form-ad-action="/add_city/city_add">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                          Model Master List
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table id="product_detail_table" class="product_detail_table table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Action</th>
+                                                            <th>Sno.</th>
+                                                            <th>Description</th>
+                                                            <th>Code</th>
+                                                          
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{#each ptyp_mast as |value key|}}
+                                                        <tr>
+                                                             <td>
+                                                                <div class="btn-group dropdown">
+                                                                    <button class="btn btn-xs blue dropdown-toggle"
+                                                                        type="button" data-toggle="dropdown"
+                                                                        aria-expanded="false"> Actions
+                                                                        <i class="fa fa-angle-down"></i>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu pull-down" role="menu"style="width:150px">
+                                                                        <li>
+                                                                            <a href="javascript:void(0);" class="edit_model_btn"
+                                                                                data-id="{{this._id}}">
+                                                                                <i class="icon-pencil"></i> Edit </a>
+                                                                        </li>
+                                                                        <li class="divider"> </li>
+                                                                        <li>
+                                                                            
+                                                                            <a href="javascript:void(0);" class="delete_model_btn"
+                                                                                data-id="{{this._id}}">
+                                                                                <i class="icon-trash"></i> Delete
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </td>
+                                                            <td>{{sum @index 1}}</td>
+                                                            <td>{{this.Description}}</td>
+                                                            <td>{{this.Code}}</td>
+                                                            
+                                                           
+                                                        </tr>
+                                                        {{/each}}
+
+
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th class="excludesearch"></th>
+                                                            <th>Sno.</th>
+                                                            <th>Description</th>
+                                                            <th>Code</th>
+                                                            
+                                                            
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

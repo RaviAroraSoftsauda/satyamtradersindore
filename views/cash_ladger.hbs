@@ -1,0 +1,116 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<style>
+
+
+.panel{
+    border: none;
+}
+
+
+</style>
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                  
+                    {{!-- <h1 style="background-color: #0020C2;color:mintcream"align="center" >Ledger</h1> --}}
+                   
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                    <div class="advancesearch clearfix">
+                               
+                                <div class="col-md-12">
+                                    <div class="row" style="background-color: #0020C2;color:mintcream; margin-top:0%; margin-bottom: 1em; height: 2em" align="center"><p style="font-size: 16px; margin-top: 3px">Ledger</p></div>    
+                                        <form>    
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">Period</label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" class="form-control" name="filterstartdate" 
+                                                                value="{{dateformat  sdate 'DD/MM/YYYY'}} to {{dateformat Date.now 'DD/MM/YYYY'}}" id="contractrange"
+                                                                autocomplete="off" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">Account Name</label>
+                                                        <div class="col-md-9">
+                                                            <select class="form-control prbank buy_cus_name AllAccountWithOutCashBank prbank" name="buy_cus_name"
+                                                                placeholder="Please Select buyer"   id= "buy_cus_name" required autofocus>
+                                                                <option value=""></option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group clearfix">
+                                                        <button type="button" class="btn btn-success" name="filtersubmit"
+                                                            id="ladgersubmit" value="submit">Proceed..</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                </div>
+                                </div>
+                            </div>
+                            <div id="datatableledger"></div>
+                            
+                            <div id="LadgerMonthlyHeading" class="row" style="background-color: #0020C2;color:mintcream; margin-top:0%; margin-top: 2em; height: 2em;display: none;" align="center"><p style="font-size: 16px; margin-top: 3px">Monthly</p></div>    
+                            <div id="LadgerMonthly" style="margin-top: 1em;"></div>
+                            
+                            <div id="OutstandingHeading" class="row" style="background-color: #0020C2;color:mintcream; margin-top:0%; margin-top: 2em; height: 2em;display: none" align="center"><p style="font-size: 16px; margin-top: 3px">Outstanding</p></div>    
+                            <div id="Outstanding" style="margin-top: 1em;display: none"></div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+{{> footer_new}}
+{{> scripts_new}}

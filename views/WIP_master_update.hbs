@@ -1,0 +1,223 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    WIP Master Update
+                                    <div class="misc pull-right">
+                                     
+                                    </div>
+                                </div>
+                                {{!-- method="POST" action="/WIP_master/edit_WIP_master/{{product_mast.id}}" --}}
+                                <form  class="form-horozintal validate"
+                                    enctype="multipart/form-data">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Product Code: </label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control p_code" placeholder="Product Code" autofocus
+                                                            name="p_code" value="{{product_mast.Fg_PrCode}}" required type="number"style="text-transform: uppercase">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Product Description: </label>
+                                                    <div class="col-md-9">
+                                                         <input class="form-control" placeholder="Product Description"required
+                                                            name="prdt_desc" value="{{product_mast.Fg_Des}}" type="text"/>
+                                                            <input class="form-control vhpxproduct" id="vhpxproduct"
+                                                            name="vhpxproduct" value="{{product_mast.id}}" type="hidden"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                        </div>
+                                        {{!-- end of row --}}
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                   <label for="" class="control-label col-md-3">Model:</label>
+                                                        <div class="col-md-9">
+                                                        <select class="form-control model select2"  name="model" id="model" placeholder="Select Model">
+                                                            
+                                                        {{#each model}}
+                                                        <option value="{{this.id}}" {{#equal ../product_mast.Fg_Model id}} selected=""{{/equal}}>{{this.Description}}</option>
+                                                        {{/each}}
+                                                        </select>
+                                                        </div>
+                                                </div>
+                                                  
+                                            </div>
+                                            {{!-- end of col --}}
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                   <label for="" class="control-label col-md-3">Brand:</label>
+                                                        <div class="col-md-9">
+                                                        <select class="form-control brand select2"  name="brand" id="brand" placeholder="Select Brand">
+                                                            
+                                                        {{#each brand}}
+                                                        <option value="{{this.id}}" {{#equal ../product_mast.Fg_Brand id}} selected=""{{/equal}}>{{this.Description}}</option>
+                                                        {{/each}}
+                                                        </select>
+                                                        </div>
+                                                </div>
+                                                  
+                                            </div>
+                                        </div>
+                                         <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                   <label for="" class="control-label col-md-3">Unit:</label>
+                                                        <div class="col-md-9">
+                                                        <select class="form-control sku_name select2"  name="sku_name" id="sku_name" placeholder="Select Unit">
+                                                            
+                                                        {{#each Stock_Unit}}
+                                                        <option value="{{this.id}}" {{#equal ../product_mast.Fg_Unit id}} selected=""{{/equal}}>{{this.SKUName}}</option>
+                                                        {{/each}}
+                                                        </select>
+                                                        </div>
+                                                </div>
+                                                  
+                                            </div>
+                                            <div class="col-sm-12 col-md-6">
+                                            </div>
+                                        </div>
+                                        </div>
+                                       
+                                        <div class="row">
+                                            <div class="col-md-12 ">
+                                                <div class="table-responsive adjustmentstable">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Raw Material</th>
+                                                            <th>Qty/Pcs</th>
+                                                            <th>Sku</th>
+                                                            <th>Price</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{#each product_mast.product_mast_group as |value key|}}
+                                                        <tr class='product_wrapper' id='prabal{{@index}}'>
+                                                            <td>
+                                                                <input type="hidden" name="cntrer" value="{{@index}}" id="cntrer{{@index}}"
+                                                                class="form-control">
+                                                                    <select class="form-control product_mast_group[{{@index}}][raw_matrl_nm] select2"  name="product_mast_group[{{@index}}][raw_matrl_nm]" 
+                                                                        id="product_mast_group[{{@index}}][raw_matrl_nm]" placeholder="Select Raw Material"
+                                                                        value="" class="form-control" style='width:100%;'>
+                                                                        <option value=""></option>
+                                                                          {{#each ../rawMat_mast}}
+                                                                        <option value="{{this._id}}"{{#equal ../this.raw_matrl_nm id}} selected=""
+                                                                                    {{/equal}}>{{this.Rm_Des}}</option>
+                                                                            {{/each}}
+                                                                    
+                                                            </td>
+                                                            <td>
+                                                               <input class="form-control product_mast_group[{{@index}}][qty_pcs]" placeholder="Qty/Pcs"
+                                                                name="product_mast_group[{{@index}}][qty_pcs]" value="{{this.qty_pcs}}" type="text" style='width:100%'/>
+                                                            </td>
+                                                            <td> 
+                                                                <select class="form-control product_mast_group[{{@index}}][sku] select2"  name="product_mast_group[{{@index}}][sku]" 
+                                                                    id="product_mast_group[{{@index}}][sku]" placeholder="Select Raw Material"
+                                                                    value="" class="form-control" style='width:100%;'>
+                                                                    <option value=""></option>
+                                                                          {{#each ../Stock_Unit}}
+                                                                     <option value="{{this.id}}"{{#equal ../this.sku id}} selected=""
+                                                                                    {{/equal}}>{{this.SKUName}}</option>
+                                                                            {{/each}}
+                                                                            
+                                                            </td>
+                                                            <td>
+                                                               <input class="form-control amountfocus product_mast_group[{{@index}}][price]" placeholder="Price"
+                                                                name="product_mast_group[{{@index}}][price]" value="{{this.price}}" type="text" style='width:100%'/>
+                                                            </td>
+                                                             
+                                                             {{#notequal @index 0}}
+                                                                <td><a onclick='remove_updateproduct({{@index}});' style='cursor:pointer;'><i class='fa fa-times nofocus' style='font-size: 20px;color: red;margin-left:12px;'></i></a></td>
+                                                             {{/notequal}}
+                                                        </tr>
+                                                        {{/each}}
+                                                        <tr id="insert_product">
+                                                        </tr>
+                                                    </tbody>
+                                                    <tr>
+                                                    </tr>
+                                                </table>
+                                                </div>
+                                                    <center><a class="addWIP" style="font-size: 30px;cursor:pointer;"><i class="fa fa-plus nofocus" aria-hidden="true"></i></a></center>
+                                            </div>
+                                        </div>
+                                   
+                                    {{!-- end of body --}}
+                                    <div class="panel-footer">
+                                        <div class="action clearfix">
+                                            <div class="col-md-12" align="center">
+                                                <button type="submit" name="save" class="btn btn-success lock-upWIP">Submit</button>
+                                                <button type="reset" class="btn btn-danger">Cancel</button>
+                                                <a href="/WIP_master/WIP_master" style="margin-top: 1.5em" class="btn btn-info">Back</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </form>
+                                 </div>
+                            </div>
+
+
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

@@ -1,0 +1,396 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb pull-right">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+               <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{#if err}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{err}}</strong>
+                                    </div>
+                                    {{/if}}
+                                    {{#if errors}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{errors}}</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            {{!-- end of alerts row --}}
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" style="text-align: center">
+                                        Stock Adjustment Note
+                                        </div>
+                                          <form  method="POST" action="/stock_adjustment_note/add" class="" novalidate
+                                            enctype="" id="contract_sauda">
+                                           <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group clearfix">
+                                                            <label class="col-sm-3 control-label">SAN No </label>
+                                                            <div class="col-md-5">
+                                                                  <select name="so_no" placeholder="Order No" id="so_no" onchange="getBookNo()"  class="form-control select2" required>
+                                                                  <option value=""></option>
+                                                                    {{#each vouchMast}}
+                                                                    <option value="{{this.Vo_book}}" selected data-Module="Stock Adjustment Note">{{this.Vo_book}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>
+                                                             <div class="col-md-4">
+                                                                <input type="number" name="vouc_code" id="vouc_code" placeholder="SAN No" autofocus required
+                                                                    value="{{last}}" id="vouchcodeid" class="form-control vouc_code"
+                                                                    tabindex="2"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group clearfix">
+                                                            <label class="col-sm-3 control-label">Date</label>
+                                                             <div class="col-md-9">
+                                                                    <input type="text" class="form-control datepicker datemask" name="so_date"  value="{{dateformat Date.now 'DD/MM/YYYY'}}"
+                                                                        autocomplete="off" tabindex="3" required />
+                                                                  
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                   {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group clearfix">
+                                                           <label class="control-label col-md-3">Source Warehouse</label>
+                                                            <div class="col-md-9">
+                                                                <div class="input-group select2-bootstrap-prepend">
+                                                                <select class="form-control prbank select2" name="source_warehouse" id="source_warehouse"
+                                                                    placeholder="Please Select Source Warehouse">
+                                                                    <option value=""></option>
+                                                                    {{#each Warehouse}}
+                                                                    <option value="{{this.id}}" data-serialnum="{{this._id}}">{{this.Description}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                   
+                                                    {{!-- <div class="col-sm-12 col-md-5">
+                                                         <div class="form-group clearfix">
+                                                           <label class="control-label col-md-3">Destination/Location</label>
+                                                            <div class="col-md-9">
+                                                                <select class="form-control prbank select2" onchange="getsamedestion()" name="destination_location" id="destination_location"
+                                                                    placeholder="Please Select Destination Location">
+                                                                    <option value=""></option>
+                                                                    {{#each Subwarehouse}}
+                                                                    <option value="{{this.id}}" data-serialnum="{{this._id}}">{{this.subwarehose_name}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div> --}}
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group clearfix">
+                                                            <label class="col-sm-3 control-label">Remarks</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" placeholder="Remarks"name="remarks" id="remarks" class="form-control"/>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+
+
+
+                                               {{!-- loki  --}}
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group clearfix">
+                                                            <label class="col-sm-3 control-label">Credit/ Debit </label>
+                                                            <div class="col-md-3">
+                                                                <select name="itemtype" id="itemtype" class="form-control itemtypeval select2" placeholder="Item Type" required>
+                                                                    <option value="+" selected>+</option>
+                                                                    <option value="-">-</option>
+                                                                </select>
+                                                            
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="table-responsive adjustmentstable">
+                                                            <table class="table grn_invoice_repete_row">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Lot.no</th>
+                                                                        <th nowrap="">Product Name</th>
+                                                                        {{!-- <th nowrap="">Item Type</th> --}}
+                                                                        <th nowrap="">Std Qty</th>
+                                                                        {{!-- <th nowrap="">Std Unit</th> --}}
+                                                                        <th nowrap="">Pck Qty</th>
+                                                                        {{!-- <th nowrap="">Pck Unit</th> --}}
+                                                                        <th nowrap="">Net Wt</th>
+                                                                        {{!-- <th nowrap="">Pur Unit</th> --}}
+                                                                        {{!-- <th nowrap="" style="display:none" id="combo">Combo</th> --}}
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                         <td>
+                                                                               <input type="text" placeholder="Lot.no" name="grn_group[0][lot_no]" id="lot_no0" class="form-control numerals" style="width:70px" >
+                                                                        </td>
+                                                                        <td>
+                                                                              <input type="hidden" name="grncntr" value="0">
+                                                                               {{!-- <input type="hidden" name="grn_group[0][lot_no]" id="lot_no0"> --}}
+                                                                               {{!-- getproductnamermfgboth --}}
+                                                                                <select name="grn_group[0][so_disc]" id="so_disc0" class="form-control prbank ItenCodeName" style="width:610px">
+                                                                                <option value=""></option>
+                                                                              </select>
+                                                                        </td>
+                                                                        
+                                                                        <td >
+                                                                            <input type="text"  placeholder="Qty" id="stdqty0" name="grn_group[0][actual_qty]" oninput="getgodontrnsfrcala(0)" class="form-control actualamt numerals">
+                                                                            {{!-- <input type="text"  placeholder="Qty" id="stdqtycombo0" name="grn_group[0][actual_qty]" oninput="getsanmodulecalc(0)" class="form-control stdqtyval actualamt numerals"> --}}
+                                                                        </td>
+                                                                        {{!-- <td>
+                                                                            <select class="form-control prbank nofocus" name="grn_group[0][actual_stdunit]" style="width: 91px;" id="actualstdunit0" placeholder="Select Standard Unit">
+                                                                                <option value="">Unit</option>
+                                                                                {{#each Stock_Unit}}
+                                                                                <option value="{{this.id}}">{{this.SKUName}}</option>
+                                                                                {{/each}}
+                                                                            </select> 
+                                                                        </td> --}}
+                                                                         <td>
+                                                                            <input type="text" class="form-control getfocusqtypurcshasegodown numerals" data-id="00" data-index="0" placeholder="Pck Qty" oninput="getQtyPackcal(0)" name="grn_group[0][roundup_pckqty]" id="qtyrecadd0">
+                                                                            {{!-- <input type="text" class="form-control getfocusqtypurcshasegodown pckqtyval numerals" data-id="00" data-index="0" placeholder="Qty Received" name="grn_group[0][roundup_pckqty]" id="qtyrecadd0"> --}}
+                                                                        </td>
+                                                                        {{!-- <td>
+                                                                            <select class="form-control nofocus" name="grn_group[0][roundup_pckunit]" style="width: 91px;" id="packingunitSign0" placeholder="Select Packing Unit">
+                                                                                <option value="">Unit</option>
+                                                                                {{#each Stock_Unit}}
+                                                                                <option value="{{this.id}}">{{this.SKUName}}</option>
+                                                                                {{/each}}
+                                                                            </select>  
+                                                                        </td> --}}
+                                                                         <td >
+                                                                             {{!-- amountfocuspgrnselectgodown2 --}}
+                                                                            <input type="text"  placeholder="Net_Wt" name="grn_group[0][net_Wt]" id="net_Wt0" oninput="getNetQtyTotal()"  data-id="0" class="form-control Net_Wt amountfocuspgrnselectgodown2  numerals">
+                                                                            {{!-- <input type="text"  placeholder="Qty" name="grn_group[0][purchse_rate]" id="purchserate0" data-id="0" class="form-control purchatertval numerals"> --}}
+                                                                        </td>
+                                                                        {{!-- <td>
+                                                                            <select class="form-control prbank nofocus" name="grn_group[0][purchse_unit]" style="width: 81px;" id="purchseunit0" placeholder="Select Purchase Unit">
+                                                                                <option value="">Unit</option>
+                                                                                {{#each Stock_Unit}}
+                                                                                <option value="{{this.id}}">{{this.SKUName}}</option>
+                                                                                {{/each}}
+                                                                            </select> 
+                                                                        </td> --}}
+                                                                    </tr>
+                                                                    {{!-- <tbody id="combovaluehtml0"></tbody> --}}
+                                                                      <tr id="lotgroup0"></tr>
+                                                                    <tr id="grn_div">
+                                                                        <th></th>
+                                                                        <th>Total Qty</th>
+                                                                        {{!-- <th></th> --}}
+                                                                        <th><input type="text" name="tot_amtso" id="tot_amtso" placeholder="Total" class="form-control numerals" readonly   tabindex="-1"></th>
+                                                                        <th>
+                                                                            <button type="button" class="btn btn-primary  addstockadjustment center-block nofocus" id="add">Add Item</button>
+                                                                            </th>
+                                                                        <th><input type="text" name="net_wt_to" id="net_wt_to" placeholder="Wt.Total" class="form-control numerals" readonly   tabindex="-1"></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                                  <div class="row combogrp">
+                                                </div> 
+                                            <div class="panel-footer">
+                                                <div class="action clearfix">
+                                                    <div class="row">
+                                                        <div class="col-md-12" align="center">
+                                                            <button type="button" onclick="getcombolist()"  name="save" class="btn btn-success">GENERATE</button>
+                                                            <button type="submit"  name="save" class="btn btn-success dlv_load">Submit</button>
+                                                            <button type="reset" class="btn btn-danger" >Cancel</button>
+                                                            <a href="/stock_adjustment_note/stock_adjustment_note_list" class="btn btn-info" style="margin-top: 1.5em">Back</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                             </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+ 
+<div class="modal" tabindex="-1" role="dialog" id="grnsupport" >
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content" style="margin-left: -38px; width: 1232px;">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Pending PO</h4>
+        </div>
+          <form method="POST" action="#" enctype="">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="table-responsive" id="delivery">
+                            <div class="brand_add_container clearfix">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead style="background-color:#4b77be;color: white;">
+                                            <tr>
+                                                <th>Product Name</th>
+                                                <th>PO Date</th>
+                                                <th>PO #</th>
+                                                <th>PO Qty Pending</th>
+                                                <th>Actual Qty Rcvd</th>
+                                                <th>Excess/Pending</th>
+                                                <th>Remarks</th>
+                                                <th>PO Rate Display [Auto]</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="grn_repeat_row">
+                                            <tr></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default nofocus" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="grnpo_entry">Save changes</button>
+            </div>
+            </form>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+{{> footer_new}}
+{{> scripts_new}}
+<style>
+    .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 0px solid #ddd;
+    text-align: center;
+}
+    .select2-selection--single {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+     .adjustmentstableadd thead {
+    background-color: #4b77be;
+    color: #fff;
+    }
+    .adjustmentstableless thead {
+    background-color: #4b77be;
+    color: #fff;
+    }
+.adjustmentstableadd table.table thead tr th {
+    line-height: 36px !important;
+}
+.adjustmentstableless table.table thead tr th {
+    line-height: 36px !important;
+}
+    thead th {
+ text-align: left;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 0px solid #ddd;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 0px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 0px solid #ddd;
+}
+.adjustmentstable table.tabler thead tr th {
+    line-height: 20px !important;
+}
+tbody td {
+     padding: 0px;
+}
+.form-group {
+    margin-bottom: 0px;
+}
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 0px;
+}
+.adjustmentstable {
+     margin-top: 0px; 
+     margin-bottom: 0px;
+    box-shadow: 0 0px 0px 0px #ccc; 
+}
+</style>    

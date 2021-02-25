@@ -1,0 +1,219 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<style type="text/css">
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  @page {
+   margin: 0cm;
+  }
+  #section-to-print, #section-to-print * {
+    visibility: visible;
+    display: ruby-base-container;
+    position: initial;
+    margin-top: 0px;
+    padding-top: 0px;
+  }
+  table{
+    margin-top: 0px;
+    padding-top: 0px;
+  }
+  
+}
+.panel{
+    border: none;
+}
+
+</style>
+<div class="page-wrapper-row full-height" style="padding-bottom: 0%; margin-bottom: 0%">
+    <div class="page-wrapper-middle" style="padding-bottom: 0%; margin-bottom: 0%">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container" style="padding-bottom: 0%; margin-bottom: 0%">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper" style="padding-bottom: 0%; margin-bottom: 0%">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                  
+                    {{!-- <h1 style="background-color: #0020C2;color:mintcream"align="center" >Ledger</h1> --}}
+                   
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content" style="padding-top: 0%; ">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                    <div class="advancesearch clearfix">
+                        <div class="col-md-12 hidden-print">
+                            <div class="row" style="background-color: #0020C2;color:mintcream; margin-top:0%; margin-bottom: 1em; height: 2em" align="center"><p style="font-size: 16px; margin-top: 3px">Fg Stock Ledger</p></div>
+                                <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group clearfix">
+                                                    <label for="" class="control-label col-md-3">Period</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="filterstartdate"
+                                                            value="{{dateformat Date.now '01/04/2018'}}" id="contractrange"
+                                                            autocomplete="off" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="form-group clearfix">
+                                                    <label for="" class="control-label col-md-3">Product</label>
+                                                    <div class="col-md-9">
+                                                        <select class="form-control prbank buy_cus_name select2 prbank" name="product"
+                                                            placeholder="Please Select Product"  id="Product" required>
+                                                            <option value=""></option>
+                                                            {{#each product}}
+                                                            <option value="{{this.id}}">{{this.Fg_Des}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button type="submit" class="btn btn-success" name="filtersubmit"
+                                                        id="WIPSTladger" value="submit">Proceed</button>
+                                                <a class="btn btn-default blue hidden-print margin-bottom-4" onclick="javascript:window.print();"> Print
+                                                    <i class="fa fa-print"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                    </div> 
+                    <div class="col-md-12" style="padding-top: 0%; margin-top: 0%">
+                    <div class="panel panel-primary" >
+                   <div class="panel-body">
+                        <table id="section-to-print"  class="table table-striped table-bordered table-hover" style="width: 100%">
+                            <thead>
+                                <tr >
+                                    <th style="font-size: 14px; text-align: center">.</th>
+                                    <th style="font-size: 14px; text-align: center"></th>
+                                    <th style="font-size: 14px; text-align: center"></th>
+                                    <th style="font-size: 14px; text-align: left"></th>
+                                    <th id="mrn" style="font-size: 14px; text-align: right;"></th>
+                                    <th id="chl" style="font-size: 14px; text-align: right"></th>
+                                    <th style="font-size: 14px; text-align: right"></th>
+                                </tr>
+                                <tr >
+                                    <th style="font-size: 14px; text-align: center">Sno.</th>
+                                    <th style="font-size: 14px; text-align: center">Date</th>
+                                    <th style="font-size: 14px; text-align: center">Entry No.</th>
+                                    <th style="font-size: 14px; text-align: left">Party Name.</th>
+                                    <th style="font-size: 20px; text-align: right;">+</th>
+                                    <th style="font-size: 20px; text-align: right">-</th>
+                                    <th style="font-size: 14px; text-align: right">Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody id="Wipstladgerbody"></tbody>              
+                        </table>
+                    </div>
+                </div>
+                </div>   
+                                </div>
+                            </div>
+                           
+                            <div class="ledger_detail_body"></div>
+                            {{!-- end of showsearchdata --}}
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+
+{{> footer_new}}
+{{> scripts_new}}
+
+
+
+
+
+{{!-- <table id="userTable" class="display cell-border stripe hover order-column row-border"
+                            style="width: 100%">
+                                <thead>
+                                                  <tr >
+                                                        <th style="font-size: 28px">Sno.</th>
+                                                        <th style="font-size: 28px">Date</th>
+                                                        <th style="font-size: 28px">Entry No.</th>
+                                                        <th style="font-size: 28px">Party Name.</th>
+                                                        <th style="font-size: 28px;">+</th>
+                                                        <th style="font-size: 28px">-</th>
+                                                        <th style="font-size: 28px">Balance</th>
+                                                       
+                                                       
+                                                   </tr>
+                                                </thead>
+                                                 
+                                                <tbody id="stladgerbody"> </tbody> 
+                                                
+                                            </table> --}}
+
+                                            {{!-- <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group clearfix">
+                                                    <label for="" class="control-label col-md-3">Period</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="filterstartdate"
+                                                            value="{{dateformat Date.now '01/04/2018'}}" id="contractrange"
+                                                            autocomplete="off" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="form-group clearfix">
+                                                    <label for="" class="control-label col-md-3">Product</label>
+                                                    <div class="col-md-9">
+                                                        <select class="form-control prbank buy_cus_name select2 prbank" name="product"
+                                                            placeholder="Please Select Product"  id="Product" required>
+                                                            <option value=""></option>
+                                                            {{#each product}}
+                                                            <option value="{{this.id}}">{{this.Rm_Des}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button type="submit" class="btn btn-success" name="filtersubmit"
+                                                        id="STladger" value="submit">Proceed</button>
+                                            </div>
+                                        </div>
+                                   
+                                        
+                                </div>  --}}

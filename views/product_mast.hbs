@@ -1,0 +1,175 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <div class="page-content-inner">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading" style="text-align: left">
+                                    Product Master List
+                                    <div class="misc pull-right">
+                                        <div class="buttons">
+                                            <a href="/product_mast/add_product">
+                                                <button class="btn btn-link" type="button"><i class="fa fa-plus"></i>Add
+                                                    Product Master</button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <table id="product_detail_table" class="product_detail_table table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Action</th>
+                                                <th>Sno.</th>
+                                                <th>Item Code</th>
+                                                <th>Item Title</th>
+                                                <th>Item Group</th>
+                                                <th>Subquality</th>
+                                                {{!-- <th>Dana Class</th> --}}
+                                                {{!-- <th>Dana Rate</th> --}}
+                                                <th>HSN Code</th>
+                                                {{!-- <th>APMC</th>
+                                                <th>Dana Dalai</th>
+                                                <th>Dalali</th>
+                                                <th>Disc %</th>
+                                                <th>Tax Category</th>
+                                                <th>Rate Based On</th>
+                                                <th>Packing</th>
+                                                <th>Laga Paisa</th>
+                                                <th>Unit</th>
+                                                <th>Container Code</th>
+                                                <th>Container Charges</th>
+                                                <th>Entry Tax</th> --}}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each product_mast as |value key|}}
+                                            <tr>
+                                                <td>
+                                                    <div class="btn-group dropdown">
+                                                        <button class="btn btn-xs blue dropdown-toggle" type="button"
+                                                            data-toggle="dropdown" aria-expanded="false"> Actions
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu pull-left" role="menu" style="width:150px">
+                                                            <li>
+                                                                <a href="/product_mast/edit_product_mast/{{this._id}}"
+                                                                    data-id="{{this._id}}">
+                                                                    <i class="icon-pencil"></i> Edit </a>
+                                                            </li>
+                                                            <li class="divider"> </li>
+                                                            <li>
+                                                                {{!--
+                                                                href="/product_mast/delete_product_mast/{{this._id}}"
+                                                                --}}
+                                                                <a class="delet_product_btn" data-id="{{this._id}}">
+                                                                    <i class="icon-trash"></i> Delete
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                                <td>{{sum @index 1}}</td>
+                                                <td>{{this.item_code}}</td>
+                                                <td>{{this.item_title}}</td>
+                                                <td>{{this.item_group.Description}}</td>
+                                                <td>{{this.subquality.Description}}</td>
+                                                {{!-- <td>{{this.dana_class.Description}}</td> --}}
+                                                {{!-- <td>{{this.dana_rt}}</td> --}}
+                                                <td>{{this.apmc_code}}</td>
+                                                {{!-- <td>{{this.apmc_typ}}</td>
+                                                <td>{{this.dana_dalali}}</td>
+                                                <td>{{this.dalali_typ}}</td>
+                                                <td>{{this.desper}}</td>
+                                                <td>{{this.tax_categry.tx_ctgnm}}</td>
+                                                <td>{{this.rate_basedon}}</td>
+                                                <td>{{this.packing}}</td>
+                                                <td>{{this.laga_paisa}}</td>
+                                                <td>{{this.unit_nm.SKUName}}</td>
+                                                <td>{{this.container_code}}</td>
+                                                <td>{{this.containe_charges}}</td>
+                                                <td>{{this.entry_tax}}</td> --}}
+
+                                            </tr>
+                                            {{/each}}
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th class="excludesearch">Action</th>
+                                                <th>Sno.</th>
+                                                <th>Item Code</th>
+                                                <th>Item Title</th>
+                                                <th>Item Group</th>
+                                                <th>Subquality</th>
+                                                {{!-- <th>Dana Class</th> --}}
+                                                {{!-- <th>Dana Rate</th> --}}
+                                                <th>HSN Code</th>
+                                                {{!-- <th>APMC</th>
+                                                <th>Dana Dalai</th>
+                                                <th>Dalali</th>
+                                                <th>Disc %</th>
+                                                <th>Tax Category</th>
+                                                <th>Rate Based On</th>
+                                                <th>Packing</th>
+                                                <th>Laga Paisa</th>
+                                                <th>Unit</th>
+                                                <th>Container Code</th>
+                                                <th>Container Charges</th>
+                                                <th>Entry Tax</th> --}}
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            {{!-- {{/scuritylogin}} --}}
+
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

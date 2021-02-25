@@ -1,0 +1,612 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb pull-right">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                           
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+               <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{#if err}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{err}}</strong>
+                                    </div>
+                                    {{/if}}
+                                    {{#if errors}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{errors}}</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            {{!-- end of alerts row --}}
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            Vachhati Aavak Entry
+                                        </div>
+                                        {{!-- CalVachhatiAvakEntry --}}
+                                        <form  method="POST" action="/Vachhati_Aavak_Entry/add" class="" novalidate
+                                            enctype="" id="contract_sauda">
+                                           <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Idn No & Mode</label>
+                                                            <div class="col-md-5">
+                                                                <select name="c_j_s_p" placeholder="Idn No & Mode" id="c_j_s_p" class="form-control select2" required>
+                                                                    <option value="GAE" selected>VAE</option>
+                                                                </select>
+                                                            </div>
+                                                             <div class="col-md-4">
+                                                                <input type="number" name="vouc_code"  placeholder="Idn Number" autofocus required
+                                                                    value="{{last}}" class="form-control vouc_code"
+                                                                    tabindex="2"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Invoice/Ref No</label>
+                                                             <div class="col-md-4">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control " placeholder="Invoice/Ref No"  name="invoice_refno"  autocomplete="off" tabindex="3" />
+                                                                </div>
+                                                            </div>
+                                                            <label class="col-sm-2 control-label">Moter No</label>
+                                                             <div class="col-md-3">
+                                                                <div class="input-group">
+                                                                    <input name="moter_no" placeholder="Moter No"  id="moter_no" class="form-control  prbank" style="width: 100%">
+                                                                        {{!-- <option value="Credit" selected>Credit</option>
+                                                                        <option value="Cash">Cash</option>  
+                                                                    </select> --}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">LR/RR No</label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" name="lr_no" id="lr_No" placeholder="LR/RR NO" required
+                                                                class="form-control lr_No"/>
+                                                            </div>
+                                                            <label class="col-sm-2 control-label"> Date</label>
+                                                            <div class="col-md-3">
+                                                                <div class="input-group">
+                                                                    <input type="text" name="date" id="podt" class="form-control datemask"
+                                                                       value="{{dateformat Date.now 'DD/MM/YYYY'}}"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-7">
+                                                      
+                                                    </div>
+                                                    {{!-- end of col --}}
+
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Nature Of Aavak</label>
+                                                            <div class="col-md-9">
+                                                                <select type="text" name="nature_of_aavak" id="nature_of_aavak" placeholder="Nature Of Aavak"
+                                                                class="form-control select2 nature_of_aavak"/>
+                                                                <option value=""></option>
+                                                                <option>Normal</option>
+                                                                <option>Sales Return</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                     <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Godown Rcpt Date</label>
+                                                            <div class="col-md-9">
+                                                                {{!-- <div class="input-group"> --}}
+                                                                    <input type="text" name="godown_rcpt_date" id="grdate" class="form-control datemask"
+                                                                       value="{{dateformat Date.now 'DD/MM/YYYY'}}"/>
+                                                                {{!-- </div> --}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- <div class="col-sm-12 col-md-5"> --}}
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Lot No</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="Lot_No" id="Lot_No" placeholder="Lot No"
+                                                                     class="form-control Lot_No "/>
+                                                               
+                                                             </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Vachhati's Code</label>
+                                                              <div class="col-md-9">
+                                                                <input type="text" name="vachhati_code" id="vachhati_code" placeholder="Vachhati's Code"
+                                                                        class="form-control vachhati_code "/>
+                                                              </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Tapalee's Code</label>
+                                                              <div class="col-md-9">
+                                                                <input type="text" name="tapalee_code" id="tapalee_code" placeholder="Tapalee's Code"
+                                                                        class="form-control tapalee_code "/>
+                                                              </div>
+                                                        </div>
+                                                    </div>
+
+                                                     <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Despatched From To</label>
+                                                              <div class="col-md-9">
+                                                                <input type="text" name="despatched_from_to" id="despatched_from_to" placeholder="Despatched From To"
+                                                                        class="form-control despatched_from_to "/>
+                                                              </div>
+                                                        </div>
+                                                    </div>
+                                                   
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="table-responsive adjustmentstable addgaru" style="margin-top: 2em">
+                                                            <table class="tabler domes_invoice_repete_row" id="GaruAddTable">
+                                                                <thead>
+                                                                    <tr>
+                                                                       <th colspan="8">&nbsp;</th> 
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr id="GaruTr10">
+                                                                        <td>
+                                                                            <strong>Godown</strong>
+                                                                            <input type="hidden" name="dsirn" value="0" id="dsirn0">
+                                                                            {{!-- <input type="text" name="vachhati_Aavak_Group[0][gdn_Cd_Name]" id="gdn_Cd_Name0" 
+                                                                            class="form-control" style="text-align: -webkit-right;" placeholder="Gdn-Cd"/> --}}
+                                                                            <select name="vachhati_Aavak_Group[0][gdn_Cd_Name]" placeholder="gdn_Cd_Name"  id="gdn_Cd_Name0" class="form-control select2 prbank" style="width: 100%">
+                                                                            {{#each gowdown}}
+                                                                            <option value="{{this._id}}">{{this.Description}}</option>
+                                                                            {{/each}}
+                                                                            </select>
+                                                                        </td> 
+                                                                        <td>
+                                                                            <strong>Lot No</strong>
+                                                                            <input type="text" name="vachhati_Aavak_Group[0][lot_No]"  id="lot_No0"  class="form-control" style="text-align: -webkit-right;" placeholder="Lot No"/>
+                                                                        </td>
+                                                                        <td colspan="3">
+                                                                            <strong>Item Cd</strong>
+                                                                            {{!-- onchange='getdsi(0)' --}}
+                                                                            <select  name="vachhati_Aavak_Group[0][item_Code_Desc]"id="item_Code_Desc0"  class="form-control  prbank ItenCodeName" style="width:100%" onchange="getItemData(0)"
+                                                                                placeholder="Select Product" style="width: 100%"> 
+                                                                                <option value=""></option>
+                                                                                {{!-- {{#each product}}
+                                                                                <option value="{{this.id}}" data-serialnum="{{this._id}}">{{this.Fg_Des}}</option>
+                                                                                {{/each}} --}}
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Purchase Ac Title</strong>
+                                                                            {{!-- <input type="text" name="vachhati_Aavak_Group[0][purchase_Ac_Title]" placeholder="Purchase Ac Title"  id="purchase_Ac_Title0" 
+                                                                            class="form-control" style="text-align: -webkit-right;" /> --}}
+                                                                            <select  name="vachhati_Aavak_Group[0][purchase_Ac_Title]"id="purchase_Ac_Title0"  class="form-control prbank select2" style="width:100%"
+                                                                                placeholder="Select Purchase AC" style="width: 100%"> 
+                                                                                <option value=""></option>
+                                                                                {{#each puchaseAc}}
+                                                                                <option value="{{this.id}}" data-serialnum="{{this._id}}">{{this.ACName}}</option>
+                                                                                {{/each}}
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Marka</strong>
+                                                                            <input type="text" name="vachhati_Aavak_Group[0][marks]" placeholder="Marks"  id="marks0" class="form-control" 
+                                                                            oninput="CalVachhatiAvakEntry()" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Qntty</strong>
+                                                                             <input type="number" name="vachhati_Aavak_Group[0][qntty]" placeholder="Qntty"  id="qntty0" class="form-control" 
+                                                                             oninput="CalVachhatiAvakEntry()" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        
+                                                                    </tr>
+                                                                    <tr id="GaruTr20">
+                                                                        <td>
+                                                                            <strong>Pack</strong>
+                                                                            <input type="number" name="vachhati_Aavak_Group[0][pkng]" placeholder="Pkng"  id="pkng0" class="form-control" 
+                                                                            oninput="CalVachhatiAvakEntry()" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Net wt</strong>
+                                                                            <input type="number" name="vachhati_Aavak_Group[0][net_Wt]" placeholder="Net wt"  id="net_Wt0" class="form-control" 
+                                                                            oninput="CalVachhatiAvakEntry()" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        <td style="width: 10em">
+                                                                            <strong>Rate</strong>
+                                                                            <input type="number" name="vachhati_Aavak_Group[0][rate]"  id="rate0" placeholder="Rate" class="form-control" 
+                                                                            oninput="CalVachhatiAvakEntry()" style="text-align: -webkit-right;" />
+                                                                            
+                                                                        </td>
+                                                                        <td style="width: 10em">
+                                                                            <strong></br></strong>
+                                                                            <select name="vachhati_Aavak_Group[0][QW]" placeholder="QW"  id="QW0" class="form-control select2 prbank" onchange="CalVachhatiAvakEntry()"  style="width: 100%">
+                                                                              <option value="Q" selected>Q</option>
+                                                                              <option value="W">W</option>  
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Amount</strong>
+                                                                            <input type="number" name="vachhati_Aavak_Group[0][amount]"  id="amount0" placeholder="Amount" class="form-control" 
+                                                                            oninput="CalVachhatiAvakEntry()" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Discount %</strong>
+                                                                            <input type="hidden" name="vachhati_Aavak_Group[0][Dis_Amt]"  id="Dis_Amt0"/>
+                                                                            <input type="number" name="vachhati_Aavak_Group[0][discount]" placeholder="Discount"  id="discount0"  
+                                                                            class="form-control" oninput="CalVachhatiAvakEntry()" value="0" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Bardan Amt</strong>
+                                                                            <input type="text" name="vachhati_Aavak_Group[0][bardan_Gross_Amount]" placeholder="Bardan Gr Amt"  id="bardan_Gross_Amount0" 
+                                                                            oninput="CalVachhatiAvakEntry()" class="form-control" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        <td  style="width: 8em">
+                                                                            <strong>APMC</strong>
+                                                                            <select name="vachhati_Aavak_Group[0][apmc]" placeholder="APMC"  id="apmc0" class="form-control select2 prbank">
+                                                                              <option value="Y" selected>Y</option>
+                                                                              <option value="N">N</option>  
+                                                                            </select>
+                                                                        </td>
+                                                                        
+                                                                    </tr>
+                                                                    <tr id="GaruTr30">
+                                                                        <td>
+                                                                            <strong>APMC Amt</strong>
+                                                                            <input type="number" name="vachhati_Aavak_Group[0][apmc_Amount]" placeholder="APMC Amt"  id="apmc_Amount0" 
+                                                                            class="form-control" oninput="CalVachhatiAvakEntry()" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>ET%</strong>
+                                                                            <select name="vachhati_Aavak_Group[0][ec]" placeholder="Ec"  id="ec0" class="form-control select2 prbank" style="width: 100%">
+                                                                              <option value="Y" selected>Y</option>
+                                                                              <option value="N">N</option>  
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Comm Gdn Rent</strong>
+                                                                            <input type="text" name="vachhati_Aavak_Group[0][commission_gdn_rent]"  id="commission_gdn_rent0" placeholder="Commission Gdn Rent" 
+                                                                            class="form-control" oninput="CalVachhatiAvakEntry()" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                       
+                                                                        <td>
+                                                                            <strong>GST</strong>
+                                                                            <input type="hidden" name="vachhati_Aavak_Group[0][tax_Amt]"  id="tax_Amt0"/>
+                                                                            <input type="text" name="vachhati_Aavak_Group[0][GST]" placeholder="GST"  id="GST0" class="form-control" 
+                                                                            oninput="CalVachhatiAvakEntry()" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        <td style="width: 10em">
+                                                                            <strong>Net Amt</strong>
+                                                                            <input type="number" name="vachhati_Aavak_Group[0][net_Amount]" placeholder="Net Amt"  id="net_Amount0" 
+                                                                            oninput="CalVachhatiAvakEntry()" class="form-control" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Vakal Thok</strong>
+                                                                            <input type="text" name="vachhati_Aavak_Group[0][vakal_Thok]" placeholder="Vakal Thok"  id="vakal_Thok0" 
+                                                                            oninput="CalVachhatiAvakEntry()" class="form-control" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Dana</strong>
+                                                                            <input type="number" name="vachhati_Aavak_Group[0][dana_Rt]" placeholder="Dana Rate"  id="dana_Rt0"  
+                                                                            oninput="CalVachhatiAvakEntry()" class="form-control addgarufocus" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        <td></br></br><a onclick='deleteGaruGroupEntry(0)' style='cursor:pointer;'><i class='fa fa-times' style='font-size: 20px;color: red;margin-left:12px;'></i></a></td>
+                                                                    </tr>
+                                                                    <tr id="Vachhati_Aavak_Entry_Group_Add">
+                                                                        <th><strong>Total Net Amt</strong></th>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td>
+                                                                             <input type="hidden" name="gst_TaxAmtTot5"  id="gst_TaxAmtTot5"/>
+                                                                            <input type="hidden" name="gst_TaxAmtTot12"  id="gst_TaxAmtTot12"/>
+                                                                            <input type="hidden" name="gst_TaxAmtTot18"  id="gst_TaxAmtTot18"/>
+                                                                        </td>
+                                                                        <td> 
+                                                                            <input type="text" name="tot_Amt" placeholder="Tot Net Amt"  id="tot_Amt" 
+                                                                            oninput="CalVachhatiAvakEntry()" class="form-control" style="text-align: -webkit-right;" readonly/>
+                                                                        </td>
+                                                                        <td></td>
+                                                                        <td>
+                                                                            <input type="hidden" name="tot_Qtty"  id="tot_Qtty"/>
+                                                                            <input type="hidden" name="tot_DisAmt"  id="tot_DisAmt"/>
+                                                                            <input type="hidden" name="tot_AmtBeforeDis"  id="tot_AmtBeforeDis"/>
+                                                                            <input type="hidden" name="tot_TaxAmt"  id="tot_TaxAmt"/>
+                                                                            <input type="hidden" name="tot_AmtBeforeTax"  id="tot_AmtBeforeTax"/>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                 <div class="row">
+                                                    <div class="col-sm-12">
+                                                      <button type="button" class="btn btn-primary addVachhatiEntry center-block nofocus" id="addgaru">Add Item</button>  
+                                                    </div>
+                                                </div> 
+                                                  <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="table-responsive adjustmentstable">
+                                                            <table class="tabler worksheet_repeat_row">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Particular(ADD)</th>
+                                                                        <th>Amount</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <input type="hidden" name="saleadd" value="1" id="saleadd1" oninput='calVachhatiAddless(1)'
+                                                                            class="form-control" style="width: 102px;text-align: -webkit-right;"/>
+                                                                            <select name="add_details[1][particular_add]" placeholder="--Select--"  id="addparticular1" style="text-align: -webkit-left;width: 450px;" class="form-control select2">
+                                                                                <option value=""></option>
+                                                                                 {{#each addmast}}
+                                                                                    <option value="{{this._id}}" data-val="{{this.type_descr}}" {{#equal this.type_descr "SGST 2.5%"}} selected=""
+                                                                                    {{/equal}}>{{this.type_descr}}</option>
+                                                                                {{/each}}
+                                                                            </select>
+                                                                        </td>
+                                                                      
+                                                                        <td >
+                                                                             <input type="text" name="add_details[1][particular_amount]"
+                                                                                id="AmountParticular1" oninput='calVachhatiAddless(1)' 
+                                                                                class="form-control  numerals number" value="0" style="text-align: -webkit-right;"
+                                                                                />
+                                                                          </tr>
+                                                                         <tr>
+                                                                                     
+                                                                        <td>
+                                                                             <input type="hidden" name="saleadd" value="2" id="saleadd2" oninput='calVachhatiAddless(2)'
+                                                                            class="form-control" style="width: 102px;text-align: -webkit-right;"/>
+                                                                              <select name="add_details[2][particular_add]" placeholder="--Select--"  id="addparticular2" style="text-align: -webkit-left;width: 450px;" class="form-control  prbank  select2">
+                                                                                <option value=""></option>
+                                                                                 {{#each addmast}}
+                                                                                    <option value="{{this._id}}" data-val="{{this.type_descr}}" {{#equal this.type_descr "CGST 2.5%"}} selected=""
+                                                                                    {{/equal}}>{{this.type_descr}}</option>
+                                                                                {{/each}}
+                                                                            </select>
+                                                                        </td>
+                                                                      
+                                                                        <td >
+                                                                             <input type="text" name="add_details[2][particular_amount]"
+                                                                                id="AmountParticular2" oninput='calVachhatiAddless(2)' 
+                                                                                class="form-control  numerals number" value="0" style="text-align: -webkit-right;"
+                                                                                />
+                                                                          </tr>
+                                                                          <tr>
+                                                                        <td>
+                                                                             <input type="hidden" name="saleadd" value="3" id="saleadd3" oninput='calVachhatiAddless(3)'
+                                                                            class="form-control" style="width: 102px;text-align: -webkit-right;"/>
+                                                                              <select name="add_details[3][particular_add]" placeholder="--Select--" id="addparticular3" style="text-align: -webkit-left;width: 450px;" class="form-control  prbank  select2">
+                                                                                <option value=""></option>
+                                                                                 {{#each addmast}}
+                                                                                    <option value="{{this._id}}" data-val="{{this.type_descr}}" {{#equal this.type_descr "IGST 5%"}} selected=""
+                                                                                    {{/equal}}>{{this.type_descr}}</option>
+                                                                                {{/each}}
+                                                                            </select>
+                                                                        </td>
+                                                                      
+                                                                        <td >
+                                                                             <input type="text" name="add_details[3][particular_amount]"
+                                                                                id="AmountParticular3" oninput='calVachhatiAddless(3)'
+                                                                                class="form-control  numerals number" value="0" style="text-align: -webkit-right;"
+                                                                                />
+                                                                          </tr>
+                                                                        
+                                                                         <tr id="prabal_div"></tr>
+                                                                          
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="table-responsive adjustmentstable">
+                                                            <table class="tabler worksheet_repeat_row">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Particular(Less)</th>
+                                                                        <th>Amount</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>
+                                                                             <input type="hidden" name="saleless" value="1" id="saleless1" oninput='calVachhatiAddless(1)'
+                                                                            class="form-control" style="width: 102px;text-align: -webkit-right;"/>
+                                                                              
+                                                                            <select name="less_details[1][particular_less]" placeholder="--Select--" style="text-align: -webkit-left;width: 450px;" id="lessparticular1" class="form-control partless_loadsi  select2">
+                                                                                <option value=""></option>
+                                                                                 {{#each lessmast}}
+                                                                                    <option value="{{this._id}}" data-val="{{this.type_descr}}" {{#equal this.type_descr "Round Off"}} selected=""
+                                                                                    {{/equal}}>{{this.type_descr}}</option>
+                                                                                    
+                                                                                {{/each}}
+                                                                            </select>
+                                                                        </td>
+                                                                      
+                                                                        <td>
+                                                                            <input type="text" name="less_details[1][particular_amtless]"
+                                                                            id="lessamtParticular1" oninput='calVachhatiAddless(1)' 
+                                                                            class="form-control addlessfocus numerals number"  value="0" style="text-align: -webkit-right;"/>
+                                                                       </td>
+                                                                    
+                                                                    </tr>
+                                                                    <tr id="vipul_div"></tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>   
+                                                 <div class="row">
+                                                    <div class="col-sm-6">
+                                                      <button type="button" class="btn btn-primary addGaruAdddetails center-block nofocus" id="add">Add Details</button>  
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                      <button type="button" class="btn btn-primary addGaruLessdetails center-block nofocus" id="add">Add Details</button>  
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>   
+                                         <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Remarks: </label>
+                                                            <div class="col-md-9">
+                                                                <textarea name="garu_Remarks" id="garu_Remarks" class="form-control delv_load"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                             <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Grand Total: </label>
+                                                            <div class="col-md-9">
+                                                                <input name="gross_Amt" id="gross_Amt" tabindex="-1" class="form-control"></input>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                               
+                                                </div>
+                                             
+                                            <div class="panel-footer">
+                                                <div class="action clearfix">
+                                                    <div class="row">
+                                                        <div class="col-md-12" align="center">
+                                                            <button type="submit"  name="save" class="btn btn-success ">Submit</button>
+                                                            <button type="reset" class="btn btn-danger" >Cancel</button>
+                                                            <a href="/Vachhati_Aavak_Entry/Vachhati_Aavak_Entry_List" class="btn btn-info" style="margin-top: 1.5em">Back</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </form>
+                                      </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+
+ 
+<div class="modal" tabindex="-1" role="dialog" id="deliverysupport" >
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content" style="margin-left: -38px; width: 1232px;">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Pending SalesOrder</h4>
+        </div>
+            <div class="modal-body">
+                                            {{!-- table that hides and shows on select --}}
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="table-responsive" style="display:none" id="delivery">
+                            <div class="brand_add_container clearfix">
+                                <div class="table-responsive adjustmentstable" style="margin-top: 40px;">
+                                    <table class="table">
+                                        <thead style="background-color:#4b77be;color: white;">
+                                            <tr>
+                                               <th>Item Name</th>
+                                                {{!-- <th>Pcs Per Pck</th> --}}
+                                                <th>Order Qty</th>
+                                                                           {{!-- <th>Rate</th> --}}
+                                                                          {{!-- <th>Discount</th> --}}
+                                                                          {{!-- <th>Total amount</th> --}}
+                                                <th>Sales Invoice Qty</th>
+                                                 </tr>
+                                        </thead>
+                                        <tbody class="dsi_repeat_row">
+                                            <tr>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class='addsauda'></div>
+
+                        </div>
+                    </div>
+                </div>
+                                            {{!-- end of row --}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="domesticsales_entry">Save changes</button>
+            </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+{{> footer_new}}
+{{> scripts_new}}
+<style>
+    .tabler>tbody>tr>td, .tabler>tbody>tr>th, .tabler>tfoot>tr>td, .tabler>tfoot>tr>th, .tabler>thead>tr>td, .tabler>thead>tr>th {
+    padding: 0px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+</style>

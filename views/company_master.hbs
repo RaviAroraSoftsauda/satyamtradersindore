@@ -1,0 +1,242 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Company Master
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-md-4">
+
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" id="formheading">
+                                            <span>Add</span> Company Master
+                                        </div>
+                                         <div class="panel-heading" id="editformheading" style="display: none">
+                                            <span>Update</span> Company Master
+                                        </div>
+                                        <div class="panel-body">
+                                            <form method="POST" action="/company_master/submit" enctype="" id="companyadd" class="validate">
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Company Name</label>
+                                                        <div class="col-md-8">
+                                                                <input class="form-control" placeholder="Company Name" name="com_name" type="text" required>
+                                                        </div>
+                                                    </div>
+                                                     <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Start Date</label>
+                                                        <div class="col-md-8">
+                                                                <input class="form-control datemask" placeholder="Start Date" name="sdate" id="offerstartdate" type="text" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">End Date</label>
+                                                        <div class="col-md-8">
+                                                                <input class="form-control datemask" placeholder="End Date" id="podt" name="edate" type="text" required>
+                                                        </div>
+                                                    </div>
+                                                     <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Mast Name</label>
+                                                        <div class="col-md-8">
+                                                                <input class="form-control" placeholder="Mast Name" name="mast_nm" type="text">
+                                                        </div>
+                                                    </div>
+                                                     <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Dealer Miscsno</label>
+                                                        <div class="col-md-8">
+                                                                <input class="form-control" placeholder="Dealer Miscsno" name="Dealer_miscsno" type="text">
+                                                        </div>
+                                                    </div>
+                                                     <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Q T K</label>
+                                                        <div class="col-md-8">
+                                                                <input class="form-control" placeholder="Q T K" name="Q_T_K" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4"></label>
+                                                        <div class="col-md-8">
+                                                            <button type="submit" name="save" class="btn btn-success">Submit</button>
+                                                            <button type="reset" class="btn btn-primary">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                             <form method="POST" action="" enctype="" id="companyedit" style="display: none">
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Company Name</label>
+                                                        <div class="col-md-8">
+                                                                <input class="form-control com_name" placeholder="Company Name" name="com_name" type="text" required>
+                                                        </div>
+                                                    </div>
+                                                     <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Start Date</label>
+                                                        <div class="col-md-8">
+                                                                <input class="form-control sdate" placeholder="Start Date" name="sdate" id="offerstartdate" type="text" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">End Date</label>
+                                                        <div class="col-md-8">
+                                                                <input class="form-control edate" placeholder="End Date" id="podt" name="edate" type="text" required>
+                                                        </div>
+                                                    </div>
+                                                     <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Mast Name</label>
+                                                        <div class="col-md-8">
+                                                                <input class="form-control mast_nm" placeholder="Mast Name" name="mast_nm" type="text">
+                                                        </div>
+                                                    </div>
+                                                     <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Dealer Miscsno</label>
+                                                        <div class="col-md-8">
+                                                                <input class="form-control Dealer_miscsno" placeholder="Dealer Miscsno" name="Dealer_miscsno" type="text">
+                                                        </div>
+                                                    </div>
+                                                     <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4">Q T K</label>
+                                                        <div class="col-md-8">
+                                                                <input class="form-control Q_T_K" placeholder="Q T K" name="Q_T_K" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-4"></label>
+                                                        <div class="col-md-8">
+                                                            <button type="submit" name="save" class="btn btn-success">Submit</button>
+                                                            <button type="reset" class="btn btn-primary">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            Company List
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table id="product_detail_table" class="product_detail_table table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Sno.</th>
+                                                            <th>Company Name</th>
+                                                            <th>Start Date</th>
+                                                            <th>End Date</th>
+                                                            <th>Mast Name</th>
+                                                            <th>Dealer Miscsno</th>
+                                                            <th>Q T K</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{#each company as |value key|}}
+                                                        <tr>
+                                                            <td>{{sum @index 1}}</td>
+                                                            <td>{{this.com_name}}</td>
+                                                            <td>{{dateformat this.sdate 'DD/MM/YYYY'}}</td>
+                                                            <td>{{dateformat this.edate 'DD/MM/YYYY'}}</td>
+                                                            <td>{{this.mast_nm}}</td>
+                                                            <td>{{this.Dealer_miscsno}}</td>
+                                                            <td>{{this.Q_T_K}}</td>
+                                                            <td>
+                                                                <div class="btn-group dropdown">
+                                                                    <button class="btn btn-xs blue dropdown-toggle"
+                                                                        type="button" data-toggle="dropdown"
+                                                                        aria-expanded="false"> Actions
+                                                                        <i class="fa fa-angle-down"></i>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu pull-right" role="menu">
+                                                                        <li>
+                                                                            <a href="javascript:void(0);" class="edit_company_master"
+                                                                                data-id="{{this._id}}">
+                                                                                <i class="icon-pencil"></i> Edit </a>
+                                                                        </li>
+                                                                        <li class="divider"> </li>
+                                                                        <li>
+                                                                            <a href="/company_master/delete_companymaster/{{this._id}}" class="delbutton">
+                                                                                <i class="icon-trash"></i> Delete
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        {{/each}} 
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                        <th>Sno.</th>
+                                                        <th>Company Name</th>
+                                                        <th>Start Date</th>
+                                                        <th>End Date</th>
+                                                        <th>Mast Name</th>
+                                                        <th>Dealer Miscsno</th>
+                                                        <th>Q T K</th>
+                                                        <th class="excludesearch"></th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

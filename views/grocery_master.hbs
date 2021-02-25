@@ -1,0 +1,219 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+
+                                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading" align="right">
+                                   Add Grocery Master 
+                                </div>
+                                <form  class="form-horozintal validate" id="product_raw_master">
+                                    <div class="panel-body">
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Nature Of Work </label>
+                                                <div class="col-md-9">
+                                                        <input class="form-control natureOfWork" placeholder="Nature Of Work" id="natureOfWork"
+                                                        name="natureOfWork" value=""  oninput="calproduct()" type="Text" autofocus required>
+                                                            <input class="form-control vhpxproduct" id="vhpxproduct"
+                                                        name="vhpxproduct"  type="hidden"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Effective Date </label>
+                                                <div class="col-md-9">
+                                                        <input class="form-control effectiveDate datepicker" placeholder="Effective Date" id="effectiveDate"
+                                                        name="effectiveDate" value="{{dateformat  Date.Now "DD/MM/YYYY"}}"  oninput="calproduct()" type="Text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-top: -15px">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive adjustmentstable" style="margin-top: -10px">
+                                                <table class="table tabler" >
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Up To Packing</th>
+                                                            <th>Qty</th>
+                                                            <th>Basic</th>
+                                                            <th>Levy%</th>
+                                                            <th>Levy</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class='product_wrapper' id='prabal0'>
+                                                            <td>
+                                                                <input type="hidden" name="cntrer" value="0" id="cntrer0">
+                                                                <input class="form-control grocery_master_group[0][upToPacking]"  placeholder="Up To Packing"
+                                                                name="grocery_master_group[0][upToPacking]" oninput="CalGrocery()" id="upToPacking0"  type="text" style='width:100%'/>
+                                                            </td>
+                                                            <td>
+                                                                <input class="form-control grocery_master_group[0][qty]" placeholder="Qty"
+                                                                name="grocery_master_group[0][qty]" oninput="CalGrocery()" id="qty0"  type="text" style='width:100%'/>
+                                                            </td>
+                                                            <td>
+                                                                <input class="form-control grocery_master_group[0][basic]" placeholder="Basic"
+                                                                name="grocery_master_group[0][basic]" oninput="CalGrocery()" id="basic0"  type="text" style='width:100%'/>
+                                                            </td>
+                                                            <td>
+                                                                <input class="form-control grocery_master_group[0][levyPer]" placeholder="Levy%"
+                                                                name="grocery_master_group[0][levyPer]" oninput="CalGrocery()" id="levyPer0"  type="text" style='width:100%'/>
+                                                            </td>
+                                                            <td>
+                                                                <input class="form-control grocery_master_group[0][levy] amountfocus" placeholder="levy"
+                                                                name="grocery_master_group[0][levy]" oninput="CalGrocery()" id="levy0"  type="text" style='width:100%'/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr id="insert_product"></tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <button type="button" class="btn btn-primary addgrocery center-block nofocus" id="add">Add Grocery</button>  
+                                        </div>
+                                    </div> 
+                                    <div class="action clearfix">
+                                        <div class="col-md-12" align="center" style="margin-top: 5px;">
+                                                <button type="submit" name="save" class="btn btn-success delv_load lock-grocery">Submit</button>
+                                                <button type="reset" class="btn btn-danger">Cancel</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                             {{!-- {{#scuritylogin   security 'Product Master' 'V'}} --}}
+                            <div class="panel panel-primary">
+                                <div class="panel-heading" align="right">
+                                    Grocery Master List
+                                </div>
+                                <div class="panel-body">
+                                    <table id="product_detail_table" class="product_detail_table table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Action</th>
+                                                <th>Sno.</th>
+                                                <th>Nature Of Work</th>
+                                                <th>Effective Date</th>
+                                           </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each grocery_master as |value key|}}
+                                            <tr>
+                                                <td>
+                                                    <div class="btn-group dropdown">
+                                                        <button class="btn btn-xs blue dropdown-toggle" type="button"
+                                                            data-toggle="dropdown" aria-expanded="false"> Actions
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu pull-left" role="menu" style="width:150px">
+                                                            <li>
+                                                                <a href="javascript:void(0);" class="edit_grocery_master_btn"
+                                                                    data-id="{{this._id}}">
+                                                                    <i class="icon-pencil"></i> Edit </a>
+                                                            </li>
+                                                            <li class="divider"> </li>
+                                                            <li>
+                                                                <a href="javascript:void(0);" class="delbutton delete_grocery_master"
+                                                                    data-id="{{this._id}}">
+                                                                    <i class="icon-trash"></i> Delete
+                                                                </a>
+                                                            </li>
+                                                            {{!-- {{/scuritylogin}} --}}
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                                <td>{{sum @index 1}}</td>
+                                                <td>{{this.natureOfWork}}</td>
+                                                <td>{{dateformat this.effectiveDate "DD/MM/YYYY"}}</td>
+                                            </tr>
+                                            {{/each}}
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th  class="excludesearch">Action</th>
+                                                <th>Sno.</th>
+                                                <th>Nature Of Work</th>
+                                                <th>Effective Date</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            {{!-- {{/scuritylogin}} --}}
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}
+<style>
+    .tabler>tbody>tr>td, .tabler>tbody>tr>th, .tabler>tfoot>tr>td, .tabler>tfoot>tr>th, .tabler>thead>tr>td, .tabler>thead>tr>th {
+    padding: 0px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+strong{
+    font-size: 14px;
+}
+</style>

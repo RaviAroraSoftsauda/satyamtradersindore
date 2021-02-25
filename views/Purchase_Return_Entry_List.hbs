@@ -1,0 +1,169 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{#if err}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{err}}</strong>
+                                    </div>
+                                    {{/if}}
+                                    {{#if errors}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{errors}}</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                                    <div class="panel panel-primary table light " id="tableportlet">
+                                        <div class="panel-heading">
+                                        Purchase Return Entry List
+                                            <div class="misc pull-right">
+                                                <div class="buttons">
+                                                   
+                                                     <a href="/Purchase_Return_Entry/Purchase_Return_Entry_Add">
+                                                        <button class="btn btn-link" type="button"><i class="fa fa-plus"></i>Add
+                                                          Purchase Return Entry</button>
+                                                    </a>
+                                                  </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body" id="portletbody">
+                                            <table class="product_detail_table dttable table table-striped table-bordered table-hover"
+                                                id="product_detail_table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Action</th>
+                                                        <th>Sno</th>
+                                                        <th>Idn No</th>
+                                                        <th>Date</th>
+                                                        <th>Bill No</th>
+                                                        <th>Date</th>
+                                                        <th>Party Name</th>
+                                                        <th>Broker Name</th>
+                                                        <th>SL Person</th>
+                                                        {{!-- <th class="excludesearch noExport">Action</th> --}}
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{#each GaruAavak as |value key|}}
+                                                    <tr>
+                                                          <td class="excludesearch">
+                                                            <div class="btn-group dropdown">
+                                                                <button class="btn btn-xs blue dropdown-toggle" type="button"
+                                                                    data-toggle="dropdown" aria-expanded="false">
+                                                                    Actions
+                                                                    <i class="fa fa-angle-down"></i>
+                                                                </button>
+                                                                <ul class="dropdown-menu pull-left" role="menu" style="width:150px">
+                                                                    <li>
+                                                                        {{!-- href="/Purchase_Bill/Purchase_Bill_Update/{{value._id}}" --}}
+                                                                        <a href="/Purchase_Return_Entry/Purchase_Return_Entry_Update/{{value._id}}">
+                                                                            <i class="fa fa-pencil"></i> Edit
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="divider"> </li>
+                                                                    <li>
+                                                                        {{!--  --}}
+                                                                        <a href="javascript:void(0);" class="delbutton delete_PurchaseReturnEntry" data-id="{{this._id}}">
+                                                                            <i class="icon-trash"></i> Delete
+                                                                        </a>
+                                                                    </li>
+                                                                     <li class="divider"> </li>
+                                                                     <li>
+                                                                        {{!-- href="/Purchase_Bill/dsi_print?id={{this._id}}&amp;compid={{this.div_code}}" --}}
+                                                                        <a>
+                                                                            <i class="fa fa-print"></i> Print
+                                                                        </a>
+                                                                    </li>
+                                                                     <li class="divider"> </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td> 
+                                                        <td>{{sum @index 1}}</td>
+                                                        <td>{{this.vouc_code}}/{{this.c_j_s_p}}</td>
+                                                        <td>{{dateformat this.entry_Date 'DD/MM/YYYY'}}</td>
+                                                        <td>{{this.bill_No}}</td>
+                                                        <td>{{dateformat this.bill_Date 'DD/MM/YYYY'}}</td>
+                                                        <td>{{this.party_Code.ACName}}</td>
+                                                        <td>{{this.broker_Code.ACName}}</td>
+                                                        <td>{{this.sl_Person.ACName}}</td>
+                                                    </tr>
+                                                    {{/each}}
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th class="excludesearch mastercheckbox"></th>
+                                                        <th>Sno</th>
+                                                        <th>Idn No</th>
+                                                        <th>Date</th>
+                                                        <th>Bill No</th>
+                                                        <th>Date</th>
+                                                        <th>Party Name</th>
+                                                        <th>Broker Name</th>
+                                                        <th>SL Person</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- END EXAMPLE TABLE PORTLET-->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+{{> footer_new}}
+{{> scripts_new}}

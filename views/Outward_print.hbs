@@ -1,0 +1,172 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<style>
+    .fields {
+        font-size: 20px;
+    }
+
+    .fields1 {
+        width: 25%;
+        font-size: 20px;
+    }
+
+    .table-tr {
+        height: 50px;
+    }
+
+    .table-td {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .total {
+        font-size: 20px;
+    }
+
+    .total1 {
+        width: 25%;
+        font-size: 20px;
+    }
+
+    .Entry {
+        text-align: center;
+        font-size: 15px;
+    }
+
+    hr {
+        border-top: 1px solid;
+    }
+
+    .input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid;
+        margin: 0;
+    }
+
+    body {
+        font-size: 12px;
+    }
+
+    @media print {
+        @page {
+            margin-top: 1em;
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+
+        table {
+            width: 100%;
+        }
+    }
+</style>
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <div class="page-container">
+            <div class="page-content-wrapper">
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <div class="page-title">
+                            {{!-- <h1>{{compnm}} - {{divnm}} - {{dateformat sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}} --}}
+                                <small>
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                    </ul>
+                                </small>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 95%;margin: 1%">
+                    <center>
+                        <h3>{{compnm}} - {{divnm}} - {{dateformat sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                            'DD/MM/YYYY'}} {{usrnm}}</h3>
+                    </center>
+                    <hr class="hr">
+                    <center>
+                        <h3>OUTWARD</h3>
+                    </center>
+                    {{#each GaruAavak}}
+                    <table>
+                        <tr>
+                            <td class="fields1"> Sr.</td>
+                            <td class="fields">{{this.vouc_code}}/{{this.c_j_s_p}}</td>
+                            <td class="fields">Date:</td>
+                            <td class="fields">{{dateformat this.entry_Date 'DD/MM/YYYY'}}</td>
+                        </tr>
+                        <tr>
+                            <td class="fields1"> Party Name:</td>
+                            <td colspan="3" class="fields">{{this.party_Code.ACName}}</td>
+                        </tr>
+                        <tr>
+                            <td class="fields1">Transport:</td>
+                            <td colspan="3" class="fields">{{this.transport}}</td>
+                        </tr>
+                        <tr>
+                            <td class="fields1">Broker Name:</td>
+                            <td colspan="3" class="fields">{{this.broker_Code.ACName}}</td>
+                        </tr>
+                        <tr>
+                            <td class="fields1"> Place:</td>
+                            <td class="fields"> {{this.party_Code.CityName.CityName}} </td>
+                            <td class="fields"> Vehicle:</td>
+                            <td class="fields">{{this.vehicle}} </td>
+                        </tr>
+                        <tr>
+                            <td class="fields1"> Driver:</td>
+                            <td class="fields"> {{this.driver}}</td>
+                            <td class="fields"> mob:</td>
+                            <td class="fields"> {{this.mobile}}</td>
+                        </tr>
+                    </table>
+                    <table border="2px" style="border-collapse: collapse">
+                        <tr class="table-tr">
+                            <th class="table-td">Product</th>
+                            <th class="table-td">Brand</th>
+                            <th class="table-td">Nos.</th>
+                            <th class="table-td">Qty.</th>
+                        </tr>
+                        {{#each this.garu_Aavak_Group as |value key|}}
+                        <tr class="table-tr">
+                            <td class="Entry">{{this.item_Code_Desc.item_title}}</td>
+                            <td class="Entry">{{this.brand.Description}}</td>
+                            <td class="Entry">{{this.qntty}}</td>
+                            <td class="Entry">{{this.net_Wt}}</td>
+                        </tr>
+                        {{/each}}
+                    </table>
+
+                    <table>
+                        <tr>
+                            <td class="fields1">Total Nos. :{{this.tot_Qty}}</td>
+                            <td class="fields1">Weight : {{this.tot_weight}}</td>
+                            <td class="fields1">Signature</td>
+                        </tr>
+                    </table>
+                    <div class="input">
+                        {{this.garu_Remarks}}
+                    </div>
+
+                    {{/each}}
+                    {{!-- <div class="fields">Party Name: </div>
+                    <div class="fields">Transport: </div>
+                    <div class="fields">Broker Name: </div>
+                    <div style="float: left" class="fields">Place: </div>
+                    <div style="float: right" class="fields">Vehicle No: </div>
+                    <div class="fields">Driver: </div>
+                    <div class="fields">Mob.: </div> --}}
+                    <a class="btn btn-lg blue hidden-print margin-bottom-5" onclick="printinvoice()" id="hideprintbtn"
+                        style="margin-top: 2em"> Print
+                        <i class="fa fa-print"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

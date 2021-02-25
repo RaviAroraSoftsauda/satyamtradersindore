@@ -1,0 +1,174 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                           Reports
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                    <div class="advancesearch clearfix">
+                                <div class="col-md-2">
+
+                                      <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group fgradio">
+                                                    <input type="radio" name="formfilter" value="contract" id="contract"
+                                                        class="make-switch" data-on-text="Contract" data-off-text="Contract"
+                                                        data-size="small" data-on-color="primary" data-handle-width="60px" checked>
+
+                                                    <input type="radio" name="formfilter" value="deliverysauda" id="deliverysauda"
+                                                        class="make-switch" data-on-text="Delivery" data-handle-width="60px" data-off-text="Delivery"
+                                                        data-size="small" data-on-color="primary">
+
+                                                   
+
+                                                    <input type="radio" name="formfilter" value="directdelivery" id="directdelivery"
+                                                        class="make-switch" data-on-text="Direct" data-handle-width="60px" data-off-text="Direct"
+                                                        data-size="small" data-on-color="primary">
+
+                                                    <input type="radio" name="formfilter" value="delaentry" id="delaentry"
+                                                    class="make-switch" data-on-text="Deal" data-handle-width="60px" data-off-text="Deal"
+                                                    data-size="small" data-on-color="primary">
+
+                                                  
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+                                </div>
+                                <div class="col-md-10">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group clearfix">
+                                                    <label for="" class="control-label col-md-3">Period</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="filterstartdate"
+                                                            value="{{dateformat Date.now '01/04/2018'}}" id="contractrange"
+                                                            autocomplete="off" />
+                                                    </div>
+                                                </div>
+                                                {{!-- end of form-group clearfix --}}
+                                            </div>
+                                            {{!-- end of col --}}
+                                        </div>
+                                        {{!-- end of row --}}
+                                          <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group clearfix">
+                                                    <label for="" class="control-label col-md-3">Party Group</label>
+                                                    <div class="col-md-9">
+                                                        <select name="partygroup" id="partygroup" class="form-control select2" placeholder="Select Party Group">
+                                                            <option value=""></option>
+                                                            {{#each group}}
+                                                             <option value="{{this._id}}">{{this.group_name}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                        {{!-- {{#listbsrtopt party 'S' 'sl_code' 'sl_code' 'select2' 'multiple'  }}
+                                                        {{this.party_name}}
+                                                        {{/listbsrtopt}} --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group clearfix">
+                                                    <label for="" class="control-label col-md-3">Category Tax</label>
+                                                    <div class="col-md-9">
+                                                         <select name="partycategorytax" id="partycategorytax" class="form-control select2" placeholder="Category Tax">
+                                                            <option value=""></option>
+                                                            {{#each categorytax}}
+                                                             <option value="{{this._id}}">{{this.category_tax_name}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                        {{!-- {{#listbsrtopt party 'B' 'br_code' 'brcode' 'select2' 'multiple'  }}
+                                                        {{this.party_name}}
+                                                        {{/listbsrtopt}} --}}
+                                                    </div>
+                                                </div>
+                                                {{!-- end of form-group clearfix --}}
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group clearfix">
+                                                    <label for="" class="control-label col-md-3">Category</label>
+                                                    <div class="col-md-9">
+                                                         <select name="partycategory" id="partycategory" class="form-control select2" placeholder="Category Tax">
+                                                            <option value=""></option>
+                                                            {{#each category}}
+                                                             <option value="{{this._id}}">{{this.category_name}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                        {{!-- {{#listbsrtopt party 'B' 'br_code' 'brcode' 'select2' 'multiple'  }}
+                                                        {{this.party_name}}
+                                                        {{/listbsrtopt}} --}}
+                                                    </div>
+                                                </div>
+                                                {{!-- end of form-group clearfix --}}
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-action searchbtns clearfix">
+                                                    <button type="submit" class="btn btn-success" name="filtersubmit"
+                                                        id="reportfiltersubmit" value="submit">Show Result</button>
+                                                    <button type="reset" class="btn btn-danger">Reset</button>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                        </div>
+                                        {{!-- end of row --}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sauda_detail_body"></div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+{{> footer_new}}
+{{> scripts_new}}

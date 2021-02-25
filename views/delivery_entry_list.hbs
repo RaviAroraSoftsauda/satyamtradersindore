@@ -1,0 +1,168 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                            
+                        <!-- BEGIN PAGE BREADCRUMBS -->
+                        <ul class="page-breadcrumb breadcrumb">
+                            <li>
+                                <a href="/userright/index">Home</a>
+                                <i class="fa fa-circle"></i>
+                            </li>
+                            <li>
+                                Contract Sauda List
+                            </li>
+                        </ul>
+                        <!-- END PAGE BREADCRUMBS --></small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{#if err}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{err}}</strong>
+                                    </div>
+                                    {{/if}}
+                                    {{#if errors}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{errors}}</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                                     {{#scuritylogin   security 'Delivery Entry' 'V'}}
+                                    <div class="panel panel-primary table light " id="tableportlet">
+                                        <div class="panel-heading">
+                                              Delivery Entry List
+                                            <div class="misc pull-right">
+                                                <div class="buttons">
+                                                    <div class="btn-group dropdown">
+                                                        <button class="btn btn-xs blue dropdown-toggle" type="button"
+                                                            data-toggle="dropdown" aria-expanded="false"> Actions
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu pull-right" role="menu">
+                                                            {{#scuritylogin   security 'Delivery Entry' 'E'}}
+                                                            <li>
+                                                                 <a href="" data-link="/delivery_entry/delivery_entry_list_update/" class="editaction">
+                                                                    <i class="icon-pencil"></i> Edit </a>
+                                                            </li>
+                                                            {{/scuritylogin}}
+                                                            <li class="divider"> </li>
+                                                             {{#scuritylogin   security 'Delivery Entry' 'D'}}
+                                                            <li>
+                                                                <a href="" data-link="/delivery_entry/delete_delivery_entry?data=" class="deleteaction">
+                                                                    <i class="icon-trash"></i> Delete
+                                                                </a>
+                                                            </li>
+                                                            {{/scuritylogin}}
+                                                        </ul>
+                                                    </div>
+                                                     {{#scuritylogin   security 'Delivery Entry' 'A'}}
+                                                    <a href="/delivery_entry/delivery_entry">
+                                                        <button class="btn btn-link"  type="button"><i class="fa fa-plus"></i>Add Delivery</button>
+                                                    </a>
+                                                    {{/scuritylogin}}
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <div class="panel-body" id="portletbody">
+                                            <table class="product_detail_table table table-striped table-bordered table-hover"
+                                                id="product_detail_table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="excludesearch mastercheckbox"><input type="checkbox"></th>
+                                                        <th>Sno.</th>
+                                                        <th>Date</th>
+                                                        <th>Seller</th>
+                                                        <th>Buyer</th>
+                                                        {{!-- <th class="excludesearch noExport">Action</th> --}}
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{#each delveryentry1 as |value key|}}
+                                                        <tr>
+                                                             <td><input class="trowcheck" type="checkbox" name="id" id="" value="{{value._id}}" data-comp="{{this.co_code}}" data-vouc="{{this.vouc_code}}" data-sauda2="{{value._id}}"></td>
+                                                            <td>{{this.vouc_code}}</td>
+                                                            <td>{{dateformat value.sd_date 'DD/MM/YYYY'}}</td>
+                                                            <td>{{value.sl_code.party_name}}</td>
+                                                            <td>{{value.br_code.party_name}}</td>
+                                                            {{!-- <td> <div class="btn-group dropdown">
+                                                            <button class="btn btn-xs blue dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
+                                                                <i class="fa fa-angle-down"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu pull-right" role="menu">
+                                                                <li>
+                                                                    <a href="/delivery_entry/delivery_entry_list_update/{{value._id}}">
+                                                                        <i class="icon-pencil"></i> Edit </a>
+                                                                </li>
+                                                                <li class="divider"> </li>
+                                                                <li>
+                                                                    <a href="/delivery_entry/delete_delivery_entry/?data={{value._id}}&amp;sauda2={{this.sauda2.sauda1}}" class="delbutton">
+                                                                        <i class="icon-trash"></i> Delete
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div></td> --}}
+                                                        </tr>
+                                                    {{/each}}  
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th class="excludesearch mastercheckbox"></th>
+                                                        <th>Sno.</th>
+                                                        <th>Date</th>
+                                                        <th>Seller</th>
+                                                        <th>Buyer</th>
+                                                        {{!-- <th class="excludesearch noExport">Action</th> --}}
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    {{/scuritylogin}}
+                                    <!-- END EXAMPLE TABLE PORTLET-->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+{{> footer_new}}
+{{> scripts_new}}

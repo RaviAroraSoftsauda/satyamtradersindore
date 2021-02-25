@@ -1,0 +1,644 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb pull-right">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party Update
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    Update Party Masters
+                                </div>
+                                {{!-- {{party}}; --}}
+                                {{!-- {{findcityid city party.city_name}} --}}
+                                <form method="POST" action="/party/party_update_submit/{{party.id}}" class="form validate"
+                                    novalidate>
+                                    <div class="panel-body">
+                                        <div class="form-group clearfix">
+                                            <div class="btn-group partymasterbuttons" role="group">
+                                                <button class="btn btn-default" data-active={{partychkchecked party.p_type "B"}}
+                                                    data-value="B" type="button">Buyer</button>
+                                                <button class="btn btn-default" data-active={{partychkchecked party.p_type "S"}}
+                                                    data-value="S" type="button">Seller</button>
+                                                <button class="btn btn-default" data-active={{partychkchecked party.p_type "R"}}
+                                                    data-value="R" type="button">Buyer
+                                                    Broker</button>
+                                                <button class="btn btn-default" data-active={{partychkchecked party.p_type "T"}}
+                                                    data-value="T" type="button">Seller
+                                                    Broker</button>
+                                            </div>
+                                            <input type="hidden" name="p_type[]" value="" id="bsrt" class="" required>
+                                        </div>
+                                        <div class="form-group clearfix">
+                                            <div class="col-md-12">
+                                                <h3 class="form-section">Details</h3>
+                                            </div>
+                                        </div>
+                                        <div class="form-group clearfix">
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Party Name<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" required name="party_name"
+                                                            placeholder="Party Name" value="{{party.party_name}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Address 1<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="address1"
+                                                            placeholder="Address 1" value="{{party.address1}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                             <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Short Name</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text"  class="form-control" name="partshortname"
+                                                            placeholder="Short Name" value="{{party.partshortname}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Address 2<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="address2"
+                                                            placeholder="Address 2" value="{{party.address2}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Area Name<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="area_name"
+                                                            placeholder="Area Name" value="{{party.area_name}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+
+                                                    <label class="control-label col-md-3 itsalink" data-toggle="modal"
+                                                        data-target="#addcity">City Name<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <!-- city_name -->
+                                                        <select name="city_name" id="city_name" class="form-control city"
+                                                            required>
+                                                            <option value="{{party.city_name.id}}" selected >{{party.city_name.city_name}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">State Name<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <select name="state_name" id="state_name" placeholder="Please select state"
+                                                            class="form-control select2 state_name">
+                                                            <option value=""></option>
+                                                            <option value="{{party.state_name.id}}" selected >{{party.state_name.state_name}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Pin Code<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control digits" data-rule-minlength="6" data-rule-maxlength="6" name="pin_code"
+                                                            placeholder="Pin Code" value="{{party.pin_code}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Credit Limit<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control digits" name="credit_limit"
+                                                            placeholder="Credit Limit" value="{{party.credit_limit}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">PAN<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="pan_no"
+                                                            placeholder="PAN Number" value="{{party.pan_no}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">GSTIN<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="gstin"
+                                                            placeholder="GSTIN" value="{{party.gstin}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Phone(Off..)<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="phone_ofc"
+                                                            placeholder="Phone (Office)" value="{{party.phone_ofc}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Phone(Resi.)<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="phone_resi"
+                                                            placeholder="Phone(Resi.)" value="{{party.phone_resi}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">FSSAI<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="fssai"
+                                                            placeholder="FSSAI" value="{{party.fssai}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                             <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">FSSAI DATE</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control datemask datepicker" name="fssaidate"
+                                                            placeholder="FSSAI Date" value="{{party.fssaidate}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">FAX<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="fax" placeholder="Fax"
+                                                            value="{{party.fax}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Mobile sms<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="mob_no"
+                                                            placeholder="Mobile No.(sms)" value="{{party.mob_no}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Mobile No.<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="mob_num"
+                                                            placeholder="Mobile No" value="{{party.mob_num}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Mobile Username<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="prtyusername"
+                                                            placeholder="Username" value="{{party.prtyusername}}"
+                                                            >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Mobile Password.<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="partypassword"
+                                                            placeholder="Password" value="{{party.partypassword}}"
+                                                            >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Proprietor<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                    <div class="col-md-9">
+                                                                {{!-- {{#if party.proprietor_name}}
+                                                               {{#listrt proprietor party.proprietor_name 'proprietor_name'}}
+                                                               {{proprietor_name}}
+                                                              {{/listrt}}
+                                                                {{else}} --}}
+                                                                <select name="proprietor_name" id="proprietor_name" class="form-control select2 proprietor_name">
+                                                                {{#each proprietor}}
+                                                                <option value="{{this._id}}"  {{#equal ../party.proprietor_name id}}selected=""{{/equal}}>{{this.proprietor_name}}</option>
+                                                                {{/each}}
+                                                                </select>
+                                                                {{!-- {{/if}}  --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Group<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                    <div class="col-md-9">
+                                                         {{!-- {{#if party.group_name}}
+                                                              {{#listrt group party.group_name 'group_name'}}
+                                                            {{group_name}}
+                                                            {{/listrt}}
+                                                                {{else}} --}}
+                                                                <select name="group_name" id="group_name" class="form-control group_name select2">
+                                                                {{#each group}}
+                                                                <option value="{{this._id}}" {{#equal ../party.group_name id}}selected=""{{/equal}}>{{this.group_name}}</option>
+                                                                {{/each}}
+                                                                </select>
+                                                                {{!-- {{/if}}  --}}
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Category<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <select name="category" id="category" class="select2 form-control category">
+                                                            <option value="">Select...</option>
+                                                             {{#each category}}
+                                                            <option value="{{this._id}}" {{#equal ../party.category id}}selected=""{{/equal}} data-serialnum="{{this._id}}">{{this.category_name}}</option>
+                                                            {{/each}}
+                                                            {{!-- <option value="A" {{#equal party.category "A"}}selected=""{{/equal}}>A</option>
+                                                            <option value="B" {{#equal party.category "B"}}selected=""{{/equal}}>B</option>
+                                                            <option value="C" {{#equal party.category "C"}}selected=""{{/equal}}>C</option>
+                                                            <option value="D" {{#equal party.category "D"}}selected=""{{/equal}}>D</option>
+                                                            <option value="E" {{#equal party.category "E"}}selected=""{{/equal}}>E</option> --}}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Category Tax</label>
+                                                    <div class="col-md-9">
+                                                        <select name="category_tax_name" id="category_tax_name" class="select2 form-control category_tax_name">
+                                                            <option value="">Select...</option>
+                                                            {{#each categorytax}}
+                                                            <option value="{{this._id}}" {{#equal ../party.category_tax_name id}}selected=""{{/equal}} data-serialnum="{{this._id}}">{{this.category_tax_name}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Remark<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="remark"
+                                                            placeholder="Remark" value="{{party.remark}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Envelope/<br>Working<span
+                                                            class="required" aria-required="true">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <div class="md-checkbox-inline">
+                                                            <div class="md-checkbox">
+                                                                <input type="checkbox" id="working"
+                                                                    {{#equal ../working this.Y}} checked="" {{/equal}}
+                                                                    value="Y" class="md-check" name="working">
+                                                                <label for="checkbox6">
+                                                                    <span></span>
+                                                                    <span class="check"></span>
+                                                                    <span class="box"></span> working </label>
+                                                            </div>
+                                                            <div class="md-checkbox">
+                                                                <input type="checkbox" id="envelope"
+                                                                    {{#equal ../envelope this.Y}} checked="" {{/equal}}
+                                                                    class="md-check" value="Y" name="envelope">
+                                                                <label for="checkbox7">
+                                                                    <span></span>
+                                                                    <span class="check"></span>
+                                                                    <span class="box"></span> Envelope </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> --}}
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="" class="control-label col-md-3">Envelope <br> Working</label>
+                                                    <div class="col-md-9">
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="working" id="working" value="Y"
+                                                                class=""  {{#equal ../envelope this.Y}} checked="" {{/equal}}> Working
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" id="envelope" class="" value="Y"
+                                                                name="envelope"  {{#equal ../envelope this.Y}} checked="" {{/equal}}> Envelope
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="repeat clearfix">
+                                            <div class="form-group clearfix">
+                                                <div class="col-lg-12">
+                                                    <h3 class="form-section">Bank Accounts
+                                                        <input data-repeater-create type="button" value="+" class="btn btn-primary pull-right addbank" /></h3>
+                                                </div>
+                                            </div>
+                                            <div data-repeater-list="party_bank">
+                                                {{#each party.party_bank as |value key|}}
+                                                <div class="form-group bankrow clearfix" data-repeater-item>
+                                                    <button class="delbankbtn" data-repeater-delete type="button"><i
+                                                            class="fa fa-close"></i> </button>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="control-label col-md-3">Bank Name<span class="required"
+                                                                    aria-required="true">*</span></label>
+                                                            <div class="col-md-9">
+                                                                <select class="form-control bank_name select2" name="party_bank[{{@index}}][bank_name]"
+                                                                    placeholder="Please Select Bank">
+                                                                    <option value="">Select Bank</option>
+                                                                        {{#each ../bank}}
+                                                                        <option value="{{this._id}}" data-serialnum="{{this._id}}" {{#equal ../bank_name this._id}}selected=""{{/equal}}>{{this.bank_name}}</option>
+                                                                        {{/each}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="control-label col-md-3">IFSC Code<span class="required"
+                                                                    aria-required="true">*</span></label>
+                                                            <div class="col-md-9">
+                                                                <input class="form-control" name="party_bank[{{@index}}][ifc_code]"
+                                                                    placeholder="IFSC Code" type="text" value="{{value.ifc_code}}"
+                                                                    autocomplete="off" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="control-label col-md-3">Account No<span class="required"
+                                                                    aria-required="true">*</span></label>
+                                                            <div class="col-md-9">
+                                                                <input class="form-control" type="text" placeholder="Account No"
+                                                                    name="party_bank[{{@index}}][account_no]" value="{{value.account_no}}" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="control-label col-md-3">Branch Name<span
+                                                                    class="required" aria-required="true">*</span></label>
+                                                            <div class="col-md-9">
+                                                                <input class="form-control" type="text" placeholder="Branch"
+                                                                    name="party_bank[{{@index}}][branch_name]" value="{{value.branch_name}}" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- end of repeater item --}}
+
+                                                {{/each}}
+                                            </div>
+                                        </div>
+                                        <div class="repeat clearfix">
+                                            <div class="form-group clearfix">
+                                                <div class="col-lg-12">
+                                                    <h3 class="form-section">Contact Details <input
+                                                            data-repeater-create type="button" value="+" class="btn btn-primary pull-right addcontact" /></h3>
+                                                </div>
+                                            </div>
+
+                                            <div data-repeater-list="contact_group">
+                                                {{#each party.contact_group as |value key|}}
+                                                <div class="form-group contactrow clearfix" data-repeater-item>
+                                                    <button class="delcontbtn" data-repeater-delete type="button"><i
+                                                            class="fa fa-close"></i> </button>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="control-label col-md-3">Contact<span class="required"
+                                                                    aria-required="true">*</span></label>
+                                                            <div class="col-md-9">
+                                                                <input class="form-control" name="contact_group[{{@index}}][contact_no]"
+                                                                    placeholder="Contact" type="text" autocomplete="off"
+                                                                    value="{{value.contact_no}}" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="control-label col-md-3">Mobile<span class="required"
+                                                                    aria-required="true">*</span></label>
+                                                            <div class="col-md-9">
+                                                                <input class="form-control" name="contact_group[{{@index}}][mobile_no]"
+                                                                    placeholder="Mobile" type="text" autocomplete="off"
+                                                                    value="{{value.mobile_no}}" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="control-label col-md-3">Email<span class="required"
+                                                                    aria-required="true">*</span></label>
+                                                            <div class="col-md-9">
+                                                                <input class="form-control" name="contact_group[{{@index}}][email_id]"
+                                                                    placeholder="Email" type="text" autocomplete="off"
+                                                                    value="{{value.email_id}}" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="control-label col-md-3">Document<span class="required"
+                                                                    aria-required="true">*</span></label>
+                                                            <div class="col-md-9">
+                                                                <select name="contact_group[{{@index}}][document]"
+                                                                    class="form-control select2" placeholder="Please Select Document">
+                                                                    <option value=""></option>
+                            <option value="All">All</option>
+                            <option value="Contract From" {{#equal value.document "Contract From"}}selected=""{{/equal}}>Contract From</option>
+                            <option value="Delivery Entry" {{#equal value.document "Delivery Entry"}}selected=""{{/equal}}>Delivery Entry</option>
+                            <option value="Payment Entry" {{#equal value.document "Payment Entry"}}selected=""{{/equal}}>Payment Entry</option>
+                            <option value="Cash/Bank Book" {{#equal value.document "Cash/Bank Book"}}selected=""{{/equal}}>Cash/Bank Book</option>
+                            <option value="Journal Entry" {{#equal value.document "Journal Entry"}}selected=""{{/equal}}>Journal Entry</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- end of Contact Repeater Item --}}
+                                                {{/each}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{!-- end of panel-body --}}
+                                    <div class="panel-footer">
+                                        <div class="action clearfix">
+                                            <div class="col-md-6">
+                                                <div class="col-md-9 col-md-push-3">
+                                                    <button type="submit" name="save" class="btn btn-success">Submit</button>
+                                                    <button type="reset" class="btn btn-danger update" data-link="/party/party_list">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{!-- end of panel-footer --}}
+                                </form>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+{{!-- Modal --}}
+<div class="modal fade" role="dialog" id="addcity">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Add City</h4>
+            </div>
+            <form method="POST" action="/party/city_add" enctype="">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group form-md-line-input clearfix">
+                            <label class="control-label col-md-3">City Name:</label>
+                            <div class="col-md-9">
+                                <input class="form-control city_name" required placeholder="City Name" name="city_name"
+                                    type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group form-md-line-input clearfix">
+                            <label class="control-label col-md-3">District Name:</label>
+                            <div class="col-md-9">
+                                <select class="form-control dis_name select2" required name="dis_name" id="dis_name">
+                                    <option>District Name</option>
+                                    {{#each district_master}}
+                                    <option value="{{this._id}}" data-dis_id="{{this.state_id}}">{{this.dis_name}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group form-md-line-input clearfix">
+                            <label class="control-label col-md-3">State Name:</label>
+                            <div class="col-md-9 state_name_div">
+                                <select class="form-control state_name select2" required name="state_name" id="state_name">
+                                    {{#each state_master}}
+                                    <option value="{{this.id}}">{{this.state_name}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group form-md-line-input clearfix">
+                            <label class="control-label col-md-3">City Pincode:</label>
+                            <div class="col-md-9">
+                                <input class="form-control city_code" data-rule-minlength="6" data-rule-maxlength="6"
+                                    placeholder="City Pincode" name="city_code" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group form-md-line-input clearfix">
+                            <label class="control-label col-md-3">Std Code:</label>
+                            <div class="col-md-9">
+                                <input class="form-control city_std_code" data--rule-minlength="3" data-rule-maxlength="4"
+                                    placeholder="Std Code" name="city_std_code" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{!-- end of modal body --}}
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success save-form">Save changes</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+{{> footer_new}}
+{{> scripts_new}}

@@ -1,0 +1,727 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb pull-right">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                           
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+               <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{#if err}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{err}}</strong>
+                                    </div>
+                                    {{/if}}
+                                    {{#if errors}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{errors}}</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            
+                            {{!-- end of alerts row --}}
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            Vachhati Aavak Update
+                                        </div>
+                                        <form  method="POST" action="/Vachhati_Aavak_Entry/update/{{VachhatiAavak._id}}" class="" novalidate
+                                            enctype="" id="contract_sauda">
+                                           <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Idn No & Mode</label>
+                                                            <div class="col-md-5">
+                                                                <select name="c_j_s_p" placeholder="Idn No & Mode" id="c_j_s_p" class="form-control select2" required>
+                                                                    <option  value="VAE" {{#equal VachhatiAavak.c_j_s_p 'VAE'}} selected=""{{/equal}}>VAE</option>
+                                                                </select>
+                                                            </div>
+                                                             <div class="col-md-4">
+                                                                <input type="number" name="vouc_code"  placeholder="Idn Number" autofocus required
+                                                                    value="{{VachhatiAavak.vouc_code}}" class="form-control vouc_code"
+                                                                    tabindex="2"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Invoice/Ref No</label>
+                                                             <div class="col-md-4">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control invoice_refno"  name="invoice_refno" value="{{VachhatiAavak.invoice_refno}}" id="invoice_refno" placeholder="Invoice/Ref No"   autocomplete="off" tabindex="3" />
+                                                                </div>
+                                                            </div>
+                                                            <label class="col-sm-2 control-label">Moter No</label>
+                                                             <div class="col-md-3">
+                                                                <div class="input-group">
+                                                                    <input name="moter_no" value="{{VachhatiAavak.moter_no}}" placeholder="Moter No"  id="moter_no" class="form-control  prbank" style="width: 100%">
+                                                                      
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">LR/RR No</label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" name="lr_no" value="{{VachhatiAavak.lr_no}}" id="lr_No" placeholder="LR/RR NO" required
+                                                                class="form-control lr_No"/>
+                                                            </div>
+                                                            <label class="col-sm-2 control-label"> Date</label>
+                                                            <div class="col-md-3">
+                                                                <div class="input-group">
+                                                                    <input type="text" name="date" value="{{VachhatiAavak.date}}" id="podt" class="form-control datemask" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-7">
+                                                      
+                                                    </div>
+                                                    {{!-- end of col --}}
+
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Nature Of Aavak</label>
+                                                            <div class="col-md-9">
+                                                                <select type="text" name="nature_of_aavak" id="nature_of_aavak" placeholder="Nature Of Aavak"
+                                                                class="form-control select2 nature_of_aavak"/>
+                                                                {{!-- <option value="{{VachhatiAavak.invoice_refno}}"></option> --}}
+                                                                <option  value="Normal" {{#equal VachhatiAavak.nature_of_aavak 'Normal'}} selected=""{{/equal}}>Normal</option>
+                                                                <option  value="Sales Return" {{#equal VachhatiAavak.nature_of_aavak 'Sales Return'}} selected=""{{/equal}}>Sales Return</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                     <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Godown Rcpt Date</label>
+                                                            <div class="col-md-9">
+                                                                {{!-- <div class="input-group"> --}}
+                                                                    <input type="text" name="godown_rcpt_date" value="{{VachhatiAavak.godown_rcpt_date}}" id="grdate" class="form-control datemask" />
+                                                                {{!-- </div> --}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- <div class="col-sm-12 col-md-5"> --}}
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Lot No</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="Lot_No" value="{{VachhatiAavak.Lot_No}}" id="Lot_No" placeholder="Lot No"
+                                                                     class="form-control Lot_No "/>
+                                                               
+                                                             </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Vachhati's Code</label>
+                                                              <div class="col-md-9">
+                                                                <input type="text" name="vachhati_code" value="{{VachhatiAavak.vachhati_code}}" id="vachhati_code" placeholder="Vachhati's Code"
+                                                                        class="form-control vachhati_code "/>
+                                                              </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Tapalee's Code</label>
+                                                              <div class="col-md-9">
+                                                                <input type="text" name="tapalee_code" value="{{VachhatiAavak.tapalee_code}}" id="tapalee_code" placeholder="Tapalee's Code"
+                                                                        class="form-control tapalee_code "/>
+                                                              </div>
+                                                        </div>
+                                                    </div>
+
+                                                     <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Despatched From To</label>
+                                                              <div class="col-md-9">
+                                                                <input type="text" name="despatched_from_to" value="{{VachhatiAavak.despatched_from_to}}" id="despatched_from_to" placeholder="Despatched From To"
+                                                                        class="form-control despatched_from_to "/>
+                                                              </div>
+                                                        </div>
+                                                    </div>
+                                                   
+                                                   
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="table-responsive adjustmentstable addgaru" style="margin-top: 2em">
+                                                            <table class="table domes_invoice_repete_row" id="GaruAddTable">
+                                                                <thead>
+                                                                    <tr>
+                                                                       <th colspan="8"></th> 
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    {{#each VachhatiAavak.vachhati_Aavak_Group as |value key|}}
+                                                                    <tr id="GaruTr1{{@index}}">
+                                                                        <td>
+                                                                            <strong>Godown</strong>
+                                                                            <input type="hidden" name="dsirn" value="{{@index}}" id="dsirn{{@index}}">
+                                                                            {{!-- <input type="text" name="garu_Aavak_Group[0][gdn_Cd_Name]" id="gdn_Cd_Name0" 
+                                                                            class="form-control" style="text-align: -webkit-right;" placeholder="Gdn-Cd"/> --}}
+                                                                            <select name="vachhati_Aavak_Group[{{@index}}][gdn_Cd_Name]" placeholder="gdn_Cd_Name"  id="gdn_Cd_Name{{@index}}" class="form-control select2 prbank" style="width: 100%">
+                                                                            {{#each ../gowdown}}
+                                                                            <option value="{{this._id}}" data-serialnum="{{this._id}}"{{#equal ../this.gdn_Cd_Name id}} selected="" {{/equal}}>
+                                                                            {{this.Description}}</option>
+                                                                            {{/each}}
+                                                                            </select>
+                                                                        </td> 
+                                                                        <td>
+                                                                            <strong>Lot No</strong>
+                                                                            <input type="text" name="vachhati_Aavak_Group[{{@index}}][lot_No]" value="{{this.lot_No}}" id="lot_No{{@index}}"  class="form-control" style="text-align: -webkit-right;" placeholder="Lot No"/>
+                                                                        </td>
+                                                                        <td colspan="2">
+                                                                            <strong>Item Cd</strong>
+                                                                            {{!-- onchange='getdsi(0)' --}}
+                                                                            <select  name="vachhati_Aavak_Group[{{@index}}][item_Code_Desc]"id="item_Code_Desc{{@index}}"  class="form-control  prbank  ItenCodeName" style="width:100%" onchange="getItemData({{@index}})"
+                                                                                placeholder="Select Product" style="width: 100%"> 
+                                                                                <option value="{{this.item_Code_Desc._id}}" selected>{{this.item_Code_Desc.item_title}}</option>
+                                                                                {{!-- {{#each Account_master}}
+                                                                                <option value="{{this._id}}" data-serialnum="{{this._id}}"{{#equal ../this.item_Code_Desc id}} selected="" {{/equal}}>
+                                                                                {{this.ACName}}</option>
+                                                                                {{/each}} --}}
+                                                                            </select>
+                                                                        </td>
+                                                                        <td colspan="2">
+                                                                            <strong>Purchase Ac Title</strong>
+                                                                            {{!-- <input type="text" name="garu_Aavak_Group[0][purchase_Ac_Title]" placeholder="Purchase Ac Title"  id="purchase_Ac_Title0" 
+                                                                            class="form-control" style="text-align: -webkit-right;" /> --}}
+                                                                            <select  name="vachhati_Aavak_Group[{{@index}}][purchase_Ac_Title]"id="purchase_Ac_Title{{@index}}"  class="form-control prbank  broker_Code" style="width:100%"
+                                                                                placeholder="Select Purchase AC" style="width: 100%"> 
+                                                                                <option value="{{this.purchase_Ac_Title._id}}" selected>{{this.purchase_Ac_Title.ACName}}</option>
+                                                                                {{!-- {{#each ../puchaseAc}}
+                                                                                <option value="{{this._id}}" data-serialnum="{{this._id}}"{{#equal ../this.purchase_Ac_Title id}} selected="" {{/equal}}>{{this.ACName}}</option>
+                                                                                {{/each}} --}}
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Marka</strong>
+                                                                            <input type="text" name="vachhati_Aavak_Group[{{@index}}][marks]" placeholder="Marks" value="{{this.marks}}"  id="marks{{@index}}" class="form-control" 
+                                                                            oninput="CalVachhatiAvakEntry()" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Qntty</strong>
+                                                                             <input type="number" name="vachhati_Aavak_Group[{{@index}}][qntty]" value="{{this.qntty}}" placeholder="Qntty"  id="qntty{{@index}}" class="form-control" 
+                                                                             oninput="CalVachhatiAvakEntry()" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        
+                                                                    </tr>
+                                                                    <tr id="GaruTr20">
+                                                                        <td>
+                                                                            <strong>Pack</strong>
+                                                                            <input type="number" name="vachhati_Aavak_Group[{{@index}}][pkng]" value="{{this.pkng}}" placeholder="Pkng"  id="pkng{{@index}}" class="form-control" 
+                                                                            oninput="CalVachhatiAvakEntry()" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Net wt</strong>
+                                                                            <input type="number" name="vachhati_Aavak_Group[{{@index}}][net_Wt]" value="{{this.net_Wt}}" placeholder="Net wt"  id="net_Wt{{@index}}" class="form-control" 
+                                                                            oninput="CalVachhatiAvakEntry()" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        <td style="width: 10em">
+                                                                            <strong>Rate</strong>
+                                                                            <input type="number" name="vachhati_Aavak_Group[{{@index}}][rate]" value="{{this.rate}}"  id="rate{{@index}}" placeholder="Rate" class="form-control" 
+                                                                            oninput="CalVachhatiAvakEntry()" style="text-align: -webkit-right;" />
+                                                                            
+                                                                        </td>
+                                                                        <td style="width: 10em">
+                                                                            <strong></br></strong>
+                                                                            <select name="vachhati_Aavak_Group[{{@index}}][QW]" placeholder="QW"  id="QW0" class="form-control select2 prbank" onchange="CalVachhatiAvakEntry()"  style="width: 100%">
+                                                                              <option value="Q" {{#equal VachhatiAavak.QW 'Q'}} selected=""{{/equal}}>Q</option>
+                                                                              <option  value="W" {{#equal VachhatiAavak.QW 'W'}} selected=""{{/equal}}>W</option>  
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Amount</strong>
+                                                                            <input type="number" name="vachhati_Aavak_Group[{{@index}}][amount]" value="{{this.amount}}"  id="amount{{@index}}" placeholder="Amount" class="form-control" 
+                                                                            oninput="CalVachhatiAvakEntry()" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Discount %</strong>
+                                                                            <input type="hidden" name="vachhati_Aavak_Group[{{@index}}][Dis_Amt]"  value="{{this.Dis_Amt}}"  id="Dis_Amt{{@index}}"/>
+                                                                            <input type="number" name="vachhati_Aavak_Group[{{@index}}][discount]"  value="{{this.discount}}" placeholder="Discount"  id="discount{{@index}}"  
+                                                                            class="form-control" oninput="CalVachhatiAvakEntry()" value="0" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Bardan Amt</strong>
+                                                                            <input type="text" name="vachhati_Aavak_Group[{{@index}}][bardan_Gross_Amount]" value="{{this.bardan_Gross_Amount}}"  placeholder="Bardan Gr Amt"  id="bardan_Gross_Amount{{@index}}" 
+                                                                            oninput="CalVachhatiAvakEntry()" class="form-control" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        <td  style="width: 8em">
+                                                                            <strong>APMC</strong>
+                                                                            <select name="vachhati_Aavak_Group[{{@index}}][apmc]" placeholder="APMC"  id="apmc0" class="form-control select2 prbank">
+                                                                              <option value="Y" {{#equal VachhatiAavak.apmc 'Y'}} selected=""{{/equal}}>Y</option>
+                                                                              <option value="N" {{#equal VachhatiAavak.apmc 'N'}} selected=""{{/equal}}>N</option>  
+                                                                            </select>
+                                                                        </td>
+                                                                        
+                                                                    </tr>
+                                                                    <tr id="GaruTr30">
+                                                                        <td>
+                                                                            <strong>APMC Amt</strong>
+                                                                            <input type="number" name="vachhati_Aavak_Group[{{@index}}][apmc_Amount]" value="{{this.apmc_Amount}}"  placeholder="APMC Amt"  id="apmc_Amount{{@index}}" 
+                                                                            class="form-control" oninput="CalVachhatiAvakEntry()" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>ET%</strong>
+                                                                            <select name="vachhati_Aavak_Group[{{@index}}][ec]" placeholder="Ec"  id="ec{{@index}}" class="form-control select2 prbank" style="width: 100%">
+                                                                              <option value="Y" {{#equal VachhatiAavak.ec 'Y'}} selected=""{{/equal}} >Y</option>
+                                                                              <optionvalue="N" {{#equal VachhatiAavak.ec 'N'}} selected=""{{/equal}}>N</option>  
+                                                                            </select>
+                                                                        </td>
+                                                                        {{!-- <td>
+                                                                            <strong>Entry Tax</strong>
+                                                                            <input type="text" name="garu_Aavak_Group[{{@index}}][entry_Tax]" value="{{this.entry_Tax}}"   id="entry_Tax{{@index}}" placeholder="Entry Tax" 
+                                                                            class="form-control" oninput="CalVachhatiAvakEntry()" style="text-align: -webkit-right;" />
+                                                                        </td> --}}
+
+                                                                          <td>
+                                                                            <strong>Comm Gdn Rent</strong>
+                                                                            <input type="text" name="vachhati_Aavak_Group[{{@index}}][commission_gdn_rent]" value="{{this.commission_gdn_rent}}"  id="commission_gdn_rent{{@index}}" placeholder="Commission Gdn Rent" 
+                                                                            class="form-control" oninput="CalVachhatiAvakEntry()" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                       
+                                                                       
+                                                                        <td>
+                                                                            <strong>GST</strong>
+                                                                            <input type="hidden" name="vachhati_Aavak_Group[{{@index}}][tax_Amt]" value="{{this.tax_Amt}}"   id="tax_Amt{{@index}}"/>
+                                                                            <input type="text" name="vachhati_Aavak_Group[{{@index}}][GST]" value="{{this.GST}}" placeholder="GST"  id="GST{{@index}}" class="form-control" 
+                                                                            oninput="CalVachhatiAvakEntry()" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        <td style="width: 10em">
+                                                                            <strong>Net Amt</strong>
+                                                                            <input type="number" name="vachhati_Aavak_Group[{{@index}}][net_Amount]" value="{{this.net_Amount}}"  placeholder="Net Amt"  id="net_Amount{{@index}}" 
+                                                                            oninput="CalVachhatiAvakEntry()" class="form-control" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Vakal Thok</strong>
+                                                                            <input type="text" name="vachhati_Aavak_Group[{{@index}}][vakal_Thok]" value="{{this.vakal_Thok}}"  placeholder="Vakal Thok"  id="vakal_Thok{{@index}}" 
+                                                                            oninput="CalVachhatiAvakEntry()" class="form-control" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Dana</strong>
+                                                                            <input type="number" name="vachhati_Aavak_Group[{{@index}}][dana_Rt]" value="{{this.dana_Rt}}"  placeholder="Dana Rate"  id="dana_Rt{{@index}}"  
+                                                                            oninput="CalVachhatiAvakEntry()" class="form-control addgarufocus" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        <td></br></br><a onclick='deleteGaruGroupEntry(0)' style='cursor:pointer;'><i class='fa fa-times' style='font-size: 20px;color: red;margin-left:12px;'></i></a></td>
+                                                                    </tr>
+                                                                    {{/each}}
+                                                                    <tr id="Vachhati_Aavak_Entry_Group_Add">
+                                                                        <th><strong>Total Net Amt</strong></th>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td>
+                                                                             <input type="hidden" name="gst_TaxAmtTot5" value="{{VachhatiAavak.gst_TaxAmtTot5}}"  id="gst_TaxAmtTot5"/>
+                                                                            <input type="hidden" name="gst_TaxAmtTot12"value="{{VachhatiAavak.gst_TaxAmtTot12}}"   id="gst_TaxAmtTot12"/>
+                                                                            <input type="hidden" name="gst_TaxAmtTot18"value="{{VachhatiAavak.gst_TaxAmtTot18}}"   id="gst_TaxAmtTot18"/>
+                                                                        </td>
+                                                                        <td> 
+                                                                            <input type="text" name="tot_Amt" value="{{VachhatiAavak.tot_Amt}}" placeholder="Tot Net Amt"  id="tot_Amt" 
+                                                                            oninput="CalVachhatiAvakEntry()" class="form-control" style="text-align: -webkit-right;" readonly/>
+                                                                        </td>
+                                                                        <td></td>
+                                                                        <td>
+                                                                            <input type="hidden" name="tot_Qtty"  id="tot_Qtty"/>
+                                                                            <input type="hidden" name="tot_DisAmt"  id="tot_DisAmt"/>
+                                                                            <input type="hidden" name="tot_AmtBeforeDis"  id="tot_AmtBeforeDis"/>
+                                                                            <input type="hidden" name="tot_TaxAmt"  id="tot_TaxAmt"/>
+                                                                            <input type="hidden" name="tot_AmtBeforeTax"  id="tot_AmtBeforeTax"/>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                 <div class="row">
+                                                    <div class="col-sm-12">
+                                                      <button type="button" class="btn btn-primary addVachhatiEntry center-block nofocus" id="addgaru">Add Item</button>  
+                                                    </div>
+                                                </div> 
+                                                  <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="table-responsive adjustmentstable">
+                                                            <table class="table worksheet_repeat_row">
+                                                                <thead>
+
+                                                                    <tr>
+                                                                        <th>Particular(ADD)</th>
+                                                                        <th>Amount</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                     {{#each VachhatiAavak.add_details as |value key|}}
+                                                                    <tr>
+                                                                        <td>
+                                                                            <input type="hidden" name="saleadd" value="{{@index}}" id="saleadd{{@index}}" oninput='calVachhatiAddless({{@index}})'
+                                                                            class="form-control" style="width: 102px;text-align: -webkit-right;"/>
+                                                                            <select name="add_details[{{@index}}][particular_add]" placeholder="--Select--"  id="addparticular{{@index}}" style="text-align: -webkit-left;width: 450px;" class="form-control select2">
+                                                                                {{!-- <option value=""></option> --}}
+                                                                                 {{#each ../addmast}}
+                                                                                     <option value="{{this._id}}" data-serialnum="{{this._id}}"{{#equal ../this.particular_add id}} selected="" {{/equal}}>
+                                                                                         {{this.type_descr}}</option>
+                                                                                 {{/each}}
+                                                                                
+                                                                            </select>
+                                                                        </td>
+                                                                      
+                                                                        <td >
+                                                                             <input type="text" name="add_details[{{@index}}][particular_amount]"
+                                                                                id="AmountParticular{{@index}}" value="{{this.particular_amount}}" oninput='calVachhatiAddless({{@index}})' 
+                                                                                class="form-control  numerals number" value="0" style="text-align: -webkit-right;"
+                                                                                />
+                                                                                
+                                                                          </tr>
+                                                                          {{/each}}
+                                                                        
+                                                                        
+                                                                         <tr id="prabal_div"></tr>
+                                                                          
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="table-responsive adjustmentstable">
+                                                            <table class="table worksheet_repeat_row">
+                                                                <thead>
+                                                                   
+                                                                    <tr>
+                                                                        <th>Particular(Less)</th>
+                                                                        <th>Amount</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                     {{#each VachhatiAavak.less_details as |value key|}}
+                                                                    <tr>
+                                                                        <td>
+                                                                             <input type="hidden" name="saleless" value="{{@index}}" id="saleless{{@index}}" oninput='calVachhatiAddless({{@index}})'
+                                                                            class="form-control" style="width: 102px;text-align: -webkit-right;"/>
+                                                                              
+                                                                            <select name="less_details[{{@index}}][particular_less]" placeholder="--Select--" style="text-align: -webkit-left;width: 450px;" id="lessparticular{{@index}}" class="form-control partless_loadsi  select2">
+                                                                                 {{!-- {{#each lessmast}}
+                                                                                    <option value="{{this._id}}" data-val="{{this.type_descr}}" {{#equal ../this.type_descr id}} selected=""
+                                                                                    {{/equal}}>{{this.type_descr}}</option>
+                                                                                    
+                                                                                {{/each}} --}}
+
+                                                                                {{#each ../lessmast}}
+                                                                                     <option value="{{this._id}}"  data-val="{{this.type_descr}}" {{#equal ../this.particular_less id}} selected="" {{/equal}}>
+                                                                                         {{this.type_descr}}</option>
+                                                                                 {{/each}}
+                                                                            </select>
+                                                                        </td>
+                                                                      
+                                                                        <td>
+                                                                             <input type="text" name="less_details[{{@index}}][particular_amtless]"
+                                                                            id="particular_amtless{{@index}}"  value="{{this.particular_amtless}}" oninput='calVachhatiAddless({{@index}})' 
+                                                                            class="form-control addlessfocus numerals number"  value="0" style="text-align: -webkit-right;"/>
+
+                                                                            
+                                                                       </td>
+                                                                    
+                                                                    </tr>
+                                                                     {{/each}}
+                                                                    <tr id="vipul_div"></tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>   
+                                                 <div class="row">
+                                                    <div class="col-sm-6">
+                                                      <button type="button" class="btn btn-primary addGaruAdddetails center-block nofocus" id="add">Add Details</button>  
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                      <button type="button" class="btn btn-primary addGaruLessdetails center-block nofocus" id="add">Add Details</button>  
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>   
+                                         <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Remarks: </label>
+                                                            <div class="col-md-9">
+                                                                <textarea name="garu_Remarks"  value="{{VachhatiAavak.garu_Remarks}}" id="garu_Remarks" class="form-control delv_load">{{VachhatiAavak.garu_Remarks}}</textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                             <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Grand Total: </label>
+                                                            <div class="col-md-9">
+                                                                <input name="gross_Amt"  value="{{VachhatiAavak.gross_Amt}}" id="gross_Amt" tabindex="-1" class="form-control"></input>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                               
+                                                </div>
+                                             
+                                            <div class="panel-footer">
+                                                <div class="action clearfix">
+                                                    <div class="row">
+                                                        <div class="col-md-12" align="center">
+                                                            <button type="submit"  name="save" class="btn btn-success update-slord">Submit</button>
+                                                            <button type="reset" class="btn btn-danger" >Cancel</button>
+                                                            <a href="/Vachhati_Aavak_Entry/Vachhati_Aavak_Entry_List" class="btn btn-info" style="margin-top: 1.5em">Back</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </form>
+                                      </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+<div class="modal fade" role="dialog" id="addparty">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Add Party</h4>
+            </div>
+            <form method="POST" action="/party/contractlink_add" enctype="">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group form-md-line-input clearfix">
+                                <label for="" class="col-md-3 control-label">Party Type<span class="required"
+                                        aria-required="true">*</span></label>
+                                <div class="col-sm-12 col-md-8">
+                                    <div class="btn-group partymasterbuttons" role="group">
+                                        <button class="btn btn-default" data-active="no"
+                                            data-value="B" type="button">Buyer</button>
+                                        <button class="btn btn-default" data-active="no" data-value="S"
+                                            type="button">Seller</button>
+                                        <button class="btn btn-default" data-active="no" data-value="R"
+                                            type="button">Buyer
+                                            Broker</button>
+                                        <button class="btn btn-default" data-active="no" data-value="T"
+                                            type="button">Seller
+                                            Broker</button>
+                                    </div>
+                                    <input type="hidden" name="p_type[]" value="" id="bsrt" class=""
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group form-md-line-input clearfix">
+                                <label class="control-label col-md-3">Party Name<span class="required" aria-required="true">*</span></label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" required name="party_name" placeholder="Party Name"
+                                        value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group form-md-line-input clearfix">
+                                <label class="control-label col-md-3">Address 1</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="address1" placeholder="Address 1"
+                                        value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group form-md-line-input clearfix">
+                                <label class="control-label col-md-3">Address 2</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="address2" placeholder="Address 2"
+                                        value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group form-md-line-input clearfix">
+                                <label class="control-label col-md-3">Area Name</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="area_name" placeholder="Area Name"
+                                        value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group form-md-line-input clearfix">
+                                <label class="control-label col-md-3 itsalink" data-toggle="modal" data-target="#addcity">City
+                                    Name<span class="required" aria-required="true">*</span></label>
+                                <div class="col-md-9">
+                                    <!-- city_name -->
+                                    <select name="city_name" id="city_name" class="form-control city" required>
+                                        <option value=""></option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group form-md-line-input clearfix">
+                                <label class="control-label col-md-3">State Name<span class="required" aria-required="true">*</span></label>
+                                <div class="col-md-9">
+                                    <select name="state_name" id="state_name" placeholder="Please select state" class="form-control select2 state_name">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group form-md-line-input clearfix">
+                                <label class="control-label col-md-3">Pin Code</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control digits" name="pin_code" placeholder="Pin Code"
+                                        value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group form-md-line-input clearfix">
+                                <label class="control-label col-md-3">Credit Limit</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control digits" name="credit_limit" placeholder="Credit Limit"
+                                        value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group form-md-line-input clearfix">
+                                <label class="control-label col-md-3">PAN</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="pan_no" placeholder="PAN Number"
+                                        value="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group form-md-line-input clearfix">
+                                <label class="control-label col-md-3">GSTIN</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="gstin" placeholder="GSTIN" value="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                       
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary save-partyp">Save changes</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+ {{!-- fade --}}
+ 
+<div class="modal" tabindex="-1" role="dialog" id="deliverysupport" >
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content" style="margin-left: -38px; width: 1232px;">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Pending SalesOrder</h4>
+        </div>
+            <div class="modal-body">
+                                            {{!-- table that hides and shows on select --}}
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="table-responsive" style="display:none" id="delivery">
+                            <div class="brand_add_container clearfix">
+                                <div class="table-responsive adjustmentstable" style="margin-top: 40px;">
+                                    <table class="table">
+                                        <thead style="background-color:#4b77be;color: white;">
+                                            <tr>
+                                               <th>Item Name</th>
+                                                {{!-- <th>Pcs Per Pck</th> --}}
+                                                <th>Order Qty</th>
+                                                                           {{!-- <th>Rate</th> --}}
+                                                                          {{!-- <th>Discount</th> --}}
+                                                                          {{!-- <th>Total amount</th> --}}
+                                                <th>Sales Invoice Qty</th>
+                                                 </tr>
+                                        </thead>
+                                        <tbody class="dsi_repeat_row">
+                                            <tr>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class='addsauda'></div>
+
+                        </div>
+                    </div>
+                </div>
+                                            {{!-- end of row --}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="domesticsales_entry">Save changes</button>
+            </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+{{> footer_new}}
+{{> scripts_new}}

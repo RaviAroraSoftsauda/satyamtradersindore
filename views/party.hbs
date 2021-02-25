@@ -1,0 +1,605 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb pull-right">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    Add Party Masters
+                                </div>
+                                <div class="alert alert-success brandsuccess" style="display:none;"></div>
+                                <div class="alert alert-danger branddanger" style="display:none;"></div>
+                                <form method="POST" action="/party/party_add" class="form validate partyform" novalidate>
+                                    <div class="panel-body">
+                                        {{!-- <div class="form-group clearfix">
+                                            <div class="col-md-12">
+                                                <h3 class="form-section">Details</h3>
+                                            </div>
+                                        </div> --}}
+
+                                        <div class="form-group clearfix">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group form-md-line-input ">
+
+                                                    <label for="" class="col-md-3 control-label">Party Type<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                    <div class="col-sm-12 col-md-8">
+                                                        <div class="btn-group partymasterbuttons" role="group">
+                                                            <button class="btn btn-default" data-active="yes"
+                                                                data-value="B" type="button">Buyer</button>
+                                                            <button class="btn btn-default" data-active="no" data-value="S"
+                                                                type="button">Seller</button>
+                                                            <button class="btn btn-default" data-active="no" data-value="R"
+                                                                type="button">Buyer
+                                                                Broker</button>
+                                                            <button class="btn btn-default" data-active="no" data-value="T"
+                                                                type="button">Seller
+                                                                Broker</button>
+                                                        </div>
+                                                        <input type="hidden" name="p_type[]" value="" id="bsrt" class=""
+                                                            required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group clearfix">
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Party Name<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" required name="party_name"
+                                                            placeholder="Party Name" value="" autofocus>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Address 1</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="address1"
+                                                            placeholder="Address 1" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                             <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Short Name</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text"  class="form-control" name="partshortname"
+                                                            placeholder="Short Name" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Address 2</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="address2"
+                                                            placeholder="Address 2" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Area Name</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="area_name"
+                                                            placeholder="Area Name" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3 itsalink" data-toggle="modal"
+                                                        data-target="#addcity">City Name<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <!-- city_name -->
+                                                        <select name="city_name" id="city_name" class="form-control city"
+                                                            required>
+                                                            <option value=""></option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">State Name<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <select name="state_name" id="state_name" placeholder="Please select state"
+                                                            class="form-control select2 state_name">
+                                                            <option value=""></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Pin Code</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control digits"
+                                                            data-rule-minlength="6" data-rule-maxlength="6" name="pin_code"
+                                                            placeholder="Pin Code" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Credit Limit</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control digits" name="credit_limit"
+                                                            placeholder="Credit Limit" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">PAN</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="pan_no"
+                                                            placeholder="PAN Number" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">GSTIN</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="gstin"
+                                                            placeholder="GSTIN" value="" data-rule-minlength="15"
+                                                            data-rule-maxlength="15">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Phone(Off..)</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="phone_ofc"
+                                                            placeholder="Phone (Office)" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Phone(Resi.)</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="phone_resi"
+                                                            placeholder="Phone(Resi.)" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">FSSAI</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="fssai"
+                                                            placeholder="FSSAI" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                             <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">FSSAI DATE</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control datemask datepicker"  name="fssaidate"
+                                                            placeholder="FSSAI Date" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">FAX</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="fax" placeholder="Fax"
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Mobile sms</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="mob_no"
+                                                            placeholder="Mobile No.(sms)" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Mobile No.</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="mob_num"
+                                                            placeholder="Mobile No" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Mobile Username</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="prtyusername"
+                                                            placeholder="Username">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Mobile Password</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="partypassword"
+                                                            placeholder="Password">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Proprietor</label>
+                                                    <div class="col-md-9">
+                                                        <select name="proprietor_name" id="proprietor_name" class="form-control select2 proprietor_name" placeholder="Select Proprietor">
+                                                            {{#each proprietor}}
+                                                            <option value="{{this._id}}" data-serialnum="{{this._id}}">{{this.proprietor_name}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Group</label>
+                                                    <div class="col-md-9">
+                                                        <select name="group_name" id="group_name" class="select2 form-control group_name" placeholder="Select Group">
+                                                            {{#each group}}
+                                                            <option value="{{this._id}}" data-serialnum="{{this._id}}">{{this.group_name}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Category</label>
+                                                    <div class="col-md-9">
+                                                        <select name="category" id="category" class="select2 form-control category" placeholder="Select Category">
+                                                            <option value=""></option>
+                                                            {{#each category}}
+                                                            <option value="{{this._id}}" data-serialnum="{{this._id}}">{{this.category_name}}</option>
+                                                            {{/each}}
+                                                            {{!-- <option value="A">A</option>
+                                                            <option value="B">B</option>
+                                                            <option value="C">C</option>
+                                                            <option value="D">D</option>
+                                                            <option value="E">E</option> --}}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Category Tax</label>
+                                                    <div class="col-md-9">
+                                                        <select name="category_tax_name" id="category_tax_name" class="select2 form-control category_tax_name" placeholder="Select Category Tax">
+                                                            <option value=""></option>
+                                                            {{#each categorytax}}
+                                                            <option value="{{this._id}}" data-serialnum="{{this._id}}">{{this.category_tax_name}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Remark</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="remark"
+                                                            placeholder="Remark" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Envelope/<br>Working</label>
+                                                    <div class="col-md-9">
+                                                        <div class="md-checkbox-inline">
+                                                            <div class="md-checkbox">
+                                                                <input type="checkbox" name="working" id="working"
+                                                                    value="Y" class="md-check" checked>
+                                                                <label for="working">
+                                                                    <span></span>
+                                                                    <span class="check"></span>
+                                                                    <span class="box"></span> working </label>
+                                                            </div>
+                                                            <div class="md-checkbox">
+                                                                <input type="checkbox" id="envelope" class="md-check"
+                                                                    value="Y" name="envelope" checked>
+                                                                <label for="envelope">
+                                                                    <span></span>
+                                                                    <span class="check"></span>
+                                                                    <span class="box"></span> Envelope </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> --}}
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Envelope/<br>Working</label>
+                                                    <div class="col-md-9">
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="working" id="working" value="Y"
+                                                                class="" checked> Working
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" id="envelope" class="" value="Y"
+                                                                name="envelope" checked> Envelope
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="repeat clearfix">
+                                            <div class="form-group clearfix">
+                                                <div class="col-lg-12">
+                                                    <h3 class="form-section">Bank Accounts
+                                                        <input data-repeater-create type="button" value="+" class="btn btn-primary pull-right addbank" /></h3>
+                                                </div>
+                                            </div>
+                                            <div data-repeater-list="party_bank">
+                                                <div class="form-group bankrow clearfix" data-repeater-item>
+                                                    <button class="delbankbtn" data-repeater-delete type="button"><i
+                                                            class="fa fa-close"></i> </button>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="control-label col-md-3">Bank Name</label>
+                                                            <div class="col-md-9">
+                                                                <select class="form-control bank_name select2" name="bank_name"
+                                                                    placeholder="Please Select Bank">
+                                                                    <option value="">Select Bank</option>
+                                                                    {{#each bank}}
+                                                                    <option value="{{this._id}}" data-serialnum="{{this._id}}">{{this.bank_name}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="control-label col-md-3">IFSC Code</label>
+                                                            <div class="col-md-9">
+                                                                <input class="form-control" name="ifc_code" placeholder="IFSC Code"
+                                                                    type="text" autocomplete="off" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="control-label col-md-3">Account No</label>
+                                                            <div class="col-md-9">
+                                                                <input class="form-control" type="text" placeholder="Account No"
+                                                                    name="account_no" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="control-label col-md-3">Branch Name</label>
+                                                            <div class="col-md-9">
+                                                                <input class="form-control" type="text" placeholder="Branch"
+                                                                    name="branch_name" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- end of repeater item --}}
+                                            </div>
+                                        </div>
+                                        <div class="repeat clearfix">
+                                            <div class="form-group clearfix">
+                                                <div class="col-lg-12">
+                                                    <h3 class="form-section">Contact Details <input
+                                                            data-repeater-create type="button" value="+" class="btn btn-primary pull-right addcontact" /></h3>
+                                                </div>
+                                            </div>
+
+                                            <div data-repeater-list="contact_group">
+                                                <div class="form-group contactrow clearfix" data-repeater-item>
+                                                    <button class="delcontbtn" data-repeater-delete type="button"><i
+                                                            class="fa fa-close"></i> </button>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="control-label col-md-3">Contact</label>
+                                                            <div class="col-md-9">
+                                                                <input class="form-control" name="contact_no"
+                                                                    placeholder="Contact" type="text" autocomplete="off" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="control-label col-md-3">Mobile</label>
+                                                            <div class="col-md-9">
+                                                                <input class="form-control" name="mobile_no"
+                                                                    placeholder="Mobile" type="text" autocomplete="off" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="control-label col-md-3">Email</label>
+                                                            <div class="col-md-9">
+                                                                <input class="form-control" name="email_id" placeholder="Email"
+                                                                    type="text" autocomplete="off" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="control-label col-md-3">Document</label>
+                                                            <div class="col-md-9">
+                                                                <select name="document" class="form-control select2"
+                                                                    placeholder="Please Select Document">
+                                                                    <option value=""></option>
+                                                                    <option value="fsd">All</option>
+                                                                    <option value="dsf">Contract Form</option>
+                                                                    <option value="dsf">Delivery Entry</option>
+                                                                    <option value="dsf">Payment Entry</option>
+                                                                    <option value="dfs">Cash/Bank Book</option>
+                                                                    <option value="sds">Journal Entry</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{!-- end of panel-body --}}
+                                    <div class="panel-footer">
+                                        <div class="action clearfix">
+                                            <div class="col-md-6">
+                                                <div class="col-md-9 col-md-push-3">
+                                                    <button type="submit" name="save" class="btn btn-success save-party">Submit</button>
+                                                    <button type="reset" class="btn btn-danger">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{!-- end of panel-footer --}}
+                                </form>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+
+
+{{!-- Modal --}}
+<div class="modal fade" role="dialog" id="addcity">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Add City</h4>
+            </div>
+            <form method="POST" action="/party/city_add" enctype="">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group form-md-line-input clearfix">
+                            <label class="control-label col-md-3">City Name:</label>
+                            <div class="col-md-9">
+                                <input class="form-control city_name" required placeholder="City Name" name="city_name"
+                                    type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group form-md-line-input clearfix">
+                            <label class="control-label col-md-3">District Name:</label>
+                            <div class="col-md-9">
+                                <select class="form-control dis_name select2" required name="dis_name" id="dis_name">
+                                    <option>District Name</option>
+                                    {{#each district_master}}
+                                    <option value="{{this._id}}" data-dis_id="{{this.state_id}}">{{this.dis_name}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group form-md-line-input clearfix">
+                            <label class="control-label col-md-3">State Name:</label>
+                            <div class="col-md-9 state_name_div">
+                                <select class="form-control state_name select2" required name="state_name" id="state_name">
+                                    {{#each state_master}}
+                                    <option value="{{this._id}}">{{this.state_name}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group form-md-line-input clearfix">
+                            <label class="control-label col-md-3">City Pincode:</label>
+                            <div class="col-md-9">
+                                <input class="form-control city_code" data-rule-minlength="6" data-rule-maxlength="6"
+                                    placeholder="City Pincode" name="city_code" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group form-md-line-input clearfix">
+                            <label class="control-label col-md-3">Std Code:</label>
+                            <div class="col-md-9">
+                                <input class="form-control city_std_code" data--rule-minlength="3" data-rule-maxlength="4"
+                                    placeholder="Std Code" name="city_std_code" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{!-- end of modal body --}}
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success save-form">Save changes</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+{{> footer_new}}
+{{> scripts_new}}

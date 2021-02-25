@@ -1,0 +1,393 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb pull-right">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{#if err}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{err}}</strong>
+                                    </div>
+                                    {{/if}}
+                                    {{#if errors}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{errors}}</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            {{!-- end of alerts row --}}
+                            <div class="row">
+                                <div class="col-sm-12">
+                                  <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                      Loan Entry Update
+                                        </div>
+                                        <form method="POST" action="/loan_entry/update/{{cashmast._id}}" class="" novalidate
+                                            enctype="" id="contract_sauda">
+                                           <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+
+                                                            <label class="col-sm-3 control-label">Entry No: </label>
+                                                              <div class="col-md-5">
+                                                                <select class="form-control"   name="cashtypebank" id="cashtypebank">
+                                                                    {{!-- <option value="{{cashmast.cashtypebank}}"></option> --}}
+                                                                    <option value="CV" >CV</option>
+                                                                      <option value="BK">BK</option>
+                                                                       
+                                                               </select>
+                                                            </div>
+                                                            {{!-- <div class="col-md-3">
+                                                                <input name="cash_eno" placeholder="Entry No" id="casheno" class="form-control " tabindex="1" 
+                                                                />
+                                                            </div> --}}
+                                                             <div class="col-md-4">
+                                                                <input type="text" name="vouc_code" placeholder="Deal Number" 
+                                                                    value="{{ cashmast.vouc_code}}"  class="form-control vouc_code"
+                                                                    tabindex="2"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+
+                                                            <label class="col-sm-3 control-label">Entry Date: </label>
+                                                            
+                                                             <div class="col-md-3">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control datemask"
+                                                                        name="cash_edate" id="offerstartdate" value="{{dateformat Date.now 'DD/MM/YYYY'}}"
+                                                                        autocomplete="off" tabindex="3" autofocus />
+                                                                    <span class="input-group-btn">
+                                                                        {{!-- <button class="btn default date-range-toggle isprop"
+                                                                            type="button" id="offerstartdatebtn"
+                                                                            tabindex="-1">
+                                                                            <i class="fa fa-calendar"></i>
+                                                                        </button> --}}
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <label class="col-sm-3 control-label">Clearing Date </label>
+                                                            
+                                                             <div class="col-md-3">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control datemask"
+                                                                        name="clearing_date" id="offerstartdate" value="{{dateformat Date.now 'DD/MM/YYYY'}}"
+                                                                        autocomplete="off" tabindex="3" autofocus />
+                                                                    <span class="input-group-btn">
+                                                                        {{!-- <button class="btn default date-range-toggle isprop"
+                                                                            type="button" id="offerstartdatebtn"
+                                                                            tabindex="-1">
+                                                                            <i class="fa fa-calendar"></i>
+                                                                        </button> --}}
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                             
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+
+                                                     <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+
+                                                            <label class="col-sm-3 control-label">Party Code </label>
+                                                            
+                                                             <div class="col-md-9">
+                                                                <div class="input-group contradetail">
+                                                                   <select name="cashac_name" id="cashac_name" class="form-control partynamename" style="width: 100%;text-align: -webkit-right;">
+                                                                             <option value="{{cashmast.cashac_name}}">{{cashmast.cashac_name.ACName}}</option>
+                                                                             
+                                                                            </select>
+                                                                 </div>
+                                                            </div>
+                                                             
+                                                        </div>
+                                                    </div>
+
+                                                      <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+
+                                                            <label class="col-sm-3 control-label">Type: </label>
+                                                            
+                                                             <div class="col-md-9">
+                                                                <div class="input-group">
+                                                                   <select class="form-control prbank select2"  name="cash_type" id="cashtype" placeholder="Select Type">
+                                                                      <option value="{{cashmast.cash_type}}" selected>{{cashmast.cash_type}}</option>
+                                                                      <option value="RECEIPT" >RECEIPT</option>
+                                                                      <option value="PAYMENT">PAYMENT</option>
+                                                                       {{!-- <option value="CONTRA">CONTRA</option> --}}
+                                                                    </select>
+                                                                 </div>
+                                                            </div>
+                                                             
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                    <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+
+                                                            <label class="col-sm-3 control-label">Broker Code </label>
+                                                            
+                                                             <div class="col-md-9">
+                                                                <div class="input-group contradetail">
+                                                                   <select name="broker_code" id="cashac_name" class="form-control broker_Code" style="width: 100%;text-align: -webkit-right;">
+                                                                             <option value="{{cashmast.broker_code}} ">{{cashmast.broker_code.ACName}}</option>
+                                                                             {{!-- {{#each model}}
+                                                                               <option value="{{this.id}}" {{#equal ../cashmast.ACName id}} selected=""{{/equal}}>{{this.cashac_name}}</option>
+                                                                              {{/each}} --}}
+                                                                            </select>
+                                                                 </div>
+                                                            </div>
+                                                             
+                                                        </div>
+                                                    </div>
+
+                                                     <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Through/Haste </label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control ac_code" placeholder="Through Haste"
+                                                            name="through" value="{{cashmast.through}}" type="text" >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+
+                                            <div class="row">
+                                             <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Loan Period </label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control ac_code" placeholder="Days"
+                                                            name="loan_period" value="{{cashmast.loan_period}}" type="text" >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+
+                                           
+                                            <div class="row">
+                                             <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Loan Term </label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control ac_code" placeholder="Loan Term"
+                                                            name="loan_term" value="{{cashmast.loan_term}}" type="text" >
+                                                    </div>
+                                                </div>
+                                            </div>
+  
+                                            <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+
+                                                            <label class="col-sm-3 control-label">Fixed </label>
+                                                            
+                                                             <div class="col-md-3">
+                                                                <div class="input-group">
+                                                                    <input class="form-control ac_code" placeholder="Fixed"
+                                                                      name="fixed" value="{{cashmast.fixed}}" type="text" >
+                                                                
+                                                                </div>
+                                                            </div>
+                                                            <label class="col-sm-3 control-label">Open </label>
+                                                            
+                                                             <div class="col-md-3">
+                                                                <div class="input-group">
+                                                                     <input class="form-control ac_code" placeholder="Open"
+                                                            name="open" value="{{cashmast.open}}" type="text" >
+                                                                   
+                                                                </div>
+                                                            </div>
+                                                             
+                                                        </div>
+                                                    </div>
+                                                    </div>
+
+                                            
+
+                                             <div class="row">
+                                             <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Interest rate </label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control ac_code" placeholder="% P.A."
+                                                            name="interest_rate" value="{{cashmast.interest_rate}}" type="text" >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                             <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Loan Amount </label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control ac_code" placeholder="Loan Amount"
+                                                            name="cash_amount" value="{{cashmast.cash_amount}}" type="text" >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+
+                                        <div class="row">
+                                             <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Bank Commission </label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control ac_code" placeholder="Bank Commission"
+                                                            name="bank_commission" value="{{cashmast.bank_commission}}" type="text" >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                             <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Merge With Cheque Amount </label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control ac_code" placeholder="Merge With Cheque Amount"
+                                                            name="merge_amount" value="{{cashmast.merge_amount}}" type="text" >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            
+
+                                            
+                                            
+                                                     
+                                                    {{!-- end of col --}}
+                                                    <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group clearfix">
+                                                           <label class="control-label col-md-3">Cash/Bank</label>
+                                                            <div class="col-md-9">
+                                                                <div class="input-group select2-bootstrap-prepend">
+                                                                 <select name="cash_bank_name" id="cash_bank_name" class="form-control cashbankname"
+                                                                        required>
+                                                                        <option value="{{cashmast.cash_bank_name._id}}" selected>{{cashmast.cash_bank_name.ACName}}</option>
+                                                                        </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                         <div class="row">
+                                             <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Cheque No </label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control ac_code" placeholder="Cheque No"
+                                                            name="cheque_no" value="{{cashmast.cheque_no}}" type="text" >
+                                                    </div>
+                                                </div>
+                                            </div>
+  
+                                           <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">UTR No </label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control ac_code" placeholder="UTR No"
+                                                            name="utr_no" value="{{cashmast.utr_no}}" type="text" >
+                                                    </div>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                            </div>
+                                        <div class="row">
+                                             <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Drawee Bank Branch </label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control ac_code" placeholder="Drawee Bank Branch"
+                                                            name="drawee_bank" value="{{cashmast.drawee_bank}}" type="text" >
+                                                    </div>
+                                                  </div>
+                                              </div>
+                                               <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Remarks: </label>
+                                                            <div class="col-md-9">
+                                                                <textarea name="cash_remarks" id="cash_remarks" class="form-control delv_load">{{cashmast.cash_remarks}}</textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        </div>
+                    
+                        
+                                               
+                                            <div class="panel-footer">
+                                                <div class="action clearfix">
+                                                    <div class="col-md-12">
+                                                        <div align="center">
+                                                            <button type="submit" name="save" class="btn btn-success">Submit</button>
+                                                            <button type="reset" class="btn btn-danger">Cancel</button>
+                                                            <a href="/cash_bank/cash_bank_list" class="btn btn-info" style="margin-top: 1.5em">Back</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </form>
+                       </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

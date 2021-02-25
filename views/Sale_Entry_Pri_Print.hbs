@@ -1,0 +1,460 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<style>
+body { 
+  font-size: 12px; 
+}
+@media print {
+    @page{
+        margin-top: 1em;
+        margin-left: 0.5em;
+        margin-right: 2px;
+        margin-bottom: 0.5em;
+    }
+   #table{
+       width: 100%;
+   }
+   #table1{
+       width: 100%;
+   }
+}
+ .tabler>tbody>tr>td, .tabler>tbody>tr>th, .tabler>tfoot>tr>td, .tabler>tfoot>tr>th, .tabler>thead>tr>td, .tabler>thead>tr>th {
+    padding: 0px;
+    line-height: 1.42857143;
+    
+}
+.inline { 
+    display: inline-block; 
+    margin:1px;
+}
+
+    
+.rohit {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 570px;
+    height: 19px;
+    padding: 0px;
+}
+</style>
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <div class="page-container">
+            <div class="page-content-wrapper">
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <div class="page-title">
+                           <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                    </ul>
+                                </small>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 95%; margin: 1%" align="center" >
+                    <table class="tabler" id="table1" style="width: 100%;">
+                        <tr style="height: 13.9em">
+                            <td style="width: 10em"></td>
+                            <td style="width: 10em"></td>
+                            <td style="width: 10em"></td>
+                            <td style="width: 10em"></td>
+                            <td style="width: 10em"></td>
+                            <td style="width: 10em"></td>
+                            <td style="width: 10em"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" style="text-align: left; font-size: 16px;"> 
+                                </br>
+                                <b style="font-size: 22px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{GaruAavak.party_Code.ACName}}</b></br>
+                                <div class="rohit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{GaruAavak.party_Code.CityName.CityName}},{{GaruAavak.party_Code.Area}}</div>
+                                <div class="rohit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{GaruAavak.party_Code.Address1}}</div>
+                                <div class="rohit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{GaruAavak.party_Code.ac_add2}}</div>
+                            </td>
+                            <td colspan="2" style="font-size: 16px;padding-top: 10px;" valign="top">
+                                <strong style="font-size: 18px;">{{GaruAavak.vouc_code}}</strong></br>
+                                {{dateformat GaruAavak.entry_Date "DD/MM/YYYY"}}</br>
+                                {{GaruAavak.lorry_Wagon_No}}</br>
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align: left; font-size: 14px;padding-top: 0px"> 
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{GaruAavak.party_Code.GSTIN}}</br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{GaruAavak.broker_Code.ACName}}
+                            </td>
+                            <td colspan="4" style="text-align: left; font-size: 14px;padding-top: 0px"> 
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{GaruAavak.party_Code.ac_fccino}}<a style="color: black;font-size: 13px;float: right;margin-right: 4.5em">PAN&nbsp; &nbsp;&nbsp;{{#ifCond GaruAavak.party_Code.PanNumber ''}}&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;{{/ifCond}}{{GaruAavak.party_Code.PanNumber}}</a></br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SALESMAN : &nbsp;{{GaruAavak.sl_Person.ACName}}
+                            </td>
+                            {{!-- <td colspan="2" style="text-align: left; font-size: 14px;" valign="top">
+                                <a style="color: black;font-size: 12px">{{GaruAavak.sl_Person.ACName}}</a>
+                            </td> --}}
+                        </tr>
+                    </table>
+                    <table class="tabler" align="center" id="table" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left; font-size: 14px;  width: 6em;padding: 2px">&nbsp;</th>
+                                <th style="text-align: right; font-size: 14px; width: 6em;padding: 2px">&nbsp;</th>
+                                <th style="text-align: right; font-size: 14px; width: 4em;padding: 2px">&nbsp;</th>
+                                <th style="text-align: right; font-size: 14px; width: 4em;padding: 2px">&nbsp;</th>
+                                <th style="text-align: right; font-size: 14px; width: 6em;padding: 2px">&nbsp;</th>
+                                <th style="text-align: right; font-size: 14px; width: 6em;padding: 2px">&nbsp;</th>
+                                <th style="text-align: right; font-size: 14px; width: 5em;padding: 2px">&nbsp;</th>
+                                <th style="text-align: right; font-size: 14px; width: 4.5em;padding: 2px">&nbsp;</th>
+                                <th style="text-align: right; font-size: 14px; width: 4.5em;padding: 2px">&nbsp;</th>
+                                <th style="text-align: right; font-size: 14px; width: 5em;padding: 2px">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="2" style="text-align: left; font-size: 12px; height: 18.5em;padding-left: 21px;" valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}}{{#ifLessThen @index 5}}{{#CheckItemtitleLength groupvalue.item_Code_Desc.item_title}}{{/CheckItemtitleLength}}<a style="float: right;color: black">{{groupvalue.item_Code_Desc.apmc_code}}</a></br>{{/ifLessThen}}{{/each}}</td>
+                                {{!-- <td style="text-align: center; font-size: 14px;" valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}} {{groupvalue.item_Code_Desc.apmc_code}}</br> {{/each}}</td> --}}
+                                <td style="text-align: right; font-size: 14px;padding-right: 7px" valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}}{{#ifLessThen @index 5}} {{groupvalue.qntty}}</br></br>{{/ifLessThen}}{{/each}}</td>
+                                <td style="text-align: center; font-size: 12px;;" valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}}{{#ifLessThen @index 5}} {{groupvalue.net_Wt}}</br></br> {{/ifLessThen}}{{/each}}</td>
+                                <td style="text-align: left; font-size: 12px;;" valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}}{{#ifLessThen @index 5}} {{groupvalue.rate}}</br></br> {{/ifLessThen}}{{/each}}</td>
+                                <td style="text-align: left; font-size: 12px;;"   valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}}{{#ifLessThen @index 5}} {{groupvalue.amount}}</br></br> {{/ifLessThen}}{{/each}}</td>
+                                <td style="text-align: left; font-size: 12px;;"   valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}}{{#ifLessThen @index 5}} {{#CalPlusMinusAmt groupvalue.amount groupvalue.apmc_Amount ../GaruAavak.tot_AmtBeforeTax ../GaruAavak.less_details ../AddLessParameter ../GaruAavak.garu_Aavak_Group}}{{/CalPlusMinusAmt}}</br></br>{{/ifLessThen}}{{/each}}</td>
+                                <td style="text-align: left; font-size: 12px;;"   valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}}{{#ifLessThen @index 5}} {{#CalGstRateSaleBillPrePrint groupvalue.GST ../GaruAavak.add_details ../AddLessParameter}}{{/CalGstRateSaleBillPrePrint}}</br> {{/ifLessThen}}{{/each}}</td>
+                                <td style="text-align: left; font-size: 12px;;"   valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}}{{#ifLessThen @index 5}} {{#CalGstAmtInSaleBillPrePrint groupvalue.GST groupvalue.amount ../GaruAavak.add_details ../AddLessParameter groupvalue.apmc_Amount ../GaruAavak.tot_AmtBeforeTax ../GaruAavak.less_details ../GaruAavak.garu_Aavak_Group}}{{/CalGstAmtInSaleBillPrePrint}}</br>{{/ifLessThen}}{{/each}}</td>
+                                <td style="text-align: right; font-size: 12px;;"  valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}}{{#ifLessThen @index 5}} {{#TotAmtInSaleBillPrePrint groupvalue.amount groupvalue.apmc_Amount ../GaruAavak.tot_AmtBeforeTax ../GaruAavak.less_details ../AddLessParameter ../GaruAavak.garu_Aavak_Group}}{{/TotAmtInSaleBillPrePrint}}</br></br> {{/ifLessThen}}{{/each}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="2" style="text-align: left; font-size: 14px;padding-left: 21px;" valign="top"><b>TOTAL</b>&nbsp;&nbsp;</td>
+                                <td style="text-align: center; font-size: 14px;"  valign="top"><b>{{#totQttyInSaleEntry GaruAavak.garu_Aavak_Group}}{{/totQttyInSaleEntry}}</b></td>
+                                <td style="text-align: center; font-size: 14px;"  valign="top"><b>{{#tot_netWtInSaleEntry GaruAavak.garu_Aavak_Group}}{{/tot_netWtInSaleEntry}}</b></td>
+                                <td style="text-align: left; font-size: 14px; padding-left: 4px;"  valign="top"></td>
+                                <td style="text-align: left; font-size: 14px;"  valign="top"><b>{{#tot_AmountInSaleBillPrint GaruAavak.garu_Aavak_Group}}{{/tot_AmountInSaleBillPrint}}<b></td>
+                                <td colspan="2" style="font-size: 14px;" valign="top"><b>{{#CalTotPlusMinusAmtInSaleBillPrint GaruAavak.tot_AmtBeforeTax GaruAavak.less_details AddLessParameter GaruAavak.garu_Aavak_Group}}{{/CalTotPlusMinusAmtInSaleBillPrint}}</b></td>
+                                <td style="text-align: left"><b>TOTAL</b></td>
+                                <td style="text-align: right"><b>{{#tot_AmountWithAPMCInSaleBillPrint GaruAavak.tot_AmtBeforeTax GaruAavak.less_details AddLessParameter GaruAavak.garu_Aavak_Group}}{{/tot_AmountWithAPMCInSaleBillPrint}}</b></td>
+                            </tr>
+                            <tr>
+                                <td colspan="8" style="font-weight: 600;font-size: 11px;padding-left: 21px;">
+                                    <table class="inline" style="margin-right: -3px;">
+                                        <tr style="border-bottom: 1px solid black">
+                                            {{#CalApmcDesInSbPrint GaruAavak.add_details AddLessParameter}}{{/CalApmcDesInSbPrint}}
+                                            {{#each GaruAavak.add_details as |groupvalue key|}}
+                                            {{#each ../AddLessParameter as |group key|}}
+                                            {{#ifCondNot group.Description 'APMC'}}
+                                            {{#ifCond_id groupvalue.particular_add group._id}}
+                                            {{#ifGreter groupvalue.particular_amount 0}}<td style="padding-top: 1px;padding-bottom: 1px;padding-right: 4px;padding-left: 4px;text-align: left;"><b style="text-transform: uppercase">{{group.Description}}{{group.Value}}</b></td>{{/ifGreter}}
+                                            {{/ifCond_id}}
+                                            {{/ifCondNot}}
+                                            {{/each}}
+                                            {{/each}}
+                                        </tr>  
+                                        <tr>
+                                            {{#CalApmcAmtInSbPrint GaruAavak.add_details AddLessParameter}}{{/CalApmcAmtInSbPrint}}
+                                            {{#each GaruAavak.add_details as |groupvalue key|}}
+                                            {{#each ../AddLessParameter as |group key|}}
+                                            {{#ifCondNot group.Description 'APMC'}}
+                                            {{#ifCond_id groupvalue.particular_add group._id}}
+                                            {{#ifGreter groupvalue.particular_amount 0}}<td style="padding-top: 1px;padding-bottom: 1px;padding-right: 4px;padding-left: 4px;text-align: left"><b>{{groupvalue.particular_amount}}</b></td>{{/ifGreter}}
+                                            {{/ifCond_id}}
+                                            {{/ifCondNot}}
+                                            {{/each}}
+                                            {{/each}}
+                                        </tr>
+                                    </table>
+                                    <table class="inline" style="margin-left: -3px;">
+                                        <tr style="border-bottom: 1px solid black">
+                                            {{#each GaruAavak.less_details as |groupvalue key|}}
+                                            {{#each ../AddLessParameter as |group key|}}
+                                            {{#ifCond_id groupvalue.particular_less group._id}}
+                                            {{#ifGreter groupvalue.particular_amtless 0}}<td style="padding-top: 1px;padding-bottom: 1px;padding-right: 4px;padding-left: 4px;text-align: left"><b style="text-transform: uppercase">{{group.Description}} {{group.Value}}</b></td>{{/ifGreter}}
+                                            {{/ifCond_id}}
+                                            {{/each}}
+                                            {{/each}}
+                                        </tr>  
+                                        <tr>
+                                            {{#each GaruAavak.less_details as |groupvalue key|}}
+                                            {{#each ../AddLessParameter as |group key|}}
+                                            {{#ifCond_id groupvalue.particular_less group._id}}
+                                            {{#ifGreter groupvalue.particular_amtless 0}}<td style="padding-top: 1px;padding-bottom: 1px;padding-right: 4px;padding-left: 4px;text-align: left"><b>-{{groupvalue.particular_amtless}}</b></td>{{/ifGreter}}
+                                            {{/ifCond_id}}
+                                            {{/each}}
+                                            {{/each}}
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td style="text-align: left">GST5%</br>OTHER</td>
+                                <td style="text-align: right">
+                                    {{#tot_GSTWithAPMCInSaleBillPrint GaruAavak.add_details AddLessParameter}}{{/tot_GSTWithAPMCInSaleBillPrint}}</br>
+                                    {{#tot_OTHERWithAPMCInSaleBillPrint GaruAavak.add_details GaruAavak.less_details AddLessParameter}}{{/tot_OTHERWithAPMCInSaleBillPrint}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6"></td>
+                                <td valign="bottom" colspan="2"  style="font-size:14px; text-align: center;height: 5em; font-size: 12px;">
+                                    </br>
+                                    </br>
+                                    <b style="font-size: 20px;margin-right: 20px">{{division.Delivery}}</b>
+                                </td>
+                                <td colspan="2" style="text-align: right; font-size: 17px;">
+                                    <b style="float: right">{{GaruAavak.gross_Amt}}</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td  colspan="7" style="font-size:14px; text-align: left; height: 7em; font-size: 16px;"></td>
+                                <td  colspan="3" style="height: 7em;"></td>
+                            </tr>
+                            <tr>
+                                <td  colspan="7" valign="top"  style="padding-left: 21px;padding-top: 25px">
+                                    </br>
+                                    {{GaruAavak.party_Code.ACName}},{{GaruAavak.party_Code.CityName.CityName}}</br>
+                                    <a style="font-size: 11px;">{{GaruAavak.party_Code.Area}},{{GaruAavak.party_Code.Address1}}</a></br>
+                                    <a style="font-size: 11px;">{{GaruAavak.party_Code.ac_add2}}</a></br>
+                                    <a style="font-size: 11px;">{{GaruAavak.broker_Code.ACName}}</a>
+                                </td>
+                                <td colspan="3" valign="top"  style="font-size:14px; text-align: left; height: 7em; font-size: 17px;  padding-bottom: 7px;padding-top: 22px; padding-left: 55px; padding-right: 0px;">
+                                    {{!-- </br> --}}
+                                    <b style="font-size: 20px;">{{division.Delivery}}</b></br>
+                                    {{GaruAavak.vouc_code}}</br>
+                                    {{dateformat GaruAavak.entry_Date "DD/MM/YYYY"}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th colspan="4" style="text-align: left; font-size: 14px;">&nbsp;</th>
+                                <th style="text-align: right; font-size: 14px;">&nbsp;</th>
+                                <th style="text-align: right; font-size: 14px;">&nbsp;</th>
+                                <th style="text-align: right; font-size: 14px;">&nbsp;</th>
+                                <th colspan="3" style="text-align: right; font-size: 14px;">&nbsp;</th>
+                            </tr> 
+                            <tr>
+                                <td colspan="4" valign="top"  style="font-size:12px; text-align: left; height: 6em;padding-left: 21px;"> 
+                                    {{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}}{{#ifLessThen @index 5}}{{#CheckItemtitleLength groupvalue.item_Code_Desc.item_title}}{{/CheckItemtitleLength}}<a style="float: right;color: black">{{groupvalue.item_Code_Desc.apmc_code}}</a></br>{{/ifLessThen}}{{/each}}
+                                </td>
+                                <td colspan="1" valign="top"  style="font-size:12px; text-align: right; height: 6em;">
+                                    {{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}}{{#ifLessThen @index 5}} {{groupvalue.qntty}}</br></br> {{/ifLessThen}}{{/each}}
+                                </td>
+                                <td  colspan="1" valign="top"  style="font-size:12px; text-align: right; height: 6em;">
+                                    {{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}}{{#ifLessThen @index 5}} {{groupvalue.net_Wt}}</br></br> {{/ifLessThen}}{{/each}}
+                                </td>
+                                <td  colspan="1" valign="top"  style="font-size:12px; text-align: right; height: 6em;">
+                                    {{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}}{{#ifLessThen @index 5}} {{groupvalue.rate}}</br></br> {{/ifLessThen}}{{/each}}
+                                </td>
+                                <td  colspan="3" valign="top"  style="font-size:14px; text-align: center; height: 6em;">
+                                    <b>TRANSPORT CODE </br>{{GaruAavak.party_Code.ac_transportCode}}</b>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+
+                    {{#ifGreter length 3}}
+                    <table class="tabler" id="table1" style="width: 100%;">
+                        <tr style="height: 13.9em">
+                            <td style="width: 10em"></td>
+                            <td style="width: 10em"></td>
+                            <td style="width: 10em"></td>
+                            <td style="width: 10em"></td>
+                            <td style="width: 10em"></td>
+                            <td style="width: 10em"></td>
+                            <td style="width: 10em"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" style="text-align: left; font-size: 16px;"> 
+                                </br>
+                                <b style="font-size: 22px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{GaruAavak.party_Code.ACName}}</b></br>
+                                <div class="rohit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{GaruAavak.party_Code.CityName.CityName}},{{GaruAavak.party_Code.Area}}</div>
+                                <div class="rohit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{GaruAavak.party_Code.Address1}}</div>
+                                <div class="rohit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{GaruAavak.party_Code.ac_add2}}</div>
+                            </td>
+                            <td colspan="2" style="font-size: 16px;padding-top: 10px;" valign="top">
+                                <strong style="font-size: 18px;">{{GaruAavak.vouc_code}}</strong></br>
+                                {{dateformat GaruAavak.entry_Date "DD/MM/YYYY"}}</br>
+                                {{GaruAavak.lorry_Wagon_No}}</br>
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align: left; font-size: 14px;padding-top: 0px"> 
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{GaruAavak.party_Code.GSTIN}}</br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{GaruAavak.broker_Code.ACName}}
+                            </td>
+                            <td colspan="4" style="text-align: left; font-size: 14px;padding-top: 0px"> 
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{GaruAavak.party_Code.ac_fccino}}<a style="color: black;font-size: 13px;float: right;margin-right: 4.5em">PAN&nbsp; &nbsp;&nbsp;{{#ifCond GaruAavak.party_Code.PanNumber ''}}&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;{{/ifCond}}{{GaruAavak.party_Code.PanNumber}}</a></br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SALESMAN : &nbsp;{{GaruAavak.sl_Person.ACName}}
+                            </td>
+                            {{!-- <td colspan="2" style="text-align: left; font-size: 14px;" valign="top">
+                                <a style="color: black;font-size: 12px">{{GaruAavak.sl_Person.ACName}}</a>
+                            </td> --}}
+                        </tr>
+                    </table>
+                    <table class="tabler" align="center" id="table" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left; font-size: 14px;  width: 6em;padding: 2px">&nbsp;</th>
+                                <th style="text-align: right; font-size: 14px; width: 6em;padding: 2px">&nbsp;</th>
+                                <th style="text-align: right; font-size: 14px; width: 4em;padding: 2px">&nbsp;</th>
+                                <th style="text-align: right; font-size: 14px; width: 4em;padding: 2px">&nbsp;</th>
+                                <th style="text-align: right; font-size: 14px; width: 6em;padding: 2px">&nbsp;</th>
+                                <th style="text-align: right; font-size: 14px; width: 6em;padding: 2px">&nbsp;</th>
+                                <th style="text-align: right; font-size: 14px; width: 5em;padding: 2px">&nbsp;</th>
+                                <th style="text-align: right; font-size: 14px; width: 4.5em;padding: 2px">&nbsp;</th>
+                                <th style="text-align: right; font-size: 14px; width: 4.5em;padding: 2px">&nbsp;</th>
+                                <th style="text-align: right; font-size: 14px; width: 5em;padding: 2px">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="2" style="text-align: left; font-size: 12px; height: 18.5em;padding-left: 21px;" valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}}{{#ifGreter @index 3}}{{#ifLessThen @index 9}}{{#CheckItemtitleLength groupvalue.item_Code_Desc.item_title}}{{/CheckItemtitleLength}}<a style="float: right;color: black">{{groupvalue.item_Code_Desc.apmc_code}}</a></br>{{/ifLessThen}}{{/ifGreter}}{{/each}}</td>
+                                {{!-- <td style="text-align: center; font-size: 14px;" valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}} {{groupvalue.item_Code_Desc.apmc_code}}</br> {{/each}}</td> --}}
+                                <td style="text-align: right; font-size: 14px;padding-right: 7px" valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}}{{#ifGreter @index 3}}{{#ifLessThen @index 9}} {{groupvalue.qntty}}</br></br>{{/ifLessThen}}{{/ifGreter}}{{/each}}</td>
+                                <td style="text-align: center; font-size: 12px;;" valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}}{{#ifGreter @index 3}}{{#ifLessThen @index 9}} {{groupvalue.net_Wt}}</br></br> {{/ifLessThen}}{{/ifGreter}}{{/each}}</td>
+                                <td style="text-align: left; font-size: 12px;;" valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}}{{#ifGreter @index 3}}{{#ifLessThen @index 9}} {{groupvalue.rate}}</br></br> {{/ifLessThen}}{{/ifGreter}}{{/each}}</td>
+                                <td style="text-align: left; font-size: 12px;;"   valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}}{{#ifGreter @index 3}}{{#ifLessThen @index 9}} {{groupvalue.amount}}</br></br> {{/ifLessThen}}{{/ifGreter}}{{/each}}</td>
+                                <td style="text-align: left; font-size: 12px;;"   valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}}{{#ifGreter @index 3}}{{#ifLessThen @index 9}} {{#CalPlusMinusAmt groupvalue.amount groupvalue.apmc_Amount ../GaruAavak.tot_AmtBeforeTax ../GaruAavak.less_details ../AddLessParameter ../GaruAavak.garu_Aavak_Group}}{{/CalPlusMinusAmt}}</br></br>{{/ifLessThen}}{{/ifGreter}}{{/each}}</td>
+                                <td style="text-align: left; font-size: 12px;;"   valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}}{{#ifGreter @index 3}}{{#ifLessThen @index 9}} {{#CalGstRateSaleBillPrePrint groupvalue.GST ../GaruAavak.add_details ../AddLessParameter}}{{/CalGstRateSaleBillPrePrint}}</br> {{/ifLessThen}}{{/ifGreter}}{{/each}}</td>
+                                <td style="text-align: left; font-size: 12px;;"   valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}}{{#ifGreter @index 3}}{{#ifLessThen @index 9}} {{#CalGstAmtInSaleBillPrePrint groupvalue.GST groupvalue.amount ../GaruAavak.add_details ../AddLessParameter groupvalue.apmc_Amount ../GaruAavak.tot_AmtBeforeTax ../GaruAavak.less_details ../GaruAavak.garu_Aavak_Group}}{{/CalGstAmtInSaleBillPrePrint}}</br>{{/ifLessThen}}{{/ifGreter}}{{/each}}</td>
+                                <td style="text-align: right; font-size: 12px;;"  valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}}{{#ifGreter @index 3}}{{#ifLessThen @index 9}} {{#TotAmtInSaleBillPrePrint groupvalue.amount groupvalue.apmc_Amount ../GaruAavak.tot_AmtBeforeTax ../GaruAavak.less_details ../AddLessParameter ../GaruAavak.garu_Aavak_Group}}{{/TotAmtInSaleBillPrePrint}}</br></br> {{/ifLessThen}}{{/ifGreter}}{{/each}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="2" style="text-align: left; font-size: 14px;padding-left: 21px;" valign="top"><b>TOTAL</b>&nbsp;&nbsp;</td>
+                                <td style="text-align: center; font-size: 14px;"  valign="top"><b>{{#totQttyInSaleEntry GaruAavak.garu_Aavak_Group}}{{/totQttyInSaleEntry}}</b></td>
+                                <td style="text-align: center; font-size: 14px;"  valign="top"><b>{{#tot_netWtInSaleEntry GaruAavak.garu_Aavak_Group}}{{/tot_netWtInSaleEntry}}</b></td>
+                                <td style="text-align: left; font-size: 14px; padding-left: 4px;"  valign="top"></td>
+                                <td style="text-align: left; font-size: 14px;"  valign="top"><b>{{#tot_AmountInSaleBillPrint GaruAavak.garu_Aavak_Group}}{{/tot_AmountInSaleBillPrint}}<b></td>
+                                <td colspan="2" style="font-size: 14px;" valign="top"><b>{{#CalTotPlusMinusAmtInSaleBillPrint GaruAavak.tot_AmtBeforeTax GaruAavak.less_details AddLessParameter GaruAavak.garu_Aavak_Group}}{{/CalTotPlusMinusAmtInSaleBillPrint}}</b></td>
+                                <td style="text-align: left"><b>TOTAL</b></td>
+                                <td style="text-align: right"><b>{{#tot_AmountWithAPMCInSaleBillPrint GaruAavak.tot_AmtBeforeTax GaruAavak.less_details AddLessParameter GaruAavak.garu_Aavak_Group}}{{/tot_AmountWithAPMCInSaleBillPrint}}</b></td>
+                            </tr>
+                            <tr>
+                                <td colspan="8" style="font-weight: 600;font-size: 11px;padding-left: 21px;">
+                                    <table class="inline" style="margin-right: -3px;">
+                                        <tr style="border-bottom: 1px solid black">
+                                            {{#CalApmcDesInSbPrint GaruAavak.add_details AddLessParameter}}{{/CalApmcDesInSbPrint}}
+                                            {{#each GaruAavak.add_details as |groupvalue key|}}
+                                            {{#each ../AddLessParameter as |group key|}}
+                                            {{#ifCondNot group.Description 'APMC'}}
+                                            {{#ifCond_id groupvalue.particular_add group._id}}
+                                            {{#ifGreter groupvalue.particular_amount 0}}<td style="padding-top: 1px;padding-bottom: 1px;padding-right: 4px;padding-left: 4px;text-align: left;"><b style="text-transform: uppercase">{{group.Description}}{{group.Value}}</b></td>{{/ifGreter}}
+                                            {{/ifCond_id}}
+                                            {{/ifCondNot}}
+                                            {{/each}}
+                                            {{/each}}
+                                        </tr>  
+                                        <tr>
+                                            {{#CalApmcAmtInSbPrint GaruAavak.add_details AddLessParameter}}{{/CalApmcAmtInSbPrint}}
+                                            {{#each GaruAavak.add_details as |groupvalue key|}}
+                                            {{#each ../AddLessParameter as |group key|}}
+                                            {{#ifCondNot group.Description 'APMC'}}
+                                            {{#ifCond_id groupvalue.particular_add group._id}}
+                                            {{#ifGreter groupvalue.particular_amount 0}}<td style="padding-top: 1px;padding-bottom: 1px;padding-right: 4px;padding-left: 4px;text-align: left"><b>{{groupvalue.particular_amount}}</b></td>{{/ifGreter}}
+                                            {{/ifCond_id}}
+                                            {{/ifCondNot}}
+                                            {{/each}}
+                                            {{/each}}
+                                        </tr>
+                                    </table>
+                                    <table class="inline" style="margin-left: -3px;">
+                                        <tr style="border-bottom: 1px solid black">
+                                            {{#each GaruAavak.less_details as |groupvalue key|}}
+                                            {{#each ../AddLessParameter as |group key|}}
+                                            {{#ifCond_id groupvalue.particular_less group._id}}
+                                            {{#ifGreter groupvalue.particular_amtless 0}}<td style="padding-top: 1px;padding-bottom: 1px;padding-right: 4px;padding-left: 4px;text-align: left"><b style="text-transform: uppercase">{{group.Description}} {{group.Value}}</b></td>{{/ifGreter}}
+                                            {{/ifCond_id}}
+                                            {{/each}}
+                                            {{/each}}
+                                        </tr>  
+                                        <tr>
+                                            {{#each GaruAavak.less_details as |groupvalue key|}}
+                                            {{#each ../AddLessParameter as |group key|}}
+                                            {{#ifCond_id groupvalue.particular_less group._id}}
+                                            {{#ifGreter groupvalue.particular_amtless 0}}<td style="padding-top: 1px;padding-bottom: 1px;padding-right: 4px;padding-left: 4px;text-align: left"><b>-{{groupvalue.particular_amtless}}</b></td>{{/ifGreter}}
+                                            {{/ifCond_id}}
+                                            {{/each}}
+                                            {{/each}}
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td style="text-align: left">GST5%</br>OTHER</td>
+                                <td style="text-align: right">
+                                    {{#tot_GSTWithAPMCInSaleBillPrint GaruAavak.add_details AddLessParameter}}{{/tot_GSTWithAPMCInSaleBillPrint}}</br>
+                                    {{#tot_OTHERWithAPMCInSaleBillPrint GaruAavak.add_details GaruAavak.less_details AddLessParameter}}{{/tot_OTHERWithAPMCInSaleBillPrint}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6"></td>
+                                <td valign="bottom" colspan="2"  style="font-size:14px; text-align: center;height: 5em; font-size: 12px;">
+                                    </br>
+                                    </br>
+                                    <b style="font-size: 20px;margin-right: 20px">{{division.Delivery}}</b>
+                                </td>
+                                <td colspan="2" style="text-align: right; font-size: 17px;">
+                                    <b style="float: right">{{GaruAavak.gross_Amt}}</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td  colspan="7" style="font-size:14px; text-align: left; height: 7em; font-size: 16px;"></td>
+                                <td  colspan="3" style="height: 7em;"></td>
+                            </tr>
+                            <tr>
+                                <td  colspan="7" valign="top"  style="padding-left: 21px;padding-top: 25px">
+                                    </br>
+                                    {{GaruAavak.party_Code.ACName}},{{GaruAavak.party_Code.CityName.CityName}}</br>
+                                    <a style="font-size: 11px;">{{GaruAavak.party_Code.Area}},{{GaruAavak.party_Code.Address1}}</a></br>
+                                    <a style="font-size: 11px;">{{GaruAavak.party_Code.ac_add2}}</a></br>
+                                    <a style="font-size: 11px;">{{GaruAavak.broker_Code.ACName}}</a>
+                                </td>
+                                <td colspan="3" valign="top"  style="font-size:14px; text-align: left; height: 7em; font-size: 17px;  padding-bottom: 7px;padding-top: 22px; padding-left: 55px; padding-right: 0px;">
+                                    {{!-- </br> --}}
+                                    <b style="font-size: 20px;">{{division.Delivery}}</b></br>
+                                    {{GaruAavak.vouc_code}}</br>
+                                    {{dateformat GaruAavak.entry_Date "DD/MM/YYYY"}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th colspan="4" style="text-align: left; font-size: 14px;">&nbsp;</th>
+                                <th style="text-align: right; font-size: 14px;">&nbsp;</th>
+                                <th style="text-align: right; font-size: 14px;">&nbsp;</th>
+                                <th style="text-align: right; font-size: 14px;">&nbsp;</th>
+                                <th colspan="3" style="text-align: right; font-size: 14px;">&nbsp;</th>
+                            </tr> 
+                            <tr>
+                                <td colspan="4" valign="top"  style="font-size:12px; text-align: left; height: 6em;padding-left: 21px;"> 
+                                    {{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}}{{#ifGreter @index 3}}{{#ifLessThen @index 9}}{{#CheckItemtitleLength groupvalue.item_Code_Desc.item_title}}{{/CheckItemtitleLength}}<a style="float: right;color: black">{{groupvalue.item_Code_Desc.apmc_code}}</a></br>{{/ifLessThen}}{{/ifGreter}}{{/each}}
+                                </td>
+                                <td colspan="1" valign="top"  style="font-size:12px; text-align: right; height: 6em;">
+                                    {{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}}{{#ifGreter @index 3}}{{#ifLessThen @index 9}} {{groupvalue.qntty}}</br></br> {{/ifLessThen}}{{/ifGreter}}{{/each}}
+                                </td>
+                                <td  colspan="1" valign="top"  style="font-size:12px; text-align: right; height: 6em;">
+                                    {{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}}{{#ifGreter @index 3}}{{#ifLessThen @index 9}} {{groupvalue.net_Wt}}</br></br> {{/ifLessThen}}{{/ifGreter}}{{/each}}
+                                </td>
+                                <td  colspan="1" valign="top"  style="font-size:12px; text-align: right; height: 6em;">
+                                    {{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}}{{#ifGreter @index 3}}{{#ifLessThen @index 9}} {{groupvalue.rate}}</br></br> {{/ifLessThen}}{{/ifGreter}}{{/each}}
+                                </td>
+                                <td  colspan="3" valign="top"  style="font-size:14px; text-align: center; height: 6em;">
+                                    <b>TRANSPORT CODE </br>{{GaruAavak.party_Code.ac_transportCode}}</b>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    {{/ifGreter}}
+
+
+                    {{#ifGreter length 7}}
+                    
+                    {{/ifGreter}}
+                <a class="btn btn-lg blue hidden-print margin-bottom-5" onclick="printinvoice()" id="hideprintbtn" style="margin-top: 2em"> Print
+                <i class="fa fa-print"></i></a>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

@@ -1,0 +1,84 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<style>
+    body { 
+    font-size: 10px; 
+    }
+    @media print {
+        table{
+            position: absolute;
+            height: 200px;
+            z-index: 15;
+            left: 42%;
+            margin: -100px 0 0 -100px;
+        }
+    }
+    #invoiceBillEnv td, #invoiceBillEnv th {
+        border: 2px solid black;
+        font-size: 15px;
+    }
+    #invoiceBillEnv{
+        border: 2px solid black;
+        border-color: black;
+        width: 400px;
+        margin-top:12em;
+        margin-bottom:10em;
+        -moz-transform: rotate(-90.0deg);  /* FF3.5+ */
+        -o-transform: rotate(-90.0deg);  /* Opera 10.5 */
+        -webkit-transform: rotate(-90.0deg);  /* Saf3.1+, Chrome */
+        filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083);  /* IE6,IE7 */
+        -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083)"; /* IE8 */
+    }
+    #trnsport{
+        font-size: 15px;
+        margin-bottom: 1em;
+        margin-right: 50%;
+        -moz-transform: rotate(-90.0deg);  /* FF3.5+ */
+        -o-transform: rotate(-90.0deg);  /* Opera 10.5 */
+        -webkit-transform: rotate(-90.0deg);  /* Saf3.1+, Chrome */
+        filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083);  /* IE6,IE7 */
+        -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083)"; /* IE8 */
+    }
+</style>
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <div class="page-container">
+            <div class="page-content-wrapper">
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <div class="page-title">
+                           <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                    </ul>
+                                </small>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div align="center" style="width: 100%; height: 100%">
+                    {{!-- <b id="trnsport"><strong>Transpoert Name</strong>:&nbsp{{dsimast.Transport}}</b> --}}
+                    <table id="invoiceBillEnv">
+                        <tr><td colspan="2"><strong>Name</strong>:&nbsp{{dsimast.Ship_party}}</td></tr>
+                        <tr><td colspan="2"><strong>Address</strong>:&nbsp{{dsimast.Ship_party_add}}</td></tr>
+                        <tr><td colspan="2"><strong>Mob N.</strong>:&nbsp{{dsimast.Ship_party_Name.MobileNo}}</td></tr>
+                        <tr><td><strong>State</strong>:&nbsp{{dsimast.Ship_party_State.StateName}}</td><td><strong>Code</strong>:&nbsp{{dsimast.Ship_party_State.StateCode}}</td></tr>
+                    </table>
+                    <a class="btn btn-lg blue hidden-print margin-bottom-5" onclick="dsienvelpePrint()" id="hideprintbtn" style="margin-top: 2em"> Print
+                    <i class="fa fa-print"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{{> footer_new}}
+{{> scripts_new}}

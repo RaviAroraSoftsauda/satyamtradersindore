@@ -1,0 +1,290 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+
+                                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading" align="right">
+                                   Add Daily Grocery Entry 
+                                </div>
+                                <form  class="form-horozintal validate" id="product_raw_master">
+                                    <div class="panel-body">
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-group  form-md-line-input clearfix">
+                                                <label class="col-sm-3 control-label">Entry</label>
+                                                <div class="col-md-5">
+                                                        {{!-- <input class="form-control vhpxproduct" id="vhpxproduct"
+                                                                    name="vhpxproduct"  type="hidden"/> --}}
+                                                    <select name="c_j_s_p" placeholder="Entry Book" id="c_j_s_p" class="form-control select2" required>
+                                                        <option value="DGE" selected>DGE</option>
+                                                    </select>
+                                                </div>
+                                                    <div class="col-md-4">
+                                                    <input type="number" name="vouc_code" id="vouc_code" placeholder="Idn Number" autofocus required
+                                                        value="{{last}}" class="form-control vouc_code"
+                                                        tabindex="2"/>
+                                                        <input type="hidden" name="GaruEntryModel" id="GaruEntryModel" value="DailyGroceeryEntry">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label"> Date </label>
+                                                <div class="col-md-9">
+                                                        <input class="form-control  datepicker" placeholder="Date" id="date"
+                                                        name="date" value="{{dateformat  Date.Now "DD/MM/YYYY"}}"   type="Text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-group  form-md-line-input clearfix">
+                                                <label class="col-sm-3 control-label">Toli Code </label>
+                                                <div class="col-md-9">
+                                                        <select class="form-control select2 toliCode prbank" placeholder="Toli Code" id="toliCode"
+                                                        name="toliCode" >
+                                                        <option value=""></option>
+                                                            {{#each toli_master}}
+                                                                <option value="{{this._id}}" data-serialnum="{{this._id}}">{{this.ToliName}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Remark </label>
+                                                <div class="col-md-9">
+                                                        <input class="form-control remark" placeholder="Remark" id="remark"
+                                                        name="remark" value=""  oninput="calproduct()" type="Text">
+                                                        <input class="form-control vhpxproduct" id="vhpxproduct"
+                                                                            name="vhpxproduct"  type="hidden"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                 <div class="table-responsive adjustmentstable">
+                                                <table class="tabler table" >
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="width: 30em">Nature of Work</th>
+                                                            <th>Pck</th>
+                                                            <th>Qty</th>
+                                                            <th>Basic</th>
+                                                            <th>Levy</th>
+                                                            <th>Remark</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class='product_wrapper' id='prabal0'>
+                                                            <td>
+                                                                <input type="hidden" name="cntrer" value="0" id="cntrer0">
+                                                                <select name="daily_grocery_entry_group[0][natureOfWork]" placeholder="Nature Of Work"  id="natureOfWork0" class="form-control select2 prbank" style="width: 100%" onchange="getGrocery(0)" required>
+                                                                    <option value=""></option>
+                                                                    {{#each grocery_master}}
+                                                                        <option value="{{this._id}}" data-serialnum="{{this._id}}">{{this.natureOfWork}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <input class="form-control daily_grocery_entry_group[0][pck]" placeholder="Pck"
+                                                                name="daily_grocery_entry_group[0][pck]" oninput="calDailyGrocery(0)" id="pck0"  type="text" style='width:100%'/>
+                                                            </td>
+                                                            <td>
+                                                                <input class="form-control "  name="daily_grocery_entry_group[0][masterRate]" id="masterRate0"  type="hidden">
+                                                                <input class="form-control daily_grocery_entry_group[0][qty]" placeholder="Qty"
+                                                                name="daily_grocery_entry_group[0][qty]" oninput="calDailyGrocery(0)" id="qty0"  type="text" style='width:100%'/>
+                                                            </td>
+                                                            <td>
+                                                                <input class="form-control daily_grocery_entry_group[0][basic]" placeholder="Basic"
+                                                                name="daily_grocery_entry_group[0][basic]" oninput="calDailyGrocery(0)" id="basic0"  type="text" style='width:100%' readonly/>
+                                                            </td>
+                                                            <td>
+                                                                <input class="form-control daily_grocery_entry_group[0][levy] " placeholder="Levy"
+                                                                name="daily_grocery_entry_group[0][levy]" oninput="calDailyGrocery(0)" id="levy0"  type="text" style='width:100%' />
+                                                                <input type="hidden" name="daily_grocery_entry_group[0][Amt]" oninput="calDailyGrocery(0)" id="Amt0">
+                                                            </td>
+                                                            <td>
+                                                                <input class="form-control daily_grocery_entry_group[0][entryRemark] amountfocus" placeholder="Remark"
+                                                                name="daily_grocery_entry_group[0][entryRemark]" oninput="calDailyGrocery(0)" id="entryRemark0"  type="text" style='width:100%'/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr id="insert_product"></tr>
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th colspan="3"></th>
+                                                            <td><input type="text" class="form-control" name="tot_basic" id="tot_basic" style="width: 100%"></td>
+                                                            <td><input type="text" class="form-control" name="tot_levy" id="tot_levy" style="width: 100%"></td>
+                                                            <th><input type="hidden" name="tot_Amt" id="tot_Amt"></th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                                <div class="col-sm-12">
+                                                    <button type="button" class="btn btn-primary adddailygrocery center-block nofocus" id="add">Add Grocery</button>  
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        <div class="action clearfix" >
+                                            <div class="col-md-12" align="center">
+                                                    <button type="submit" name="save" class="btn btn-success delv_load lock-dailygrocery">Submit</button>
+                                                    <button type="reset" class="btn btn-danger">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                             {{!-- {{#scuritylogin   security 'Product Master' 'V'}} --}}
+                            <div class="panel panel-primary">
+                                <div class="panel-heading" align="right">
+                                    Daily Grocery Entry List
+                                </div>
+                                <div class="panel-body">
+                                    <table id="product_detail_table" class="product_detail_table table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Action</th>
+                                                <th>Sno.</th>
+                                                <th>Entry Book</th>
+                                                <th>Code</th>
+                                                <th>Date</th>
+                                                <th>Toli Code</th>
+                                                <th>Remark</th>
+                                           </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each daily_grocery_entry as |value key|}}
+                                            <tr>
+                                                <td>
+                                                    <div class="btn-group dropdown">
+                                                        <button class="btn btn-xs blue dropdown-toggle" type="button"
+                                                            data-toggle="dropdown" aria-expanded="false"> Actions
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu pull-left" role="menu" style="width:150px">
+                                                             <li>
+                                                                <a  href="javascript:void(0);" class="edit_daily_grocery_entry_btn"
+                                                                    data-id="{{this._id}}">
+                                                                    <i class="icon-pencil"></i> Edit </a>
+                                                            </li>
+                                                            <li class="divider"> </li>
+                                                            <li>
+                                                                <a href="javascript:void(0);" class="delbutton delete_daily_grocery_entry"
+                                                                    data-id="{{this._id}}">
+                                                                    <i class="icon-trash"></i> Delete
+                                                                </a>
+                                                            </li>
+                                                            <li class="divider"> </li>
+                                                            <li>
+                                                                <a href="/daily_grocery_entry/daily_grocery_print?date={{dateformat this.date "DD/MM/YYYY"}}&toliCodeInGrocceryEntry={{this.toliCode._id}}" >
+                                                                    <i class=" fa fa-print"></i> Print
+                                                                </a>
+                                                            </li>
+                                                             <li class="divider"> </li>
+                                                             <li>
+                                                                <a href="/daily_grocery_entry/daily_grocery_pri_print?date={{dateformat this.date "DD/MM/YYYY"}}&toliCodeInGrocceryEntry={{this.toliCode._id}}" >
+                                                                    <i class="fa fa-print"></i>Pri Print
+                                                                </a>
+                                                            </li>
+                                                         
+                                                            {{!-- {{edit_grocery_master_btn  delete_grocery_master    href="javascript:void(0);" class="edit_daily_grocery_entry_btn"}} --}}
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                                <td>{{sum @index 1}}</td>
+                                                <td>{{this.c_j_s_p}}</td>
+                                                <td>{{this.vouc_code}}</td>
+                                                <td>{{dateformat this.date "DD/MM/YYYY"}}</td>
+                                                <td>{{this.toliCode.ToliName}}</td>
+                                                <td>{{this.remark}}</td>
+                                            </tr>
+                                            {{/each}}
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th  class="excludesearch">Action</th>
+                                                <th>Sno.</th>
+                                                <th>Entry Book</th>
+                                                <th>Code</th>
+                                                <th>Date</th>
+                                                <th>Toli Code</th>
+                                                <th>Remark</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            {{!-- {{/scuritylogin}} --}}
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}
+<style>
+    .tabler>tbody>tr>td, .tabler>tbody>tr>th, .tabler>tfoot>tr>td, .tabler>tfoot>tr>th, .tabler>thead>tr>td, .tabler>thead>tr>th {
+    padding: 0px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+strong{
+    font-size: 14px;
+}
+</style>

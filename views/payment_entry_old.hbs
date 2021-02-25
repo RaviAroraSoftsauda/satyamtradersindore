@@ -1,0 +1,336 @@
+{{> header}}
+{{> nav}}
+<style>
+    .modal-header{
+background-color:#707070;
+color: white;
+
+
+}
+  .modal-body{
+position: relative;
+padding: 29px 51px;
+
+}
+
+p.description{
+text-align: justify;
+text-align: center;
+}
+
+.modal-header .close{
+    width: 25px;
+    height: 25px;
+    color: #ffffff;
+    position: absolute;
+     margin-top:3px;
+    right: 10px;
+    background-position: 0 -27px;
+}
+    </style>
+{{!-- <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" style="margin-top: -15px;">&times;</button> 
+      </div>
+      <div class="modal-body">
+         <table class="table">
+            <thead>
+            <tr>
+                <th>+/-</th>
+                <th>Expense Name</th>
+                <th>%</th>
+                <th>Amount</th>
+                
+            </tr>  
+            </thead>
+            <tbody>
+            {{#each expense as |value key|}}
+            <tr>
+                <td>{{this.expense_type}}</td>
+                <td>{{this.expense_name}}</td>
+                <td></td>
+                <td><input type="text" name="amountexpence" id="amountexpence{{sum @index 0}}" onkeyup="calcpay({{sum @index 0}})" class="form-control"></td>   
+            </tr>
+             
+            {{/each}} 
+          <tr>
+               <td style="color:red">Total</td>
+               <td></td>
+               <td></td>
+              <td><input type="text" name="totamountexpence" id="totamountexpence" class="form-control" readonly></td>   
+           </tr>
+            </tbody>
+         </table>
+      </div>
+    </div>
+
+  </div>
+</div> --}}
+<div id="page-wrapper">
+    <div class="row">
+<div class="col-lg-12" style="margin-top: 22px;">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-cc-mastercard" style="color: green;width: 232px;font-size: 22px;">Payment (Draft) Entry</i>
+                    {{#if err}}
+                        <div class="alert alert-danger">
+                            <strong>{{err}}</strong>
+                        </div>
+                    {{/if}}
+                    {{#if errors}}
+                             <div class="alert alert-danger">
+                                <strong>{{errors}}</strong>
+                            </div>
+                    {{/if}}
+                </div>
+                <div class="panel-body">
+                    <div class="alert alert-success brandsuccess" style="display:none;"></div>
+                    <div class="alert alert-danger branddanger" style="display:none;"></div>
+                     <form method="POST" action="/payment_entry/add" class="repeater" enctype="" id="delivery_entry" style="width: 900px;">
+                 <div class="row"> 
+                         <div class="col-sm-2">
+                            <label>Ref Number:</label>
+                    </div> 
+                         <div class="col-sm-2">
+                            <input name="c_j_s_p"  placeholder="Ref Number" value="PAY"  class="form-control c_j_s_p">
+                    </div> 
+                         <div class="col-sm-2">
+                           <input type="number" name="vouc_code" placeholder="Delivery Number" value=""  class="form-control">
+                    </div>    
+                     <div class="col-sm-2">
+                      <label>Entry Date:</label>
+                    </div> 
+                          <div class="col-sm-4">
+                         <input type="text" class="form-control" name="pay_date" id="offerstartdate" value="{{dateformat Date.now 'DD/MM/YYYY'}}" autocomplete="off"/>
+                    </div> 
+                </div>
+                  <div class="row"> 
+                       <div class="col-sm-2">
+                         <label>Buyer:</label>
+                    </div> 
+                    <div class="col-sm-4">
+                          {{#listbsrt party 'B' 'br_code' 'slcodepaymnt'}}
+                                {{this.party_name}},{{this.city_name.city_name}}
+                            {{/listbsrt}} 
+                          </div>
+                         <div class="col-sm-2">
+                           <label>Seller:</label>  
+                    </div> 
+                    <div class="col-sm-4">
+                         {{#listbsrt party 'S' 'sl_code' 'brcodepayment'}}
+                                {{this.party_name}},{{this.city_name.city_name}}
+                            {{/listbsrt}}
+                    </div>
+                     
+                </div>
+                <br/>
+                <br/>
+                 <div class="row delivery_repeat_row"> 
+                 {{!-- <div class="col-sm-12 "></div> --}}
+                 </div>
+                <br/>
+                <br/>
+                <div class="row"> 
+
+                         <div class="col-sm-2">
+                            <label style="margin-left: 22px;">DD/Chk Amount:</label>
+                    </div> 
+                         <div class="col-sm-2">
+                            <input type="number"name="chkddamt" id="chkddamt"  placeholder="DD/Chk Amount" class="form-control" style="margin-left: -58px;" readonly>
+                    </div> 
+                     <div class="col-sm-2">
+                            <label>Deducations:</label>
+                    </div> 
+                         <div class="col-sm-2">
+                             
+                          <input type="text" name="chkdddt" id="chkdddt" placeholder="Deducations" class="form-control" style="margin-left: -58px;" readonly>
+                    </div>
+                          
+                     {{!-- <div class="col-sm-2">
+                      <label>Total Amount:</label>
+                    </div>  --}}
+                          {{!-- <div class="col-sm-2">
+                          <input type="text" name="tot_ammount" id="tot_ammount" placeholder="Total Ammount" class="form-control" style="margin-left: -48px;" readonly>
+                    </div>      --}}
+                </div>
+                <div class="row">
+                    <div class="expence_repeat_row"></div>   
+                </div>
+                <br/>
+                <div class="col-lg-8">
+               <div class="panel panel-default">
+                 <div class="row"> 
+                    <div class="col-sm-1">
+                        <input type="radio" value="Y" name="chkddtyp">     
+                    </div> 
+                    <div class="col-sm-1">
+                           <label>Cash</label>     
+                    </div>
+                     <div class="col-sm-1">
+                          <input type="radio" value="Y" name="chkddtyp">
+                         
+                    </div> 
+                    <div class="col-sm-2"> 
+                          <label>Bank DD</label>
+                    </div> 
+                     <div class="col-sm-1"> 
+                         <input type="radio" value="Y" name="chkddtyp">
+                    </div> 
+                     <div class="col-sm-2"> 
+                          <label>Bank Chq</label>
+                    </div> 
+                     <div class="col-sm-1"> 
+                         <input type="radio" value="Y" name="chkddtyp">
+                    </div> 
+                     <div class="col-sm-2"> 
+                          <label>RTGS/NEFT</label>
+                    </div> 
+                     <div class="col-sm-1"> 
+                         <input type="radio" value="Y" name="chkddtyp">
+                    </div> 
+                      
+                </div>
+               
+                <div class="row"> 
+                    <div class="col-sm-7">
+                    <label>DD/Chq/UTR Number Bank Name</label>   
+                    <input type="text" name="chkddno" id="chkddno" placeholder="DD/Chq/UTR Number Bank Name" class="form-control">
+
+                  </div>
+                   <div class="col-sm-5">
+                    <label>Date</label>   
+                    <input type="text" name="chkdddt" id="chkdddt" placeholder="Date" class="form-control">
+
+                  </div>
+                </div> 
+                 <br/>   
+                </div>
+                </div>
+                <div class="col-lg-4">
+               <div class="panel panel-default">
+                <br/>
+                 <div class="row"> 
+                     <div class="col-sm-3">
+                          <label>Deposited</label>
+                    </div>
+                     <div class="col-sm-9">
+                          <input type="text" name="dep_bnk" id="dep_bnk" placeholder="Deposited" class="form-control">
+                    </div>
+                </div>
+                <br/>
+                 <div class="row"> 
+                     <div class="col-sm-3">
+                          <label>Courier</label>
+                    </div>
+                     <div class="col-sm-9">
+                         <select class="form-control" name="courier" id="courier">
+                            {{#each courier}}
+                            <option value="{{this.id}}">{{this.courier_name}}</option>
+                            {{/each}}
+                         </select>
+                    </div>
+                </div>
+                 <div class="row"> 
+                     <div class="col-sm-3">
+                          <label>Recpt No</label>
+                    </div>
+                     <div class="col-sm-3">
+                          <input type="text" name="cou_rec" id="cou_rec" placeholder="Total Ammount" class="form-control" style="width: 72px;">
+                    </div>
+                     <div class="col-sm-3">
+                          <label>Charges</label>
+                    </div>
+                     <div class="col-sm-3">
+                          <input type="text" name="cou_chgs" id="cou_chgs" placeholder="Charges" class="form-control" style="margin-left: -18px;width: 63px;">
+                    </div>
+                </div>
+                 <div class="row"> 
+                     <div class="col-sm-3">
+                          <label>Remarks</label>
+                    </div>
+                     <div class="col-sm-9">
+                          <input type="text" name="rmks1" id="rmks1" placeholder="Remarks" class="form-control">
+                    </div>
+                </div>
+                 <div class="row"> 
+                     <div class="col-sm-3">
+                          <label>Remarks</label>
+                    </div>
+                     <div class="col-sm-9">
+                          <input type="text" name="rmks2" id="rmks2" placeholder="Remarks" class="form-control">
+                    </div>
+                </div>
+                <br/>
+                </div>
+                 </div>
+                 <div class="col-lg-8" style="margin-top: -148px;">
+               <div class="panel panel-default">
+                <br/>
+                 <div class="row"> 
+                     <div class="col-sm-6">
+                          <label>Deposited Account No</label>
+                    </div>
+                </div>
+                <div class="row"> 
+                     <div class="col-sm-2">
+                          <input type="radio" name="dep_ac" value="Y">
+                    </div>
+                     <div class="col-sm-2">
+                          <input type="radio" name="dep_ac" value="Y">
+                    </div>
+                     <div class="col-sm-2">
+                          <input type="radio" name="dep_ac" value="Y"> 
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                </div>
+                 </div>
+               </div>
+                <br/>
+                 <div class="box-footer">
+                      <input type="submit" class="btn btn-info " value="submit" id="submit">
+                       <input type="reset" class="btn btn-default pull-right" value="Clear Form">
+                </div>
+            </form>
+            </div>
+        {{!-- <div class="col-lg-6" style="margin-top: 22px;">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bell fa-fw"></i>Group LIST
+                </div>
+                <div class="table-responsive">
+                    <table class="product_detail_table">
+                        <thead>
+                        <tr>
+                            <th>Sno.</th>
+                            <th>Group Name</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                      </tr>  
+                        </thead>
+                        <tbody>
+                                {{#each group as |value key|}}
+                                <tr>
+                                    <td>{{sum @index 1}}</td>
+                                    <td>{{this.group_name}}</td>
+                                    <td><a href="javascript:void(0);"  class="edit_group_btn" data-id="{{this._id}}"><i class="fa fa-pencil"></i></i></a></td>
+                                    <td><a href="javascript:void(0);" class="delete-group" data-id="{{this._id}}"><i class="fa fa-trash-o" style="color:red;"></a></td>
+                               </tr>
+                              {{/each}}  
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                </div> --}}
+        </div>  
+        </div>
+        <style>
+            tbody td {
+            padding: 0px;
+            }
+        </style>
+        {{> footer}}

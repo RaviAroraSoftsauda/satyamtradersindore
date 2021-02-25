@@ -1,0 +1,425 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                           <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                     <style>
+    body{
+	background-color:#333;
+	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	color:#333;
+    margin-right: auto;
+    margin-left: auto;
+   
+		margin:0;
+}
+.container{
+	margin:0 auto;
+	padding:40px;
+    margin-right: auto;
+    margin-left: auto;
+	height:auto;
+	background-color:#fff;
+}
+caption{
+	font-size:28px;
+   text-align: center;
+	margin-bottom:15px;
+}
+
+ tr, th{
+	padding:12px;
+	border:1px solid #333;
+
+    
+}
+ thead {display: table-header-group;}
+   table {
+            -fs-table-paginate: paginate;
+        }
+th{
+	background-color: #f0f0f0;
+    		
+} 
+td{
+	  padding:12px;
+	border:1px solid #333;
+	 font-size: 12px;
+    font-weight: normal!important;		
+}
+h4 {
+	margin:0px;
+}
+ @page
+        {
+            size: auto; /* auto is the initial value */
+            margin: 2mm 4mm 0mm 0mm; /* this affects the margin in the printer settings */
+        }
+        thead
+        {
+            display: table-header-group;
+        }
+        tfoot
+        {
+            display: table-footer-group;
+        }
+   </style>
+                </div>
+
+
+    <div class="container" style="width: 1075px;">
+        <div text align="center">
+         <b  style="font-size:27px;align-items: center">RAJSHAHI FOOD PRODUCTS</b></br>
+        </div>
+		 <b style="font-size:12px;font-family:bold}" align="left">Rajshahi Food Product as seller hereby confirm the sale to the under mentioned Buyer of the following goods (The "Goods") on the terms and 
+     conditions given below.</br>
+        <b ></b>Any kind of Legal Arbitration w.r.t  this contract of sale is restricted to Indian court of law.
+		</b></br>
+          <div text align="center">
+         <b  style="font-size:18px;">PROFORMA INVOICE</b>
+         </div>
+	<table style="width:100%">
+		 <thead>
+			<tr>
+				<td colspan="4" align="left">
+					<h4 style="font-family:bold;border-bottom: 2px solid #000;" >Buyer Name and Address:-</h4>
+					 <b  style="font-size:12px;text-align: justify;">Name:- {{promast.pro_cus_name.ac_name}}<br>
+                      Address:- {{promast.pro_cus_name.ac_add1}}<br>
+					Contact No:- {{promast.pro_cus_name.ac_phmob}}</b>
+                    <b></b> </br>
+                      <b></b> </br>
+                        <b></b> </br>
+                       <b></b> </br>
+                         <b></b> </br>
+				</td>
+				<td colspan="3" align="left">
+					<h4 style="font-family:bold;border-bottom: 2px solid #000;">Seller Name and Address:-</h4>
+					 <b  style="font-size:11px;text-align: justify;">Name:- {{division.div_mast}}<br>
+                      Address:-{{division.ac_add2}}<br>
+					Contact Person:-{{division.comp_con_person}} <br> 
+					Contact No:-{{division.ac_mobno}}<br>
+                     Mail Id:-{{division.ac_email}}</b>
+				</td>
+                <td colspan="2" align="center">
+					<h4 style="font-family:bold">PROFORMA INVOICE NO</h4>
+				     <input type="text"  name="printpro_name" id="printpro_name" class="form-control clearfix" style="border-style:outset ;text-align:center;font-weight: bold;"
+                                                             border-bottom: 2px solid black;background-color: white;"  value="EXP/ {{promast.pro_no}} -{{promast.vouc_code}} /18-19"  />
+					<h4>PROFORMA INVOICE DATE</h4>
+				      <input type="text"  name="printpro_name" id="printpro_name" class="form-control clearfix" style="border-style:outset;text-align:center;font-weight:bold;
+                                                                 border-bottom: 2px solid black;background-color: white;" value="{{dateformat promast.pro_formadt 'DD/MM/YYYY'}}"/> 
+				</td>
+               
+		  </tr>
+              <tr>
+				<th colspan="1">ITEM NO</th>
+				<th colspan="3">DESCRIPTION OF GOODS</th>
+				<th colspan="1">PER CARTON CBM</th>
+                <th colspan="1">ORDERED QUANTITY</th>
+                <th colspan="1">PER ITEM TOTAL CBM</th>
+                <th colspan="1">PER CARTON PRICE IN $</th>
+                 <th colspan="1">TOTAL AMOUNT($) </th>
+			</tr> 
+            </thead>	
+           <tbody>
+               
+			  {{#each promast as |promastvalue key|}}
+           {{#each promastvalue.pro_forma_group as |groupvalue key|}}
+			<tr>
+                <td colspan="1" align="center">{{groupvalue.item_name.p_code}}</td>
+                <td colspan="3" align="center" font="bold"><b>{{groupvalue.item_name.prdt_desc}}</br>
+                    {{groupvalue.item_name.p_pck}}PCS*{{groupvalue.in_qty}}INNERS*{{groupvalue.item_name.per_pcs_wght}}GRAMS</br>
+                            SHELF LIFE {{groupvalue.item_name.slife_exp}} MONTHS
+                </b></td>
+                <td colspan="1" align="right">{{groupvalue.perc_cbm}}</td>
+                <td colspan="1" align="right">{{groupvalue.or_qty}}</td>
+                <td colspan="1" align="right">{{groupvalue.cbm_perItem}}</td>
+                <td colspan="1" align="right">${{groupvalue.carton_price}}</td>
+                <td colspan="1" align="right">${{groupvalue.total_amount}}</td>
+			</tr>
+             {{/each}}   
+             {{/each}}
+            <tr >
+                <td colspan="5"  align="left" ><b font-family="bold" font-size="5px">{{promast.pro_remarks}}</b></td>
+                <td colspan="1"  align="right"><b font-family="bold">{{promast.tot_poq}}</b></td>
+                 <td colspan="1"  align="right"><b font-family="bold">{{promast.tot_picbm}}</b></td>
+                   <td colspan="1"  align="center" ><b font-family="bold">TOTAL CNF AMOUNT IN $</b></td>
+			       <td colspan="1"  align="right"><b font-family="bold">${{promast.tot_amt}}</b></td>
+			</tr>
+            
+                 <tr>
+                     
+                    <th colspan="9" ><b style="font-size:16px;color:tomato">AMOUNT IN WORD:-USD {{promast.totainword}}only</b></th>
+            
+            </tbody>
+		<tfoot>
+		      	</tr>
+                <td colspan="9" align="left">
+                   <b style="font-size:14px;">SPECIAL TERM AND CONDITION: QUANTITY AND AMOUNT 10% MORE OR LESS ALLOWED</b></br>
+                   <b style="font-size:10px;">1. ABOVE PRICES ARE VALID ONLY TILL 15 DAYS FROM THE DATE OF PROFORMA INVOICE.</b></br>
+                   <b style="font-size:10px;">2. PAYMENT TERM: 30% ADVANCE, BALANCE 70% ON THE SCAN COPY OF BL.</b></br>
+                   <b style="font-size:10px;">3. DELIVERY TERM: CNF ADEN PORT REPUBLIC OF YEMEN.</b></br>
+                   <b style="font-size:10px;">4. DELIVERY PERIOD: WITH IN 30 DAYS FROM THE DATE OF RECEIPT OF ADVANCE .</b></br>
+                   <b style="font-size:10px;">5. PACKING & DESIGNS: IF NEW PACKING OR DESINGS REQUIRED BY CLIENT SO DELIVERY WILL BE IN AFTER 30 DAYS FROM THE DATE </br>OF FINAL APPROVAL ON PRINTING & DESIGNS.  </b>
+                   </td>
+                   </tr>
+                </tr>
+                <td colspan="9" align="left">
+                   <b style="font-size:14px;">BANK DETAILS:</b></br>
+                   <b style="font-size:12px;">BENEFICIARY NAME:-{{division.div_mast}}</b></br>
+                   <b style="font-size:12px;">BENEFICIARY ADDRESS:-{{division.ac_add2}} </b></br>
+                   <b style="font-size:12px;">BANK NAME:-{{division.bank_name.bank_name}} </b></br>
+                   <b style="font-size:12px;">ACCOUNT NO:-{{division.comp_accountno }} </b></br>
+                   <b style="font-size:12px;">SWIFT CODE:-{{division.swift_code}}</b></br>
+                    <b style="font-size:12px;">BRANCH ADDRESSS:-{{division.bank_add}}</b></br>
+                   </td>
+                   </tr>
+		        <tr>
+                   <td colspan="4" align="left" >
+                          <table>
+                                 <b style="font-size:12px;">DOCUMENTS WILL BE PROVIDED WITH SHIPMENT</b><br/>
+                                   <tr>1. COMMERCIAL INVOICE</tr><br />
+                                    <tr>2. PACKING LIST</tr><br />
+                                     <tr>3. BILL OF LADING </tr><br />
+                                     <tr>4. CERTIFICATE OF ORIGIN</tr><br />
+                                     <tr>5. HEALTH CERTIFICATE</tr><br />
+                                   
+                       </table>
+                   </td>
+                   <td colspan="4" align="left">
+                          <table >
+                                 <b style="font-size:12px;"></b><br/>
+                                   <tr></tr><br />
+                                    <tr></tr><br />
+                                     <tr></tr><br />
+                                     <tr></tr><br />
+                                     <div text align="center">
+                                 <b  style="font-size:12px;text-align: justify;">ACCEPTED AND CONFIRMED BY BUYER</b>
+                                   </div>
+                                   
+                       </table>
+                   </td>
+                    <td colspan="1" align="left">
+                        <table width="300px"align-items="center">
+                             <div text align="center">
+                                <b  style="font-size:13px;text-align: justify;">FOR {{division.div_mast}}</b>
+                                </div>
+                                   <tr></tr><br />
+                                    <tr></tr><br />
+                                     <tr></tr><br />
+                                      <tr></tr><br />
+                                       <tr></tr><br />
+                                <div text align="center">
+                                 <b  style="font-size:18px;text-align: justify;"> AUTHORIZED SIGNATORY </b>
+                                   </div>
+                       </table>
+                    </td>
+               	</tr>
+		</tfoot>
+	</table>
+</div>
+
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+               <!--    <div class="page-content">
+                    <div class="container-fluid">
+                        <div class="page-content-inner">
+
+                                               <div class="invoice">
+                                                   <caption style="">
+		 	                                                  A Complex Table
+		                                                       </caption>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <b>WorkSheet No:</b>{{workmast.ws_no}}
+                            </div>
+                            <div class="col-xs-3">
+                                <b>Date:</b>{{dateformat workmast.work_sheetdt 'DD/MM/YYYY'}}
+                            </div>
+                            <div class="col-xs-3 invoice-payment">
+                                <b>Customer Name:</b>{{workmast.ws_cus_name.ac_name}}
+                            </div>
+                             <div class="col-xs-3 invoice-payment">
+                                <b>Remarks:</b>{{workmast.w_rmks}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <b>P.O Number:</b>{{workmast.pono}}
+                            </div>
+                            <div class="col-xs-3">
+                                <b>P.O Date:</b>{{dateformat workmast.podt 'DD/MM/YYYY'}}
+                            </div>
+                            <div class="col-xs-3 invoice-payment">
+                                <b>Dollar price:</b>{{workmast.w_doller}}
+                            </div>
+                             <div class="col-xs-3 invoice-payment">
+                                <b>Total freight:</b>{{workmast.w_totaFr}}
+                            </div>
+                        </div>
+                         <div class="row">
+                            <div class="col-xs-3">
+                                <b>Overseas freight$:</b>{{workmast.w_overseasFPB}}
+                            </div>
+                            <div class="col-xs-3">
+                                <b>Container cbm:</b>{{workmast.con_cbm}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-13">
+                                <div class="table-responsive">
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>innerqty</th>
+                                            <th>percartonCBM</th>
+                                            <th>OrderQty</th>
+                                            <th>cost</th>
+                                            <th>profit%</th>
+                                            <th>profitamt</th>
+                                            <th>slpricers</th>
+                                            <th>sellingprice$</th>
+                                            <th>Boxprice$</th>
+                                            <th>totboxcontainer</th>
+                                            <th>perboxfreightRs</th>
+                                            <th>perboxfreight$</th>
+                                            <th>overseas$perbox</th>
+                                            <th>Finalcost</th>
+                                            <th>FOBAmount</th>
+                                            <th>CNFAmount</th>
+                                            <th>Total cbm</th>
+                                            <th>Freight[cbm]</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                         {{#each workmast as |workmastvalue key|}}
+                                           {{#each workmastvalue.work_sheet_group as |groupvalue key|}}
+                                        <tr>
+                                            <td>{{groupvalue.w_pname.prdt_desc}}</td>
+                                            <td>{{groupvalue.in_qty}}</td>
+                                            <td>{{groupvalue.perc_cbm}}</td>
+                                            <td>{{groupvalue.or_qty}}</td>
+                                            <td>{{groupvalue.w_cost}}</td>
+                                            <td>{{groupvalue.w_profit}}</td>
+                                            <td>{{groupvalue.w_profitamt}}</td>
+                                            <td>{{groupvalue.w_sellprice}}</td>
+                                            <td>{{groupvalue.w_sellpriceD}}</td>
+                                            <td>{{groupvalue.w_boxpricedoller}}</td>
+                                            <td>{{groupvalue.w_boxperC}}</td>
+                                            <td>{{groupvalue.w_boxperFR}}</td>
+                                            <td>{{groupvalue.w_boxperFD}}</td>
+                                            <td>{{groupvalue.w_finalb}}</td>
+                                            <td>{{groupvalue.w_finalc}}</td>
+                                            <td>{{groupvalue.w_fobAmt}}</td>
+                                            <td>{{groupvalue.w_cnfAmt}}</td>
+                                            <td>{{groupvalue.tot_cbm}}</td>
+                                            <td>{{groupvalue.fr_cbm}}</td>
+                                        </tr>
+                                          {{/each}}   
+                                            {{/each}}
+                                        <tr>
+                                            <th>Total</th>
+                                            <td></td>
+                                            <td></td>
+                                            <td>{{workmast.tot_order}}</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>{{workmast.tot_pamt}} </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>{{workmast.tot_fobamt}} </td>
+                                            <td>{{workmast.tot_cnfamt}}</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>   
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                {{!-- <div class="well">
+                                    <address>
+                                        <strong>Loop, Inc.</strong>
+                                        <br/> 795 Park Ave, Suite 120
+                                        <br/> San Francisco, CA 94107
+                                        <br/>
+                                        <abbr title="Phone">P:</abbr> (234) 145-1810 </address>
+                                    <address>
+                                        <strong>Full Name</strong>
+                                        <br/>
+                                        <a href="mailto:#"> first.last@email.com </a>
+                                    </address>
+                                </div> --}}
+                            </div>
+                            <div class="col-xs-8 invoice-block">
+                                {{!-- <ul class="list-unstyled amounts">
+                                    <li>
+                                        <strong>Sub - Total amount:</strong> $9265 </li>
+                                    <li>
+                                        <strong>Discount:</strong> 12.9% </li>
+                                    <li>
+                                        <strong>VAT:</strong> ----- </li>
+                                    <li>
+                                        <strong>Grand Total:</strong> $12489 </li>
+                                </ul> --}}
+                                <br/>
+                                <a class="btn btn-lg blue hidden-print margin-bottom-5" onclick="javascript:window.print();"> Print
+                                    <i class="fa fa-print"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div> 
+                        </div>
+                    
+                    </div>
+               ss </div>   -->
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+
+{{> footer_new}}
+{{> scripts_new}}

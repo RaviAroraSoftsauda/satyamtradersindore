@@ -1,0 +1,131 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                          Reconciliation
+                                        </li>
+                                    </ul>
+                                </small>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" id="formheading" style="text-align:center">
+                                            <span></span> Reconciliation
+                                        </div>
+                                        <div class="panel-body">
+                                            <form  enctype="" id="addcity"  class="validate">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Period</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control" name="filterstartdate"
+                                                                    value="{{dateformat  sdate 'DD/MM/YYYY'}} to {{dateformat Date.now 'DD/MM/YYYY'}}" id="contractrange"
+                                                                    autocomplete="off" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Bank Name</label>
+                                                            <div class="col-md-9">
+                                                                <select class="form-control bankrenclName prbank" name="bankid" id="bankid" required autofocus>
+                                                                    <option value=""></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <fieldset>
+                                                            <legend>Old:</legend>
+                                                            <input type="radio" id="Pick_up" name="Old" value="Pick_up">
+                                                            <label for="Old">Pick Up</label>
+                                                            <input type="radio" checked id="Not_Pick_up" name="Old" value="Not_Pick_up">
+                                                            <label for="Old">Not Pick Up</label>
+                                                        </fieldset>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <input type="radio" id="clear" name="chq" value="clear">
+                                                        <label for="Old">Clear</label>
+                                                        <input type="radio" id="unclear" name="chq" value="unclear">
+                                                        <label for="Old">Unclear</label>
+                                                        <input type="radio" checked id="both" name="chq" value="both">
+                                                        <label for="Old">Both</label>
+                                                        <input type="radio" id="pending" name="chq" value="pending">
+                                                        <label for="Old">Pending</label></br>
+                                                        <input type="radio" id="debit" name="d_c" value="debit" style="margin-top: 2.2em">
+                                                        <label for="Old">Debit</label>
+                                                        <input type="radio" id="credit" name="d_c" value="credit">
+                                                        <label for="Old">Credit</label>
+                                                        <input type="radio" checked id="both" name="d_c" value="both">
+                                                        <label for="Old">Both</label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-6">Cls Bal (Book)</label>
+                                                            <div class="col-md-6 input-group">
+                                                                <span class="input-group-addon" id="Cls_Bal_Book_d_c"></span>
+                                                                <input type="text" class="form-control" name="Cls_Bal_Book" id="Cls_Bal_Book">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-6">Cls Bal (Bank)</label>
+                                                            <div class="col-md-6 input-group">
+                                                                <span class="input-group-addon" id="Cls_Bal_Bank_d_c"></span>
+                                                                <input type="text" class="form-control" name="Cls_Bal_Bank" id="Cls_Bal_Bank">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row" align="center">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group clearfix">
+                                                            <button type="button" class="btn btn-primary" name="filtersubmit"
+                                                                id="getselesentrybank" value="submit">Proceed..</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                               <div class="getsaleslist"></div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

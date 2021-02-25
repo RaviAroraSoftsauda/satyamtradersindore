@@ -1,0 +1,202 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+<style>
+    body { 
+    font-size: 12px; 
+    }
+    @media print {
+        @page{
+            margin-top: 0px;
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        table tr.tx_invoice > td{
+            background-color: #c9c7c1 !important;
+        }
+        table{
+            width: 100%;
+        }
+        table tfoot{
+            page-break-inside: avoid;
+        }
+        .tableOutEntry{
+            width: 50%;
+        }
+        .OutEntryDiv{
+            width: 50%;
+        }
+    }
+    .tabler>tbody>tr>td, .tabler>tbody>tr>th, .tabler>tfoot>tr>td, .tabler>tfoot>tr>th, .tabler>thead>tr>td, .tabler>thead>tr>th {
+        padding: 1px;
+        line-height: 1.42857143;
+        vertical-align: center;
+    }
+    
+    .tableOutEntry>tbody>tr>td, .tableOutEntry>tbody>tr>th, .tableOutEntry>tfoot>tr>td, .tableOutEntry>tfoot>tr>th, .tableOutEntry>thead>tr>td, .tableOutEntry>thead>tr>th {
+        padding: 1px;
+        line-height: 1.42857143;
+        vertical-align: center;
+    }
+    .tableAddLess>tbody>tr>td, .tableAddLess>tbody>tr>th, .tableAddLess>tfoot>tr>td, .tableAddLess>tfoot>tr>th, .tableAddLess>thead>tr>td, .tableAddLess>thead>tr>th {
+        padding: 1px;
+        line-height: 1.42857143;
+        vertical-align: center;
+    }
+    .tableOut>tbody>tr>td, .tableOut>tbody>tr>th, .tableOut>tfoot>tr>td, .tableOut>tfoot>tr>th, .tableOut>thead>tr>td, .tableOut>thead>tr>th {
+        padding: 1px;
+        line-height: 1;
+        vertical-align: center;
+    }
+    .gray{
+        background-color: #c9c7c1;
+    }
+</style>
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <div class="page-container">
+            <div class="page-content-wrapper">
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <div class="page-title">
+                           <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                    </ul>
+                                </small>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 95%;margin: 2em" align="center" >
+                     <div class="row" style="width: 100%">
+                        <center style="font-size: 12px"></center>
+                        {{!-- || jai jai shri venkatesh || --}}
+                    </div>
+                    <div class="row" style="width: 100%">
+                        <b style="float: left;font-size: 13px;">GSTIN : {{division.ac_gstin}}</b>
+                        <b style="float: right;font-size: 13px;"><i class="fa fa-phone-square"></i> {{division.ac_mobno}}</b>
+                    </div>
+                    <div class="row" style="width: 100%">
+                        <b style="float: left;font-size: 13px;">FSSAINNo : {{division.FSSAINo}}</b>
+                        <b style="float: right;font-size: 13px;padding: 0px">{{division.ac_pho}}</b>
+                    </div>
+                    <div class="row" style="width: 100%">
+                        <b style="float: left;font-size: 13px;">PAN : {{division.ac_pan}}</b>
+                    </div>
+                    <table class="tabler" style="width: 100%;">
+                        <tr>
+                            <td rowspan="4" style="width: 100px"><img src="{{division.filepath}}" width="100px" height="80px"></td>
+                            <td><center style="font-size: 13px;font-family:Georgia, 'Times New Roman', Times, serif;font-weight: 1000">{{division.div_mast}}</center></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><center style="font-size: 12px;font-family:'Courier New', Courier, monospace;font-weight: 800">Export Quality</center></td>
+                            <td style="width: 100px"></td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                {{!-- border: 1px solid black; --}}
+                                <div style="width: 400px;padding: 5px;">
+                                    <center style="font-size: 13px;font-family:'Courier New', Courier, monospace;font-weight: 800;">General Merchant & Commission Agent</center>
+                                </div>
+                            </td>
+                            <td style="width: 100px"></td>
+                        </tr>
+                        <tr>
+                            <td><center style="font-size: 12px;font-family:'Courier New', Courier, monospace;font-weight: 800">{{division.ac_add2}}</center></td>
+                            <td style="width: 100px"></td>
+                        </tr>
+                    </table>
+                    {{#each cashmast as |value key|}}
+                    {{#ifCond this.srno "0"}}  
+                    <table border="1" id="table1" style="width: 100%">
+                        <tr class="">
+                            <td colspan="4" style="padding: 1px">
+                                <center style="font-size: 13px;font-family:Georgia, 'Times New Roman', Times, serif;font-weight: 1000;float: center">Cash Bank Voucher</center>
+                                <div style="font-size: 13px;font-weight: 1000;float: left;width: 50%;">{{this.cash_bank_name.ACName}}</div>
+                                <div style="font-size: 13px;font-weight: 1000;float: right;width: 50%;text-align: right">Voucher Type : {{this.cash_type}}</div>
+                                <div style="font-size: 13px;font-weight: 1000;float: left;width: 50%">Voucher No : {{this.c_j_s_p}}/{{this.vouc_code}}</div>
+                                <div style="font-size: 13px;font-weight: 1000;float: right;width: 50%;text-align: right">Voucher Date : {{dateformat this.cash_date 'DD/MM/YYYY'}}</div>
+                            </td>
+                        </tr>
+                    </table>
+                    {{/ifCond}}
+                    {{/each}}
+                    <table class="tabler" align="center" border="1" id="groceryPrint" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th style="width: 1em;">SrNo</th>
+                                <th style="text-align: left; font-size: 14px;">Description  <b style="float: right">Cheque No</b></th>
+                                <th style="text-align: right; font-size: 14px; width: 12em">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                             
+                            <tr>
+                                <td style="text-align: center; height: 50em; font-size: 14px;" valign="top">
+                                    1{{!-- {{#CashBankPrintSrno cashmast}}{{/CashBankPrintSrno}} --}}
+                                </td>
+                                <td style="text-align: left; font-size: 14px;" valign="top">
+                                    {{#each cashmast as |value key|}}
+                                    {{#ifCondNot this.srno "100"}}
+                                        <b style="float: left; width: 86%">{{this.cashac_name.ACName}} &nbsp;&nbsp;&nbsp;{{this.cashac_name.Address1}} &nbsp;&nbsp;&nbsp;{{this.cashac_name.ac_add2}}</b><b style="float: right">{{this.cash_chequeno}}</b></br>
+                                        <div style="float: left;width: 50%;" class="OutEntryDiv">
+                                            {{#ifCondNot this.cash_chequedate null}}Cheque Date {{this.cash_chequedate}}{{/ifCondNot}} &nbsp;{{this.cash_narrone}}&nbsp;{{this.cash_narrtwo}}
+                                        </div>
+                                        {{#OutEntryInCashBankPrint this._id this.outStandingArr}}{{/OutEntryInCashBankPrint}}
+                                    {{/ifCondNot}}
+                                    {{/each}}
+                                </td>
+                                <td style="text-align: right; font-size: 14px;" valign="top">
+                                    {{#each cashmast as |value key|}}
+                                    {{#ifCondNot this.srno "100"}}
+                                    <b style="margin-top: 1em;margin-right: 1em;">{{this.cash_amount}}</b>
+                                    {{/ifCondNot}}
+                                    {{/each}}
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                        <tfoot>
+                            {{#each cashmast as |value key|}}
+                            {{#ifCond this.srno "0"}} 
+                            <tr>
+                                <td valign="bottom" colspan="2" style="font-size: 13px;border-right: none;">
+                                    <b style="float: left">Amount in words RUPEES.<h6 style="font-weight: 600; margin: 1px">{{#SaleBilamountinword this.totcash_amt}}{{/SaleBilamountinword}}only.</h6></b>
+                                </td>
+                                <td valign="bottom" colspan="1" style="font-size: 13px;border-left: none;">
+                                    <b style="float: right;font-size: 14px">{{this.totcash_amt}}</b>
+                                </td>
+                            </tr>
+                            {{/ifCond}}
+                            {{/each}}
+                            <tr>
+                                <td colspan="2" style="border-right: none;">
+                                    </br></br></br>
+                                    <b style="font-size: 14px;font-weight: 600;float: left">Prepared By</b>
+                                    <center style="font-size: 14px;font-weight: 600;">Authorised signatory</center>
+                                </td>
+                                <td colspan="1" valign="top" align="right" style="border-left: none;border-top: none">
+                                    <b style="font-size: 14px;font-weight: 600;">Amount Received</b></br></br></br>
+                                    <b style="font-size: 14px;font-weight: 600;">Authorised signatory</b>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                {{!-- <a class="btn btn-lg blue hidden-print margin-bottom-5" onclick="printinvoice()" id="hideprintbtn" style="margin-top: 2em"> Print
+                <i class="fa fa-print"></i></a> --}}
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

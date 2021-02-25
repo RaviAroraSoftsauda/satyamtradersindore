@@ -1,0 +1,343 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+
+                               
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" id="formheading">
+                                            <span>Add</span> Raw Material 
+                                        </div>
+                                        <div class="panel-body">
+                                            {{!-- <form method="POST" action="/raw_material_mast/raw_location_mast_add" enctype="" id="addcategory" class="validate"></form> --}}
+                                             <form method="POST" action="/raw_material_mast/raw_location_mast_add" enctype="" id="addcategory" class="validate">
+                                            <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Pro Code: </label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control Rm_ProCode" required placeholder="Product Code"
+                                                            name="Rm_ProCode" value="{{last}}" type="number" autofocus>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                          <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                   <label for="" class="control-label col-md-3">Quality:</label>
+                                                        <div class="col-md-9">
+                                                        <select class="form-control Rm_Quality prbank select2"   name="Rm_Quality" id="Rm_Quality" placeholder="Select Type">
+                                                            <option value=""></option>
+                                                        {{#each quality}}
+                                                        <option value="{{this.id}}">{{this.Description}}</option>
+                                                        {{/each}}
+                                                         </select>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                   <label for="" class="control-label col-md-3">Sub Quality:</label>
+                                                        <div class="col-md-9">
+                                                        <select class="form-control Rm_Sub_Qua prbank select2"   name="Rm_Sub_Qua" id="Rm_Sub_Qua" placeholder="Select Type">
+                                                            <option value=""></option>
+                                                        {{#each subquality}}
+                                                        <option value="{{this.id}}">{{this.Description}}</option>
+                                                        {{/each}}
+                                                         </select>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                   <label for="" class="control-label col-md-3">Category:</label>
+                                                        <div class="col-md-9">
+                                                        <select class="form-control Rm_Category prbank select2"   name="Rm_Category" id="Rm_Category" placeholder="Select Type">
+                                                            <option value=""></option>
+                                                        {{#each categiry}}
+                                                        <option value="{{this.id}}">{{this.Description}}</option>
+                                                        {{/each}}
+                                                         </select>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Description: </label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control Rm_Des" required placeholder="Description"
+                                                            name="Rm_Des" value="" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Open Stock: </label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control Rm_OpStk" placeholder="Opening Stock"
+                                                            name="Rm_OpStk" value="" type="number">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                           
+                                        </div>
+                                        <div class="row">
+                                            
+                                            {{!-- end of col --}}
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                   <label for="" class="control-label col-md-3">SKU:</label>
+                                                        <div class="col-md-9">
+                                                        <select class="form-control prbank Rm_Unit select2"  name="Rm_Unit" id="Rm_Unit" placeholder="Select Unit">
+                                                            <option value=""></option>
+                                                        {{#each Stock_Unit}}
+                                                        <option value="{{this.id}}">{{this.SKUName}}</option>
+                                                        {{/each}}
+                                                        </select>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                   <label for="" class="control-label col-md-3">Purchase Price:</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control Rm_Price" placeholder="Purchase Price:"
+                                                            name="Rm_Price" value="" type="number">
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                   <label for="" class="control-label col-md-3">Manufacturar:</label>
+                                                        <div class="col-md-9">
+                                                        <select class="form-control prbank Rm_ManuFac select2"  name="Rm_ManuFac" id="Rm_ManuFac" placeholder="Select Unit">
+                                                            <option value=""></option>
+                                                        {{#each manufac}}
+                                                            <option value="{{this._id}}">{{this.ACName}}..........{{this.CityName.CityName}}</option>
+                                                        {{/each}}
+                                                        </select>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                   <label for="" class="control-label col-md-3">Stock Rate:</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control Rm_StRate" placeholder="Stock Rate:"
+                                                            name="Rm_StRate" value="" type="number">
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-4">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                   <label for="" class="control-label col-md-3">Stock Min:</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control Rm_StMin" placeholder="Stock Min:"
+                                                            name="Rm_StMin" value="" type="number">
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-4">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                   <label for="" class="control-label col-md-3">Stock Max:</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control Rm_StMax" placeholder="Stock Max:"
+                                                            name="Rm_StMax" value="" type="number">
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-4">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                   <label for="" class="control-label col-md-3">Lead Time:</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control Rm_Lead" placeholder="Lead Time:"
+                                                            name="Rm_Lead" value="" type="number">
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3"></label>
+                                                        <div class="col-md-9">
+                                                            <button type="submit" name="save" class="btn btn-success">Submit</button>
+                                                            <button type="reset" class="btn btn-primary cancelmaster"
+                                                                data-form-ad-action="/add_city/city_add">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                        </div>
+                                        </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            Raw Material List
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table id="product_detail_table" class="product_detail_table table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                                <th>Action</th>
+                                                                <th>Sno.</th>
+                                                                <th>Product Code</th>
+                                                                <th>Quality</th>
+                                                                <th>Sub Quality</th>
+                                                                <th>Category</th>
+                                                                <th>Description</th>
+                                                                <th>Opening Stock</th>
+                                                                <th>Unit</th>
+                                                                <th>Pr Price</th>
+                                                                <th>Manufacturer</th>
+                                                                <th>Stock Rate</th>
+                                                                <th>Stock Min</th>
+                                                                <th>Stock Max</th>
+                                                                <th>Lead Time</th>
+                                                           
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{#each rawMat_mast as |value key|}}
+                                                        <tr>
+                                                            <td>
+                                                                <div class="btn-group dropdown">
+                                                                    <button class="btn btn-xs blue dropdown-toggle"
+                                                                        type="button" data-toggle="dropdown"
+                                                                        aria-expanded="false"> Actions
+                                                                        <i class="fa fa-angle-down"></i>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu pull-left" role="menu" style="width:150px">
+                                                                        <li>
+                                                                            <a href="javascript:void(0);" class="edit_mat_mast"
+                                                                                data-id="{{this._id}}">
+                                                                                <i class="icon-pencil"></i> Edit </a>
+                                                                        </li>
+                                                                        <li class="divider"> </li>
+                                                                        <li>
+                                                                            
+                                                                            <a href="javascript:void(0);" class="delete-rawmat"
+                                                                                data-id="{{this._id}}">
+                                                                                <i class="icon-trash"></i> Delete
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </td>
+                                                            <td>{{sum @index 1}}</td>
+                                                            <td>{{this.Rm_ProCode}}</td>
+                                                            <td>{{this.Rm_Quality.Description}}</td>
+                                                            <td>{{this.Rm_Sub_Qua.Description}}</td>
+                                                            <td>{{this.Rm_Category.Description}}</td>
+                                                            <td>{{this.Rm_Des}}</td>
+                                                            <td>{{this.Rm_OpStk}}</td>
+                                                            <td>{{this.Rm_Unit.SKUName}}</td>
+                                                            <td>{{this.Rm_Price}}</td>
+                                                            <td>{{this.Rm_ManuFac.ACName}}</td>
+                                                            <td>{{this.Rm_StRate}}</td>
+                                                            <td>{{this.Rm_StMin}}</td>
+                                                            <td>{{this.Rm_StMax}}</td>
+                                                            <td>{{this.Rm_Lead}}</td>
+                                                            
+                                                        </tr>
+                                                {{/each}}
+
+
+                                               </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                    <th class="excludesearch"></th>
+                                                            <th>Sno.</th>
+                                                                <th>Product Code</th>
+                                                                <th>Quality</th>
+                                                                <th>Sub Quality</th>
+                                                                <th>Category</th>
+                                                                <th>Description</th>
+                                                                <th>Opening Stock</th>
+                                                                <th>Unit</th>
+                                                                <th>Pr Price</th>
+                                                                <th>Manufacturer</th>
+                                                                <th>Stock Rate</th>
+                                                                <th>Stock Min</th>
+                                                                <th>Stock Max</th>
+                                                                <th>Lead Time</th>
+                                                            
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+{{> footer_new}}
+{{> scripts_new}}

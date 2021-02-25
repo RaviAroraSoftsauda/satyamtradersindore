@@ -1,0 +1,828 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb pull-right">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Direct Delivery Entry
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{#if err}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{err}}</strong>
+                                    </div>
+                                    {{/if}}
+                                    {{#if errors}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{errors}}</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            {{!-- end of alerts row --}}
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            Direct Delivery Entry
+                                        </div>
+                                        <form method="POST" action="/direct_delivery_entry/add" class="validate" novalidate
+                                            enctype="" id="contract_sauda">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Ref Number: </label>
+                                                            <div class="col-md-5">
+                                                                <input name="c_j_s_p" placeholder="Ref Number" value="DDLV"
+                                                                    class="form-control item_name">
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input type="text" name="vouc_code" checked placeholder="Delivery Number"
+                                                                    value="{{maxno delveryentry1}}" class="form-control item_name digits">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+
+                                                            <label class="col-sm-3 control-label">Deliv. Date: </label>
+                                                            <div class="col-md-9">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control datep datemask"
+                                                                        name="sd_date" value="{{dateformat Date.now 'DD/MM/YYYY'}}"
+                                                                        autocomplete="off" autofocus />
+                                                                    <span class="input-group-btn">
+                                                                        <button class="btn default date-range-toggle isprop"
+                                                                            type="button" id="" tabindex="-1">
+                                                                            <i class="fa fa-calendar"></i>
+                                                                        </button>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Seller</label>
+                                                            <div class="col-md-9">
+                                                                <div class="input-group select2-bootstrap-prepend">
+                                                                    <span class="input-group-addon">
+                                                                        <input type="checkbox" name="sl_brok" id="sl_brok"
+                                                                            value="Yes" checked class="contractpartycheckbox">
+                                                                    </span>
+                                                                    {{!-- {{#listbsrtopt party 'S' 'sl_code' 'sl_code' 'select2' 'required'}}
+                                                                    {{this.party_name}},{{this.city_name.city_name}}
+                                                                    {{/listbsrtopt}} --}}
+                                                                    {{!-- {{#listbsrt party 'S' 'sl_code' 'kind'}}
+                                                                    {{this.party_name}},{{this.city_name.city_name}}
+                                                                    {{/listbsrt}} --}}
+                                                                    <select name="sl_code" id="kind" class="form-control party"
+                                                                        required>
+                                                                        <option value=""></option>
+                                                                        </select>
+                                                                    {{!-- <select name="" id="" class="party form-control"></select>
+                                                                    --}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Contact: </label>
+                                                            <div class="col-md-9 kind_name_div">
+                                                                <input type="text" name="sl_cont" id="sl_cont" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Seller Broker</label>
+                                                            <div class="col-md-9">
+                                                                <div class="input-group select2-bootstrap-prepend">
+                                                                    <span class="input-group-addon">
+                                                                        <input type="checkbox" name="sb_brok" id="sb_brok"
+                                                                            value="Yes" class="contractpartycheckbox">
+                                                                    </span>
+                                                                      <select name="sb_code" id="sb_code" class="form-control sbparty">
+                                                                        <option value=""></option>
+                                                                        </select>
+                                                                    {{!-- {{#listbsrt party 'T' 'sb_code' 'sb_code'}}
+                                                                    {{this.party_name}},{{this.city_name.city_name}}
+                                                                    {{/listbsrt}} --}}
+                                                                    {{!-- <select name="" id="" class="select2 form-control"></select>
+                                                                    --}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Contact: </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="sb_cont" id="sb_cont" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Buyer</label>
+                                                            <div class="col-md-9">
+                                                                <div class="input-group select2-bootstrap-prepend">
+                                                                    <span class="input-group-addon">
+                                                                        <input type="checkbox" checked name="br_brok"
+                                                                            id="br_brok" value="Yes" class="contractpartycheckbox">
+                                                                    </span>
+                                                                    {{!-- {{#listbsrtopt party 'B' 'br_code' 'br_code' 'select2' 'required'}}
+                                                                    {{this.party_name}},{{this.city_name.city_name}}
+                                                                    {{/listbsrtopt}} --}}
+                                                                    {{!-- {{#listbsrt party 'B' 'br_code' 'brcont'}}
+                                                                    {{this.party_name}},{{this.city_name.city_name}}
+                                                                    {{/listbsrt}} --}}
+                                                                    <select name="br_code" id="brcont" class="form-control brparty"
+                                                                        required>
+                                                                        <option value=""></option>
+                                                                        </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Contact: </label>
+                                                            <div class="col-md-9 br_cont_div">
+                                                                <input type="text" name="br_cont" id="br_cont" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Buyer Broker</label>
+                                                            <div class="col-md-9">
+                                                                <div class="input-group select2-bootstrap-prepend">
+                                                                    <span class="input-group-addon">
+                                                                        <input type="checkbox" name="bb_brok" id="bb_brok"
+                                                                            value="Yes" class="contractpartycheckbox">
+                                                                    </span>
+                                                                     <select name="bb_code" id="bbcount" class="form-control bbparty">
+                                                                        <option value=""></option>
+                                                                        </select>
+                                                                    {{!-- {{#listbsrt party 'R' 'bb_code' 'bbcount'}}
+                                                                    {{this.party_name}},{{this.city_name.city_name}}
+                                                                    {{/listbsrt}} --}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Contact: </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="bb_cont" id="bb_cont" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                {{!-- end of row --}}
+                                                {{!-- table that hides and shows on select --}}
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="table-responsive adjustmentstable">
+                                                            <table class="table contract_repeat_row">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Product</th>
+                                                                        <th>Brand</th>
+                                                                        <th>Bag</th>
+                                                                        <th>Pack</th>
+                                                                        <th>Unit</th>
+                                                                        <th>Wght</th>
+                                                                        <th>Rate</th>
+                                                                        <th>S Rate</th>
+                                                                        <th>B Rate</th>
+                                                                        <th>R/Type</th>
+                                                                        <th>Q/Tons</th>
+                                                                        <th>Per</th>
+                                                                        <th>Amount</th>
+                                                                        <th>Type</th>
+                                                                        <th>Old/New</th>
+                                                                        <th>IPack</th>
+                                                                        <th>SI Brok Rt</th>
+                                                                        <th>Type</th>
+                                                                        <th>SL.Brok</th>
+                                                                        <th>By Brok Rt</th>
+                                                                        <th>Type</th>
+                                                                        <th>By Brok</th>
+                                                                        {{!-- <th>SI Brok Rt</th>
+                                                                        <th>Type</th> --}}
+                                                                        <th>Delete</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <input type='hidden' name='contract_sauda_group[1][sd2srno]'
+                                                                                value="1">
+                                                                            <input type='number' name='contract_sauda_group[1][qty_bal]'
+                                                                                id="qty_bal1" style='display:none'>
+                                                                            <input type='number' name='contract_sauda_group[1][wght_bal]'
+                                                                                step="0.001" id="wght_bal1" style='display:none'>
+                                                                            <input type='hidden' name='contract_sauda_group[1][qty_exe]'
+                                                                                value='0'>
+                                                                            <input type='hidden' name='contract_sauda_group[1][wght_exe]'
+                                                                                value='0'>
+                                                                                 <select name="contract_sauda_group[1][p_code]" id="inp_code1" onchange='chgcombo(1)' class="form-control brprod" style="width:162px"
+                                                                            required>
+                                                                            <option value=""></option>
+                                                                            </select>
+                                                                            {{!-- <select name="contract_sauda_group[1][p_code]"
+                                                                                id="inp_code1" onchange='chgcombo(1)'
+                                                                                class="form-control select2" style="width:162px;" placeholder="Select Product">
+                                                                                <option value=""></option>
+                                                                                {{#each product_mast}}
+                                                                                <option value="{{this._id}}"
+                                                                                    data-product_id="{{this._id}}">{{this.product_name}}</option>
+                                                                                {{/each}}
+                                                                            </select> --}}
+                                                                        </td>
+                                                                        <td>
+                                                                            <select name="contract_sauda_group[1][brand_code]"
+                                                                                list="brand_name" class="form-control select2 brand_name"
+                                                                                style="width: 142px;" placeholder="Select Brand">
+                                                                                <option value=""></option>
+                                                                                {{#each brand}}
+                                                                                <option value="{{this.id}}" data-dis_id="{{this.id}}">{{this.brand_name}}</option>
+                                                                                {{/each}}
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" name="contract_sauda_group[1][bag]"
+                                                                                id="bag1" step="0.01" oninput='calc(1)'
+                                                                                class="form-control" style="width: 72px;text-align: -webkit-right;"
+                                                                                required>
+                                                                        </td>
+                                                                        <input type="hidden" name="cntr1" value="1" id="cntr1"
+                                                                            class="form-control" style="width: 102px;text-align: -webkit-right;">
+                                                                        <td class="pack_name1">
+                                                                            {{!-- <div> --}}
+                                                                                <input type="text" name="contract_sauda_group[1][pck]"
+                                                                                    id="pck1" oninput='calc(1)' step="0.01"
+                                                                                    class="form-control" style="width: 72px;text-align: -webkit-right;"
+                                                                                    required>
+                                                                                {{!-- </div> --}}
+                                                                        </td>
+                                                                        <td>
+                                                                            <select name="contract_sauda_group[1][pck_unit]"
+                                                                                list="brnd_code" id="inbrnd_code" class="form-control"
+                                                                                style="width: 72px;text-align: -webkit-right;">
+                                                                                <option value="KG">KG</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td><input type="text" name="contract_sauda_group[1][wght]"
+                                                                                id="wght1" oninput='calc(1)' 
+                                                                                class="form-control wght" style="width: 82px;text-align: -webkit-right;"></td>
+
+                                                                        <td><input type="text" name="contract_sauda_group[1][sd_rate]"
+                                                                                id="sel_rate1" oninput='calc(1)' 
+                                                                                class="form-control wght" style="width: 72px;text-align: -webkit-right;"
+                                                                                required></td>
+                                                                        <td><input type="text" name="contract_sauda_group[1][s_rate]"
+                                                                                id="seler_rate1" class="form-control nofocus"
+                                                                                 style="width: 72px;text-align: -webkit-right;"></td>
+                                                                        <td><input type="text" name="contract_sauda_group[1][b_rate]"
+                                                                                id="buy_rate1" class="form-control nofocus"
+                                                                                 style="width: 72px;text-align: -webkit-right;"></td>
+                                                                        <td>
+                                                                            <select name="contract_sauda_group[1][w_q]"
+                                                                                id="w_q1" oninput='calc(1)' class="form-control w_q"
+                                                                                style="width: 72px;">
+                                                                                <option value="W">W</option>
+                                                                                <option value="Q">Q</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <select name="contract_sauda_group[1][wghtunit]"
+                                                                                id="wghtunit1" oninput='calc(1)' class="form-control"
+                                                                                style="width: 72px;">
+                                                                                <option value="Qtl">Qtl</option>
+                                                                                <option value="Tons">Tons</option>
+                                                                                <option value="Kg">Kg</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <select name="contract_sauda_group[1][rateper]"
+                                                                                id="rateper1" oninput='calc(1)' class="form-control"
+                                                                                style="width: 62px;">
+
+                                                                                <option value="1">1</option>
+                                                                                <option value="10">10</option>
+                                                                                <option value="100">100</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td><input type="text" name="contract_sauda_group[1][amount]"
+                                                                                id="amount1"  class="form-control amount amountfocus"
+                                                                                style="width: 102px;text-align: -webkit-right;"></td>
+                                                                        <td>
+                                                                            <select name="contract_sauda_group[1][pcktype]"
+                                                                                id="pcktype" class="form-control nofocus" style="width: 102px;">
+                                                                                <option value="Gross">Gross</option>
+                                                                                <option value="Net">Net</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <select name="contract_sauda_group[1][g_n]"
+                                                                                id="g_n" class="form-control nofocus" style="width: 102px;">
+                                                                                <option value="">Select...</option>
+                                                                                <option value="O">O</option>
+                                                                                <option value="N">N</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td><input type="text" name="contract_sauda_group[1][ipack]"
+                                                                                class="form-control nofocus" 
+                                                                                style="width: 102px;text-align: -webkit-right;"></td>
+                                                                        <td class="slbrk_name1"><input type="text"
+                                                                                name="contract_sauda_group[1][slbrk_rt]"
+                                                                                 id="slbrk_rt1" oninput='calc(1)'
+                                                                                class="form-control nofocus" style="width: 102px;text-align: -webkit-right;"></td>
+                                                                        <td class="slbrk_type1">
+                                                                            <select name="contract_sauda_group[1][slbrk_type]"
+                                                                                id="slbrk_type1" oninput='calc(1)'
+                                                                                class="form-control nofocus" style="width: 102px;text-align: -webkit-right;">
+                                                                                <option value="%">%</option>
+                                                                                <option value="PBag">PBag</option>
+                                                                                <option value="PQtl">PQtl</option>
+                                                                                <option value="Fix">Fix</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td><input type="text" name="contract_sauda_group[1][slbrk_amt]"
+                                                                                id="slbrk_amt1"  class="form-control nofocus"
+                                                                                style="width: 102px;text-align: -webkit-right;"></td>
+                                                                        <td class="brbrk_rt1"><input type="text" name="contract_sauda_group[1][brbrk_rt]"
+                                                                                 oninput='calc(1)' id="brbrk_rt1"
+                                                                                class="form-control nofocus" style="width: 102px;text-align: -webkit-right;"></td>
+                                                                        <td class="brbrk_typ1">
+                                                                            <select name="contract_sauda_group[1][brbrk_typ]"
+                                                                                id="brbrk_typ1" oninput='calc(1)' class="form-control nofocus"
+                                                                                style="width: 102px;">
+                                                                                {{!-- <option value="">Select...</option>
+                                                                                --}}
+                                                                                <option value="%">%</option>
+                                                                                <option value="PBag">PBag</option>
+                                                                                <option value="PQtl">PQtl</option>
+                                                                                <option value="Fix">Fix</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td><input type="text" name="contract_sauda_group[1][brbrk_amt]"
+                                                                                id="brbrk_amt1"  class="form-control nofocus"
+                                                                                style="width: 102px;text-align: -webkit-right;"></td>
+                                                                        {{!-- <td><input type="text" name="slbrk_rte"
+                                                                                id="slbrk_rte" class="form-control"
+                                                                                style="width: 102px;"></td>
+                                                                        <td>
+                                                                            <select name="contract_sauda_group[1][slbrk_typ]"
+                                                                                id="slbrk_typ" class="form-control"
+                                                                                style="width: 102px;">
+                                                                                <option value="">Select...</option>
+                                                                                <option value="%">%</option>
+                                                                                <option value="PBag">PBag</option>
+                                                                                <option value="PQtl">PQtl</option>
+                                                                                <option value="Fix">Fix</option>
+                                                                            </select>
+                                                                        </td> --}}
+                                                                    </tr>
+                                                                    <tr id="contract_div">
+                                                                        <th>Total</th>
+                                                                        <td></td>
+                                                                        <td><input name="tot_bags" id="tot_bags"
+                                                                                placeholder="Total Bags" class="form-control nofocus"
+                                                                                readonly></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td> <input type="text" name="tot_wght" id="tot_wght"
+                                                                                placeholder="Total tot_wght" class="form-control item_name nofocus"
+                                                                                readonly></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td> <input type="text" name="tot_ammount" id="tot_ammount"
+                                                                                placeholder="Total Amount" class="form-control tot_ammount nofocus"
+                                                                                readonly></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        {{!-- <td>SI Brok Rt</td>
+                                                                        <td>Type</td> --}}
+                                                                        <td></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        {{!-- end of table --}}
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <button type="button" class="btn btn-primary addSauda center-block nofocus" id="add">Add Product</button>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Bill No:</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="bno" class="form-control delv_load digits"
+                                                                    placeholder="Bill Number">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-sm-12 col-md-3 control-label">Date</label>
+                                                            <div class="col-sm-12 col-md-9">
+                                                                <div class="input-group" id="">
+                                                                    <input type="text" class="form-control datemask datep"
+                                                                        name="bdt" value="{{dateformat Date.now 'DD/MM/YYYY'}}">
+                                                                    <span class="input-group-btn">
+                                                                        <button class="btn default date-range-toggle nofocus"
+                                                                            type="button">
+                                                                            <i class="fa fa-calendar"></i>
+                                                                        </button>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Motor No</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="mot_no" class="form-control"
+                                                                    placeholder="Motor">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Transport:</label>
+                                                            <div class="col-md-9">
+                                                                <select name="tptcode" id="tptcode" class="form-control select2" placeholder="Select Transport">
+                                                                    <option value=""></option>
+                                                                    {{#each transport}}
+                                                                    <option value="{{this._id}}">{{this.transport_name}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Collection:</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="tpt_col" class="form-control number"
+                                                                    placeholder="Collection">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Freight:</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="frght" id="frght" oninput="calc()"
+                                                                    class="form-control number" placeholder="Freight">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Rate:</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="frght_rt" class="form-control number"
+                                                                    id="frght_rt" oninput="calc()" placeholder="Rate">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Advance:</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="frght_adv" class="form-control number"
+                                                                    id="frght_adv" oninput="calc()" placeholder="Advance">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="col-md-3 control-label">Term:</label>
+                                                            <div class="col-md-9">
+                                                                <select name="term" id="term" class="form-control select2" placeholder="Select Term">
+                                                                    <option value=""></option>
+                                                                    {{#each term}}
+                                                                    <option value="{{this._id}}">{{this.term_name}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Discount/<br>Credit:
+                                                            </label>
+                                                            <div class="col-md-9">
+                                                                <input type="checkbox" name="paycond" value="Yes" class="discountcredit"
+                                                                    data-on-text="Discount" data-off-text="Credit"
+                                                                    data-size="small" data-off-color="primary">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Discount: </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control number" name="paydiscrt"
+                                                                    value="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Credit(Days): </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control digits" name="cre_days">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-2 control-label">Add1 </label>
+                                                            <div class="col-md-5">
+                                                                <input type="text" class="form-control plus alphas" name="add1_rmk"
+                                                                    placeholder="Add1">
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <input type="text" class="form-control plus number" name="add1_amt"
+                                                                    id="add1_amt" oninput="calc()" placeholder="Amount">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-2 control-label">Less1 </label>
+                                                            <div class="col-md-5">
+                                                                <input type="text" class="form-control minus alphas" name="less1_rmk"
+                                                                    placeholder="Less1">
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <input type="text" class="form-control minus number" name="less1_amt"
+                                                                    id="less1_amt" oninput="calc()" placeholder="Amount">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-2 control-label">Add2 </label>
+                                                            <div class="col-md-5">
+                                                                <input type="text" class="form-control plus alphas" name="add2_rmk"
+                                                                    placeholder="Add2">
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <input type="text" class="form-control plus number" name="add2_amt"
+                                                                    id="add2_amt" oninput="calc()" placeholder="Amount">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-2 control-label">Less2 </label>
+                                                            <div class="col-md-5">
+                                                                <input type="text" class="form-control minus alphas" name="less2_rmk"
+                                                                    placeholder="Less2">
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <input type="text" class="form-control minus number" name="less2_amt"
+                                                                    id="less2_amt" oninput="calc()" placeholder="Amount">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-2 control-label">Add3 </label>
+                                                            <div class="col-md-5">
+                                                                <input type="text" class="form-control plus alphas" name="add3_rmk"
+                                                                    placeholder="Add3">
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <input type="text" class="form-control plus number" name="add3_amt"
+                                                                    id="add3_amt" oninput="calc()" placeholder="Amount">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-2 control-label">Less3 </label>
+                                                            <div class="col-md-5">
+                                                                <input type="text" class="form-control minus alphas" name="less3_rmk"
+                                                                    placeholder="Less3">
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <input type="text" class="form-control minus number" name="less3_amt"
+                                                                    id="less3_amt" oninput="calc()" placeholder="Amount">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Bargain Amt(Calc):
+                                                            </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control number" name="barg_amt"
+                                                                    id="barg_amt" readonly>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Bill Amt(Party Bill):
+                                                            </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control number" name="bill_amt"
+                                                                    id="bill_amt">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Other Terms &
+                                                                condition: </label>
+                                                            <div class="col-md-9">
+                                                                <select name="party_terms" id="party_terms" class="form-control select2" placeholder="Other Terms">
+                                                                    <option value=""></option>
+                                                                    {{#each narration}}
+                                                                    <option value="{{this._id}}">{{this.narration_name}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Remarks: </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="party_remarks" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div>
+                                                {{!-- end of row --}}
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="" class="control-label col-md-3"></label>
+                                                    <div class="col-md-9">
+                                                        <div class="btn-group">
+                                                            <input type="hidden" name="printormessage" id="printormessage" value="submit">
+                                                            <button type="button" class="btn btn-default submitn activeevent shiftfocus" data-act="submit">Submit</button>
+                                                            <button type="button" class="btn btn-default submitn shiftfocus" data-act="print">Submit & Print</button>
+                                                            <button type="button" class="btn btn-default submitn shiftfocus" data-act="msg">Submit & Message</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+                                            </div>
+                                            {{!-- end of panel body --}}
+                                            <div class="panel-footer">
+                                                <div class="action clearfix">
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-9 col-md-push-3">
+                                                            <button type="submit" value="submit" class="btn btn-success">Submit</button>
+                                                            <button type="reset" class="btn btn-danger">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- end of form group --}}
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+{{> footer_new}}
+{{> scripts_new}}

@@ -1,0 +1,95 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                           DO ENTRY
+                                        </li>
+                                    </ul>
+                                </small>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" id="formheading" style="text-align:center">
+                                            <span>DO</span> ENTRY
+                                        </div>
+                                        <div class="panel-body">
+                                            <form  enctype="" id="addcity"  class="validate">
+                                                <div class="row">
+                                                 <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Period</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control" name="filterstartdate"
+                                                                    value="{{dateformat Date.now '01/04/2018'}}" id="contractrange"
+                                                                    autocomplete="off" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                      <div class="col-md-5">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Party Name</label>
+                                                            <div class="col-md-9">
+                                                                <select class="form-control customerName prbank" name="party_Code" id="party_Code" required>
+                                                                    <option value=""></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                            <input type="checkbox" name="pending" checked value="pending" id="pending"> <b style="font-size:14px">Pending</b>
+                                                    </div>
+                                                      <div class="col-md-2">
+                                                        <div class="form-group clearfix">
+                                                            <button type="button" class="btn btn-success" name="filtersubmit"
+                                                                id="getselesentry" value="submit">Proceed..</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                               <div class="getsaleslist"></div>
+                            </div>
+
+
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

@@ -1,0 +1,212 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<style>
+    body {
+        font-size: 12px;
+    }
+
+    @media print {
+        @page {
+            margin-top: 1em;
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+
+        table {
+            width: 100%;
+        }
+    }
+</style>
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <div class="page-container">
+            <div class="page-content-wrapper">
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                    </ul>
+                                </small>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 95%;margin: 1%" align="center">
+                    <table border="1" id="table1" style="width: 100%">
+                        <tr>
+                            <td colspan="4" style="text-align: left; font-size: 14px; width: 60%;">
+                                <b style="font-size: 24PX;">{{division.div_mast}}</b></br><b style="font-size: 15px;">GRAIN
+                                    MERCHANTS AND COMMISSION AGENTS</b></br>{{division.ac_add2}}</br>
+                                <b>
+                                    Tel&nbsp;&nbsp;:&nbsp;&nbsp;{{division.ac_pho}}&nbsp;&nbsp;{{division.ac_phfax}}&nbsp;&nbsp;{{division.ac_mobno}}</b>
+                            </td>
+                            <td colspan="3" style="text-align: left; font-size: 14px; ">GSTIN
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{division.ac_gstin}}</br>FSSAINNo&nbsp;&nbsp;&nbsp;&nbsp;:
+                                {{division.FSSAINo}}</br>
+                                </br>PAN &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                                {{division.ac_pan}}</br> NMMC NO &nbsp;&nbsp;: {{division.NMMCNo}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="text-align: left; font-size: 16px;"> Receiver (Billed and shipped
+                                to)</br><b style="font-size: 22px;">{{GaruAavak.party_Code.ACName}}</b></br>
+                                {{GaruAavak.party_Code.Area}}</br>{{GaruAavak.party_Code.Address1}}</br>{{GaruAavak.party_Code.ac_add2}}</br>GSTIN
+                                :
+                                {{GaruAavak.party_Code.GSTIN}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FASSAI
+                                NO : {{GaruAavak.party_Code.ac_fccino}}</br>
+                                Broker : {{GaruAavak.broker_Code.ACName}}
+                            </td>
+                            <td colspan="3" style="text-align: left; font-size: 16px;" valign="top">
+                                Inv No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <strong style="font-size: 18px;">{{GaruAavak.vouc_code}}</strong></br>
+                                Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{dateformat
+                                GaruAavak.entry_Date "DD/MM/YYYY"}}</br>
+                                Do&nbsp;No &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{GaruAavak.do_No}}</br>
+                                Po No &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{GaruAavak.po_No}}</br></br>
+                                PAN &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                                {{GaruAavak.party_Code.PanNumber}}
+                            </td>
+                        </tr>
+                    </table>
+                    <table align="center" border="1" id="groceryPrint" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th style="width: 1em;">Sr No</th>
+                                <th style="text-align: left; font-size: 14px;">Item Description</th>
+                                <th style="text-align: right; font-size: 14px;width: 6em">HSN Code</th>
+                                <th style="text-align: right; font-size: 14px; width: 5em">Bags</th>
+                                <th style="text-align: right; font-size: 14px; width: 6em">Net-Wt</th>
+                                <th style="text-align: right; font-size: 14px; width: 7em">Rate</th>
+                                <th style="text-align: right; font-size: 14px; width: 9em">Amount</th>
+                                {{!-- <th style="text-align: center; font-size: 12px; width: 8em">Cash Depo</br>Lab-Chgs</th>
+                                <th style="text-align: center; font-size: 12px; width: 8em">by-Toli</br>Levy-Amt</th>
+                                <th style="text-align: right; font-size: 12px; width: 3em">Total</br>Amount</th> --}}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: center; height: 25em; font-size: 14px;" valign="top">{{#each
+                                    GaruAavak.garu_Aavak_Group as |groupvalue key|}} {{sum @index 1}}</br> {{/each}}</td>
+                                <td style="text-align: left; font-size: 14px;" valign="top">{{#each
+                                    GaruAavak.garu_Aavak_Group as |groupvalue key|}}
+                                    {{groupvalue.item_Code_Desc.item_title}}</br> {{/each}}</td>
+                                <td style="text-align: right; font-size: 14px;" valign="top">{{#each
+                                    GaruAavak.garu_Aavak_Group as |groupvalue key|}}
+                                    {{groupvalue.item_Code_Desc.apmc_code}}</br> {{/each}}</td>
+                                <td style="text-align: right; font-size: 14px;" valign="top">{{#each
+                                    GaruAavak.garu_Aavak_Group as |groupvalue key|}} {{groupvalue.qntty}}</br>
+                                    {{/each}}</td>
+                                <td style="text-align: right; font-size: 14px;" valign="top">{{#each
+                                    GaruAavak.garu_Aavak_Group as |groupvalue key|}} {{groupvalue.net_Wt}}</br>
+                                    {{/each}}</td>
+                                <td style="text-align: right; font-size: 14px;" valign="top">{{#each
+                                    GaruAavak.garu_Aavak_Group as |groupvalue key|}} {{groupvalue.rate}}</br> {{/each}}</td>
+                                <td style="text-align: right; font-size: 14px;" valign="top">{{#each
+                                    GaruAavak.garu_Aavak_Group as |groupvalue key|}} {{groupvalue.amount}}</br>
+                                    {{/each}}</td>
+                                {{!-- <td style="text-align: center; font-size: 14px;" valign="top">{{#each
+                                    daily_grocery_entry.daily_grocery_entry_group as |groupvalue key|}}--</br>
+                                    {{/each}}</td>
+                                <td style="text-align: center; font-size: 14px;" valign="top">{{#each
+                                    daily_grocery_entry.daily_grocery_entry_group as |groupvalue key|}}--</br>
+                                    {{/each}}</td>
+                                <td style="text-align: right; font-size: 14px;" valign="top">{{#each
+                                    daily_grocery_entry.daily_grocery_entry_group as |groupvalue key|}}
+                                    {{groupvalue.Amt}}</br> {{/each}}</td> --}}
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" style="text-align: left; font-size: 15px; height: 2em">&nbsp;&nbsp;
+                                    {{#each GaruAavak.add_details as |groupvalue key|}}
+                                    {{#ifCond @index 0}}{{#ifCondNot groupvalue.particular_amount ''}}CGST:
+                                    {{groupvalue.particular_amount}}{{/ifCondNot}}{{/ifCond}}&nbsp;&nbsp;
+                                    {{#ifCond @index 1}}{{#ifCondNot groupvalue.particular_amount ''}}SGST:
+                                    {{groupvalue.particular_amount}}{{/ifCondNot}}{{/ifCond}}
+                                    {{#ifCond @index 2}}{{#ifCondNot groupvalue.particular_amount ''}}IGST:
+                                    {{groupvalue.particular_amount}}{{/ifCondNot}}{{/ifCond}}
+                                    {{/each}}
+                                </td>
+                                <td style="text-align: right; font-size: 17px;">{{#totQttyInSaleEntry
+                                    GaruAavak.garu_Aavak_Group}}{{/totQttyInSaleEntry}}</td>
+                                <td style="text-align: right; font-size: 17px;">{{#tot_netWtInSaleEntry
+                                    GaruAavak.garu_Aavak_Group}}{{/tot_netWtInSaleEntry}}</td>
+                                <td style="text-align: left; font-size: 17px; padding-left: 4px;">Total</td>
+                                {{!-- <td style="text-align: right; font-size: 17px;">{{#tot_Amount
+                                    GaruAavak.garu_Aavak_Group}}{{/tot_Amount}}</td> --}}
+                            </tr>
+                            <tr>
+                                <td colspan="5" valign="top" style="font-size:14px; text-align: left;height: 5em; font-size: 12px;">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I/We hereby certity that the foods/food mentioned in
+                                    this invoice</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is/are warranted to be of the
+                                    nature and quality which it/these</br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;purport/purports to be. Certified that the
+                                    particulars given above </br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;are true and correct</br>
+                                    <b style="font-size: 15px;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bank
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{#each GaruAavak.party_Code.bank_group as
+                                        |groupvalue key|}}{{#ifCond @index
+                                        0}}{{groupvalue.ac_banknm}}{{/ifCond}}{{/each}}&nbsp;{{#each
+                                        GaruAavak.party_Code.bank_group as |groupvalue key|}}{{#ifCond @index
+                                        0}}{{groupvalue.branch_name}}{{/ifCond}}{{/each}} </br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A/C NO&nbsp;&nbsp;: {{#each
+                                        GaruAavak.party_Code.bank_group as |groupvalue key|}}{{#ifCond @index
+                                        0}}{{groupvalue.account_no}}{{/ifCond}}{{/each}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IFS
+                                        Code&nbsp;&nbsp;: {{#each GaruAavak.party_Code.bank_group as |groupvalue
+                                        key|}}{{#ifCond @index 0}}{{groupvalue.ifc_code}}{{/ifCond}}{{/each}}</b></td>
+
+
+                                <td valign="top" colspan="2" style="text-align: left; font-size: 17px; padding-left: 4px;">
+                                    {{!-- Freight</br>
+                                    APMC</br>
+                                    Discount : <b style="float: right">-{{#totDiscInSaleEntry
+                                        GaruAavak.garu_Aavak_Group}}{{/totDiscInSaleEntry}}</b></br>
+                                    GST @ 5% : <b style="float: right">{{#totGSTInSaleEntry
+                                        GaruAavak.add_details}}{{/totGSTInSaleEntry}}</b></br> --}}
+                                    {{#each GaruAavak.add_details as |groupvalue key|}}
+                                    {{#each ../AddLessParameter as |group key|}}
+                                    {{#ifCond_id groupvalue.particular_add group._id}}
+                                    {{#ifGreter groupvalue.particular_amount 0}}{{group.Description}} : <b style="float: right">{{groupvalue.particular_amount}}</b></br>{{/ifGreter}}
+                                    {{/ifCond_id}}
+                                    {{/each}}
+                                    {{/each}}
+                                    {{#each GaruAavak.less_details as |groupvalue key|}}
+                                    {{#each ../AddLessParameter as |group key|}}
+                                    {{#ifCond_id groupvalue.particular_less group._id}}
+                                    {{#ifGreter groupvalue.particular_amtless 0}}{{group.Description}} : <b style="float: right">-{{groupvalue.particular_amtless}}</b></br>{{/ifGreter}}
+                                    {{/ifCond_id}}
+                                    {{/each}}
+                                    {{/each}}
+                                    Net Bill : <b style="float: right">{{GaruAavak.gross_Amt}}</b>
+                                </td>
+                                {{!-- <td style="text-align: right; font-size: 17px; padding-bottom: 5px;"></br>{{GaruAavak.tot_apmc}}</br>{{GaruAavak.tot_discount}}</br>{{GaruAavak.tot_TaxAmt}}</br>{{GaruAavak.gross_Amt}}</td>
+                                --}}
+                            </tr>
+                            <tr>
+                                <td colspan="4" valign="top" style="font-size:14px; text-align: left; height: 5em; font-size: 16px;">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pre Dues Rs.
+                                    {{outstanding_bal}}</br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No tax is payble on
+                                    reverse charge</td>
+                                <td colspan="3" valign="top" style="font-size:14px; text-align: right; height: 5em; font-size: 17px;  padding-bottom: 7px; padding-right: 5px;">
+                                    <p>For <b>{{division.div_mast}}</b></p></br>Authorised signatory
+                                </td>
+                            </tr>
+                        </tfoot>
+
+                    </table>
+                    <a class="btn btn-lg blue hidden-print margin-bottom-5" onclick="printinvoice()" id="hideprintbtn"
+                        style="margin-top: 2em"> Print
+                        <i class="fa fa-print"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

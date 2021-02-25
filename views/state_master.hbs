@@ -1,0 +1,190 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                              
+                                <div class="col-md-12">
+                                     {{!-- {{#scuritylogin   security 'State Master' 'A'}} method="POST" action="/state_master/state_add"--}}
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" id="formheading" style="text-align: right">
+                                            <span>Add</span> State
+                                        </div>
+                                        <div class="panel-body">
+                                            <form  enctype="" id="edit_state"
+                                                class="validate">
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">State Name</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control state_name" placeholder="State Name"
+                                                                name="state_name" type="text" autofocus required/>
+                                                                  <input class="form-control vhpxstate" id="vhpxstate"
+                                                                name="vhpxstate" type="hidden" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">State Capital</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control state_capital" placeholder="State Capital"
+                                                                name="state_capital" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">State Code</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control state_code" placeholder="State Code"
+                                                                name="state_code" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3"></label>
+                                                        <div class="col-md-9">
+                                                            <button type="submit" name="save" class="btn btn-success lock-state">Submit</button>
+                                                            <button type="reset" class="btn btn-primary cancelmaster"
+                                                              data-form-ad-action="/state_master/state_add">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    {{!-- {{/scuritylogin}} data-form-ad-action="/state_master/state_add"--}}
+                                </div>
+                                  <div class="col-md-12">
+                                {{!-- {{#scuritylogin   security 'State Master' 'V'}} --}}
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" style="text-align: right">
+                                            State List
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table id="product_detail_table" class="product_detail_table table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                             <th>Action</th>
+                                                            <th>Sno.</th>
+                                                            <th>State Name</th>
+                                                            <th>State Capital</th>
+                                                            <th>State Code</th>
+                                                            
+                                                           
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{#each  state_master as |value key|}}
+                                                        <tr>
+                                                             <td>
+                                                                <div class="btn-group dropdown">
+                                                                    <button class="btn btn-xs blue dropdown-toggle"
+                                                                        type="button" data-toggle="dropdown"
+                                                                        aria-expanded="false"> Actions
+                                                                        <i class="fa fa-angle-down"></i>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu pull-left" role="menu" style="width:150px">
+                                                                         {{!-- {{#scuritylogin   ../security 'State Master' 'E'}} --}}
+                                                                        <li>
+                                                                            <a href="javascript:void(0);" class="edit_state_btn"
+                                                                                data-id="{{this._id}}">
+                                                                                <i class="icon-pencil"></i> Edit </a>
+                                                                        </li>
+                                                                        {{!-- {{/scuritylogin}} --}}
+                                                                        <li class="divider"> </li>
+                                                                         {{!-- {{#scuritylogin   ../security 'State Master' 'D'}} --}}
+                                                                        <li>
+                                                                            <a href="javascript:void(0);" class="delete-state"
+                                                                                data-id="{{this._id}}">
+                                                                                <i class="icon-trash"></i> Delete
+                                                                            </a>
+                                                                        </li>
+                                                                        {{!-- {{/scuritylogin}} --}}
+                                                                    </ul>
+                                                                </div>
+                                                            </td>
+                                                            <td>{{sum @index 1}}</td>
+                                                            <td>{{this.StateName}}</td>
+                                                            <td>{{this.StateCapital}}</td>
+                                                            <td>{{this.StateCode}}</td>
+                                                           
+                                                        </tr>
+                                                        {{/each}}
+
+
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th class="excludesearch"></th>
+                                                            <th>Sno.</th>
+                                                            <th>State Name</th>
+                                                            <th>State Code</th>
+                                                            <th>Country Name</th>
+                                                           
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{!-- {{/scuritylogin}} --}}
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

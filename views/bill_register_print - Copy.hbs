@@ -1,0 +1,217 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <div class="page-content-inner">
+                        <div class="invoice">
+                        <div class="row">
+                           <table>
+                               <tr>
+                                   <td><b>{{division.jurisdiction}}</b></td>
+                               </tr>
+                               <tr>
+                                   <td>{{division.ac_topline}}</td>
+                               </tr>
+                               <tr>
+                                   <td style="font-size: 35px;"><b>{{division.div_mast}}</b></td>
+                               </tr>
+                           </table>
+                           <table border="1px solid">
+                               <tr>
+                                   <td style="border: none"><b>Prop</b></td>
+                                   <td style="border: none"><b>:</b></td>
+                                   <td style="border: none"><b>{{division.propreietor}}</b></td>
+                                   <td style="border: none"><b>PAN</b></td>
+                                   <td style="border: none"><b>:</b></td>
+                                   <td style="border: none"><b>{{division.ac_pan}}</b></td>
+                               </tr>
+                           </table>
+                           <div class="row">
+                            <div class="col-xs-4">
+                                <ul class="list-unstyled">
+                                   <li><b>{{division.ac_add2}}</b></li>
+                                </ul>
+                            </div>
+                            <div class="col-xs-4" style="margin-top: 32px;"><b style="background-color: gray;">Brokerage Bill</b></div>
+                            <div class="col-xs-4 invoice-payment">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <strong>Mob   :</strong> {{division.ac_mobno}} </li>
+                                    <li>
+                                        <strong>Email :</strong> {{division.ac_email}} </li>
+                                    <li>
+                                        <strong>Website:</strong> {{division.ac_wbsite}} </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <hr style="border: 1px solid;">
+                          <div class="row">
+                            <div class="col-xs-4">
+                                <ul class="list-unstyled">
+                                   <li><strong>Seller Name :</strong> <b>{{trans.pcd.party_name}}</b> </li>
+                                   <li><strong></strong> {{trans.pcd.address1}} </li>
+                                   <li><strong></strong> <b>{{trans.pcd.city_name.city_name}}</b> </li>
+                                </ul>
+                            </div>
+                             <div class="col-xs-4"></div>
+                            <div class="col-xs-4 invoice-payment">
+                                <ul class="list-unstyled" style="    border: 1px solid; margin-top: -20px;">
+                                    <li><strong>Bill NO:</strong> {{trans.vouc_code}} </li>
+                                    <li><strong>Bill Date :</strong>{{dateformat  trans.d_a_t_e 'DD/MM/YYYY'}}</li>
+                                    <li><strong>Bill Perioud:</strong><u>{{trans.from_dt}}</u> TO <u>{{trans.to_dt}}</u></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <table border="1px solid" width="100%">
+                                    <tr>
+                                        <th>Bill Date</th>
+                                        <th>Party Name</th>
+                                        <th>Con.no</th>
+                                        <th>Bill No</th>
+                                        <th>Item Name</th>
+                                        <th>Bages</th>
+                                        <th>Weight</th>
+                                        <th>Rate</th>
+                                        <th>Brokerage</th>
+                                    </tr>
+                                    {{#each delveryentry2 as |delveryentry2value key|}}
+                                    {{#each delveryentry2value.contract_sauda_group as |saudavalue key|}}
+                                    <tr>
+                                        <td>{{dateformat  delveryentry2value.sd_date 'DD/MM/YYYY'}}</td>
+                                        <td>{{delveryentry2value.pcode.party_name}}</td>
+                                        <td>{{delveryentry2value.vouc_code}}</td>
+                                        <td>{{delveryentry2value.sauda1.bno}}</td>
+                                        <td>{{saudavalue.p_code.product_name}}</td>
+                                        <td>{{saudavalue.bag}}</td>
+                                        <td>{{saudavalue.wght}}</td>
+                                        <td>{{saudavalue.sd_rate}}</td>
+                                        <td>{{saudavalue.brbrk_rt}}  {{saudavalue.brbrk_typ}}  {{saudavalue.brbrk_amt}}</td>
+                                    </tr>
+                                {{/each}}
+                                {{/each}}
+                                </table>
+                                 <div class="row">
+                                    <div class="col-xs-8">
+                                       <table border="1px solid">
+                                        <tr>
+                                            <td style="border:none">bag summary</td>
+                                            <td></td>
+                                            <td>total</td>
+                                        </tr>
+                                        <tr>
+                                            <td>total</td>
+                                            <td>{{#saudabagtot delveryentry2}}{{/saudabagtot}}</td>
+                                            <td>{{#saudabagtot delveryentry2}}{{/saudabagtot}}</td>
+                                        </tr>
+                                    </table>
+                                    </div>
+                                    <div class="col-xs-4 invoice-payment">
+                                          <table>
+                                        <tr>
+                                            <td><b>Total bill amount</b></td>
+                                            
+                                            <td><b>{{#totbrbrkamt delveryentry2}}{{/totbrbrkamt}}</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>SGST 9%</b></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>CGST</b></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Total bill amount</b></td>
+                                            
+                                            <td><b>{{#totbrbrkamt delveryentry2}}{{/totbrbrkamt}}</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="float: right">(RUPEES ONLY)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>FOR {{division.div_mast}}</td>
+                                        </tr>
+                                    </table>
+                                    </div>          
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <h3>please check the bill carefully & send payment immediately:</h3>
+                                <ul class="list-unstyled" style="border:1px solid">
+                                    <li><b>{{division.ac_bottline}}</b></li>
+                                </ul>
+                            </div>
+                           
+                            <div class="col-xs-4 invoice-payment">
+                                <h3>Authorized Signatory</h3>
+                            </div>
+                        </div>
+                                
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-8 invoice-block">
+                                
+                                <br/>
+                                <a class="btn btn-lg blue hidden-print margin-bottom-5" onclick="javascript:window.print();"> Print
+                                    <i class="fa fa-print"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div> 
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+
+{{> footer_new}}
+{{> scripts_new}}
+<style>
+    
+</style>

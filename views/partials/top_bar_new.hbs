@@ -1,0 +1,1005 @@
+<body class="page-container-bg-solid " id="body" onafterprint="AfterBillCollectionPrint()">
+    <div class="page-wrapper">
+        <div class="page-wrapper-row">
+            <div class="page-wrapper-top">
+                <div class="page-header">
+                    <div class="page-header-top">
+                        <div class="container-fluid">
+                            <div class="page-logo">
+                                <a href="/userright/index">
+                                    <img src="logo/APMC2.png" alt="logo" class="logo-default">
+                                </a>
+                            </div>
+                            <div class="headerinfo">
+                                <div class="hor-menu hor-menu-light">
+                                    <ul class="nav navbar-nav">
+                                        <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown">
+                                            <a href="javascript:;"> Master List
+                                                <span class="arrow"></span>
+                                            </a>
+                                            <ul class="dropdown-menu extended tasks">
+                                                <li aria-haspopup="true" class="dropdown-submenu classic-menu-dropdown">
+                                                    <a href="javascript:;"> Account Master
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                    <ul class="dropdown-menu pull-left">
+
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/account_mast/account_mast_list" class="nav-link nav-toggle ">
+                                                                Account Master
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/group_mast/group_mast" class="nav-link nav-toggle ">
+                                                                Group Master
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/group_setup_mast/group_setup_mast" class="nav-link nav-toggle ">
+                                                                Group Setup Master
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        {{!--<li aria-haspopup="true" class="">
+                                                            <a href="/tax_mast/tax_mast" class="nav-link nav-toggle ">
+                                                                Tax Master
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/tax_catogory_mast/tax_catogory_mast" class="nav-link nav-toggle ">
+                                                                Tax Category Master
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li> --}}
+                                                    </ul>
+                                                </li>
+                                                <li aria-haspopup="true" class="dropdown-submenu classic-menu-dropdown">
+                                                    <a href="javascript:;">Inventory
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                    <ul class="dropdown-menu pull-left">
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/product_mast/product_mast" class="nav-link nav-toggle">
+                                                                Product Master
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        {{!-- <li aria-haspopup="true" class="">
+                                                            <a href="/quality_mast/quality_mast" class="nav-link nav-toggle">
+                                                                Dana Master
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li> --}}
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/sub_quality_mast/sub_quality_mast" class="nav-link nav-toggle">
+                                                                Sub Quality Master
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/category_mast/category_mast" class="nav-link nav-toggle">
+                                                                Item Group Master
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/brand_mast/brand_mast" class="nav-link nav-toggle">
+                                                                Brand Master
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        {{!-- <li aria-haspopup="true" class="">
+                                                            <a href="/stock_unit_mast/stock_unit_mast" class="nav-link nav-toggle">
+                                                                Stock Keeping Unit Master
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li> --}}
+                                                    </ul>
+                                                </li>
+                                                {{!-- <li aria-haspopup="true" class="dropdown-submenu classic-menu-dropdown">
+                                                    <a href="javascript:;">Grocery
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                    <ul class="dropdown-menu pull-left">
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/toli_master/toli_master" class="nav-link nav-toggle">
+                                                                Toli Master
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/grocery_master/grocery_master" class="nav-link nav-toggle">
+                                                                Grocery Master
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li> --}}
+
+                                                <li aria-haspopup="true" class="dropdown-submenu classic-menu-dropdown">
+                                                    <a href="javascript:;">Others
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                    <ul class="dropdown-menu pull-left">
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/state_master/state_master" class="nav-link nav-toggle">
+                                                                State Master
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/district_mast/district_mast" class="nav-link nav-toggle">
+                                                                District Master
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/add_city/add_city" class="nav-link nav-toggle">
+                                                                City Master
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/party_type_mast/party_type_mast" class="nav-link nav-toggle">
+                                                                Party Type Master
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/bank_details/bank_details" class="nav-link nav-toggle">
+                                                                Bank Details Master
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a class="nav-link nav-toggle" href="/GowdawnCode/GowdawnCode">
+                                                                Godown Master
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li aria-haspopup="true" class="dropdown-submenu classic-menu-dropdown">
+                                                    <a href="javascript:;">Utility
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                    <ul class="dropdown-menu pull-left">
+                                                        <li aria-haspopup="true" class="">
+                                                            <a class="nav-link nav-toggle" href="/voucher_type_master/voucher_type_master">
+                                                                Voucher Type Master
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a class="nav-link nav-toggle" href="/unit_setup_master/unit_setup_master">
+                                                                Unit Setup Master
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        {{!-- <li aria-haspopup="true" class="">
+                                                            <a class="nav-link nav-toggle" href="/addless_mast/addless_mast">
+                                                                Add/Less Master
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li> --}}
+                                                        <li aria-haspopup="true" class="">
+                                                            <a class="nav-link nav-toggle" href="/Add_Less_Parameter_Master/Add_Less_Parameter_Master">
+                                                                Add/Less Parameter Master
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a class="nav-link nav-toggle" href="/stock_opening_module_rm/stock_opening_module_rm">
+                                                                Godown Wise Opening Stock
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a class="nav-link nav-toggle" href="/voucher_type_master/Missing_No_Utility">
+                                                                Missing No Utility
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown">
+                                            <a href="javascript:;"> Entries
+                                                <span class="arrow"></span>
+                                            </a>
+                                            <ul class="dropdown-menu extended tasks">
+                                                {{!-- <li aria-haspopup="true" class="dropdown-submenu classic-menu-dropdown">
+                                                    <a href="javascript:;">Accounts
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                    <ul class="dropdown-menu pull-left">
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/cash_bank/cash_bank_list" class="nav-link nav-toggle">
+                                                                Cash / Bank Entry
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/Bill_CollectionEntry/Bill_CollectionEntry_List"
+                                                                class="nav-link nav-toggle">
+                                                                Bill Collection
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/journal_entry/journal_entry_list" class="nav-link nav-toggle">
+                                                                Journal Entry
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/loan_entry/loan_entry_list" class="nav-link nav-toggle">
+                                                                Loan Entry
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/op_os_module/op_os_module" class="nav-link nav-toggle">
+                                                                Opening OS Module
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/Credit_Note/Credit_Note_List" class="nav-link nav-toggle">
+                                                                Credit Note
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/Debit_Note/Debit_Note_List" class="nav-link nav-toggle">
+                                                                Debit Note
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li aria-haspopup="true" class="dropdown-submenu classic-menu-dropdown">
+                                                    <a href="javascript:;">Sales
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                    <ul class="dropdown-menu pull-left">
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/sales_order_mast/sales_list_mast" class="nav-link nav-toggle">
+                                                                Sales Order
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/Sales_Entry/Sales_Entry_List" class="nav-link nav-toggle">
+                                                                Sales Entry
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/Sales_Return_Entry/Sales_Return_Entry_List" class="nav-link nav-toggle">
+                                                                Sales Return Entry
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li aria-haspopup="true" class="dropdown-submenu classic-menu-dropdown">
+                                                    <a href="javascript:;">Garu Aavak Entry
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                    <ul class="dropdown-menu pull-left">
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/Garu_Aavak_Entry/Garu_Aavak_Entry_List" class="nav-link nav-toggle">
+                                                                Garu Aavak Entry
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/Purchase_Return_Entry/Purchase_Return_Entry_List"
+                                                                class="nav-link nav-toggle">
+                                                                Purchase Return Entry
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li aria-haspopup="true" class="dropdown-submenu classic-menu-dropdown">
+                                                    <a href="javascript:;">Tax
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                    <ul class="dropdown-menu pull-left">
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/tax_mast/tax_mast" class="nav-link nav-toggle">
+                                                                Tax Master
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/Tax_Voucher/Tax_Voucher_List" class="nav-link nav-toggle">
+                                                                Tax Voucher
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/Tax_Voucher/Tds_Challan" class="nav-link nav-toggle">
+                                                                TDS Challan
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/Tax_Voucher/Tax_Register" class="nav-link nav-toggle">
+                                                                Tax Register
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li aria-haspopup="true" class="">
+                                                    <a href="/Garu_Aavak_Entry/Garu_Aavak_Entry_List" class="nav-link nav-toggle">
+                                                        Garu Aavak Entry
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                </li>
+                                                <li aria-haspopup="true" class="">
+                                                    <a href="/Vachhati_Aavak_Entry/Vachhati_Aavak_Entry_List" class="nav-link nav-toggle">
+                                                        Vachhati Aavak Entry
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                </li> --}}
+                                                <li aria-haspopup="true" class="">
+                                                    <a href="/Garu_Aavak_Entry/Garu_Aavak_Entry_List" class="nav-link nav-toggle">
+                                                        Good Inword Note
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                </li>
+                                                <li aria-haspopup="true" class="">
+                                                    <a href="/Garu_Aavak_Entry/Goods_Outward_Note_List" class="nav-link nav-toggle">
+                                                        Good Outword Note
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        {{!-- <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown">
+                                            <a href="javascript:;"> Screening
+                                                <span class="arrow"></span>
+                                            </a>
+                                            <ul class="dropdown-menu extended tasks">
+                                                <li aria-haspopup="true" class="">
+                                                    <a href="/cash_ladger/cash_ladger" class="nav-link nav-toggle">
+                                                        Ledger
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                </li>
+                                                <li aria-haspopup="true" class="">
+                                                    <a href="/cash_ladger/cash_bank_ladger" class="nav-link nav-toggle">
+                                                        Cash / Bank
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                </li>
+                                                <li aria-haspopup="true" class="dropdown-submenu classic-menu-dropdown">
+                                                    <a href="javascript:;">Accounting
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                    <ul class="dropdown-menu pull-left">
+                                                        <li aria-haspopup="true" class="dropdown-submenu classic-menu-dropdown">
+                                                            <a href="javascript:;">Trail Balance
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                            <ul class="dropdown-menu pull-left">
+                                                                <li aria-haspopup="true" class="">
+                                                                    <a href="/Trail_Balance/Trail_Balance" class="nav-link nav-toggle">
+                                                                        Detailed
+                                                                        <span class="arrow"></span>
+                                                                    </a>
+                                                                </li>
+                                                                <li aria-haspopup="true" class="">
+                                                                    <a href="/Trail_Balance/Trail_Balance_Group_Wise"
+                                                                        class="nav-link nav-toggle">
+                                                                        Group Wise
+                                                                        <span class="arrow"></span>
+                                                                    </a>
+                                                                </li>
+
+                                                            </ul>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/Trail_Balance/Profit_loss" class="nav-link nav-toggle">
+                                                                Profit & loss
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/Trail_Balance/Balance_Sheet" class="nav-link nav-toggle">
+                                                                Balance Sheet
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+
+                                                <li aria-haspopup="true" class="dropdown-submenu classic-menu-dropdown">
+                                                    <a href="javascript:;">Sales
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                    <ul class="dropdown-menu pull-left">
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/do_entry/do_entry" class="nav-link nav-toggle">
+                                                                Do Entry
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/sales_register/sales_register" class="nav-link nav-toggle">
+                                                                Sales Register
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li aria-haspopup="true" class="dropdown-submenu classic-menu-dropdown">
+                                                    <a href="javascript:;">Purchase
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                    <ul class="dropdown-menu pull-left">
+                                                        <li aria-haspopup="true" class="">
+                                                            <a class="nav-link nav-toggle" href="#">
+                                                                Purchase Register
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li aria-haspopup="true" class="dropdown-submenu classic-menu-dropdown">
+                                                    <a href="javascript:;">Bank Reconciliation
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                    <ul class="dropdown-menu pull-left">
+                                                        <li aria-haspopup="true" class="">
+                                                            <a class="nav-link nav-toggle" href="/bank_reconcilition/bank_reconcilation_opening_entry">
+                                                                Bank Reconcilation Opening Entry
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a class="nav-link nav-toggle" href="/bank_reconcilition/reconciliation">
+                                                                Reconcilation
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a class="nav-link nav-toggle" href="/bank_reconcilition/Bank_Slip">
+                                                                Bank Slip
+                                                            </a>
+                                                        </li>
+
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li> --}}
+                                        <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown">
+                                            <a href="javascript:;"> Stock
+                                                <span class="arrow"></span>
+                                            </a>
+                                            <ul class="dropdown-menu extended tasks">
+                                                {{!-- <li aria-haspopup="true" class="dropdown-submenu classic-menu-dropdown">
+                                                    <a href="javascript:;">Stores
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                    <ul class="dropdown-menu pull-left"> --}}
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/st_ladger/stock_ladger" class="nav-link nav-toggle">
+                                                                Stock Ledger
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/st_ladger/stock_summary" class="nav-link nav-toggle">
+                                                                Stock Summary
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/godown_transfer_note/godown_transfer_note_list"
+                                                                class="nav-link nav-toggle">
+                                                                Godown Transfer Note
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li aria-haspopup="true" class="">
+                                                            <a href="/stock_adjustment_note/stock_adjustment_note_list"
+                                                                class="nav-link nav-toggle">
+                                                                Stock Adjustment Note
+                                                                <span class="arrow"></span>
+                                                            </a>
+                                                        </li>
+                                                        {{!--
+                                                    </ul>
+                                                </li> --}}
+                                            </ul>
+                                        </li>
+                                        {{!-- <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown">
+                                            <a href="javascript:;"> Report
+                                                <span class="arrow"></span>
+                                            </a>
+                                            <ul class="dropdown-menu extended tasks">
+                                                <li aria-haspopup="true" class="">
+                                                    <a href="/daily_grocery_entry/grocery_report_summary" class="nav-link nav-toggle">
+                                                        Grocery Report Summary
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                </li>
+                                                <li aria-haspopup="true" class="">
+                                                    <a href="/cash_ladger/Party_WiseOutstanding_report" class="nav-link nav-toggle">
+                                                        Party Wise Outstanding
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                </li>
+                                                <li aria-haspopup="true" class="">
+                                                    <a class="nav-link nav-toggle" href="/bank_reconcilition/Chaq_Return_Register">
+                                                        Chaq Return Register
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        --}}
+                                        <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown">
+                                            <a href="javascript:;"> User Rights
+                                                <span class="arrow"></span>
+                                            </a>
+                                            <ul class="dropdown-menu pull-left">
+                                                {{!-- {{#ifCond usrnm "7566767000"}} --}}
+                                                <li aria-haspopup="true" class="">
+                                                    <a href="/company_master/company_master" class="nav-link nav-toggle ">
+                                                        Company Master
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                </li>
+
+                                                <li aria-haspopup="true" class="">
+                                                    <a href="/division_master/division_master" class="nav-link nav-toggle ">
+                                                        Division Master
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                </li>
+
+                                                <li aria-haspopup="true" class="">
+                                                    <a href="/userright/userright" class="nav-link nav-toggle ">
+                                                        User Right
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                </li>
+                                                {{!-- <li aria-haspopup="true" class="">
+                                                    <a href="/userright/admin_list" class="nav-link nav-toggle ">
+                                                        User List
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                </li> --}}
+                                                <li aria-haspopup="true" class="">
+                                                    <a href="/security_right/security_right" class="nav-link nav-toggle ">
+                                                        Security
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                </li>
+                                                {{!-- {{/ifCond}} --}}
+                                                {{!-- {{#ifCond usrnm "123456"}}
+                                                <li aria-haspopup="true" class="">
+                                                    <a href="/company_master/company_master" class="nav-link nav-toggle ">
+                                                        Company Master
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                </li>
+
+                                                <li aria-haspopup="true" class="">
+                                                    <a href="/division_master/division_master" class="nav-link nav-toggle ">
+                                                        Division Master
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                </li>
+                                                <li aria-haspopup="true" class="">
+                                                    <a href="/userright/userright" class="nav-link nav-toggle ">
+                                                        User Right
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                </li>
+                                                <li aria-haspopup="true" class="">
+                                                    <a href="/userright/admin_list" class="nav-link nav-toggle ">
+                                                        User List
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                </li>
+                                                <li aria-haspopup="true" class="">
+                                                    <a href="/security_right/security_right" class="nav-link nav-toggle ">
+                                                        Security
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                </li>
+                                                {{/ifCond}} --}}
+                                                {{!-- <li aria-haspopup="true" class="">
+                                                    <a href="/sauda_register/updatebal" class="nav-link nav-toggle ">
+                                                        Recalculate
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                </li>
+                                                <li aria-haspopup="true" class="">
+                                                    <a href="javascript:;" class="nav-link nav-toggle" data-toggle="modal"
+                                                        data-target="#shortcuts">
+                                                        Help
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                </li> --}}
+                                            </ul>
+                                        </li>
+                                        {{!-- <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown">
+                                            <a href="javascript:;" onclick="ShowShortcuts()"> Help
+                                                <span class="arrow"></span>
+                                            </a>
+                                            <ul class="dropdown-menu extended tasks">
+                                                <li aria-haspopup="true" class="">
+                                                    <a href="/daily_grocery_entry/grocery_report_summary" class="nav-link nav-toggle">
+                                                        Grocery Report Summary
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li> --}}
+                                    </ul>
+                                </div>
+                                <!-- END MEGA MENU -->
+                                {{!-- <span id="compname">{{compnm}}</span>
+                                <span id="divname">{{divnm}}</span>
+                                <span id="date">{{dateformat sdate 'DD/MM/YYYY - {{dateformat edate
+                                    'DD/MM/YYYY'}} {{usrnm}} </span> --}}
+                            </div>
+                            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                            <a href="javascript:;" class="menu-toggler"></a>
+                            <!-- END RESPONSIVE MENU TOGGLER -->
+                            <!-- BEGIN TOP NAVIGATION MENU -->
+                            <div class="top-menu">
+                                <ul class="nav navbar-nav pull-right">
+                                    <!-- BEGIN NOTIFICATION DROPDOWN -->
+                                    <!-- DOC: Apply "dropdown-hoverable" class after "dropdown" and remove data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to enable hover dropdown mode -->
+                                    <!-- DOC: Remove "dropdown-hoverable" and add data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to the below A element with dropdown-toggle class -->
+                                    <li class="dropdown dropdown-extended dropdown-notification dropdown-light" id="header_notification_bar">
+                                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"
+                                            data-hover="dropdown" data-close-others="true">
+                                            <i class="icon-bell"></i>
+                                            <span class="badge badge-default">7</span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li class="external">
+                                                <h3>You have
+                                                    <strong>12 pending</strong> tasks</h3>
+                                                <a href="app_todo.html">view all</a>
+                                            </li>
+                                            <li>
+                                                <ul class="dropdown-menu-list scroller" style="height: 250px;"
+                                                    data-handle-color="#637283">
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <span class="time">just now</span>
+                                                            <span class="details">
+                                                                <span class="label label-sm label-icon label-success">
+                                                                    <i class="fa fa-plus"></i>
+                                                                </span> New user registered. </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <span class="time">3 mins</span>
+                                                            <span class="details">
+                                                                <span class="label label-sm label-icon label-danger">
+                                                                    <i class="fa fa-bolt"></i>
+                                                                </span> Server #12 overloaded. </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <span class="time">10 mins</span>
+                                                            <span class="details">
+                                                                <span class="label label-sm label-icon label-warning">
+                                                                    <i class="fa fa-bell-o"></i>
+                                                                </span> Server #2 not responding. </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <span class="time">14 hrs</span>
+                                                            <span class="details">
+                                                                <span class="label label-sm label-icon label-info">
+                                                                    <i class="fa fa-bullhorn"></i>
+                                                                </span> Application error. </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <span class="time">2 days</span>
+                                                            <span class="details">
+                                                                <span class="label label-sm label-icon label-danger">
+                                                                    <i class="fa fa-bolt"></i>
+                                                                </span> Database overloaded 68%. </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <span class="time">3 days</span>
+                                                            <span class="details">
+                                                                <span class="label label-sm label-icon label-danger">
+                                                                    <i class="fa fa-bolt"></i>
+                                                                </span> A user IP blocked. </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <span class="time">4 days</span>
+                                                            <span class="details">
+                                                                <span class="label label-sm label-icon label-warning">
+                                                                    <i class="fa fa-bell-o"></i>
+                                                                </span> Storage Server #4 not responding dfdfdfd.
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <span class="time">5 days</span>
+                                                            <span class="details">
+                                                                <span class="label label-sm label-icon label-info">
+                                                                    <i class="fa fa-bullhorn"></i>
+                                                                </span> System Error. </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <span class="time">9 days</span>
+                                                            <span class="details">
+                                                                <span class="label label-sm label-icon label-danger">
+                                                                    <i class="fa fa-bolt"></i>
+                                                                </span> Storage server failed. </span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!-- END NOTIFICATION DROPDOWN -->
+                                    <!-- BEGIN TODO DROPDOWN -->
+                                    <li class="dropdown dropdown-extended dropdown-tasks dropdown-light" id="header_task_bar">
+                                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"
+                                            data-hover="dropdown" data-close-others="true">
+                                            <i class="icon-calendar"></i>
+                                            <span class="badge badge-default">3</span>
+                                        </a>
+                                        <ul class="dropdown-menu extended tasks">
+                                            <li class="external">
+                                                <h3>You have
+                                                    <strong>12 pending</strong> tasks</h3>
+                                                <a href="app_todo_2.html">view all</a>
+                                            </li>
+                                            <li>
+                                                <ul class="dropdown-menu-list scroller" style="height: 275px;"
+                                                    data-handle-color="#637283">
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <span class="task">
+                                                                <span class="desc">New release v1.2 </span>
+                                                                <span class="percent">30%</span>
+                                                            </span>
+                                                            <span class="progress">
+                                                                <span style="width: 40%;" class="progress-bar progress-bar-success"
+                                                                    aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+                                                                    <span class="sr-only">40% Complete</span>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <span class="task">
+                                                                <span class="desc">Application deployment</span>
+                                                                <span class="percent">65%</span>
+                                                            </span>
+                                                            <span class="progress">
+                                                                <span style="width: 65%;" class="progress-bar progress-bar-danger"
+                                                                    aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
+                                                                    <span class="sr-only">65% Complete</span>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <span class="task">
+                                                                <span class="desc">Mobile app release</span>
+                                                                <span class="percent">98%</span>
+                                                            </span>
+                                                            <span class="progress">
+                                                                <span style="width: 98%;" class="progress-bar progress-bar-success"
+                                                                    aria-valuenow="98" aria-valuemin="0" aria-valuemax="100">
+                                                                    <span class="sr-only">98% Complete</span>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <span class="task">
+                                                                <span class="desc">Database migration</span>
+                                                                <span class="percent">10%</span>
+                                                            </span>
+                                                            <span class="progress">
+                                                                <span style="width: 10%;" class="progress-bar progress-bar-warning"
+                                                                    aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+                                                                    <span class="sr-only">10% Complete</span>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <span class="task">
+                                                                <span class="desc">Web server upgrade</span>
+                                                                <span class="percent">58%</span>
+                                                            </span>
+                                                            <span class="progress">
+                                                                <span style="width: 58%;" class="progress-bar progress-bar-info"
+                                                                    aria-valuenow="58" aria-valuemin="0" aria-valuemax="100">
+                                                                    <span class="sr-only">58% Complete</span>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <span class="task">
+                                                                <span class="desc">Mobile development</span>
+                                                                <span class="percent">85%</span>
+                                                            </span>
+                                                            <span class="progress">
+                                                                <span style="width: 85%;" class="progress-bar progress-bar-success"
+                                                                    aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                                                                    <span class="sr-only">85% Complete</span>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <span class="task">
+                                                                <span class="desc">New UI release</span>
+                                                                <span class="percent">38%</span>
+                                                            </span>
+                                                            <span class="progress progress-striped">
+                                                                <span style="width: 38%;" class="progress-bar progress-bar-important"
+                                                                    aria-valuenow="18" aria-valuemin="0" aria-valuemax="100">
+                                                                    <span class="sr-only">38% Complete</span>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!-- END TODO DROPDOWN -->
+                                    <li class="droddown dropdown-separator">
+                                        <span class="separator"></span>
+                                    </li>
+                                    <!-- BEGIN INBOX DROPDOWN -->
+                                    <li class="dropdown dropdown-extended dropdown-inbox dropdown-light" id="header_inbox_bar">
+                                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"
+                                            data-hover="dropdown" data-close-others="true">
+                                            <span class="circle">3</span>
+                                            <span class="corner"></span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li class="external">
+                                                <h3>You have
+                                                    <strong>7 New</strong> Messages</h3>
+                                                <a href="app_inbox.html">view all</a>
+                                            </li>
+                                            <li>
+                                                <ul class="dropdown-menu-list scroller" style="height: 275px;"
+                                                    data-handle-color="#637283">
+                                                    <li>
+                                                        <a href="#">
+                                                            <span class="photo">
+                                                                <img src="" class="img-circle" alt=""> </span>
+                                                            <span class="subject">
+                                                                <span class="from"> Lisa Wong </span>
+                                                                <span class="time">Just Now </span>
+                                                            </span>
+                                                            <span class="message"> Vivamus sed auctor nibh congue nibh.
+                                                                auctor nibh auctor nibh... </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <span class="photo">
+                                                                <img src="" class="img-circle" alt=""> </span>
+                                                            <span class="subject">
+                                                                <span class="from"> Richard Doe </span>
+                                                                <span class="time">16 mins </span>
+                                                            </span>
+                                                            <span class="message"> Vivamus sed congue nibh auctor nibh
+                                                                congue nibh. auctor nibh auctor nibh... </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <span class="photo">
+                                                                <img src="" class="img-circle" alt=""> </span>
+                                                            <span class="subject">
+                                                                <span class="from"> Bob Nilson </span>
+                                                                <span class="time">2 hrs </span>
+                                                            </span>
+                                                            <span class="message"> Vivamus sed nibh auctor nibh congue
+                                                                nibh. auctor nibh auctor nibh... </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <span class="photo">
+                                                                <img src="" class="img-circle" alt=""> </span>
+                                                            <span class="subject">
+                                                                <span class="from"> Lisa Wong </span>
+                                                                <span class="time">40 mins </span>
+                                                            </span>
+                                                            <span class="message"> Vivamus sed auctor 40% nibh congue
+                                                                nibh... </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <span class="photo">
+                                                                <img src="" class="img-circle" alt=""> </span>
+                                                            <span class="subject">
+                                                                <span class="from"> Richard Doe </span>
+                                                                <span class="time">46 mins </span>
+                                                            </span>
+                                                            <span class="message"> Vivamus sed congue nibh auctor nibh
+                                                                congue nibh. auctor nibh auctor nibh... </span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!-- END INBOX DROPDOWN -->
+                                    <!-- BEGIN USER LOGIN DROPDOWN -->
+                                    <li class="dropdown dropdown-user dropdown-light">
+                                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"
+                                            data-hover="dropdown" data-close-others="true">
+                                            <img alt="" class="img-circle" src="/public/img/profile.png">
+                                            <span class="username username-hide-mobile">{{usrnm}}</span>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-default">
+                                            <li>
+                                                {{!-- href="page_user_profile_1.html" --}}
+                                                <a>
+                                                    <i class="icon-user"></i> My Profile </a>
+                                            </li>
+                                            <li class="divider"> </li>
+                                            <li>
+                                                <a href="/userright/logout">
+                                                    <i class="icon-key"></i> Log Out </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!-- END USER LOGIN DROPDOWN -->
+                                </ul>
+                                {{!-- <input type="search" class="searchapp form-control" placeholder="Page Name" list="query"
+                                    id="searchmenu" autocomplete="off"> --}}
+
+                                {{!-- <datalist id="query">
+                                    <option value="List Party" data-address="/party/party_list">
+                                    <option value="Add Party" data-address="/party/party_add">
+                                    <option value="List Contract sauda" data-address="/contract_sauda/contract_sauda_list">
+                                    <option value="Add contract sauda" data-address="/contract_sauda/contract_sauda">
+                                    <option value="list Delivery" data-address="/delivery_entry/delivery_entry_list">
+                                    <option value="Add Delivery" data-address="/delivery_entry/delivery_entry">
+                                    <option value="Payment Entry" data-address="/payment_entry/payment_entry">
+                                </datalist> --}}
+                            </div>
+                            <!-- END TOP NAVIGATION MENU -->
+                        </div>
+                    </div>
+                    <!-- END HEADER TOP -->

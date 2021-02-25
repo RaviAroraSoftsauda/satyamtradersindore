@@ -1,0 +1,307 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb pull-right">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+               <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{#if err}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{err}}</strong>
+                                    </div>
+                                    {{/if}}
+                                    {{#if errors}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{errors}}</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            {{!-- end of alerts row --}}
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                        WIP Entry
+                                        </div>
+                                        <form method="POST" action="/WIP_DeptEntry/add" class="" novalidate
+                                            enctype="" id="contract_sauda">
+                                           <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-sm-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-2 control-label">Entry No: </label>
+                                                            <div class="col-md-5">
+                                                                <select  name="c_j_s_p" id="c_j_s_p"  class="form-control  prbank select2" required
+                                                                    placeholder="Please Select" style="text-align: -webkit-left;" > 
+                                                                    {{!-- <option value="WIP" selected>WIP</option> --}}
+                                                                    <option value="WIP">WIP</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <input type="number" name="vouc_code" placeholder="Entry No" id="vouc_codeid"
+                                                                    value="{{last}}" class="form-control plan_no" required autofocus
+                                                                    tabindex="2" style="text-align: left"/>
+                                                            </div>  
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-sm-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Entry Date: </label>
+                                                             <div class="col-md-9">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control datemask"
+                                                                        name="so_date" id="offerstartdate" value="{{dateformat Date.now 'DD/MM/YYYY'}}"
+                                                                        autocomplete="off" tabindex="3"  required />
+                                                                    <span class="input-group-btn">
+                                                                        <button class="btn default date-range-toggle isprop"
+                                                                            type="button" id="offerstartdatebtn"
+                                                                            tabindex="-1">
+                                                                            <i class="fa fa-calendar"></i>
+                                                                        </button>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                             
+                                                        </div>
+                                                    </div>
+                                                </div>   
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-sm-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-2 control-label">Base Dept:</label>
+                                                            <div class="col-md-10">
+                                                                <select  name="DPCD" id="DPCD"  class="form-control  prbank select2" required
+                                                                    placeholder="Please Select" style="text-align: -webkit-left;"> 
+                                                                    {{#each production_dept}}
+                                                                    <option value=""></option>
+                                                                    <option value="{{this.id}}">{{this.Description}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>      
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                      <div class="col-sm-12 col-sm-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-2 control-label">Next Dept:</label>
+                                                            <div class="col-md-10">
+                                                                <select  name="OPDPCD" id="OPDPCD"  class="form-control  prbank select2"
+                                                                    placeholder="Please Select" style="text-align: -webkit-left;"> 
+                                                                    {{#each production_dept}}
+                                                                    <option value=""></option>
+                                                                    <option value="{{this.id}}">{{this.Description}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>      
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                                
+                                                    {{!-- end of col --}}
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="table-responsive adjustmentstable">
+                                                            <table class="table worksheet_repeat_row">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th style="width: 8em">Plan No</th>
+                                                                        <th>FG Name</th>
+                                                                        <th>WIP Name</th>
+                                                                        <th style="width: 8em">Qty</th>
+                                                                        <th style="width: 8em">Rej Qty</th>
+                                                                        <th style="width: 8em">Finel Qty</th>
+                                                                        <th style="width: 12em">Remark</th>
+                                                                        <th style="width: 4em" >Delete</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <input type="number" name="sales_or_group[0][plan_no]" id="plan_no0"  oninput='calPlan(0)' 
+                                                                            class="form-control" style="text-align: -webkit-right;" onkeydown="getPlan(0,event)"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="hidden" name="buyrn" value="0" id="buyrn0" oninput='calsalesorder(1)'
+                                                                            class="form-control addReq" style="width: 102px;text-align: -webkit-right;"/>
+                                                                            <select  name="sales_or_group[0][so_disc]" id="descpso0"  class="form-control select2" 
+                                                                                placeholder="Select Product" style="text-align: -webkit-left; width: 100%"> 
+                                                                                <option value=""></option>
+                                                                                {{#each product}}
+                                                                                    <option value="{{this.id}}" data-serialnum="{{this._id}}">{{this.Fg_Des}}</option>
+                                                                                {{/each}}
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <select  name="sales_or_group[0][WIP_name]" id="WIP_name0"  class="form-control prbank select2" 
+                                                                                placeholder="Select WIP" style="text-align: -webkit-left; width: 100%"> 
+                                                                                <option value=""></option>
+                                                                                {{#each WIP_mast}}
+                                                                                    <option value="{{this.id}}" data-serialnum="{{this._id}}">{{this.Fg_Des}}</option>
+                                                                                {{/each}}
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="number" name="sales_or_group[0][Bs_qty]" id="Bs_qty0"  oninput='calWipQty(0)' 
+                                                                            class="form-control" style="text-align: -webkit-right;"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="number" name="sales_or_group[0][Rej_qty]" id="Rej_qty0"  oninput='calWipQty(0)' 
+                                                                            class="form-control" style="text-align: -webkit-right;"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="number" name="sales_or_group[0][so_qty]" id="so_qty0"  oninput='calWipQty(0)' 
+                                                                            class="form-control" style="text-align: -webkit-right;"/>
+                                                                        </td>
+                                                                         <td>
+                                                                            <input type="text" name="sales_or_group[0][WIP_Rem]" id="WIP_Rem0"  oninput='calWipQty(0)' 
+                                                                            class="form-control amountfocus" style="text-align: -webkit-right;"/>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr id="contract_div_po">
+                                                                            <th>Total</th>
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                            <td><input type="text" name="tot_sooq" id="tot_sooq"
+                                                                            placeholder="Total" class="form-control tot_sooq" oninput='calWipQty(0)' style="text-align: -webkit-right;"
+                                                                            readonly  tabindex="-1"></td>
+                                                                            <th></th>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                 <div class="row">
+                                                    <div class="col-sm-12">
+                                                      <button type="button" class="btn btn-primary addWIPDeptEntry center-block nofocus" id="add">Add Item</button>  
+                                                    </div>
+                                                </div> 
+                                            <div class="panel-footer">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-sm-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-2 control-label">Remarks: </label>
+                                                             <div class="col-md-10">
+                                                               <input type="text" name="buy_rmks" id="buy_rmks" class="form-control WIPSave">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="action clearfix">
+                                                    <div class="col-md-12" align="center">
+                                                        <div>
+                                                            <button type="submit" name="save" class="btn btn-success ">Submit</button>
+                                                            <button type="reset" class="btn btn-danger">Cancel</button>
+                                                            <a href="/WIP_DeptEntry/WIP_DeptEntrylist" class="btn btn-info" style="margin-top: 1.5em">Back</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                <div class="modal" tabindex="-1" role="dialog" id="WipPlanModel" >
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content" style="margin-left: -38px; width: 1232px;">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title">Pending Plan</h4>
+                                            </div>
+                                                <div class="modal-body">
+                                                                                {{!-- table that hides and shows on select --}}
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="table-responsive" >
+                                                                <div class="brand_add_container clearfix">
+                                                                    <div class="table-responsive adjustmentstable" style="margin-top: 40px;">
+                                                                        <table class="table">
+                                                                            <thead style="background-color:#4b77be;color: white;">
+                                                                                <tr>
+                                                                                    <th>Plan No</th>
+                                                                                    <th>Date</th>
+                                                                                    <th>Product</th>
+                                                                                    <th>Qty</th>
+                                                                                    <th>Panding Qty</th>
+                                                                                    <th>WIP Qty</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody class="dsi_repeat_row">
+                                                                            <tr></tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                                <div class='addsauda'></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                                                {{!-- end of row --}}
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    {{!-- <button type="button" class="btn btn-primary" id="ChangeWIPEntry">Save changes</button> --}}
+                                                </div>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div><!-- /.modal -->
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+               </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+
+{{!-- Party Modal --}}
+
+
+{{> footer_new}}
+{{> scripts_new}}

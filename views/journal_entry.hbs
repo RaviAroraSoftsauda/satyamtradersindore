@@ -1,0 +1,269 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <ul class="page-breadcrumb breadcrumb pull-right">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{#if err}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{err}}</strong>
+                                    </div>
+                                    {{/if}}
+                                    {{#if errors}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{errors}}</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            {{!-- end of alerts row --}}
+                            <div class="row">
+                                <div class="col-sm-12">
+                                  <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            Journal Entry
+                                        </div>
+                                        <form method="POST" action="/journal_entry/add" id="journalEntryForm" novalidate enctype="">
+                                           <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Entry No: </label>
+                                                            <div class="col-md-6">
+                                                                <select class="form-control select2"  name="c_j_s_p" id="c_j_s_p" required data-Module="Cash/Bank" onchange="getBookNo()">
+                                                                    {{#each vouchMast}}
+                                                                        <option value="{{this.Vo_book}}" {{#equal this.Vo_book 'JV'}} selected="" {{/equal}}>{{this.Vo_book}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>
+                                                             <div class="col-md-3">
+                                                                <input type="number" name="vouc_code" placeholder="Entry Number" 
+                                                                    value="{{lastNo}}"  class="form-control vouc_code"
+                                                                    tabindex="2" autofocus/>
+                                                                <input type="hidden" name="Form" id="Form" value="journalEntryForm">
+                                                                <input type="hidden" name="" id="GaruEntryModel" value="journalEntryForm">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Entry Date: </label>
+                                                             <div class="col-md-9">
+                                                                <input type="text" class="form-control datemask"
+                                                                    name="cash_edate" id="offerstartdate" value="{{dateformat Date.now 'DD/MM/YYYY'}}"
+                                                                    autocomplete="off" tabindex="3"  />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="table-responsive adjustmentstable">
+                                                            <table class="table tabler">
+                                                                <thead>
+                                                                    <tr>   
+                                                                        <th>Type</th>
+                                                                        <th>AccountName</th>
+                                                                        <th>Debit(Amt)</th>
+                                                                        <th>Credit(Amt)</th>
+                                                                        <th>Remark</th>
+                                                                        <th>Narration</th>
+                                                                        <th>Delete</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <input type="hidden" name="jourtrn" value="1" id="jourtrn1" class="form-control" style="width: 102px;text-align: -webkit-right;"/>
+                                                                            <select class="form-control prbank select2"  name="cash_type[1]"  id="cashtypejv1" placeholder="Select Type"
+                                                                              style="width: 150px;text-align: -webkit-right;" onchange="journalDrCrCheck(1)">
+                                                                                <option value=""></option>
+                                                                                <option value="Debit" >Debit</option>
+                                                                                <option value="Credit">Credit</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <select name="cashac_name[1]" id="cashac_name1" class="form-control AllAccountWithOutCashBank"
+                                                                            style="width: 250px;text-align: -webkit-right;" required>
+                                                                                <option value=""></option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" name="cash_debitamount[1]" value="0" id="cashamountjv1"  oninput='calJournal(1)' onkeydown="OutStandingModelInJournalEntry(event,1)" class="form-control " style="text-align: -webkit-right;"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" name="cash_creditamount[1]" value="0" id="cashamountcr1"  oninput='calJournal(1)' onkeydown="OutStandingModelInJournalEntry(event,1)" class="form-control " style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" name="cash_narrone[1]" id="cashremark1" class="form-control "  style="">
+                                                                            <input type="hidden" name="outSaveArr[1]" id="outSaveArr1">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" name="cash_narrtwo[1]" id="cashnarrtwo1" class="form-control amountfocus" style=""/>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr id="contract_div">
+                                                                        <th>Total</th>
+                                                                        <td></td>
+                                                                        <td>
+                                                                            <input type="text" name="tot_amtdebit" id="totcash_amtdr" placeholder="Total" class="form-control nofocus" style="text-align: -webkit-right;"readonly> 
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" name="tot_amtcridit" id="totcash_amtcr" placeholder="Total" class="form-control nofocus" style="text-align: -webkit-right;" readonly>
+                                                                        </td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                      <button type="button" class="btn btn-primary addjournal center-block nofocus" id="add">Add Entry</button>  
+                                                    </div>
+                                                </div> 
+                                                <div class="row">
+                                                      <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group clearfix">
+                                                            <label class="col-sm-3 control-label">Remarks: </label>
+                                                            <div class="col-md-9">
+                                                                <textarea name="cash_remarks" id="cash_remarks" class="form-control delv_load"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-footer">
+                                                    <div class="action clearfix">
+                                                        <div class="col-md-12">
+                                                            <div align="center">
+                                                                <button type="submit" name="save" class="btn btn-success save-journal" style="display: none">Submit</button>
+                                                                <button type="reset" class="btn btn-danger">Cancel</button>
+                                                                <a href="/journal_entry/journal_entry_list" class="btn btn-info" style="margin-top: 1.5em">Back</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="OutStandingModelInJournalEntry" >
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" style="margin-left: -38px; width: 1232px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="float: left">Pending OutStanding</h4>
+                <a style="float: right;"><i class='fa fa-times'  data-dismiss="modal" style='font-size: 20px;color: red;margin-left:12px;'></i></a>
+            </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <form action="">
+                            <div class="table-responsive" >
+                                <div class="brand_add_container clearfix">
+                                    <div class="table-responsive adjustmentstable">
+                                        <table class="tabler">
+                                            <thead style="background-color:#4b77be;color: white;" id="OutStandingModelHead">
+                                                {{!-- <tr>
+                                                    <th>Date</th>
+                                                    <th>Vouc no</th>
+                                                    <th>Amount</th>
+                                                    <th>Panding Amount</th>
+                                                    <th>Receive Amount</th>
+                                                    <th>Balance</th>
+                                                </tr> --}}
+                                            </thead>
+                                            <tbody class="out_repeat_row">
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td><input type="number" name="totPandingAmt" id="totPandingAmt" class="form-control" readonly></td>
+                                                    <td>
+                                                        {{!-- <input type="number" name="totReceiveAmt" id="totReceiveAmt" class="form-control" readonly> --}}
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class='addsauda'></div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                                                {{!-- end of row --}}
+                </div>
+                <div class="modal-footer" id="OutstandingModelSaveButton">
+                    <button type="button" class="btn btn-primary" id="GetOutStInJEBtnId" onclick="GetOutStInJE('Save_OutEntry')">Save</button>
+                </div>
+                {{!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> --}}
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+{{> footer_new}}
+{{> scripts_new}}
+<style>
+     .tabler>tbody>tr>td, .tabler>tbody>tr>th, .tabler>tfoot>tr>td, .tabler>tfoot>tr>th, .tabler>thead>tr>td, .tabler>thead>tr>th {
+        padding: 1px;
+        line-height: 1.42857143;
+        vertical-align: center;
+    }
+</style>

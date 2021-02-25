@@ -1,0 +1,143 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <div class="page-container">
+            <div class="page-content-wrapper">
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Contract List
+                                        </li>
+                                    </ul>
+                                </small>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{#if err}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{err}}</strong>
+                                    </div>
+                                    {{/if}}
+                                    {{#if errors}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{errors}}</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary table light " id="tableportlet">
+                                        <div class="panel-heading">
+                                           Debit Note List
+                                            <div class="misc pull-right">
+                                                <div class="buttons">
+                                                     <a href="/Debit_Note/Debit_Note_Add">
+                                                        <button class="btn btn-link" type="button"><i class="fa fa-plus"></i>Add
+                                                           Debit Note Entry</button>
+                                                    </a>
+                                                  </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body" id="portletbody">
+                                            <table class="product_detail_table dttable table table-striped table-bordered table-hover"
+                                                id="product_detail_table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Action</th>
+                                                        <th>Entry No</th>
+                                                        <th>Book</th>
+                                                        <th>Entry Date</th>
+                                                        <th>Debit Account</th>
+                                                        <th>Credit Account</th>
+                                                        <th>Remarks</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{#each cashmast as |value key|}}
+                                                    <tr>
+                                                          <td class="excludesearch">
+                                                            <div class="btn-group dropdown">
+                                                                <button class="btn btn-xs blue dropdown-toggle" type="button"
+                                                                    data-toggle="dropdown" aria-expanded="false">
+                                                                    Actions
+                                                                    <i class="fa fa-angle-down"></i>
+                                                                </button>
+                                                                <ul class="dropdown-menu pull-left" role="menu" style="width:150px">
+                                                                    <li>
+                                                                        <a href="/Debit_Note/Debit_Note_Update/{{this._id}}">
+                                                                            <i class="fa fa-pencil"></i> Edit
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                         <a href="/Debit_Note/delete/{{this._id}}" class="delbutton"
+                                                                            data-id="{{this._id}}">
+                                                                            <i class="icon-trash"></i> Delete
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/Debit_Note/Debit_Note_Print/{{this._id}}">
+                                                                            <i class="fa fa-print"></i> Print
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td> 
+                                                        <td style="text-align: center">{{this.vouc_code}}</td>
+                                                        <td>{{this.c_j_s_p}}</td>
+                                                        <td style="text-align: center">{{dateformat this.cash_date 'DD/MM/YYYY'}}</td>
+                                                        <td style="text-align: left">{{this.cashac_name.ACName}},{{this.cashac_name.CityName.CityName}}</td>
+                                                        <td style="text-align: left">{{this.cash_bank_name.ACName}},{{this.cash_bank_name.CityName.CityName}}</td>
+                                                        <td style="text-align: left">{{this.cash_narrone}}/{{this.cash_narrtwo}}/{{this.cash_remarks}}</td>
+                                                    </tr>
+                                                    {{/each}}
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th class="excludesearch mastercheckbox"></th>
+                                                        <th>Entry No</th>
+                                                        <th>Book</th>
+                                                        <th>Entry Date</th>
+                                                        <th>Debit Account</th>
+                                                        <th>Credit Account</th>
+                                                        <th>Remarks</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- END EXAMPLE TABLE PORTLET-->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+{{> footer_new}}
+{{> scripts_new}}

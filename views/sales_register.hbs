@@ -1,0 +1,324 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                             Seles Register
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content ">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                             <div class="row hidden-print" style="background-color: #0020C2;color:mintcream; margin-top:0%; margin-bottom: 1em; height: 2em" align="center"><p style="font-size: 16px; margin-top: 3px"> Sales Register</p></div>    
+                            <div class="row hidden-print">
+                                    <div class="advancesearch clearfix">
+                                <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group clearfix">
+                                                    <label for="" class="control-label col-md-3">Period</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="filterstartdate"
+                                                            value="{{dateformat  sdate 'DD/MM/YYYY'}} to {{dateformat Date.now 'DD/MM/YYYY'}}" id="contractrange"
+                                                            autocomplete="off" />
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                           <div class="col-md-4">
+                                                <div class="form-group clearfix">
+                                                    <label for="" class="control-label col-md-3">Party</label>
+                                                    <div class="col-md-9">
+                                                        <select class="form-control buy_cus_name AllAccount prbank" name="buy_cus_name" id= "party_Code">
+                                                            <option value=""></option>
+                                                        </select>
+                                                      
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>  
+                                             <div class="col-md-4">
+                                                <div class="form-group clearfix">
+                                                    <label for="" class="control-label col-md-3">Broker</label>
+                                                    <div class="col-md-9">
+                                                         <select class="form-control broker_Code prbank" name="Broker"
+                                                            placeholder="Please Select buyer"   id= "Broker">
+                                                            <option value=""></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>   
+                                        </div>
+                                        <div class="row">
+                                             <div class="col-md-4">
+                                                <div class="form-group clearfix">
+                                                    <label for="" class="control-label col-md-3">Sale</label>
+                                                    <div class="col-md-9">
+                                                       <select class="form-control sl_Person prbank" name="Sale"
+                                                            placeholder="Please Select buyer"   id= "Sale">
+                                                            <option value=""></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>   
+                                             <div class="col-md-4">
+                                                <div class="form-group clearfix">
+                                                    <label for="" class="control-label col-md-3">Division</label>
+                                                    <div class="col-md-9">
+                                                        <select class="form-control select2 prbank" name="Division"
+                                                            placeholder="Please Select"   id= "Division">
+                                                            <option value=""></option>
+                                                            {{#each div}}
+                                                                <option value="{{this.id}}">{{this.div_mast}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>        
+                                        </div>
+                                    </div>
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group fgradio">
+                                                        <label for="AS_ON" class="radio-inline checkboxradiotop"><input type="radio" checked name="SCREENING" value="AS_ON" id="AS_ON" >DATE WISE</label>
+                                                        <label for="ITEM_WISE" class="radio-inline checkboxradiotop"><input type="radio"  name="SCREENING" value="ITEM_WISE" id="ITEM_WISE">DETAILED</label>
+                                                        <label for="ITEM_SUMMARY" class="radio-inline checkboxradiotop"><input type="radio"  name="SCREENING" value="ITEM_SUMMARY" id="ITEM_SUMMARY" >ITEM SUMMARY</label>
+                                                        <label for="B2B" class="radio-inline checkboxradiotop"><input type="radio" name="SCREENING" value="B2B" id="B2B" >B2B</label>
+                                                        <label for="B2CL" class="radio-inline checkboxradiotop"><input type="radio" name="SCREENING" value="B2CL" id="B2CL" >B2CL</label>
+                                                        <label for="B2CS" class="radio-inline checkboxradiotop"><input type="radio" name="SCREENING" value="B2CS" id="B2CS" >B2CS</label>
+                                                        <label for="HSN_SUMMARY" class="radio-inline checkboxradiotop"><input type="radio" name="SCREENING" value="HSN_SUMMARY" id="HSN_SUMMARY" >HSN SUMMARY</label>
+                                                        <label for="HSN_INW" class="radio-inline checkboxradiotop"><input type="radio" name="SCREENING" value="HSN_INW" id="HSN_INW" >HSN INW</label>
+                                                        <label for="HSN_OUT" class="radio-inline checkboxradiotop"><input type="radio" name="SCREENING" value="HSN_OUT" id="HSN_OUT" >HSN OUT</label>
+                                                        <label for="TAXABLE" class="radio-inline checkboxradiotop"><input type="radio" name="SCREENING" value="TAXABLE" id="TAXABLE" >TAXABLE</label>
+                                                        <label for="TAX_FREE" class="radio-inline checkboxradiotop"><input type="radio" name="SCREENING" value="TAX_FREE" id="TAX_FREE" >TAX FREE</label>
+                                                       
+                                                        {{!-- <input type="radio" name="DATE" checked value="AS_ON" id="AS_ON"
+                                                            class="make-switch" data-on-text="AS ON" data-handle-width="60px" data-off-text="AS ON"
+                                                            data-size="small" data-on-color="primary">
+
+                                                        <input type="radio" name="DATE" value="PERIODIC" id="PERIODIC"
+                                                            class="make-switch" data-on-text="PERIODIC" data-handle-width="60px" data-off-text="PERIODIC"
+                                                            data-size="small" data-on-color="primary">
+
+                                                        <input type="radio" name="SCREENING" checked value="SCREEN" id="SCREEN"
+                                                            class="make-switch" data-on-text="SCREEN" data-handle-width="60px" data-off-text="SCREEN"
+                                                            data-size="small" data-on-color="primary">
+
+                                                        <input type="radio" name="SCREENING" value="BROKER WISE" id="BROKER WISE"
+                                                            class="make-switch" data-on-text="BROKER" data-handle-width="60px" data-off-text="BROKER"
+                                                            data-size="small" data-on-color="primary">
+                                                            
+                                                            <input type="radio" name="SCREENING" value="SUBTOTAL" id="SUBTOTAL"
+                                                            class="make-switch" data-on-text="SUBTOTAL" data-handle-width="60px" data-off-text="SUBTOTAL"
+                                                            data-size="small" data-on-color="primary">
+
+                                                        <input type="radio" name="SCREENING"  value="SALES MAN" id="SALES MAN"
+                                                            class="make-switch" data-on-text="SALES" data-handle-width="60px" data-off-text="SALES"
+                                                            data-size="small" data-on-color="primary"> --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                     <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group fgradio">
+                                                         <label for="GST_S" class="radio-inline checkboxradiotop"><input type="radio" name="SCREENING" value="GST_S" id="GST_S" >GST S/I</label>
+                                                        <label for="FORM_3" class="radio-inline checkboxradiotop"><input type="radio" name="SCREENING" value="FORM_3" id="FORM_3" >FORM 3(B)</label>
+                                                        <label for="B2B_SUMMARY" class="radio-inline checkboxradiotop"><input type="radio" name="SCREENING" value="B2B_SUMMARY" id="B2B_SUMMARY" >B2B SUMMARY</label>
+                                                        <label for="GST_SUMMARY" class="radio-inline checkboxradiotop"><input type="radio" name="SCREENING" value="GST_SUMMARY" id="GST_SUMMARY" >GST SUMMARY</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                        <div class="row">
+                                            <div class="col-md-12" align="center">
+                                                <div class="form-action searchbtns clearfix">
+                                                    <button type="submit" class="btn btn-success" name="filtersubmit"
+                                                        id="getselesregister" value="submit">Show Result</button>
+                                                    <button type="reset" class="btn btn-danger">Reset</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                              {{!-- <div class="row">
+                                <div class="col-md-12">
+                                      <form  enctype="multipart/form-data" action="/sales_register/importfile" method="POST">
+                                    <div class="row">
+                                    <div class="form-group clearfix">
+                                        <label for="" class="control-label col-md-1">Import</label>
+                                        <div class="col-md-4">
+                                            <input type="file" class="form-control" data-act="export" name="fg_image">
+                                        </div>
+                                         <div class="col-md-4">
+                                            <button type="submit" name="save" class="btn btn-success">Import</button>
+                                         </div>
+                                    </div>
+                                    </div>
+                                    </form>
+                                    <br/>
+                                    <div class="panel panel-primary table light " id="tableportlet">
+                                        <div class="panel-heading" style="text-align: center">
+                                           Form GSTR-3B<br/>
+                                           [ See Rule 61(5)]
+                                        </div>
+                                        <div class="panel-body" id="portletbody">
+                                            <table class="dttable table table-bordered"
+                                                id="">
+                                                    <tr>
+                                                        <th>1</th>
+                                                        <th>GSTIN</th>
+                                                        <td>2</td>
+                                                        <td>3</td>
+                                                        <td>A</td>
+                                                        <td>A</td>
+                                                        <td>Z</td>
+                                                        <td>F</td>
+                                                        <td>A</td>
+                                                        <td>0</td>
+                                                        <td>0</td>
+                                                        <td>0</td>
+                                                        <td>3</td>
+                                                        <td>E</td>
+                                                        <td>1</td>
+                                                        <td>Z</td>
+                                                        <td>0</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>1</th>
+                                                        <th>Legal name of the registered person</th>
+                                                        <td colspan="15">ARMANIA AGRO FOODS</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>3.1</th>
+                                                        <th colspan="16">Detail of Outward Supplies and Inward supplies liable to reverse charges</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th colspan="12">Nature of Supplies</th>
+                                                        <th>Total Taxable Value</th>
+                                                        <th>Integrated Tax</th>
+                                                        <th>Central Tax</th>
+                                                        <th>State/ UT Tax</th>
+                                                        <th>Cess</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="12">( a) Outward taxable supplies (other than zero rated, nil rated and exempted)</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="12">( b) Outward taxable supplies (zero rated)</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="12">( c) Other outward supplies, (Nil rated, exempted)</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="12">( d) Inward supplies (liable to reverse charge)</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="12">( e) Non GST outward supplies</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div> --}}
+                            <div class="getsaleslist"></div>
+                            {{!-- end of showsearchdata --}}
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}
+<style>
+    .form-group {
+    margin-bottom: 0px;
+}
+    .form-inline .form-control {
+    display: inline-block;
+   width: 111px;
+    vertical-align: middle;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 2px;
+    line-height: 1.42857143;
+    vertical-align: top;
+}
+.panel-heading {
+    padding: 2px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+tbody td {
+    padding: 10px;
+    color: black;
+}
+</style>

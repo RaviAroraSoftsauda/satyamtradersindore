@@ -1,0 +1,253 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script src="js/datatables.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{#if err}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{err}}</strong>
+                                    </div>
+                                    {{/if}}
+                                    {{#if errors}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{errors}}</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                                    <div class="panel panel-primary table light " id="tableportlet">
+                                        <div class="panel-heading">
+                                            Party List
+                                            <div class="misc pull-right">
+                                                <div class="buttons">
+                                                    <div class="btn-group dropdown">
+                                                        <button class="btn btn-xs blue dropdown-toggle" type="button"
+                                                            data-toggle="dropdown" aria-expanded="false"> Actions
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu pull-right" role="menu">
+                                                            {{#scuritylogin   security 'Party Master' 'E'}}
+                                                            <li>
+                                                                <a href="" data-link="/party/party_list_update/" class="editaction">
+                                                                    <i class="icon-pencil"></i> Edit </a>
+                                                            </li>
+                                                            {{/scuritylogin}}
+                                                            <li class="divider"> </li>
+                                                            {{#scuritylogin   security 'Party Master' 'D'}}
+                                                            <li>
+                                                                <a href="" data-link="/party/delete_party?data=" class="deleteaction">
+                                                                    <i class="icon-trash"></i> Delete
+                                                                </a>
+                                                            </li>
+                                                            {{/scuritylogin}}
+                                                        </ul>
+                                                    </div>
+                                                    <a href="/party/party_add">
+                                                        <button class="btn btn-link" type="button"><i class="fa fa-plus"></i>Add
+                                                            Party</button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body" id="portletbody">
+                                            <table class="party_detail_tablelist table-condensed table table-striped table-bordered table-hover"
+                                                id="party_detail_table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="excludesearch mastercheckbox"><input type="checkbox"></th>
+                                                        <th class="excludesearch">Sno.</th>
+                                                        <th>Short Name</th>
+                                                        <th>Party Name</th>
+                                                        <th>Category Tax</th>
+                                                        <th>Group</th>
+                                                        <th>Address</th>
+                                                        <th>Area Name</th>
+                                                        <th>City Name</th>
+                                                        <th>Pin-Code</th>
+                                                        <th>Credit Limit</th>
+                                                        <th>PAN</th>
+                                                        <th>GSTIN</th>
+                                                        <th>Phone(office)</th>
+                                                        <th>Phone(Resi.)</th>
+                                                        <th>FSSAI</th>
+                                                        <th>FAX</th>
+                                                        {{!-- <th class="excludesearch noExport">Action</th> --}}
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th class="excludesearch">
+                                                            <div class="btn-group dropdown">
+                                                        </th>
+                                                        <th class="excludesearch"></th>
+                                                        <th>Short Name</th>
+                                                        <th>Party Name</th>
+                                                        <th>Category Tax</th>
+                                                        <th>Group</th>
+                                                        <th>Address</th>
+                                                        <th>Area Name</th>
+                                                        <th>City Name</th>
+                                                        <th>Pin-Code</th>
+                                                        <th>Credit Limit</th>
+                                                        <th>PAN</th>
+                                                        <th>GSTIN</th>
+                                                        <th>Phone(office)</th>
+                                                        <th>Phone(Resi.)</th>
+                                                        <th>FSSAI</th>
+                                                        <th>FAX</th>
+                                                        {{!-- <th class="excludesearch noExport"></th> --}}
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- END EXAMPLE TABLE PORTLET-->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>                                              
+<script>
+    $(document).ready(function () {
+            $('#party_detail_table tfoot th').not('.excludesearch').each(function () {
+                var title = $(this).text();
+                $(this).html('<input type="text" onkeyup="getval(this.value)" name="value" class="form-control input-sm" placeholder="'+title+'" aria-controls="party_detail_table">');
+            });
+             // moving tfoot below head th row
+            $('#party_detail_table tfoot').insertBefore('#party_detail_table thead');
+            var t = $('.party_detail_tablelist').DataTable({
+            "dom": "<'row'<'col-md-4 col-sm-12 col-xs-12'B><'col-md-4 col-sm-6 col-xs-12'l><'col-md-4 col-sm-6 col-xs-12'f>r><'table-scrollable't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>",
+            //  "lengthChange": true,
+            "colReoder":true,
+            "pageLength": 10,
+            "processing": true,
+            "serverSide": true,
+            'ajax': {
+                    "url" : "/party/getParties"
+                },
+                'columns':
+                    [
+                    { 'data': '_id',
+                    render:function(data){
+                    return '<input type="checkbox" value="'+data +'" class="trowcheck">'
+                    }, "defaultContent": "", 'name': 'ID' },
+                    { 'data': '_id', "defaultContent": "", 'name': 'ID' },
+                    { 'data': 'partshortname', "defaultContent": "", 'name': 'partshortname' },
+                    { 'data': 'party_name', "defaultContent": "", 'name': 'PartyName' },
+                    { 'data': 'category_tax_name.category_tax_name', "defaultContent": "", 'name': 'CategoryTax' },
+                    { 'data': 'group_name.group_name', "defaultContent": "", 'name': 'group_name' },
+                    { 'data': 'address1', "defaultContent": "", 'name': 'Address' },
+                    { 'data': 'area_name', "defaultContent": "", 'name': 'Area Name' },
+                    { 'data': 'city_name.city_name', "defaultContent": "N", 'name': 'CityName' },
+                    { 'data': 'pin_code', "defaultContent": "", 'name': 'Pin-Code' },
+                    { 'data': 'credit_limit', "defaultContent": "", 'name': 'Credit Limit'},
+                    { 'data': 'pan_no', "defaultContent": "", 'name': 'PAN'},
+                    { 'data': 'gstin', "defaultContent": "", 'name': 'GSTIN'},
+                    { 'data': 'mob_no', "defaultContent": "", 'name': 'Phone(office)'},
+                    { 'data': 'phone_resi', "defaultContent": "", 'name': 'Phone(Resi.)'},
+                    { 'data': 'fssai', "defaultContent": "", 'name': 'FSSAI'},
+                    { 'data': 'fax', "defaultContent": "", 'name': 'FAX'}
+                    ],
+                    "buttons": [
+                                {
+                                    extend: 'excel',
+                                    className: 'btn-default btn-excel'
+                                },
+                                {
+                                    extend: 'pdf',
+                                    className: 'btn-default btn-pdf'
+                                },
+                                {
+                                    extend: 'print',
+                                    className: 'btn-default btn-print'
+                                },
+                            ],
+                    "columnDefs": [
+                        {
+                            "className": "actioncell",
+                            "orderable": false,
+                            "searchable": false,
+                            "sortable": false,
+                            "targets": [0],
+                                "width": "5%",
+                        },
+                    ],
+                    "order": [ 1, 'asc' ],
+            });
+        t.on('draw', function () {
+            //setting the next and prev buttons with active or disabled state
+            //setting the index column with values.
+            t.column(1, { search: 'applied', order: 'applied' }).nodes().each(
+                function (cell, i) {
+                    cell.innerHTML = i + 1;
+                }
+            );
+        });
+        //paging
+        $('#next').on('click', function () {
+            t.page('next').draw('page');
+        });
+
+        $('#previous').on('click', function () {
+            t.page('previous').draw('page');
+        });
+     });
+</script>
+{{> footer_new}}
+{{> scripts_new}}

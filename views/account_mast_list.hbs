@@ -1,0 +1,224 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                 <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                           Account Master List
+                                           <div class="misc pull-right">
+                                                <div class="buttons">
+                                                     <a href="/account_mast/account_mast">
+                                                        <button class="btn btn-link" type="button"><i class="fa fa-plus"></i>Add
+                                                          Account Master</button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                         <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table id="city_table_list" class="city_table_list table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Action</th>
+                                                            <th>Sno.</th>
+                                                            <th>AC Code</th>
+                                                            <th>AC Name</th>
+                                                            <th>Group Name</th>
+                                                            <th>Address</th>
+                                                            <th>City</th>
+                                                            <th>State</th>
+                                                            {{!-- <th>PinCode</th> --}}
+                                                            <th>Party Type</th>
+                                                            <th>GSTIN No</th>
+                                                            <th>Pan No</th>
+                                                            {{!-- <th>Group Name</th>
+                                                            <th>Tax Name</th>
+                                                            <th>Credit Limit</th>
+                                                            <th>IEC NO</th>
+                                                            <th>WebSite</th>
+                                                            <th>Email</th>
+                                                            <th>Off No</th>
+                                                            <th>Resi No</th>
+                                                            <th>APMC</th>
+                                                            <th>Print Type</th> --}}
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th>Action</th>
+                                                            <th>Sno.</th>
+                                                            <th>AC Code</th>
+                                                            <th>AC Name</th>
+                                                            <th>Group Name</th>
+                                                            <th>Address</th>
+                                                            <th>City</th>
+                                                            <th>State</th>
+                                                            
+                                                            <th>Party Type</th>
+                                                            <th>GSTIN</th>
+                                                            <th>Pan No</th>
+                                                            {{!-- <th>GSTIN No</th>
+                                                            <th>Group Name</th>
+                                                            <th>Tax Name</th>
+                                                            <th>Credit Limit</th>
+                                                            <th>IEC NO</th>
+                                                            <th>WebSite</th>
+                                                            <th>Email</th>
+                                                            <th>Off No</th>
+                                                            <th>Resi No</th>
+                                                            <th>APMC</th>
+                                                            <th>Print Type</th> --}}
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+    </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+
+{{> footer_new}}
+{{> scripts_new}}
+<script>
+    //class="edit_account_mast"
+    $(document).ready(function () {
+        var t = $('.city_table_list').DataTable({
+            "dom": "<'row'<'col-md-4 col-sm-12 col-xs-12'B><'col-md-4 col-sm-6 col-xs-12'l><'col-md-4 col-sm-6 col-xs-12'f>r><'table-scrollable't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>",
+            "colReoder":true,
+            "pageLength": 10,
+            "processing": true,
+            "serverSide": true,
+            "paging": true,
+            "lengthMenu": [[10, 25, 50, 1000, 10000, 50000, -1], [10, 25, 50, 100, 1000, 10000, 50000]],
+            "ajax": {
+                "type": "GET",
+                "url" :'/account_mast/getAccountviewlist',
+            },
+            'columns':
+            [
+                { 'data': '_id',
+                render:function(data){
+                return `<div class="btn-group dropdown">
+                    <button class="btn btn-xs blue dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
+                        <i class="fa fa-angle-down"></i>
+                    </button>
+                    <ul class="dropdown-menu pull-left" role="menu" style="width:10em">
+                        <li>
+                            <a href="/account_mast/account_mast_update/${data}" data-id="${data}"><i class="icon-pencil"></i> Edit </a>
+                        </li>
+                        <li class="divider"> </li>
+                        <li>
+                            <a href="javascript:void(0);" class="delete-account" data-id="${data}"> <i class="icon-trash"></i> Delete </a>
+                        </li>
+                    </ul>
+                </div>`
+                },},
+                { "data": "check","defaultContent": "", 'name': 'ID' },
+                { "data": "ACCode","defaultContent": "", 'name': 'ACCode'},
+                { "data": "ACName","defaultContent": "", 'name': 'ACName'},
+                { "data": "GroupName.GroupName","defaultContent": "", 'name': 'GroupName'},
+                { "data": "Address1","defaultContent": "", 'name': 'Address1' },
+                { "data": "CityName.CityName","defaultContent": "", 'name': 'CityName'},
+                { "data": "StateName.StateName","defaultContent": "", 'name': 'StateName' },
+                { "data": "PartyType.Description","defaultContent": "", 'name': 'PartyType' },
+                { "data": "GSTIN","defaultContent": "", 'name': 'GSTIN' },
+                { "data": "PanNumber","defaultContent": "", 'name': 'PanNumber' },
+            ],
+            "buttons": [
+                {
+                    extend: 'excel',
+                    className: 'btn-default btn-excel'
+                },
+                {
+                    extend: 'pdf',
+                    className: 'btn-default btn-pdf'
+                },
+                {
+                    extend: 'print',
+                    className: 'btn-default btn-print'
+                },
+            ],
+            "columnDefs": [
+                {
+                    "className": "actioncell",
+                    "orderable": false,
+                    "searchable": false,
+                    "sortable": false,
+                    "targets": [0],
+                    "width": "5%",
+                },
+            ],
+            "order": [ 1, 'asc' ],
+        });
+        t.on('draw', function () {
+            t.column(1, { search: 'applied', order: 'applied' }).nodes().each(
+                function (cell, i) {
+                    cell.innerHTML = i + 1;
+                }
+            );
+        });
+        //paging
+        $('#next').on('click', function () {
+            t.page('next').draw('page');
+        });
+        $('#previous').on('click', function () {
+            t.page('previous').draw('page');
+        });
+     });
+</script>

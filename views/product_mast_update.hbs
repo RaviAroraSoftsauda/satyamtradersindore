@@ -1,0 +1,473 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading" align="center">
+                                    Add Product Master
+                                </div>
+                                <form method="POST" action="/product_mast/edit_product_mast/{{product_mast._id}}" class="form-horozintal validate">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Item Code: </label>
+                                                    <div class="col-md-9">
+                                                        {{!-- value="{{product_mast}}" --}}
+                                                        <input class="form-control p_code" value="{{product_mast.item_code}}"
+                                                            placeholder="Item Code" required name="item_code" type="text"
+                                                            autofocus>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Item Title: </label>
+                                                    <div class="col-md-9">
+                                                        <input class="form-control" placeholder="Item Title" required
+                                                            name="item_title" value="{{product_mast.item_title}}" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                        </div>
+                                        {{!-- end of row --}}
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label for="" class="control-label col-md-3">Item Group:</label>
+                                                    <div class="col-md-9">
+                                                        <select class="form-control model  prbank select2" name="item_group"
+                                                            id="item_group" placeholder="Item Group">
+                                                            <option value=""></option>
+                                                            {{#each catogry}}
+                                                            <option value="{{this.id}}"
+                                                                {{#equal ../product_mast.item_group id}} selected=""
+                                                                {{/equal}}>{{this.Description}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label for="" class="control-label col-md-3">Subquality:</label>
+                                                    <div class="col-md-9">
+                                                        <select class="form-control brand  prbank select2" name="subquality"
+                                                            id="subquality" placeholder="Subquality">
+                                                            <option value=""></option>
+                                                            {{#each subquality}}
+                                                            <option value="{{this.id}}"
+                                                                {{#equal ../product_mast.subquality id}} selected=""
+                                                                {{/equal}}>{{this.Description}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                        </div>
+                                        <div class="row">
+                                            {{!-- <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label for="" class="control-label col-md-3">Dana Class:</label>
+                                                    <div class="col-md-3">
+                                                        <select class="form-control brand  prbank select2" name="dana_class"
+                                                            id="dana_class" placeholder="Dana Class">
+                                                            <option value=""></option>
+                                                            {{#each quality}}
+                                                            <option value="{{this.id}}"
+                                                                {{#equal ../product_mast.dana_class id}} selected=""
+                                                                {{/equal}}>{{this.Description}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                    </div>
+                                                    <label class="col-sm-3 control-label">Dana Rate: </label>
+                                                    <div class="col-md-3">
+                                                        <input class="form-control p_pck" value="{{product_mast.dana_rt}}"
+                                                            placeholder="Dana Rate" id="dana_rt" name="dana_rt" type="number">
+                                                    </div>
+                                                </div>
+                                            </div> --}}
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label for="" class="control-label col-md-3">HSN Code:</label>
+                                                    <div class="col-md-3">
+                                                        <input class="form-control p_pck" placeholder="HSN Code" id="apmc_code"
+                                                            name="apmc_code" value="{{product_mast.apmc_code}}" type="text">
+                                                    </div>
+                                                    {{!-- <label class="col-sm-3 control-label">APMC : </label>
+                                                    <div class="col-md-3">
+                                                        <select name="apmc_typ" id="apmc_typ" class="form-control sku_name  prbank select2"
+                                                            placeholder="APMC">
+                                                            <option value=""></option>
+                                                            <option value="Y" {{#equal product_mast.apmc_typ 'Y'}}
+                                                                selected="" {{/equal}}>Y</option>
+                                                            <option value="N" {{#equal product_mast.apmc_typ 'N'}}
+                                                                selected="" {{/equal}}>N</option>
+                                                        </select>
+                                                    </div>--}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{!-- <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label for="" class="control-label col-md-3">Dana Dalali:</label>
+                                                    <div class="col-md-3">
+                                                        <input class="form-control p_pck" placeholder="Dana Dalali" id="dana_dalali"
+                                                            name="dana_dalali" value="{{product_mast.dana_dalali}}"
+                                                            type="text">
+                                                    </div>
+                                                    <label for="" class="control-label col-md-3">Dalali:</label>
+                                                    <div class="col-md-3">
+                                                        <select class="form-control sku_name  prbank select2" name="dalali_typ"
+                                                            id="dalali_typ" placeholder="Select Dalali">
+                                                            <option value=""></option>
+                                                            <option value="PBag"
+                                                                {{#equal product_mast.dalali_typ 'PBag'}} selected=""
+                                                                {{/equal}}>PBag</option>
+                                                            <option value="Qty"
+                                                                {{#equal product_mast.dalali_typ 'Qty'}} selected=""
+                                                                {{/equal}}>Qty</option>
+                                                            <option value="%" {{#equal product_mast.dalali_typ '%'}}
+                                                                selected="" {{/equal}}>%</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Disc % : </label>
+                                                    <div class="col-md-3">
+                                                        <input class="form-control p_pck" value="{{product_mast.desper}}"
+                                                            placeholder="Disc % " id="desper" name="desper" type="text">
+                                                    </div>
+                                                    <label class="col-sm-3 control-label">Tax Category : </label>
+                                                    <div class="col-md-3">
+                                                        <select name="tax_categry" id="tax_categry" class="form-control sku_name  prbank select2"
+                                                            placeholder="Tax Category">
+                                                            <option value=""></option>
+                                                            {{#each taxctg_mast}}
+                                                            <option value="{{this.id}}"
+                                                                {{#equal ../product_mast.tax_categry id}} selected=""
+                                                                {{/equal}}>{{this.tx_ctgnm}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Rate Based On : </label>
+                                                    <div class="col-md-3">
+                                                        <select name="rate_basedon" id="rate_basedon" class="form-control sku_name  prbank select2"
+                                                            placeholder="Rate Based On">
+                                                            <option value=""></option>
+                                                            <option value="Q" {{#equal product_mast.rate_basedon 'Q'}}
+                                                                selected="" {{/equal}}>Q</option>
+                                                            <option value="W" {{#equal product_mast.rate_basedon 'W'}}
+                                                                selected="" {{/equal}}>W</option>
+                                                        </select>
+                                                    </div>
+                                                    <label for="" class="control-label col-md-3">Packing:</label>
+                                                    <div class="col-md-3">
+                                                        <input class="form-control p_pck" placeholder="Packing" id="packing"
+                                                            name="packing" value="{{product_mast.packing}}" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Laga Paisa : </label>
+                                                    <div class="col-md-3">
+                                                        <input class="form-control p_pck" value="{{product_mast.laga_paisa}}"
+                                                            placeholder="Laga Paisa" id="laga_paisa" name="laga_paisa"
+                                                            type="text">
+                                                    </div>
+                                                    <label for="" class="control-label col-md-3">Unit:</label>
+                                                    <div class="col-md-3">
+                                                        <select class="form-control sku_name  prbank select2" name="unit_nm"
+                                                            id="unit_nm" placeholder="Select Unit">
+                                                            <option value=""></option>
+                                                            {{#each Stock_Unit}}
+                                                            <option value="{{this.id}}"
+                                                                {{#equal ../product_mast.unit_nm id}} selected=""
+                                                                {{/equal}}>{{this.SKUName}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Container Code : </label>
+                                                    <div class="col-md-3">
+                                                        <input class="form-control p_pck" placeholder="Container Code"
+                                                            id="container_code" name="container_code" value="{{product_mast.container_code}}"
+                                                            type="text">
+                                                    </div>
+                                                    <label for="" class="control-label col-md-3">Container Charges:</label>
+                                                    <div class="col-md-3">
+                                                        <input class="form-control p_pck" placeholder="Container Charges"
+                                                            id="container_rate" name="container_rate" value="{{product_mast.container_rate}}"
+                                                            type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label for="" class="control-label col-md-3">Container Charges:</label>
+                                                    <div class="col-md-3">
+                                                        <select class="form-control sku_name  prbank select2" name="containe_charges"
+                                                            id="containe_charges" placeholder="Container Charges">
+                                                            <option value=""></option>
+                                                            <option value="Y"
+                                                                {{#equal product_mast.containe_charges 'Y'}} selected=""
+                                                                {{/equal}}>Y</option>
+                                                            <option value="N"
+                                                                {{#equal product_mast.containe_charges 'N'}} selected=""
+                                                                {{/equal}}>N</option>
+                                                        </select>
+                                                    </div>
+                                                    <label for="" class="control-label col-md-3">Entry Tax:</label>
+                                                    <div class="col-md-3">
+                                                        <select class="form-control sku_name  prbank select2" name="entry_tax"
+                                                            id="entry_tax" placeholder="Entry Tax">
+                                                            <option value=""></option>
+                                                            <option value="Y" {{#equal product_mast.entry_tax 'Y'}}
+                                                                selected="" {{/equal}}>Y</option>
+                                                            <option value="N" {{#equal product_mast.entry_tax 'N'}}
+                                                                selected="" {{/equal}}>N</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">GST % : </label>
+                                                    <div class="col-md-9">
+                                                        <input class="form-control GST" placeholder="GST" id="GST" name="GST"
+                                                            type="text" value="{{product_mast.GST}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="panel-heading" style="background-color: #4b77be;color:white"
+                                                align="center">
+                                                Product Setup
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive adjustmentstable">
+                                                <table class="table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th width="10%">Module</th>
+                                                            <th colspan="2" width="10%">Qty Range</th>
+                                                            <th colspan="2" width="10%">Wght Range</th>
+                                                            <th colspan="2" width="10%">Rate Range</th>
+                                                            <th width="3%">Qty</th>
+                                                            <th width="3%">Wght</th>
+                                                            <th width="3%">Pack</th>
+                                                            <th width="3%">Unit</th>
+                                                            <th width="3%">Brand</th>
+                                                            <th width="4%">Amt/R/O</th>
+                                                            <th width="4%">Amt/Edit</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{#each product_mast.product_setup as |value key|}}
+                                                        <tr>
+                                                            <td>{{this.modulenm}}<input type="hidden" value="{{this.moduleid}}"
+                                                                    name="product_setup_grop[{{@index}}][moduleid]">
+                                                                <input type="hidden" value="{{this.modulenm}}" name="product_setup_grop[{{@index}}][modulenm]"></td>
+                                                            <td><input type="text" value="{{this.qty}}" name="product_setup_grop[{{@index}}][qty]"
+                                                                    class="form-control"></td>
+                                                            <td><input type="text" value="{{this.qtyrane}}" name="product_setup_grop[{{@index}}][qtyrane]"
+                                                                    class="form-control"></td>
+                                                            <td><input type="text" value="{{this.wght}}" name="product_setup_grop[{{@index}}][wght]"
+                                                                    class="form-control"></td>
+                                                            <td><input type="text" value="{{this.wghtrange}}" name="product_setup_grop[{{@index}}][wghtrange]"
+                                                                    class="form-control"></td>
+                                                            <td><input type="text" value="{{this.rate}}" name="product_setup_grop[{{@index}}][rate]"
+                                                                    class="form-control"></td>
+                                                            <td><input type="text" value="{{this.raterange}}" name="product_setup_grop[{{@index}}][raterange]"
+                                                                    class="form-control"></td>
+                                                            <td><input type="checkbox" {{#equal this.qtytyp 'on'}}
+                                                                    checked {{/equal}} name="product_setup_grop[{{@index}}][qtytyp]"
+                                                                    class="" style="width: 100%"></td>
+                                                            <td><input type="checkbox" {{#equal this.wghttyp 'on'}}
+                                                                    checked {{/equal}} name="product_setup_grop[{{@index}}][wghttyp]"
+                                                                    class="" style="width: 100%"></td>
+                                                            <td><input type="checkbox" {{#equal this.pcktyp 'on'}}
+                                                                    checked {{/equal}} name="product_setup_grop[{{@index}}][pcktyp]"
+                                                                    class="" style="width: 100%"></td>
+                                                            <td><input type="checkbox" {{#equal this.unityp 'on'}}
+                                                                    checked {{/equal}} name="product_setup_grop[{{@index}}][unityp]"
+                                                                    class="" style="width: 100%"></td>
+                                                            <td><input type="checkbox" {{#equal this.brandtyp 'on'}}
+                                                                    checked {{/equal}} name="product_setup_grop[{{@index}}][brandtyp]"
+                                                                    class="" style="width: 100%"></td>
+                                                            <td><input type="checkbox" {{#equal this.amtro 'on'}}
+                                                                    checked {{/equal}} name="product_setup_grop[{{@index}}][amtro]"
+                                                                    class="" style="width: 100%"></td>
+                                                            <td><input type="checkbox" {{#equal this.amtedit 'on'}}
+                                                                    checked {{/equal}} name="product_setup_grop[{{@index}}][amtedit]"
+                                                                    class="" style="width: 100%"></td>
+                                                        </tr>
+                                                        {{/each}}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="panel-heading" style="background-color: #4b77be;color:white"
+                                                align="center">
+                                                Product Posting Setup
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive adjustmentstable">
+                                                <table class="table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th width="20%">Sales</th>
+                                                            <th width="20%">Local</th>
+                                                            <th>Account</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{#each modulesch as |value key|}}
+                                                        {{#each ../ptyp_mast as |prtnm val|}}
+                                                        {{#each product_mast.product_posting_setup as |value key|}}
+                                                        <tr>
+                                                            <td><b>{{this.selesid.ModuleName}}</b>
+                                                                --}} <input type="hidden" name="product_posting_setup[{{@index}}][selesid]"
+                                                                    value="{{this.selesid._id}}">
+                                                                <input type="hidden" name="product_setup[{{@index}}][selesnm]"
+                                                                    value="{{this.selesnm}}"> {{!--
+                                                            </td>
+                                                            <td>{{this.partypid.Description}}
+                                                                <input type="hidden" name="product_posting_setup[{{@index}}][partypid]"
+                                                                    value="{{this.partypid._id}}" class="form-control">
+                                                                <input type="hidden" name="product_posting_setup[{{@index}}][partypnm]"
+                                                                    value="{{this.partypnm}}" class="form-control">
+
+                                                            </td>
+                                                            <td>
+                                                                <select name="product_posting_setup[{{@index}}][accontnm]"
+                                                                    class="form-control postingProAc" placeholder="Account">
+                                                                    <option value="{{this.accontnm._id}}" selected>{{this.accontnm.ACName}}</option>
+                                                                    {{#each ../a_mast}}
+                                                                    <option value="{{this.id}}">{{this.ACName}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        {{/each}}
+                                                        {{/each}}
+                                                        {{/each}}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>--}}
+                                    {{!-- end of body lock-product--}}
+                                    <div class="panel-footer" align="center">
+                                        <div class="action clearfix">
+                                            <div class="col-md-12" align="center">
+
+                                                <button type="submit" name="save" class="btn btn-success delv_load">Submit</button>
+                                                <button type="reset" class="btn btn-danger">Cancel</button>
+                                                <a href="/product_mast/product_mast" style="margin-top: 1.5em" class="btn btn-info">Back</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                            </form>
+                        </div>
+
+
+                    </div>
+                    <!-- END PAGE CONTENT INNER -->
+                </div>
+            </div>
+            <!-- END PAGE CONTENT BODY -->
+            <!-- END CONTENT BODY -->
+        </div>
+        <!-- END CONTENT -->
+    </div>
+    <!-- END CONTAINER -->
+</div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}
+<style>
+    .table>tbody>tr>td,
+    .table>tbody>tr>th,
+    .table>tfoot>tr>td,
+    .table>tfoot>tr>th,
+    .table>thead>tr>td,
+    .table>thead>tr>th {
+        padding: 0px;
+        line-height: 1.42857143;
+        vertical-align: top;
+        border-top: 1px solid #ddd;
+    }
+</style>

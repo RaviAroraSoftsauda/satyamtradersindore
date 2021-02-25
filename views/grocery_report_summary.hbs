@@ -1,0 +1,125 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<style>
+
+
+.panel{
+    border: none;
+}
+
+
+</style>
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                  
+                    {{!-- <h1 style="background-color: #0020C2;color:mintcream"align="center" >Ledger</h1> --}}
+                   
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                    <div class="advancesearch clearfix">
+                               
+                                <div class="col-md-12">
+                                    <div class="row" style="background-color: #0020C2;color:mintcream; margin-top:0%; margin-bottom: 1em; height: 2em" align="center"><p style="font-size: 16px; margin-top: 3px">Grocery Report Summary</p></div>    
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group clearfix">
+                                                    <label for="" class="control-label col-md-3">Period</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="filterstartdate"
+                                                            value="{{dateformat  sdate 'DD/MM/YYYY'}} to {{dateformat Date.now 'DD/MM/YYYY'}}" id="contractrange"
+                                                            autocomplete="off" />
+                                                    </div>
+                                                </div>
+                                                {{!-- end of form-group clearfix --}}
+                                            </div>
+                                            {{!-- end of col --}}
+                                                 <div class="col-md-5">
+                                                <div class="form-group clearfix">
+                                                    <label for="" class="control-label col-md-3">Toli Code</label>
+                                                    <div class="col-md-9">
+                                                          <select class="form-control select2 toliCode" placeholder="Toli Code" id="toliCode"
+                                                            name="toliCode"  >
+                                                            <option value=""></option>
+                                                            {{#each toli_master}}
+                                                                <option value="{{this._id}}" data-serialnum="{{this._id}}">{{this.ToliName}}</option>
+                                                            {{/each}}
+                                                         </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                             <div class="col-md-3">
+                                                <div class="form-group clearfix">
+                                                    <button type="submit" class="btn btn-success" name="filtersubmit"
+                                                        id="grocerysubmit" value="submit">Proceed..</button>
+                                                         <button type="submit" class="btn btn-info" name="filtersubmit"
+                                                        id="groceryprint" value="submit">Print</button>
+                                                          <button type="submit" class="btn btn-info" name="filtersubmit"
+                                                        id="grocerypriprint" value="submit">Pri&nbsp; Print</button>
+                                                        {{!-- <a class="btn btn-default blue hidden-print margin-bottom-4" onclick="javascript:window.print();"> Print
+                                                            <i class="fa fa-print"></i>
+                                                        </a> --}}
+                                                </div>
+                                               
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+                                </div>
+                                </div>
+                            </div>
+                            <div id="datatablegrocerysummary" ></div>
+                       
+                      
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+
+{{> footer_new}}
+{{> scripts_new}}

@@ -1,0 +1,6 @@
+Sales Order :- main_bk = 'SOR', Schema = pur_order_schema
+
+Sales invoice :- main_bk = 'SIV', Schema = salesOrder
+trans main_bk = 'SB'
+outstanding main_bk = 'SB'
+

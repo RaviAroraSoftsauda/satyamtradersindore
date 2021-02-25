@@ -1,0 +1,449 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb pull-right">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{#if err}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{err}}</strong>
+                                    </div>
+                                    {{/if}}
+                                    {{#if errors}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{errors}}</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            {{!-- end of alerts row --}}
+                              <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                      Commercial Update
+                                        </div>
+                                        <form method="POST" action="/commercial/update/{{promast._id}}" class="form-horozintal validate"
+                                          novalidate>
+                                           <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group  form-md-line-input clearfix">
+
+                                                            <label class="col-sm-3 control-label">Commercial_entry No: </label>
+                                                            <div class="col-md-5">
+                                                                <input name="pro_no" placeholder="Commercial_entry No" id="pro_no" class="form-control pro_no" tabindex="1" value="{{promast.pro_no}}"/>
+                                                            </div>
+                                                             <div class="col-md-4">
+                                                                <input type="text" name="vouc_code" checked placeholder="Deal Number"
+                                                                      value="{{promast.vouc_code}}"  class="form-control "
+                                                                    tabindex="2"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+
+                                                            <label class="col-sm-3 control-label">Entry Date: </label>
+                                                            
+                                                             <div class="col-md-4">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control datemask"
+                                                                        name="pro_formadt" id="offerstartdate" value="{{dateformat promast.pro_formadt 'DD/MM/YYYY'}}"
+                                                                        autocomplete="off" tabindex="3" autofocus />
+                                                                    <span class="input-group-btn">
+                                                                        <button class="btn default date-range-toggle isprop"
+                                                                            type="button" id="offerstartdatebtn"
+                                                                            tabindex="-1">
+                                                                            <i class="fa fa-calendar"></i>
+                                                                        </button>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                              <label class="col-sm-3 control-label">Proforma No:</label>
+                                                            <div class="col-md-2">
+                                                                <input name="ws_no" placeholder="W No" id="commer_no" class="form-control ws_no"
+                                                                 tabindex="1"  autofocus/>
+                                                            </div>
+                                                           
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group clearfix">
+                                                           <label class="control-label col-md-3">Customer Name</label>
+                                                            <div class="col-md-9">
+                                                                <div class="input-group select2-bootstrap-prepend">
+                                                                   
+                                                                 <select class="form-control prbank pro_cus_name select2 prbank" name="pro_cus_name"
+                                                                    placeholder="Please Select buyer">
+                                                                    <option value=""></option>
+                                                                    {{#each acmast}}
+                                                                    <option value="{{this.id}}"{{#equal ../promast.pro_cus_name id}} selected=""{{/equal}}>{{this.ac_name}}.................{{this.ac_city.city_name}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                                 
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                   
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Remarks: </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" placeholder="remarks" name="pro_rmks" id="premarks"
+                                                                value="{{promast.pro_rmks}}" class="form-control pro_rmks">
+                                                            </div>
+                                                    </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">P.O Number: </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" placeholder="PO NO"name="pro_pono"
+                                                                 value="{{promast.pro_pono}}" id="pro_pono" class="form-control pro_pono"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                     <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">P.O Date: </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="pro_podt" id="podt" class="form-control datemask pro_podt"
+                                                                      value="{{dateformat promast.pro_podt 'DD/MM/YYYY'}}"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                     <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Pre carriage by: </label>
+                                                            <div class="col-md-9" >
+                                                                <input type="text" placeholder="Pre carriage by"name="pre_carriage" id="pre_carriage" class="form-control pre_carriage"   value="{{promast.pre_carriage}}"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                     <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Place of Pre carriage: </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" placeholder="Place of Pre carriage"name="place_carriage" id="place_carriage" class="form-control place_carriage"   value="{{promast.place_carriage}}"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                        <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Country of goods : </label>
+                                                            <div class="col-md-9" >
+                                                                  <select id="country_good" class="form-control prbank country_good select2 " name="country_good"
+                                                                    placeholder="Please Select country">
+                                                                    <option value=""></option>
+                                                                    {{#each c_mast}}
+                                                                    <option value="{{this.id}}"{{#equal ../promast.country_good id}} selected=""{{/equal}}>{{this.country_name}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                     <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Country of destination</label>
+                                                            <div class="col-md-9">
+                                                                <select id="country_destination" class="form-control prbank country_destination select2 " name="country_destination"
+                                                                    placeholder="Please Select country">
+                                                                    <option value=""></option>
+                                                                    {{#each c_mast}}
+                                                                    <option value="{{this.id}}"{{#equal ../promast.country_destination id}} selected=""{{/equal}}>{{this.country_name}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                        <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Vessel flight no </label>
+                                                            <div class="col-md-9" >
+                                                                 <input type="text" placeholder="Vessel flight no"name="vessel_flightno" id="vessel_flightno" class="form-control vessel_flightno"   value="{{promast.vessel_flightno}}"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                     <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Port of landing</label>
+                                                            <div class="col-md-9">
+                                                              <input type="text" placeholder="Port of landing"name="port_landing" id="port_landing" class="form-control port_landing"   value="{{promast.port_landing}}"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                      <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Port of discharge </label>
+                                                            <div class="col-md-9" >
+                                                                <input type="text" placeholder="Port of discharge"name="port_discharge" id="port_discharge" class="form-control port_discharge"   value="{{promast.port_discharge}}"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                     <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Place of delivery</label>
+                                                            <div class="col-md-9">
+                                                               <input type="text" placeholder="Place of delivery"name="port_delivery" id="port_delivery" class="form-control port_delivery"   value="{{promast.port_delivery}}"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                 
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="table-responsive adjustmentstable">
+                                                            <table class="table salesorder_repeat_row">
+                                                                <thead>
+                                                                    <tr>
+                                                                       <th>DESCRIPTION OF GOODS</th>
+                                                                        <th>innerqty</th>
+                                                                        <th>percartonCBM</th>
+                                                                         <th>QUANTITY</th>
+                                                                         <th>BATCH NO</th>
+                                                                        <th>MARKS AND NOS</th>
+                                                                        <th>UNIT</th>
+                                                                        <th>Carton price$</th>
+                                                                        <th>Total amount($)</th>
+                                                                         <th>Delete</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                      {{#each promast.pro_forma_group as |value key|}}
+                                                                    <tr class="proforma_row-{{@index}}" id="proforma_row-{{@index}}-{{@index}}">
+                                                                        <td>
+                                                                             <input type="hidden" name="pntr{{@index}}" value="{{@index}}" id="pntr{{@index}}" oninput='calproforma({{@index}})'
+                                                                            class="form-control" style="width: 102px;text-align: -webkit-right;">
+                                                                             
+                                                                                
+                                                                            
+                                                                           <select  name="pro_forma_group[{{@index}}][item_name]" id="iname{{@index}}" onchange='getproduct({{@index}})' class="form-control select2" style="width:250px"
+                                                                             placeholder="Select Product"> 
+                                                                            <option value=""></option>
+                                                                            {{#each ../product}}
+                                                                                <option value="{{this.id}}" data-serialnum="{{this._id}}" {{#equal ../this.item_name id}} selected=""
+                                                                                    {{/equal}}>{{this.prdt_desc}}</option>
+                                                                                {{/each}}
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" name="pro_forma_group[{{@index}}][in_qty]" id="inqtypq{{@index}}" oninput='calproforma({{@index}})'
+                                                                                class="form-control pro_forma_group[{{@index}}][in_qty]" value="{{this.in_qty}}" style="width: 142px;text-align: -webkit-right;"
+                                                                                 />
+                                                                        </td>
+                                                                        <td >
+                                                                            <input type="text" name="pro_forma_group[{{@index}}][perc_cbm]"
+                                                                                id="percbmpq{{@index}}"   value="{{this.perc_cbm}}"     oninput='calproforma({{@index}})'
+                                                                                class="form-control  pro_forma_group[{{@index}}][perc_cbm]" style="width: 142px;ext-align: -webkit-right;"
+                                                                                />
+                                                                        </td>
+                                                                        <td>
+                                                                           <input type="text" name="pro_forma_group[{{@index}}][or_qty]"
+                                                                                id="orqtymn{{@index}}" oninput='calproforma({{@index}})' value="{{this.or_qty}}"
+                                                                                class="form-control pro_forma_group[{{@index}}][or_qty]" style="width: 178px;text-align: -webkit-right;"
+                                                                                />
+                                                                        </td>
+                                                                           <td >
+                                                                            <input type="text" name="pro_forma_group[{{@index}}][batch_no]"
+                                                                                id="batchno{{@index}}"       oninput='calproforma({{@index}})' value="{{this.batch_no}}"
+                                                                                class="form-control pro_forma_group[{{@index}}][batch_no]" style="width: 142px;ext-align: -webkit-right;"
+                                                                                />
+                                                                        </td>
+                                                                          <td >
+                                                                            <input type="text" name="pro_forma_group[{{@index}}][marks_and_no]"
+                                                                                id="marksandno{{@index}}"       oninput='calproforma({{@index}})' value="{{this.marks_and_no}}"
+                                                                                class="form-control pro_forma_group[{{@index}}][batch_no]" style="width: 142px;ext-align: -webkit-right;"
+                                                                                />
+                                                                        </td>
+                                                                         <td>  <select class="form-control comm_unit select2"  name="pro_forma_group[{{@index}}][comm_unit]"
+                                                                                 id="communit{{@index}}" style="width: 142px;ext-align: -webkit-right;"  placeholder="Select unit">
+                                                                                   <option value=""></option>
+                                                                                      {{#each ../Stock_Unit}}
+                                                                                              <option value="{{this.id}}"{{#equal ../this.comm_unit id}} selected=""
+                                                                                    {{/equal}}>{{this.sku_name}}</option>
+                                                                                               {{/each}}
+                                                                           </td>
+                                                                        <td >
+                                                                             <input type="text" name="pro_forma_group[{{@index}}][cbm_perItem]"
+                                                                                id="cbmperItem{{@index}}"  oninput='calproforma({{@index}})' value="{{this.cbm_perItem}}"
+                                                                                class="form-control pro_forma_group[{{@index}}][cbm_perItem]" style="width: 185px;text-align: -webkit-right;"
+                                                                                />
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" name="pro_forma_group[{{@index}}][carton_price]"
+                                                                                id="cartonPrice{{@index}}" oninput='calproforma({{@index}})' value="{{this.carton_price}}"
+                                                                                class="form-control pro_forma_group[{{@index}}][carton_price]" value="10" style="width:170px;text-align: -webkit-right;"
+                                                                                >
+                                                                        </td>
+                                                                        <td>
+                                                                             <input type="text" name="pro_forma_group[{{@index}}][total_amount]"
+                                                                                id="totalAmount{{@index}}" oninput='calproforma({{@index}})' value="{{this.total_amount}}"
+                                                                                class="form-control pro_forma_group[{{@index}}][total_amount]" style="width:170px;text-align: -webkit-right;"
+                                                                                />
+                                                                        </td>
+                                                                     <td> {{#notequal @index 0}}
+                                                                            <a  data-repeater-delete="inner-field-{{@index}}-{{@index}}"  data-brand-index="{{@index}}" class="proforma_delete_btn"  style='cursor:pointer;'>
+                                                                                <i class='fa fa-times' style='font-size: 20px;color: red;margin-left:12px;'></i>
+                                                                                </a>
+                                                                                {{/notequal}}
+                                                                            </td>
+                                                                    </tr>
+                                                                     {{/each}}
+                                                                    <tr id="contract_div">
+                                                                            <th>Total</th>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                             <td> <input type="text" name="tot_poq" id="totpoq" value="{{promast.tot_poq}}"
+                                                                            placeholder="Total" class="form-control tot_poq" oninput='calproforma(1)' style="text-align: -webkit-right;"
+                                                                            readonly  tabindex="-1"></td>
+                                                                            <td></td>
+                                                                           <td></td>
+                                                                           <td></td>
+                                                                           <td></td>
+                                                                           <td> <input type="text" name="tot_amt" id="tot_amt" value="{{promast.tot_amt}}"
+                                                                            placeholder="Total" class="form-control tot_amt"style="text-align: -webkit-right;"
+                                                                            readonly  oninput='calproforma(1)'  tabindex="-1"></td>
+                                                                           
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                 <div class="row">
+                                                    <div class="col-sm-12">
+                                                      <button type="button" class="btn btn-primary addproforma center-block nofocus" id="add">Add Item</button>  
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                </div> 
+                                          </div>
+                                                  <div class="row">
+                                                      <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Remarks: </label>
+                                                            <div class="col-md-9">
+                                                                <textarea name="pro_remarks" id="pro_remarks" class="form-control delv_load" >{{promast.pro_remarks}}</textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    </div>
+                                            <div class="panel-footer">
+                                                <div class="action clearfix">
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-9 col-md-push-3">
+                                                            <button type="submit" name="save" class="btn btn-success">Submit</button>
+                                                            <button type="reset" class="btn btn-danger">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="deliverysupport" data-backdrop="static">
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content" style="margin-left: -38px; width: 1232px;">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Pending Worksheet</h4>
+        </div>
+            <div class="modal-body">
+                                            {{!-- table that hides and shows on select --}}
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="table-responsive" style="display:none" id="delivery">
+                            <div class="brand_add_container clearfix">
+                                <div class="table-responsive adjustmentstable" style="margin-top: 40px;">
+                                    <table class="table">
+                                        <thead style="background-color:#4b77be;color: white;">
+                                            <tr>
+                                                <th>Item Name</th>
+                                                <th>innerqty</th>
+                                                <th>percartonCBM</th>
+                                                <th>OrderQty</th>
+                                                <th>Total cbm(p/i)</th>
+                                                <th>Carton price$</th>
+                                                <th>Total amount($)</th>
+                                                 <th>NewOrderQty</th>
+                                                 </tr>
+                                        </thead>
+                                        <tbody class="commercial_repete_row">
+                                            <tr>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class='addsauda'></div>
+
+                        </div>
+                    </div>
+                </div>
+                                            {{!-- end of row --}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" id="commercial_entry" >Save changes</button>
+            </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+{{> footer_new}}
+{{> scripts_new}}

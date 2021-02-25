@@ -1,0 +1,941 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb pull-right">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                           
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+               <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{#if err}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{err}}</strong>
+                                    </div>
+                                    {{/if}}
+                                    {{#if errors}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{errors}}</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            {{!-- end of alerts row --}}
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" style="text-align: right">
+                                            Bill Collection Entry
+                                        </div>
+                                        <form  method="POST" action="/Bill_CollectionEntry/add" class="" novalidate
+                                            enctype="" id="Bill_CollectionEntrySubmit">
+                                           <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-2 control-label">Ret No</label>
+                                                            <div class="col-md-5">
+                                                                <select name="c_j_s_p" placeholder="Idn No & Mode" id="c_j_s_p" class="form-control select2" required data-Module="Bill Collection" onchange="getBookNo()">
+                                                                    {{!-- <option value="BillColl" selected>BillColl</option> --}}
+                                                                    {{#each vouchMast}}
+                                                                        <option value="{{this.Vo_book}}" {{#equal this.Vo_book 'BillColl'}} selected="" {{/equal}}>{{this.Vo_book}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>
+                                                             <div class="col-md-5">
+                                                                <input type="number" name="vouc_code" id="vouc_code"  placeholder="Idn Number"  required
+                                                                    value="{{last}}" class="form-control vouc_code"
+                                                                    tabindex="2" autofocus/>
+                                                                    <input type="hidden" name="Form" id="Form" value="BillCollection_Add_Form">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-2 control-label">Date</label>
+                                                             <div class="col-md-10">
+                                                                    <input type="text" class="form-control datemask" 
+                                                                    name="cash_date" id="offerstartdate" value="{{dateformat Date.now 'DD/MM/YYYY'}}"
+                                                                    autocomplete="off" tabindex="3" required/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="table-responsive adjustmentstable addbillColl" style="margin-top:0px;background-color:whitesmoke">
+                                                            <table class="tabler domes_invoice_repete_row" id="GaruAddTable">
+                                                                <thead id="bilThead">
+                                                                    <tr>
+                                                                       <th colspan="11">&nbsp;</th> 
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr id="GaruTr10">
+                                                                        <td>
+                                                                            <strong>Bill No</strong>
+                                                                            <input type="hidden" name="cashtrn" value="0" id="dsirn0">
+                                                                            <input type="text" name="Bill_No[0]" id="Bill_No0" onkeydown="getBillData(0,event)" 
+                                                                            class="form-control" style="text-align: -webkit-right;" placeholder="Bill_No" required/>
+                                                                        </td> 
+                                                                        <td>
+                                                                            <strong>Date</strong>
+                                                                            <input type="text" name="Date[0]"  id="Date0"  class="form-control datemask " style="text-align: -webkit-right;" placeholder="Date"/>
+                                                                        </td>
+                                                                        <td colspan="3">
+                                                                            <strong>Name Of The Party</strong>
+                                                                            <select  name="cashac_name[0]" id="cashac_name0"  class="form-control customerName prbank select2" style="width:100%"
+                                                                                placeholder="Select Purchase AC" style="width: 100%"> 
+                                                                                <option value=""></option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td colspan="1">
+                                                                            <strong>Place</strong>
+                                                                            <input type="text" name="place[0]" placeholder="Place"  id="place0" class="form-control" 
+                                                                             style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        <td colspan="3">
+                                                                            <strong>Name Of The Broker</strong>
+                                                                            <input type="hidden" name="out_id" id="out_id0">
+                                                                            <select  name="broker_Code[0]" id="broker_Code0"  class="form-control broker_Code prbank select2" style="width:100%"
+                                                                                placeholder="Select Purchase AC" style="width: 100%"> 
+                                                                                <option value=""></option>
+                                                                                {{!-- {{#each puchaseAc}}
+                                                                                <option value="{{this.id}}" data-serialnum="{{this._id}}">{{this.ACName}}</option>
+                                                                                {{/each}} --}}
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Bill Amount</strong>
+                                                                            <input type="hidden" name="OutMain_id[0]" id="OutMain_id0">
+                                                                            <input type="hidden" name="OutstandingAmt[0]" id="OutstandingAmt0">
+                                                                            <input type="number" name="Bill_Amt[0]" placeholder="Bill Amount"  id="Bill_Amt0" class="form-control" 
+                                                                            style="text-align: -webkit-right;"  oninput="calBillCollection(0)"/>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr id="GaruTr20">
+                                                                        <td>
+                                                                            <strong>Balance Due</strong>
+                                                                            <input type="text" name="Balance_Due[0]" placeholder="Balance Due"  id="Balance_Due0" class="form-control" 
+                                                                            style="text-align: -webkit-right;" oninput="calBillCollection(0)"/>
+                                                                        </td>
+                                                                        {{!-- <td>
+                                                                            <strong>Int Due</strong>
+                                                                            <input type="text" name="Int_Due[0]" placeholder="Int Due"  id="Int_Due0" class="form-control" 
+                                                                             style="text-align: -webkit-right;" oninput="calBillCollection(0)"/>
+                                                                        </td>
+                                                                        <td style="width: 10em">
+                                                                            <strong>Bal Int</strong>
+                                                                            <input type="text" name="Bal_Int[0]"  id="Bal_Int0" placeholder="Days" class="form-control" 
+                                                                            style="text-align: -webkit-right;" oninput="calBillCollection(0)"/>
+                                                                        </td> --}}
+                                                                         <td>
+                                                                            <strong>Days</strong>
+                                                                            <input type="text" name="Days[0]"  id="Days0" placeholder="Days" class="form-control" 
+                                                                            style="text-align: -webkit-right;" oninput="calBillCollection(0)"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Int %</strong>
+                                                                            <input type="text" name="Int_Per[0]"  id="Int_Per0" placeholder="Int %" class="form-control" 
+                                                                            style="text-align: -webkit-right;" oninput="calBillCollection(0)"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Intrest</strong>
+                                                                            <input type="text" name="Intrest[0]"  id="Intrest0" placeholder="Amount" class="form-control" 
+                                                                            style="text-align: -webkit-right;" oninput="calBillCollection(0)"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Discount</strong>
+                                                                            <input type="hidden" name="Dis_Amt[0]"  id="Dis_Amt0"/>
+                                                                            <input type="text" name="discount[0]" placeholder="Discount"  id="discount0"  
+                                                                            class="form-control" value="0" style="text-align: -webkit-right;" oninput="calBillCollection(0)"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>CRChgs</strong>
+                                                                            <input type="text" name="CRChgs[0]" placeholder="CRChgs"  id="CRChgs0" 
+                                                                            class="form-control" style="text-align: -webkit-right;" oninput="calBillCollection(0)" />
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Chithi</strong>
+                                                                            <input type="text" name="Chithi[0]" placeholder="Chithi"  id="Chithi0" 
+                                                                            class="form-control" style="text-align: -webkit-right;" oninput="calBillCollection(0)"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>Amt Settled</strong>
+                                                                            <input type="text" name="Amt_Settled[0]" placeholder="Amt Settled"  id="Amt_Settled0" 
+                                                                            class="form-control" style="text-align: -webkit-right;" oninput="calBillCollection(0)"/>
+                                                                        </td>
+                                                                         <td>
+                                                                            <strong>Kasar</strong>
+                                                                            <input type="text" name="Kasar[0]" placeholder="Kasar"  id="Kasar0" oninput="calBillCollection(0)"
+                                                                            class="form-control addBillColfocus" style="text-align: -webkit-right;" />
+                                                                        </td>
+                                                                        <td>
+                                                                            </br></br>
+                                                                            <a onclick='deleteBilColGroupEntry(0)' style='cursor:pointer;'><i class='fa fa-times' style='font-size: 20px;color: red;margin-left:12px;'></i></a>
+                                                                            <a  class="addBillCollectionEntry nofocus" style="cursor:pointer;float:center" id="addgaru"><i class='fa fa-plus' style='font-size: 25px;color: #4b77be;margin-left:12px;'></i></a>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr id="Garu_Aavak_Entry_Group_Add">
+                                                                        <th colspan="3"><strong>Total Net Amt</strong></th>
+                                                                        <td>
+                                                                            <input type="hidden" name="tot_DisAmt"  id="tot_DisAmt"/>
+                                                                            <input type="hidden" name="tot_AmtBeforeDis"  id="tot_AmtBeforeDis"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            {{!-- <button type="button" class="btn btn-primary addBillCollectionEntry center-block nofocus" id="addgaru">Add Item</button> --}}
+                                                                        </td>
+                                                                        <th colspan="2"></th>
+                                                                        <td> 
+                                                                            <input type="text" name="tot_Amt" placeholder="Tot Net Amt"  id="tot_Amt" 
+                                                                           class="form-control" style="text-align: -webkit-right;" readonly oninput="calBillCollection()"/>
+                                                                        </td>
+                                                                        <td colspan="2"></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            {{!-- <div class="row">
+                                                                <div class="col-sm-12">
+                                                                    <button type="button" class="btn btn-primary addBillCollectionEntry center-block nofocus" id="addgaru">Add Item</button>  
+                                                                </div>
+                                                            </div> --}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-12 col-md-6">
+                                                                    <div class="form-group form-md-line-input">
+                                                                        <label class="col-sm-3 control-label">Cash Amount</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" id="tot_Cash_Amount" name="tot_Cash_Amount" class="form-control" onkeydown="calCashAmt(event)">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-12 col-md-6">
+                                                                    <div class="form-group form-md-line-input">
+                                                                        <label class="col-sm-3 control-label">Cheque Amout</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" id="Cheq_Amount" value="0" name="Cheq_Amount" class="form-control" onkeydown="calChqAmt(event)">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-12 col-md-6" style="margin-top: 5px">
+                                                                    <div class="form-group  form-md-line-input">
+                                                                        <label class="col-sm-2 control-label">Chq No.</label>
+                                                                        <div class="col-md-4">
+                                                                            <div class="input-group">
+                                                                                <input type="text" id="Chq_No" name="Chq_No" class="form-control delv_load" onkeydown="chqAmt(event)">
+                                                                            </div>
+                                                                        </div>
+                                                                        <label class="col-sm-2 control-label">Date</label>
+                                                                        <div class="col-md-4">
+                                                                                <input type="text" class="form-control datemask" 
+                                                                                name="chq_date" id="chq_date" value=""
+                                                                                autocomplete="off" tabindex="3"/>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                 <div class="col-sm-12 col-md-6" style="margin-top: 5px">
+                                                                    <div class="form-group  form-md-line-input">
+                                                                        <label onclick="addDraweeBank()" class="control-label col-md-3" style="cursor: pointer;text-decoration: underline;">Drawee bank:</label>
+                                                                        <div class="col-md-9">
+                                                                            <div class="input-group">
+                                                                                    <select name="Drawee_Bank" id="Drawee_Bank" class="form-control DraweeBank" onchange=" calCheqDepositDate()">
+                                                                                    <option value=""></option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>  
+                                                            </div>
+                                                            <div class="row">
+                                                                {{!-- <div class="col-sm-12 col-md-6">
+                                                                    <div class="form-group form-md-line-input clearfix">
+                                                                    <label class="col-sm-3 control-label">Drawee Branch</label>
+                                                                        <div class="input-group select2-bootstrap-prepend">
+                                                                            <div class="col-md-9">
+                                                                                <input type="text" id="draw_branch" name="draw_branch" class="form-control">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div> --}}
+                                                                <div class="col-sm-12 col-md-6" style="margin-top: 5px">
+                                                                    <div class="form-group form-md-line-input">
+                                                                    <label onclick="SaveParty()" class="control-label col-md-3" style="cursor: pointer;text-decoration: underline;">Deposited Bank</label>
+                                                                        <div class="col-md-9">
+                                                                            <div class="input-group select2-bootstrap-prepend">
+                                                                                <select name="cash_bank_name" id="cash_bank_name" class="form-control cashbankname" required>
+                                                                                    <option value="{{DepositeBank._id}}" selected>{{DepositeBank.ACName}}</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        {{!-- <label class="col-sm-2 control-label">Deposit Dt</label>
+                                                                        <div class="col-md-4">
+                                                                                <input type="text" class="form-control datemask" 
+                                                                                name="deposit_date" id="deposit_date" value="{{dateformat Date.now 'DD/MM/YYYY'}}"
+                                                                                autocomplete="off"/>
+                                                                        </div> --}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-12 col-md-6" style="margin-top: 5px">
+                                                                    <label class="col-sm-3 control-label">Deposit Date</label>
+                                                                    <div class="form-group form-md-line-input">
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" class="form-control datemask" 
+                                                                            name="deposit_date" id="deposit_date" value="{{dateformat Date.now 'DD/MM/YYYY'}}"
+                                                                            autocomplete="off"/>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-12 col-md-6" style="margin-top: 5px;margin-bottom: 5px">
+                                                                    <div class="form-group  form-md-line-input">
+                                                                        <label class="col-sm-3 control-label">Remarks: </label>
+                                                                        <div class="col-md-9">
+                                                                            <textarea name="cash_remarks" id="cash_remarks" class="form-control"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-12 col-md-6" style="margin-top: 25px;" align="center">
+                                                                    <button type="button"  name="save" class="btn btn-info submitBillCollectionDataButton save" id="bill_Collection_Entry_Add">Submit</button>
+                                                                    <button type="reset" class="btn btn-danger" >Cancel</button>
+                                                                    <a href="/Bill_CollectionEntry/Bill_CollectionEntry_list" class="btn btn-info">Back</a>
+                                                                </div>
+                                                            </div>
+                                                        {{!-- <div class="panel-footer">
+                                                            <div class="action clearfix">
+                                                                <div class="col-md-12" align="center">
+                                                                    <button type="submit"  name="save" class="btn btn-success submitBillCollectionDataButton save">Submit</button>
+                                                                    <button type="reset" class="btn btn-danger" >Cancel</button>
+                                                                    <a href="/Bill_CollectionEntry/Bill_CollectionEntry_list" class="btn btn-info" style="margin-top: 1.5em">Back</a>
+                                                                </div>
+                                                            </div>
+                                                        </div> --}}
+                                            </div>
+                                        </form>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+ 
+<div class="modal" tabindex="-1" role="dialog" id="billCollactionModal" >
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" style="margin-left: -38px; width: 1232px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Pending Bills</h4>
+            </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive">
+                                <div class="brand_add_container clearfix">
+                                    <div class="table-responsive adjustmentstable" style="margin-top: 0px;">
+                                        <table class="tabler">
+                                            <thead style="background-color:#4b77be;color: white;">
+                                                <tr>
+                                                    <th>Selection</br>(A/U)</th>
+                                                    <th style="width: 4em;">Status</th>
+                                                    <th style="padding: 0px"></th>
+                                                    <th style="width: 6em;">Bill No</th>
+                                                    <th style="padding: 0px"></th>
+                                                    <th style="width: 6em;">Book</th>
+                                                    <th style="width: 7.5em;">Bill Date</th>
+                                                    <th style="width: 10em;">Bill Amt</th>
+                                                    <th style="width: 10em;">Balance Due</th>
+                                                    <th style="width: 8em;">Int Due</th>
+                                                    <th>Broker</th>
+                                                    <th>Firm</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="Bill_Collection_Modal"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                {{!-- <div class='addsauda'></div> --}}
+                            </div>
+                        </div>
+                    </div>
+                                                {{!-- end of row --}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="BillCollectionEntryData" onclick="setBillData()">Save changes</button>
+                </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal" tabindex="-1" role="dialog" id="OutstandingModalIn_BC" >
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" style="margin-left: -38px; width: 1232px;">
+            <div class="modal-header" tyle="height: 1em">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Pending Bills</h4>
+            </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form action="">
+                        <div class="col-sm-12">
+                                <div class=" clearfix">
+                                    <div class="table-responsive" style="margin-top: 0px;">
+                                        <table class="tabler scroll">
+                                            <thead style="background-color:#4b77be;color: white;">
+                                                <tr>
+                                                    <th style="width: 10em;">Bill No</th>
+                                                    <th style="width: 10em; text-align: center">Bill Date</th>
+                                                    <th style="width: 8em">Bill Amt</th>
+                                                    <th style="width: 8em">Recd-Amt</th>
+                                                    <th style="width: 8em">Disc-Amt</th>
+                                                    <th style="width: 8em">Outstanding Balance</th>
+                                                    <th style="width: 8em">Int Due</th>
+                                                    <th>Broker</th>
+                                                    <th>Firm</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="Outstanding_Modal_In_BC">
+                                                <tr></tr>
+                                            </tbody>
+                                            <tfoot id="Sale_Entry_Detail">
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                                {{!-- <div class='addsauda'></div> --}}
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="hideSaleModel">Close</button>
+                    {{!-- <button type="button" class="btn btn-primary" id="BillCollectionEntryData" onclick="setBillData()">Save changes</button> --}}
+                </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" role="dialog" id="addparty">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="float: left;">Add Account</h4>
+                <a style="float: right;"><i class='fa fa-times'  data-dismiss="modal" style='font-size: 20px;color: red;margin-left:12px;'></i></a>
+            </div>
+            <form  class="" novalidateenctype="" id="contract_sauda">
+                {{!-- <div class="row"> method="POST" action="/account_mast/amast_add"--}}
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Ac. Code: </label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_code" placeholder="A/C Code"
+                                    name="ac_code" value="" type="text" autofocus>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                            <div class="form-group  form-md-line-input clearfix">
+                            <label for="" class="control-label col-md-3">Name:</label>
+                                <div class="col-md-9">
+                                <input class="form-control ac_name" required placeholder="Name"
+                                    name="ac_name" value="" type="text" />
+                                        <input class="form-control vhpxaccount"  value="" name='vhpxaccount' id="vhpxaccount" type="hidden"/>
+                                        <input type="hidden" name="GaruEntryModel" id="GaruEntryModel" value="GaruEntryModel">
+                                </div>
+                        </div>
+                    </div>
+                {{!-- </div> --}}
+                {{!-- <div class="row"> --}}
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Group Name: </label>
+                            <div class="col-md-9">
+                                <select class="form-control prbank ac_groupname group"  required name="ac_groupname" 
+                                id="ac_groupname" placeholder="Select group" onchange="checkAddressdetailes()">
+                                    <option value=""></option>
+                                    {{!-- {{#each g_mast}}
+                                    <option value="{{this._id}}">{{this.GroupName}}</option>
+                                    {{/each}} --}}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label for="" class="control-label col-md-3">Op Bal:</label>
+                                <div class="col-md-5">
+                                <input class="form-control ac_opbal" placeholder="Op Bal"
+                                    name="ac_opbal" value="" id="ac_opbal" type="text">
+                                </div>
+                                <div class="col-md-4">
+                                    <select class="form-control prbank  ac_open_type select2"  name="ac_open_type" id="ac_open_type" placeholder="Select" >
+                                        <option value=""></option>
+                                        <option value="Debit" selected="Debit">Debit</option>
+                                        <option value="Credit">Credit</option>
+                                    </select>
+                                </div>
+                            </div>
+                    </div>
+                {{!-- </div> --}}
+                {{!-- <div class="row"> --}}
+                    <div class="col-sm-12 col-md-6" id="ac_areahide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Area: </label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_area" placeholder="Area"
+                                    name="ac_area" id="ac_area" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6" id="ac_add1hide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Address:</label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_add1" placeholder="Address"
+                                    name="ac_add1" id="ac_add1" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                {{!-- </div> --}}
+                        {{!-- <div class="row"> --}}
+                    <div class="col-sm-12 col-md-6" id="ac_add2hide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Address2:</label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_add2" placeholder="Address"
+                                    name="ac_add2" id="ac_add2" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6" id="ac_cityhide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">City: </label>
+                            <div class="col-md-9">
+                                <select class="form-control prbank ac_city city" required name="ac_city" 
+                                                id="ac_city" placeholder="Select city" onchange="getCityData()">
+                                    <option value=""></option>
+                                    {{!-- {{#each city_master}}
+                                    <option value="{{this._id}}">{{this.CityName}}</option>
+                                    {{/each}} --}}
+                                </select>
+                                </div>
+                            </div>
+                    </div>   
+                {{!-- </div> --}}
+                {{!-- <div class="row"> --}}
+                        <div class="col-sm-12 col-md-6" id="ac_statehide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">State:</label>
+                            <div class="col-md-9">
+                                <select class="form-control prbank ac_state state" name="ac_state" 
+                                        id="ac_state" placeholder="Select state">
+                                        <option value=""></option>
+                                        {{!-- {{#each state_master}}
+                                        <option value="{{this._id}}">{{this.StateName}}</option>
+                                        {{/each}} --}}
+                                    </select>   
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6" id="ac_pincodehide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Pin Code: </label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_cst" placeholder="Pin Code"
+                                    name="ac_pincode" id="ac_pincode" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6" id="ac_ptypehide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Party Type: </label>
+                            <div class="col-md-9">
+                                <select class="form-control prbank ac_ptype partytype" name="ac_ptype" 
+                                    id="ac_ptype" placeholder="Select party type" required>
+                                    <option value=""></option>
+                                    {{!-- {{#each ptyp_mast}}
+                                    <option value="{{this._id}}">{{this.Description}}</option>
+                                    {{/each}} --}}
+                                </select>   
+                            </div>
+                        </div>
+                    </div>
+                {{!-- </div> --}}
+                {{!-- <div class="row"> --}}
+                    <div class="col-sm-12 col-md-6" id="ac_panhide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">PAN No:</label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_pan" placeholder="PAN No"
+                                    name="ac_pan" id="ac_pan" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                        <div class="col-sm-6 col-md-6" id="ac_intrestperhide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label for="" class="control-label col-md-3">GSTIN:</label>
+                                <div class="col-md-5">
+                                <input class="form-control ac_gstin" placeholder="GSTIN"
+                                    name="ac_gstin" id="ac_gstin" value="" type="text">
+                                </div>
+                                <label for="" class="control-label col-md-2">Int %</label>
+                                    <div class="col-md-2">
+                                <input class="form-control ac_intrestper" placeholder="Interest %"
+                                    name="ac_intrestper" id="ac_intrestper" value="" type="text">
+                                </div>
+                        </div>
+                    </div>
+                {{!-- </div> --}}
+                {{!-- <div class="row">  --}}
+                        <div class="col-sm-12 col-md-6" id="ac_taxnmhide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Tax Name: </label>
+                            <div class="col-md-9">
+                                <select class="form-control prbank ac_taxnm tax_mast" name="ac_taxnm" 
+                                    id="ac_taxnm" placeholder="Tax Name">
+                                <option value=""></option>
+                                {{!-- {{#each tax_mast}}
+                                <option value="{{this._id}}">{{this.tx_Thead}}</option>
+                                {{/each}} --}}
+                            </select>   
+                            </div>
+                        </div>
+                    </div>
+                {{!-- </div> --}}
+                    {{!-- <div class="row"> --}}
+                        <div class="col-sm-12 col-md-6" id="ac_crelimithide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Credit Limit:</label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_crelimit" placeholder="Credit Limit"
+                                    name="ac_crelimit" id="ac_crelimit" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                        <div class="col-sm-12 col-md-6" id="ac_creditdyshide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Credit Days:</label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_creditdys" placeholder="Credit Days"
+                                    name="ac_creditdys" id="ac_creditdys" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- </div> --}}
+                {{!-- <div class="row"> --}}
+                    <div class="col-sm-12 col-md-6" id="ac_iecnohide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">IEC NO: </label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_iecno" placeholder="IEC NO"
+                                    name="ac_iecno" id="ac_iecno" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6" id="ac_fccinohide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">FSSAI No: </label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_fccino" placeholder="FCCI No"
+                                    name="ac_fccino" id="ac_fccino" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                {{!-- </div> --}}
+                {{!-- <div class="row"> --}}
+                        <div class="col-sm-12 col-md-6" id="ac_websitehide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">WebSite:</label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_website" placeholder="WebSite"
+                                    name="ac_website" id="ac_website" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6" id="ac_emailhide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Email.: </label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_email" placeholder="Email"
+                                    name="ac_email" id="ac_email" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                {{!-- </div> --}}
+                    {{!-- <div class="row"> --}}
+                        <div class="col-sm-12 col-md-6" id="ac_phoffhide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Off No:</label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_phoff" placeholder="Off No"
+                                    name="ac_phoff" id="ac_phoff" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6" id="ac_phreshide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Resi No:</label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_phres" placeholder="Resi No"
+                                    name="ac_phres" id="ac_phres" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                {{!-- </div> --}}
+                {{!-- <div class="row"> --}}
+                    <div class="col-sm-12 col-md-6" id="ac_phmobhide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Mobile No: </label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_phmob" placeholder="Mobile No"
+                                    name="ac_phmob" id="ac_phmob" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                        <div class="col-sm-12 col-md-6" id="ac_phfaxhide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Fax:</label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_phfax" placeholder="Fax"
+                                    name="ac_phfax" id="ac_phfax" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                {{!-- </div> --}}
+                <div class="row" id="BankDetailed">
+                    <div class="repeat clearfix">
+                    <div class="form-group clearfix">
+                        <div class="col-lg-12">
+                            <h3 class="form-section">Bank Name
+                                <input data-repeater-create type="button" value="+" class="btn btn-primary pull-right addbank" /></h3>
+                        </div>
+                    </div>
+                    <div data-repeater-list="bank_group" id="datanm">
+                        <div class="form-group bankrow clearfix" data-repeater-item>
+                            <button class="delbankbtn" data-repeater-delete type="button"><i
+                                    class="fa fa-close"></i> </button>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group form-md-line-input clearfix">
+                                    <label class="control-label col-md-3">Bank Name</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control ac_banknm" placeholder="Bank Name"  name="ac_banknm"  type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group form-md-line-input clearfix">
+                                    <label class="control-label col-md-3">IFSC Code</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" name="ifc_code" placeholder="IFSC Code"
+                                            type="text" autocomplete="off" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group form-md-line-input clearfix">
+                                    <label class="control-label col-md-3">Account No</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" type="text" placeholder="Account No"
+                                            name="account_no" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group form-md-line-input clearfix">
+                                    <label class="control-label col-md-3">Branch Name</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" type="text" placeholder="Branch"
+                                            name="branch_name" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                    <div class="form-group clearfix">
+                        <div class="col-md-12" align="center">
+                            <button type="submit" name="save"  id="aananjns" class="btn btn-success lock-account">Submit</button>
+                            <button type="reset" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                            {{!-- lock-account --}}
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+ {{!-- fade --}}
+
+ <div class="modal fade" role="dialog" id="addDraweeBank">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="float: left;">Add Party</h4>
+                <a style="float: right;"><i class='fa fa-times'  data-dismiss="modal" style='font-size: 20px;color: red;margin-left:12px;'></i></a>
+            </div>
+            <form  enctype="" id="edit_state" class="validate">
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group  form-md-line-input clearfix">
+                                                        <label class="col-sm-3 control-label">Bank Name</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control bankName" id="bankName" placeholder="Bank Name"
+                                                                name="bankName" value="" type="text" autofocus>
+                                                            <input class="form-control vhpxstate" id="vhpxstate"
+                                                                name="vhpxstate" type="hidden"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group  form-md-line-input clearfix">
+                                                        <label class="col-sm-3 control-label">Branch Name</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control branchName" id="branchName" placeholder="Branch Name"
+                                                                name="branchName" value="" type="text">
+                                                                 <input type="hidden" name="GaruEntryModel" id="GaruEntryModel" value="GaruEntryModel">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group  form-md-line-input clearfix">
+                                                        <label class="col-sm-3 control-label">IFSC Code</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control ifscCode" id="ifscCode" placeholder="IFSC Code"
+                                                                name="ifscCode" value="" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group  form-md-line-input clearfix">
+                                                        <label class="col-sm-3 control-label">MICR Code</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control micrCode" id="micrCode" placeholder="MICR Code"
+                                                                name="micrCode" value="" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group  form-md-line-input clearfix">
+                                                        <label class="col-sm-3 control-label">Address</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control address" id="address" placeholder="Address"
+                                                                name="address" value="" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group  form-md-line-input clearfix">
+                                                        <label class="col-sm-3 control-label">Address2</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control address2" id="address2" placeholder="Address2"
+                                                                name="address2" value="" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group  form-md-line-input clearfix">
+                                                        <label class="col-sm-3 control-label">Address3</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control address3" id="address3" placeholder="Address3"
+                                                                name="address3" value="" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group  form-md-line-input clearfix">
+                                                        <label class="col-sm-3 control-label">Contact</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control contact" id="contact" placeholder="Contact"
+                                                                name="contact" value="" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group  form-md-line-input clearfix">
+                                                        <label class="col-sm-3 control-label">Remark</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control remark" id="remark" placeholder="Remark"
+                                                                name="remark" value="" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <div class="col-md-12" style="text-align: center">
+                                                            <button type="submit" name="save" class="btn btn-success lock-bankdetails" >Submit</button>
+                                                            <button type="reset" class="btn btn-primary cancelmaster"
+                                                              data-form-ad-action="/bank_details/bank_details_add">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+ {{!-- fade --}}
+{{> footer_new}}
+{{> scripts_new}}
+
+<style>
+    .tabler>tbody>tr>td, .tabler>tbody>tr>th, .tabler>tfoot>tr>td, .tabler>tfoot>tr>th, .tabler>thead>tr>td, .tabler>thead>tr>th {
+    padding: 0px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+strong{
+    font-size: 14px;
+}
+</style>

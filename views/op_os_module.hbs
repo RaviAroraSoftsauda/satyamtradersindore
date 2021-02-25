@@ -1,0 +1,219 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb pull-right">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            OP O/S Module
+                                        </li>
+                                    </ul>
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{#if err}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{err}}</strong>
+                                    </div>
+                                    {{/if}}
+                                    {{#if errors}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{errors}}</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            {{!-- end of alerts row --}}
+                            <div class="row">
+                                <div class="col-sm-12">
+                                  <div class="panel panel-primary">
+                                        <div class="panel-heading" style="text-align: center">
+                                        OP Outstanding Module
+                                        </div>
+                                           <div class="panel-body">
+                                                
+                                                <form method="POST" action="/op_os_module/add" class="validate"  novalidate enctype="">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group clearfix">
+                                                                <label for="" class="control-label col-md-3">Party Name</label>
+                                                                <div class="col-md-9">
+                                                                    <select id="partyid" name="cashac_name" class="form-control dropsetopn getpartyoposmodule" onchange="getopsmodule()">
+                                                                        <option value=""></option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5"></div>
+                                                        {{!-- <div class="col-md-1">
+                                                            <div class="form-group clearfix">
+                                                                <button type="button" class="btn btn-success" name="filtersubmit"
+                                                                    onclick="FindOpeningOutstanding()">Proceed..</button>
+                                                            </div>
+                                                        </div> --}}
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="table-responsive adjustmentstable">
+                                                                <table class="tabler" style="width: 150%;overflow-x: hidden;overflow-x: auto;padding: 0px 0px 0px 0px;margin: 0px">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th style="width: 10em">O/S Type</th>
+                                                                            <th style="width: 10em">O/S Book</th>
+                                                                            <th style="width: 9em">Voucher No</th>
+                                                                            <th style="width: 5em">Chr</th>
+                                                                            <th style="width: 8em">Date</th>
+                                                                            <th style="width: 25em">Broker</th>
+                                                                            <th style="width: 9em">Party Bill No</th>
+                                                                            <th style="width: 10em">Party Bill Date</th>
+                                                                            <th style="width: 8em">Amount</th>
+                                                                            <th style="width: 8em">Dr/Cr</th>
+                                                                            <th style="width: 8em">Disc %</th>
+                                                                            <th style="width: 8em">Cr Days</th>
+                                                                            <th style="width: 10em">Remarks</th>
+                                                                            <th style="width: 2em"></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr id="delOpOsArr0">
+                                                                            <td>
+                                                                                <input type="hidden" name="opmoduleid[0]" id="opmoduleid0" value="">
+                                                                                <input type="hidden" name="OpOsArrNum" id="OpOsArrNum0" value="0">
+                                                                                <select name="OS_Type[0]" id="OS_Type0" style="width:100%;" class="form-control prbank select2" placeholder="Please Select">
+                                                                                    <option value=""></option>
+                                                                                    <option value="REF">REF</option>
+                                                                                    <option value="ONA">ONA</option>
+                                                                                    <option value="SB">SB</option>
+                                                                                    <option value="PB">PB</option>
+                                                                                </select>
+                                                                            </td>
+                                                                            <td>
+                                                                                <select name="OS_Book[0]" id="OS_Book0" style="width: 100%;" class="form-control prbank select2" placeholder="Please Select">
+                                                                                    <option value=""></option>
+                                                                                    <option value="REF">REF</option>
+                                                                                    <option value="ONA">ONA</option>
+                                                                                    {{#each vouchMast}}
+                                                                                        <option value="{{this.Vo_book}}" >{{this.Vo_book}}</option>
+                                                                                    {{/each}}
+                                                                                </select>
+                                                                                {{!-- {{#equal this.Vo_book 'GAE'}} selected="" {{/equal}} --}}
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" required name="vouc_code[0]" id="vouc_code0" placeholder="Voucher No" class="form-control number">
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" name="Chr[0]" id="Chr0" placeholder="Chr" class="form-control">
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" required name="date[0]" class="form-control datemask BillDate" id="date0" value="" placeholder="Date">
+                                                                            </td>
+                                                                            <td>
+                                                                                <select name="broker_Code[0]" id="broker_Code0" required style="width: 100%;" class="form-control prbank broker_Code">
+                                                                                    <option value=""></option>
+                                                                                </select>
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" name="partyBillNo[0]" class="form-control numerals" id="partyBillNo0" placeholder="Party Bill No">
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" name="partyBillDate[0]" class="form-control datemask BillDate" id="partyBillDate0" placeholder="Party Bill Date">
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="number" name="Amount[0]" class="form-control" id="Amount0" placeholder="Amount" required>
+                                                                            </td>
+                                                                            <td>
+                                                                                <select name="d_c[0]" id="d_c0" style="width: 100%;" class="form-control prbank select2" placeholder="Please Select">
+                                                                                    <option value=""></option>
+                                                                                    <option value="Debit">Debit</option>
+                                                                                    <option value="Credit">Credit</option>
+                                                                                </select>
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" name="discount[0]" class="form-control" id="discount0" placeholder="Discount %">
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" name="cr_Days[0]" class="form-control" id="cr_Days0" placeholder="Cr Days">
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" name="remarks[0]" class="form-control amountfocus" id="remarks0" placeholder="Remarks">
+                                                                            </td>
+                                                                            <td><a onclick='delOpOsArr(0)' style='cursor:pointer;'><i class='fa fa-times' style='font-size: 20px;color: red;margin-left:12px;'></i></a></td>
+                                                                        </tr>
+                                                                        <tr id="OpOsArrNum"></tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <button type="button" class="btn btn-primary addOpOSModule center-block nofocus" id="add">Add</button>  
+                                                        </div>
+                                                    </div> 
+                                                    <div class="action clearfix" >
+                                                        <div class="col-md-12" align="center" style="margin-top: 1em">
+                                                            <button type="submit" name="save" class="btn btn-success delv_load">Submit</button>
+                                                            <button type="reset" class="btn btn-danger">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+<style>
+    .tabler>tbody>tr>td, .tabler>tbody>tr>th, .tabler>tfoot>tr>td, .tabler>tfoot>tr>th, .tabler>thead>tr>td {
+    padding: 0px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+</style>
+{{> footer_new}}
+{{> scripts_new}}

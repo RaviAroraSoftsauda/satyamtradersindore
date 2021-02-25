@@ -1,0 +1,704 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb pull-right">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{#if err}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{err}}</strong>
+                                    </div>
+                                    {{/if}}
+                                    {{#if errors}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{errors}}</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            {{!-- end of alerts row --}}
+                            <div class="row">
+                                <div class="col-sm-12">
+                                  <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                      Update Tax Voucher
+                                        </div>
+                                        <form method="POST" action="/Tax_Voucher/update/{{Tax_Voucher._id}}" class="" novalidate
+                                            enctype="" id="contract_sauda">
+                                           <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group clearfix">
+                                                            <label class="col-sm-3 control-label">Entry No</label>
+                                                              <div class="col-md-5">
+                                                                <select class="form-control select2"  name="c_j_s_p" id="c_j_s_p" required data-Module="Tax Voucher" onchange="getBookNo()">
+                                                                    {{#each vouchMast}}
+                                                                        <option value="{{this.Vo_book}}" {{#equal ../Tax_Voucher.c_j_s_p Vo_book}} selected="" {{/equal}}>{{this.Vo_book}}</option>
+                                                                    {{/each}}
+                                                               </select>
+                                                            </div>
+                                                             <div class="col-md-4">
+                                                                <input type="number" name="vouc_code" id="vouc_code" placeholder="Deal Number" 
+                                                                    value="{{Tax_Voucher.vouc_code}}"  class="form-control vouc_code"
+                                                                    tabindex="2" autofocus/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group clearfix">
+                                                            <label class="col-sm-3 control-label">Entry Date</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control datemask"
+                                                                name="cash_edate" id="offerstartdate" value="{{dateformat Tax_Voucher.entry_Date 'DD/MM/YYYY'}}"
+                                                                autocomplete="off" tabindex="3"  />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                      <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group clearfix">
+                                                            <label onclick="SaveParty()" class="control-label col-md-3" style="cursor: pointer;text-decoration: underline;">Expense A/C</label>
+                                                            <div class="col-md-9">
+                                                                <select class="form-control prbank Expense_Acc"  name="ExpenseAc" id="ExpenseAc" placeholder="Expense A/C" required>
+                                                                <option value="{{Tax_Voucher.ExpenseAc._id}}">{{Tax_Voucher.ExpenseAc.ACName}}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group clearfix">
+                                                            <label class="col-sm-3 control-label">HSN/SAC</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control" name="HSN_SAC" id="HSN_SAC" value="{{Tax_Voucher.HSN_SAC}}" placeholder="HSN / SAC"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group clearfix">
+                                                           <label onclick="SaveParty()" class="control-label col-md-3" style="cursor: pointer;text-decoration: underline;">Cash/Bank</label>
+                                                            <div class="col-md-9">
+                                                                <div class="input-group select2-bootstrap-prepend">
+                                                                    <select name="cash_bank_name" id="cash_bank_name" class="form-control prbank cashbankname">
+                                                                        <option value="{{Tax_Voucher.cash_bank_name._id}}">{{Tax_Voucher.cash_bank_name.ACName}}</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-5"></div>
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group clearfix">
+                                                           <label onclick="SaveParty()" class="control-label col-md-3" style="cursor: pointer;text-decoration: underline;">Deductee</label>
+                                                            <div class="col-md-9">
+                                                                <div class="input-group select2-bootstrap-prepend">
+                                                                    <select name="Deductee" id="Deductee" class="form-control prbank AllAccount" onchange="getAccountData()" required>
+                                                                        <option value="{{Tax_Voucher.Deductee._id}}">{{Tax_Voucher.Deductee.ACName}}</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group clearfix">
+                                                            <label class="col-sm-3 control-label">GSTIN</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control" name="GSTIN" id="GSTIN" value="{{Tax_Voucher.GSTIN}}" placeholder="GSTIN"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group clearfix">
+                                                            <label class="col-sm-3 control-label">Invoice No</label>
+                                                            <div class="col-md-2" style="margin-right: 0px">
+                                                                <input type="text" class="form-control" name="bill_No" id="bill_No" value="{{Tax_Voucher.bill_No}}" placeholder="Invoice No"/>
+                                                            </div>
+                                                            {{!-- <label class="col-sm-1 control-label" style="margin-left: 0px;margin-right: 0px">Date</label> --}}
+                                                            <div class="col-md-3" style="margin-left: 0px;margin-right: 0px">
+                                                                <input type="text" class="form-control BillDate datemask" value="{{dateformat Tax_Voucher.bill_Date 'DD/MM/YYYY'}}" name="bill_Date" id="bill_Date" placeholder="Invoice Date"/>
+                                                            </div>
+                                                            <label class="col-sm-2 control-label" style="margin-left: 0px;margin-right: 0px;margin-top: 0px;margin-bottom: 0px">Basic Amt</label>
+                                                            <div class="col-md-2" style="margin-left: 0px;margin-right: 0px">
+                                                                <input type="number" class="form-control" name="Basic_Amt" value="{{Tax_Voucher.Basic_Amt}}" id="Basic_Amt" oninput="setSameAmtInTdsOn()" placeholder="Basic Amt"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group clearfix">
+                                                            <label class="col-sm-3 control-label">ITC Y/N</label>
+                                                            <div class="col-md-9">
+                                                                <select name="ITC" id="ITC" class="form-control prbank select2" required>
+                                                                    <option value="Y" {{#equal Tax_Voucher.ITC 'Y'}} selected="" {{/equal}}>Y</option>
+                                                                    <option value="N" {{#equal Tax_Voucher.ITC 'N'}} selected="" {{/equal}}>N</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group clearfix">
+                                                           <label class="control-label col-md-3">Tax Type</label>
+                                                            <div class="col-md-5">
+                                                                <select name="Tax_Type" id="Tax_Type" class="form-control prbank Tax_Master" onchange="getTaxMasterData()" required>
+                                                                    <option value="{{Tax_Voucher.Tax_Type._id}}">{{Tax_Voucher.Tax_Type.tx_Thead}}</option>
+                                                                </select>
+                                                            </div>
+                                                            <label class="col-sm-2 control-label">TDS On</label>
+                                                            <div class="col-md-2">
+                                                                <input type="number" class="form-control" name="TDS_On" value="{{Tax_Voucher.TDS_On}}" id="TDS_On" placeholder="TDS On"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group clearfix">
+                                                            <label class="col-sm-3 control-label">TDS %</label>
+                                                            <div class="col-md-3">
+                                                                <input type="number" class="form-control" name="TDS_Per" value="{{Tax_Voucher.TDS_Per}}" id="TDS_Per" placeholder="TDS %"/>
+                                                                <input type="hidden" name="TDS_Amt" id="TDS_Amt" value="{{Tax_Voucher.TDS_Amt}}"/>
+                                                            </div>
+                                                            <label class="col-sm-3 control-label">GST %</label>
+                                                            <div class="col-md-3">
+                                                                <input type="number" class="form-control" name="GST_Per" id="GST_Per" value="{{Tax_Voucher.GST_Per}}" placeholder="GST %"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group clearfix">
+                                                            <label class="col-md-3 control-label">Narration</label>
+                                                            <div class="col-md-9">
+                                                                {{!-- onkeydown="createTaxEntry(event)" --}}
+                                                                <input type="text" class="form-control" name="Narration" value="{{Tax_Voucher.Narration}}" id="Narration" placeholder="Narration" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="col-md-2">
+                                                            {{!-- <button type="button" class="btn btn-info" onclick="createTaxEntryOnClick()">Proceed</button> --}}
+                                                        </div>
+                                                        <div class="col-md-1"></div>
+                                                        <div class="col-md-2">
+                                                            {{!-- <button type="button" class="btn btn-danger" onclick="showCreateTaxEntryReset()">Reset</button> --}}
+                                                        </div>
+                                                        <label class="col-md-3 control-label">Net Payable Amount</label>
+                                                        <div class="col-md-4">
+                                                            <input type="number" class="form-control" name="cash_amount" id="cash_amount" value="{{Trans_Entry_CB.cash_amount}}" placeholder="Net Payable Amt">
+                                                        </div>
+                                                    </div>
+                                                  </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="table-responsive adjustmentstable" id="showCreateTaxEntry">
+                                                                <table class="table tabler table-bordered adsearch" id="TaxVoucherArrTable">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th style="width:8px;">Sno</th>
+                                                                            <th style="width:40em;">Account</th>
+                                                                            <th>Amount</th>
+                                                                            <th>Amount</th>
+                                                                            <th style="width:20em;">Remark</th>
+                                                                            <th>Delete</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        {{#each Trans_Entry as |value key|}}
+                                                                            <tr id="deleteTaxVouchArr{{@index}}">
+                                                                            <td style="text-align:center">{{sum @index 1}}</td>
+                                                                            <td>
+                                                                                <select class="form-control AllAccount" name="Tax_Voucher_Arr[{{@index}}][cashac_name]" id="cashac_name{{@index}}">
+                                                                                    <option value="{{this.cashac_name._id}}">{{this.cashac_name.ACName}}</option>
+                                                                                </select>
+                                                                            </td>
+                                                                            <td><input type="number" class="form-control" name="Tax_Voucher_Arr[{{@index}}][debit]" id="debit{{@index}}" {{#ifCond this.d_c 'D'}}value="{{this.cash_amount}}"{{/ifCond}} oninput="calCrDrAmtInTaxVouc()"></td>
+                                                                            <td><input type="number" class="form-control" name="Tax_Voucher_Arr[{{@index}}][credit]" id="credit{{@index}}" {{#ifCond this.d_c 'C'}}value="{{this.cash_amount}}"{{/ifCond}} oninput="calCrDrAmtInTaxVouc()"></td>
+                                                                            <td><input type="text"   class="form-control" name="Tax_Voucher_Arr[{{@index}}][cash_narrone]" id="cash_narrone{{@index}}" value="{{this.cash_narrone}}" style="text-align:left"></td>
+                                                                            <td>
+                                                                                <input type='hidden' name='Tax_Voucher_Arr[{{@index}}][Trans_Entry_id]' id="Trans_Entry_id{{@index}}" value='{{this._id}}'>
+                                                                                <input type='hidden' name='TaxVouchArrIndex' value='{{@index}}'>
+                                                                                <a onclick='deleteTaxVouchArr({{@index}})' style='cursor:pointer;'>
+                                                                                    <i class='fa fa-times' style='font-size: 20px;color: red;margin-left:12px;'></i>
+                                                                                </a>
+                                                                            </td>
+                                                                            </tr>
+                                                                        {{/each}}
+                                                                        <tr id="AddBeforeTaxVoucher"></tr>
+                                                                    </tbody>
+                                                                    <tfoot>
+                                                                        <tr>
+                                                                            <td style="text-align:center"></td>
+                                                                            <td></td>
+                                                                            <td>
+                                                                                {{#each Trans_Entry as |value key|}}
+                                                                                {{#ifCond this.srno '0'}}
+                                                                                <input type="number" class="form-control" name="Tot_Debit" value="{{this.Tot_Debit}}" id="Tot_Debit" readonly>
+                                                                                {{/ifCond}}
+                                                                                {{/each}}
+                                                                            </td>
+                                                                            <td>
+                                                                                {{#each Trans_Entry as |value key|}}
+                                                                                {{#ifCond this.srno '0'}}
+                                                                                <input type="number" class="form-control" name="Tot_Credit" value="{{this.Tot_Credit}}" id="Tot_Credit" readonly>
+                                                                                {{/ifCond}}
+                                                                                {{/each}}
+                                                                                </td>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                        </tr>
+                                                                    </tfoot>
+                                                                </table>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                      <button type="button" class="btn btn-primary addTaxVoucher center-block nofocus" id="add">Add Entry</button>  
+                                                    </div>
+                                                </div>
+                                                 <div class="row" style="margin-top: 5px;">
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group clearfix">
+                                                            <label class="col-sm-3 control-label">Remarks: </label>
+                                                            <div class="col-md-9">
+                                                                <textarea name="cash_remarks" id="cash_remarks" class="form-control delv_load">{{Tax_Voucher.garu_Remarks}}</textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12" style="margin-top: 10px;"
+                                                    <div align="center">
+                                                        <button type="submit" name="save" class="btn btn-success">Submit</button>
+                                                        <button type="reset" class="btn btn-danger">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                            
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+<div class="modal fade" role="dialog" id="addparty">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="float: left;">Add Account</h4>
+                <a style="float: right;"><i class='fa fa-times'  data-dismiss="modal" style='font-size: 20px;color: red;margin-left:12px;'></i></a>
+            </div>
+            <form  class="" novalidateenctype="" id="contract_sauda">
+                {{!-- <div class="row"> method="POST" action="/account_mast/amast_add"--}}
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Ac. Code: </label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_code" placeholder="A/C Code"
+                                    name="ac_code" value="" type="text" autofocus>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                            <div class="form-group  form-md-line-input clearfix">
+                            <label for="" class="control-label col-md-3">Name:</label>
+                                <div class="col-md-9">
+                                <input class="form-control ac_name" required placeholder="Name"
+                                    name="ac_name" value="" type="text" />
+                                        <input class="form-control vhpxaccount"  value="" name='vhpxaccount' id="vhpxaccount" type="hidden"/>
+                                        <input type="hidden" name="GaruEntryModel" id="GaruEntryModel" value="GaruEntryModel">
+                                </div>
+                        </div>
+                    </div>
+                {{!-- </div> --}}
+                {{!-- <div class="row"> --}}
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Group Name: </label>
+                            <div class="col-md-9">
+                                <select class="form-control prbank ac_groupname group"  required name="ac_groupname" 
+                                id="ac_groupname" placeholder="Select group" onchange="checkAddressdetailes()">
+                                    <option value=""></option>
+                                    {{!-- {{#each g_mast}}
+                                    <option value="{{this._id}}">{{this.GroupName}}</option>
+                                    {{/each}} --}}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label for="" class="control-label col-md-3">Op Bal:</label>
+                                <div class="col-md-5">
+                                <input class="form-control ac_opbal" placeholder="Op Bal"
+                                    name="ac_opbal" value="" id="ac_opbal" type="text">
+                                </div>
+                                <div class="col-md-4">
+                                    <select class="form-control prbank  ac_open_type select2"  name="ac_open_type" id="ac_open_type" placeholder="Select" >
+                                        <option value=""></option>
+                                        <option value="Debit" selected="Debit">Debit</option>
+                                        <option value="Credit">Credit</option>
+                                    </select>
+                                </div>
+                            </div>
+                    </div>
+                {{!-- </div> --}}
+                {{!-- <div class="row"> --}}
+                    <div class="col-sm-12 col-md-6" id="ac_areahide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Area: </label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_area" placeholder="Area"
+                                    name="ac_area" id="ac_area" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6" id="ac_add1hide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Address:</label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_add1" placeholder="Address"
+                                    name="ac_add1" id="ac_add1" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                {{!-- </div> --}}
+                        {{!-- <div class="row"> --}}
+                    <div class="col-sm-12 col-md-6" id="ac_add2hide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Address2:</label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_add2" placeholder="Address"
+                                    name="ac_add2" id="ac_add2" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6" id="ac_cityhide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">City: </label>
+                            <div class="col-md-9">
+                                <select class="form-control prbank ac_city city" required name="ac_city" 
+                                                id="ac_city" placeholder="Select city" onchange="getCityData()">
+                                    <option value=""></option>
+                                    {{!-- {{#each city_master}}
+                                    <option value="{{this._id}}">{{this.CityName}}</option>
+                                    {{/each}} --}}
+                                </select>
+                                </div>
+                            </div>
+                    </div>   
+                {{!-- </div> --}}
+                {{!-- <div class="row"> --}}
+                        <div class="col-sm-12 col-md-6" id="ac_statehide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">State:</label>
+                            <div class="col-md-9">
+                                <select class="form-control prbank ac_state state" name="ac_state" 
+                                        id="ac_state" placeholder="Select state">
+                                        <option value=""></option>
+                                        {{!-- {{#each state_master}}
+                                        <option value="{{this._id}}">{{this.StateName}}</option>
+                                        {{/each}} --}}
+                                    </select>   
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6" id="ac_pincodehide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Pin Code: </label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_cst" placeholder="Pin Code"
+                                    name="ac_pincode" id="ac_pincode" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6" id="ac_ptypehide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Party Type: </label>
+                            <div class="col-md-9">
+                                <select class="form-control prbank ac_ptype partytype" name="ac_ptype" 
+                                    id="ac_ptype" placeholder="Select party type" required>
+                                    <option value=""></option>
+                                    {{!-- {{#each ptyp_mast}}
+                                    <option value="{{this._id}}">{{this.Description}}</option>
+                                    {{/each}} --}}
+                                </select>   
+                            </div>
+                        </div>
+                    </div>
+                {{!-- </div> --}}
+                {{!-- <div class="row"> --}}
+                    <div class="col-sm-12 col-md-6" id="ac_panhide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">PAN No:</label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_pan" placeholder="PAN No"
+                                    name="ac_pan" id="ac_pan" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                        <div class="col-sm-6 col-md-6" id="ac_intrestperhide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label for="" class="control-label col-md-3">GSTIN:</label>
+                                <div class="col-md-5">
+                                <input class="form-control ac_gstin" placeholder="GSTIN"
+                                    name="ac_gstin" id="ac_gstin" value="" type="text">
+                                </div>
+                                <label for="" class="control-label col-md-2">Int %</label>
+                                    <div class="col-md-2">
+                                <input class="form-control ac_intrestper" placeholder="Interest %"
+                                    name="ac_intrestper" id="ac_intrestper" value="" type="text">
+                                </div>
+                        </div>
+                    </div>
+                {{!-- </div> --}}
+                {{!-- <div class="row">  --}}
+                        <div class="col-sm-12 col-md-6" id="ac_taxnmhide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Tax Name: </label>
+                            <div class="col-md-9">
+                                <select class="form-control prbank ac_taxnm tax_mast" name="ac_taxnm" 
+                                    id="ac_taxnm" placeholder="Tax Name">
+                                <option value=""></option>
+                                {{!-- {{#each tax_mast}}
+                                <option value="{{this._id}}">{{this.tx_Thead}}</option>
+                                {{/each}} --}}
+                            </select>   
+                            </div>
+                        </div>
+                    </div>
+                {{!-- </div> --}}
+                    {{!-- <div class="row"> --}}
+                        <div class="col-sm-12 col-md-6" id="ac_crelimithide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Credit Limit:</label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_crelimit" placeholder="Credit Limit"
+                                    name="ac_crelimit" id="ac_crelimit" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                        <div class="col-sm-12 col-md-6" id="ac_creditdyshide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Credit Days:</label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_creditdys" placeholder="Credit Days"
+                                    name="ac_creditdys" id="ac_creditdys" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- </div> --}}
+                {{!-- <div class="row"> --}}
+                    <div class="col-sm-12 col-md-6" id="ac_iecnohide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">IEC NO: </label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_iecno" placeholder="IEC NO"
+                                    name="ac_iecno" id="ac_iecno" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6" id="ac_fccinohide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">FSSAI No: </label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_fccino" placeholder="FCCI No"
+                                    name="ac_fccino" id="ac_fccino" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                {{!-- </div> --}}
+                {{!-- <div class="row"> --}}
+                        <div class="col-sm-12 col-md-6" id="ac_websitehide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">WebSite:</label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_website" placeholder="WebSite"
+                                    name="ac_website" id="ac_website" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6" id="ac_emailhide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Email.: </label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_email" placeholder="Email"
+                                    name="ac_email" id="ac_email" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                {{!-- </div> --}}
+                    {{!-- <div class="row"> --}}
+                        <div class="col-sm-12 col-md-6" id="ac_phoffhide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Off No:</label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_phoff" placeholder="Off No"
+                                    name="ac_phoff" id="ac_phoff" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6" id="ac_phreshide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Resi No:</label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_phres" placeholder="Resi No"
+                                    name="ac_phres" id="ac_phres" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                {{!-- </div> --}}
+                {{!-- <div class="row"> --}}
+                    <div class="col-sm-12 col-md-6" id="ac_phmobhide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Mobile No: </label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_phmob" placeholder="Mobile No"
+                                    name="ac_phmob" id="ac_phmob" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                        <div class="col-sm-12 col-md-6" id="ac_phfaxhide">
+                        <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Fax:</label>
+                            <div class="col-md-9">
+                                <input class="form-control ac_phfax" placeholder="Fax"
+                                    name="ac_phfax" id="ac_phfax" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6" id="ac_PrintType">
+                    <div class="form-group  form-md-line-input clearfix">
+                            <label class="col-sm-3 control-label">Print Type:</label>
+                            <div class="col-md-9">
+                                <select class="form-control ac_PrintType select2" placeholder="Print Type"
+                                    name="ac_PrintType" id="ac_PrintType" value="" type="text">
+                                    <option value="" selected></option>
+                                    <option value="Pri Printed">Pri Printed</option>
+                                    <option value="Plan Printed" selected>Plan Printed</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                {{!-- </div> --}}
+                <div class="row" id="BankDetailed">
+                    <div class="repeat clearfix">
+                    <div class="form-group clearfix">
+                        <div class="col-lg-12">
+                            <h3 class="form-section">Bank Name
+                                <input data-repeater-create type="button" value="+" class="btn btn-primary pull-right addbank" /></h3>
+                        </div>
+                    </div>
+                    <div data-repeater-list="bank_group" id="datanm">
+                        <div class="form-group bankrow clearfix" data-repeater-item>
+                            <button class="delbankbtn" data-repeater-delete type="button"><i
+                                    class="fa fa-close"></i> </button>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group form-md-line-input clearfix">
+                                    <label class="control-label col-md-3">Bank Name</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control ac_banknm" placeholder="Bank Name"  name="ac_banknm"  type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group form-md-line-input clearfix">
+                                    <label class="control-label col-md-3">IFSC Code</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" name="ifc_code" placeholder="IFSC Code"
+                                            type="text" autocomplete="off" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group form-md-line-input clearfix">
+                                    <label class="control-label col-md-3">Account No</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" type="text" placeholder="Account No"
+                                            name="account_no" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group form-md-line-input clearfix">
+                                    <label class="control-label col-md-3">Branch Name</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" type="text" placeholder="Branch"
+                                            name="branch_name" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                    <div class="form-group clearfix">
+                        <div class="col-md-12" align="center">
+                            <button type="submit" name="save"  id="aananjns" class="btn btn-success lock-account">Submit</button>
+                            <button type="reset" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                            {{!-- lock-account --}}
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+ {{!-- fade --}}
+{{> footer_new}}
+{{> scripts_new}}
+<style>
+    .tabler>tbody>tr>td, .tabler>tbody>tr>th, .tabler>tfoot>tr>td, .tabler>tfoot>tr>th, .tabler>thead>tr>td, .tabler>thead>tr>th {
+    padding: 0px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+</style>

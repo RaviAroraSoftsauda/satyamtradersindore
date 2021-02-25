@@ -1,0 +1,237 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+
+                           
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" id="formheading" style="text-align: right">
+                                            <span>Add</span> City
+                                        </div>
+                                        {{!-- method="POST" action="/add_city/city_add" --}}
+                                        <div class="panel-body">
+                                            <form  enctype="" id="addcity"
+                                                class="validate">
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">City Name</label>
+                                                        <div class="col-md-9">
+                                                            <input  required class="form-control city_name" placeholder="City Name" 
+                                                                name="city_name" type="text"  autofocus/>
+                                                                 <input   class="form-control vhpxcity" id="vhpxcity" 
+                                                                name="vhpxcity" type="hidden"  autofocus/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                   
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">District Name</label>
+                                                        <div class="col-md-9">
+                                                            <select class="form-control ctry_name  prbank select2" name="ctry_name" id="ctry_name" placeholder="Select State">
+                                                                <option value=""></option>
+                                                            {{#each c_mast}}
+                                                            <option value="{{this.id}}">{{this.DistrictName}}</option>
+                                                            {{/each}}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                   
+                                                
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">State Name</label>
+                                                        <div class="col-md-9">
+                                                            <select class="form-control state_name  prbank select2"  name="state_name"
+                                                                id="state_name" placeholder=" Select Country">
+                                                                <option value=""></option>
+                                                                {{#each state_master}}
+                                                                <option value="{{this.id}}" >{{this.StateName}}</option>
+                                                                {{/each}}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">City Pincode</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control city_code" placeholder="City Code" value="" name="city_code" type="text" >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">Std Code</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control city_std_code" value="" placeholder="Std Code" name="city_std_code" type="text" >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3">Party Type</label>
+                                                        <div class="col-md-9">
+                                                            <select class="form-control PartyType  prbank select2"  name="PartyType"
+                                                                id="PartyType" placeholder=" Select Party Type">
+                                                                <option value=""></option>
+                                                                {{#each partytype}}
+                                                                <option value="{{this.id}}" >{{this.Description}}</option>
+                                                                {{/each}}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{!-- end of row --}}
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3"></label>
+                                                        <div class="col-md-9">
+                                                            <button type="submit" name="save" class="btn btn-success lock-city">Submit</button>
+                                                            <button type="reset" class="btn btn-primary cancelmaster"
+                                                                data-form-ad-action="/add_city/city_add">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                     <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" style="text-align: right">
+                                            City List
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table id="product_detail_table" class="product_detail_table table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                             <th>Action</th>
+                                                            <th>Sno.</th>
+                                                            <th>City Name</th>
+                                                            <th>District Name</th>
+                                                            <th>State Name</th>
+                                                            <th>City Pincode</th>
+                                                            <th>Std Code</th>
+                                                            <th>Party Type</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{#each city_master as |value key|}}
+                                                        <tr>
+                                                            <td>
+                                                                <div class="btn-group dropdown">
+                                                                    <button class="btn btn-xs blue dropdown-toggle"
+                                                                        type="button" data-toggle="dropdown"
+                                                                        aria-expanded="false"> Actions
+                                                                        <i class="fa fa-angle-down"></i>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu pull-left" role="menu"style="width:150px">
+                                                                        <li>
+                                                                            <a href="javascript:void(0);" class="edit_city_btn"
+                                                                                data-id="{{this._id}}">
+                                                                                <i class="icon-pencil"></i> Edit </a>
+                                                                        </li>
+                                                                        <li class="divider"> </li>
+                                                                        <li>
+                                                                            <a href="javascript:void(0);" class="delete-city"
+                                                                                data-id="{{this._id}}">
+                                                                                <i class="icon-trash"></i> Delete
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </td>
+                                                            <td>{{sum @index 1}}</td>
+                                                            <td>{{this.CityName}}</td>
+                                                            <td>{{this.DistrictName.DistrictName}}</td>
+                                                            <td>{{this.StateName.StateName}}</td>
+                                                            <td>{{this.CityPinCode}}</td>
+                                                            <td>{{this.StdCode}}</td>
+                                                            <td>{{this.PartyType.Description}}</td>
+                                                            
+                                                        </tr>
+                                                        {{/each}}
+
+
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                             <th class="excludesearch"></th>
+                                                            <th>Sno.</th>
+                                                            <th>State Name</th>
+                                                            <th>District Name</th>
+                                                            <th>City Name</th>
+                                                            <th>City Pincode</th>
+                                                            <th>Std Code</th>
+                                                            <th>Party Type</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

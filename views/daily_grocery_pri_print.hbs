@@ -1,0 +1,117 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<style>
+body { 
+  font-size: 12px; 
+}
+tr.noBorder td {
+  border-bottom: 0;
+ 
+}
+@media print {
+    @page{
+        margin-top: 1em;
+        margin-left: 0px;
+        margin-right: 2em;
+    }
+   table{
+       width: 100%;
+   }
+}
+</style>
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <div class="page-container">
+            <div class="page-content-wrapper">
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <div class="page-title">
+                           <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                    </ul>
+                                </small>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+    <div style="width: 95%;margin: 1%" align="center" >
+        <table id="table1" style="width: 98%;">
+             <tr >
+                <td style="padding: 0%; height: 12em;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td style="padding: 0%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td style="padding: 0%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td style="padding: 0%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td style="padding: 0%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td style="padding: 0%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td style="padding: 0%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td style="padding: 0%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td style="padding: 0%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td style="padding: 0%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            </tr>
+            <tr>
+                <th colspan="5" style="text-align: center; font-size: 12px;"> &nbsp;&nbsp;<b style="font-size: 18px;">{{division.div_mast}}</b></th>
+                <th colspan="3" style="text-align: right; padding-right: 4em; font-size: 12px;"> <b style="font-size: 18px;">{{division.groceryMarketRegNo}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> </th>
+                <th colspan="2" style="text-align: left; font-size: 12px;"> <b style="font-size: 18px;">{{dateformat daily_grocery_entry.date "DD/MM/YYYY"}}</b></th>
+            </tr>
+        </table>
+        {{!-- Table Start --}}
+        <table  id="groceryPrint"  style="width: 98%">
+             <thead >
+                <tr >
+                    <th style="width: 1em;  height: 9em"></th>
+                    <th style="text-align: left; font-size: 15px; ;width: 2em"></th>
+                    <th style="text-align: right; font-size: 15px;width: 7em"></th>
+                    <th style="text-align: right; font-size: 15px; width: 6em"></th>
+                    <th style="text-align: right; font-size: 15px; width: 4em"></th>
+                    <th style="text-align: right; font-size: 15px; width: 7em"></th>
+                    <th style="text-align: right; font-size: 15px; width: 7em"></th>
+                    <th style="text-align: center; font-size: 15px; width: 7em"></th>
+                    <th style="text-align: center; font-size: 15px; width: 7em"></th>
+                    <th style="text-align: right; font-size: 15px; width: 16em"></th>
+                </tr>
+             </thead>
+             <tbody>
+                 <tr >
+                    <td style="text-align: left; height: 27em; font-size: 14px; padding-left: 0px;" valign="top">{{#each daily_grocery_entry.daily_grocery_entry_group as |groupvalue key|}} {{sum @index 1}}</br> {{/each}}</td>
+                    <td style="text-align: left; font-size: 14px;" valign="top">{{#each daily_grocery_entry.daily_grocery_entry_group as |groupvalue key|}} {{groupvalue.natureOfWork.natureOfWork}}</br> {{/each}}</td>
+                    <td style="text-align: right; font-size: 14px;" valign="top">{{#each daily_grocery_entry.daily_grocery_entry_group as |groupvalue key|}} {{groupvalue.pck}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</br> {{/each}}</td>
+                    <td style="text-align: right; font-size: 14px;" valign="top">{{#each daily_grocery_entry.daily_grocery_entry_group as |groupvalue key|}} {{groupvalue.masterRate}}</br> {{/each}}</td>
+                    <td style="text-align: right; font-size: 14px;" valign="top">{{#each daily_grocery_entry.daily_grocery_entry_group as |groupvalue key|}} {{groupvalue.qty}}</br> {{/each}}</td>
+                    <td style="text-align: right; font-size: 14px;" valign="top">{{#each daily_grocery_entry.daily_grocery_entry_group as |groupvalue key|}} {{groupvalue.basic}}</br> {{/each}}</td>
+                    <td style="text-align: right; font-size: 14px;" valign="top">{{#each daily_grocery_entry.daily_grocery_entry_group as |groupvalue key|}} {{groupvalue.levy}}</br> {{/each}}</td>
+                    <td style="text-align: right; font-size: 14px;" valign="top">{{#each daily_grocery_entry.daily_grocery_entry_group as |groupvalue key|}}--</br> {{/each}}</td>
+                    <td style="text-align: right; font-size: 14px;" valign="top">{{#each daily_grocery_entry.daily_grocery_entry_group as |groupvalue key|}}--</br> {{/each}}</td>
+                    <td style="text-align: center; font-size: 14px;" valign="top">{{#each daily_grocery_entry.daily_grocery_entry_group as |groupvalue key|}} {{groupvalue.Amt}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</br> {{/each}}</td>
+                 </tr>
+             </tbody>
+             <tfoot>
+                 <tr >
+                     <th></th>
+                     <th></th>
+                     <th></th>
+                     <th colspan="2" style="text-align: right; font-size: 17px;">Day Totals</th>
+                     <th style="text-align: right; font-size: 17px;">{{daily_grocery_entry.tot_basic}}</th>
+                     <th style="text-align: right; font-size: 17px;">{{daily_grocery_entry.tot_levy}}</th>
+                     <th></th>
+                     <th></th>
+                     <th style="text-align: center; font-size: 17px;">{{daily_grocery_entry.tot_Amt}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                 </tr>
+             </tfoot>
+        </table>
+        {{!-- Table End --}}
+    <a class="btn btn-lg blue hidden-print margin-bottom-5" onclick="printinvoice()" id="hideprintbtn" style="margin-top: 2em"> Print
+    <i class="fa fa-print"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

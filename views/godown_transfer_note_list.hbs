@@ -1,0 +1,176 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Goods Receipt Note List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{#if err}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{err}}</strong>
+                                    </div>
+                                    {{/if}}
+                                    {{#if errors}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{errors}}</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary table light " id="tableportlet">
+                                        <div class="panel-heading">
+                                           Godown Transfer Note List
+                                            <div class="misc pull-right">
+                                                <div class="buttons">
+                                                    <a href="/godown_transfer_note/godown_transfer_note">
+                                                        <button class="btn btn-link" type="button"><i class="fa fa-plus"></i>Add
+                                                            Godown Transfer Note</button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="panel-body">
+                                        <table id="product_detail_table" class="product_detail_table table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Action</th>
+                                                <th >Sno.</th>
+                                                <th>GTN No</th>
+                                                <th>Date</th>
+                                                <th>Source Warehouse</th>
+                                                <th>Destination/Location</th>
+                                                <th>Remarks</th>
+                                           </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each purchaseorder as |value key|}}
+                                            {{!-- {{#equal this.srno 0}} --}}
+                                            <tr>
+                                                <td>
+                                                    <div class="btn-group dropdown">
+                                                        <button class="btn btn-xs blue dropdown-toggle" type="button"
+                                                            data-toggle="dropdown" aria-expanded="false"> Actions
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu pull-left" role="menu" style="width:150px">
+                                                            
+                                                            <li>
+                                                                <a href="/godown_transfer_note/godown_transfer_note_update/{{this._id}}"
+                                                                    data-id="{{this._id}}">
+                                                                    <i class="icon-pencil"></i> Edit </a>
+                                                            </li>
+                                                           
+                                                           
+                                                            <li class="divider"> </li>
+                                                            <li>
+                                                                <a href="/godown_transfer_note/delete_godown_transfer_note/{{this.id}}" class="delbutton"
+                                                                data-id="{{this._id}}">
+                                                                    <i class="icon-trash"></i> Delete
+                                                                </a>
+                                                            </li>
+                                                           
+                                                            <li class="divider"> </li>
+                                                            <li>
+                                                                <a href="/godown_transfer_note/gtn_item_print/{{this.id}}">
+                                                                    <i class="fa fa-print"></i> Product Barcode
+                                                                </a>
+                                                            </li>
+                                                            <li class="divider"> </li>
+                                                            <li>
+                                                                <a href="/godown_transfer_note/gtn_bale_barcode/{{this.id}}"><i class="fa fa-print"></i> Bale Barcode </a>
+                                                            </li>
+                                                           
+                                                                        <li class="divider"> </li>
+                                                                    <li>
+                                                                        <a href="/godown_transfer_note/godown_transfer_note_print/{{value._id}}">
+                                                                             <i class="fa fa-print"></i> Print
+                                                                        </a>
+                                                                    </li>
+                                                           
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                                <td >{{sum @index 1}}</td>
+                                                <td>{{this.c_j_s_p}}/{{this.vouc_code}}</td>
+                                                <td>{{dateformat this.entry_Date 'DD/MM/YYYY'}}</td>
+                                                <td>{{this.source_Warehouse.Description}}</td>
+                                                <td>{{this.destination_warehouse.Description}}</td>
+                                                {{!-- <td>{{this.destination_warehouse.subwarehose_name}}</td> --}}
+                                                <td>{{this.garu_Remarks}}</td>
+                                            </tr>
+                                            {{!-- {{/equal}} --}}
+                                            {{/each}}
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th  class="excludesearch">Action</th>
+                                                <th >Sno.</th>
+                                                <th>GTN No</th>
+                                                <th>Date</th>
+                                                <th>Source Warehouse</th>
+                                                <th>Destination/Location</th>
+                                                <th>Remarks</th>
+                                            </tr>
+                                        </tfoot>
+                                       </table>
+                                        </div>
+                                       
+                                    </div>
+                                    <!-- END EXAMPLE TABLE PORTLET-->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+{{> footer_new}}
+{{> scripts_new}}

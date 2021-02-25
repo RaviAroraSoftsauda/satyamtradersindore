@@ -1,0 +1,235 @@
+
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+
+<style>
+body { 
+  font-size: 15px; 
+}
+.container{
+    width: fit-content;
+	margin:0 auto;
+	padding:10px;
+    margin-right: auto;
+    margin-left: auto;
+	height:auto;
+	background-color:white;
+}
+.head{
+    background-color:rgb(214, 211, 211);
+}
+h2 {
+  text-align: center;
+  padding: 20px 0;
+}
+
+table caption {
+	padding: .5em 0;
+}
+@media print {
+    table tr.highlighted > td {
+        background-color: rgba(255, 157, 186, 0.3) !important;
+    }
+     table thead.highprint  {
+         background-color:rgba(228, 227, 225, 0.3) !important;
+    }
+     table tr.addallvalues {
+        background-color:rgb(255, 214, 251) !important;
+    }
+     table tr.totalamt77 > th {
+        background-color:rgba(228, 227, 225, 0.3) !important;
+    }
+     table tr.addcloumn {
+        background-color:rgba(228, 227, 225, 0.3) !important;
+    }
+      table tr.rmarks66 {
+        background-color:rgba(228, 227, 225, 0.3) !important;
+    }
+    tbody tr.highlighted:nth-child(odd) >td{
+   background-color:rgb(255, 214, 251) !important;
+ 
+}
+}
+table.dataTable th,
+table.dataTable td {
+  white-space: nowrap;
+}
+
+.p {
+  text-align: center;
+  padding-top: 140px;
+  font-size: 14px;
+}
+
+th:first-child + th + th,
+td:first-child + td + td {
+  display:none;
+} 
+tr.group,
+tr.group:hover {
+    background-color:greenyellow;
+}
+</style>
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                           <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                   
+
+                </div>
+
+<div class="container">
+      <div text align="center">
+             <b  style="font-size:27px;align-items: center">RAJSHAHI FOOD PRODUCTS</b></br>
+       
+  <div class="row">
+    <div class="col-xs-13">
+                       <table  border="2" cellspacing="3" align="center" background-color="#ECECE4">
+{{!-- <table id="soprint"  class="table table-bordered table-hover dt-responsive display" cellspacing="0" width="100%"> --}}
+ 
+        
+        <thead class="highprint">
+     <tr>
+         <th colspan="13" class="text-uppercase"> 
+    <strong>{{outmast.buy_cus_name.ac_name}}-{{outmast.buy_cus_name.ac_city.city_name}} {{dateformat outmast.so_date 'DD.MM.YYYY'}}</strong>
+       </th>      
+</tr>
+ <tr>
+         <th colspan="13"> 
+    <strong>PRODUCT PRICE LIST  EX_INDORE PRICE (TO-PAY PRICE)</strong>
+       </th>      
+</tr>
+ <tr>
+                <th></th>
+                <th></th>
+                <th> </th>
+                <th></th>
+                <th colspan="2">COMP. ORDER</th>
+               <th colspan="2">COMP. DISP</th>
+                 <th></th>
+                  <th></th>
+                <th></th>
+                <th></th>
+                 <th></th>                
+            </tr>
+            <tr>
+                <th>Sno</th>
+                <th>ITEMS</th>
+                <th><strong > NEW PRICE</strong> </th>
+                <th>PKT IN PER</th>
+                <th>ORDER</th>
+                <th>AMOUNT</th>
+                <th>DISPATCH</th>
+                <th>AMOUNT</th>
+                 <th>DISCOUNT</th>
+                  <th>AMOUNT</th>
+                <th>PENDING</th>
+                <th>AMOUNT</th>
+                 <th>ORDER</th>                
+            </tr>
+        </thead>
+        <tbody>
+           
+        {{#each outmast as |outmastvalue key|}}
+            
+            {{#each outmastvalue.sales_or_group as |groupvalue key|}}
+            <tr bgcolor="#FFFFCC" class="highlighted">
+             <td  colspan="1" align="center" class="text-left" ><font color="red">{{groupvalue.so_disc.p_code}}
+              <td colspan="1" align="left" class="text-left"  ><font color="black">{{groupvalue.so_disc.prdt_desc}}
+              <td colspan="1" align="left" class="text-right "  ><font color="black">{{groupvalue.so_disc.si_price}}
+              <td  colspan="1" align="left" class="text-right" id="order4444"><font color="black">{{groupvalue.outin_qty}}
+              <td  colspan="1" align="center" class="text-right"><font color="black">{{groupvalue.ocrate}}
+              <td  colspan="1" align="center" class="text-right" ><font color="black">{{softsolution groupvalue.so_disc.si_price groupvalue.outin_qty}}
+              <td  colspan="1" align="center" class="text-right"><font color="black">{{groupvalue.so_qty}}
+              <td  colspan="1" align="center" class="text-right"><font color="black">{{softsolution groupvalue.so_disc.si_price groupvalue.so_qty}}
+               <td  colspan="1" align="center" class="text-right"><font color="black">{{groupvalue.so_discount}}
+             <td  colspan="1" align="center" class="text-right"><font color="black">{{discountsolution groupvalue.so_disc.si_price groupvalue.so_qty groupvalue.so_discount}}
+              <td  colspan="1" align="center" class="text-right"><font color="black">{{groupvalue.pendqty}}
+              <td  colspan="1" align="center" class="text-right"><font color="black">{{softsolution groupvalue.so_disc.si_price groupvalue.pendqty}}
+           
+               <td > {{groupvalue.so_div.div_mast}}</td>
+             
+          </tr>
+        
+             {{/each}}  
+            
+             {{/each}}
+
+        </tbody>
+                  <tfoot>   
+     <tr class="totalamt77" >
+
+             
+                <th  colspan="3" >{{outmast.so_disc}}<b>TOTAL NO. OF CARTON AND AMOUNT</b>
+                <th  colspan="1" >
+                <th  colspan="1" >
+                 <th  colspan="1" class="text-right">ORDER: 
+                     {{#outwordchlnoutinqty outmast}}{{/outwordchlnoutinqty}}
+                    
+                <th  colspan="1" class="text-right""right">AMOUNT 
+                <th  colspan="1" class="text-right">{{outmast.tot_sooq}}
+                <th  colspan="1"  class="text-right">AMOUNT
+                <th  colspan="1" class="text-right">DISCOUNT
+                <th  colspan="1" class="text-right">AMOUNT
+                <th  colspan="1" class="text-right">PENDING
+                <th  colspan="1" class="text-right">AMOUNT
+			</tr>
+            
+        </tfoot>
+        <tr class="rmarks66">
+         <td  colspan="6" ; style="text-align: left" ><strong>Remarks:</strong>{{outmast.so_remarks}}
+          <td  colspan="6" ; style="text-align: center" ><font color="red"><strong> Total:</strong><b>{{outmast.grand_total}}
+        
+    </tr>
+     
+
+    </table>
+    </div>
+    </div>
+</div>
+               <br/>
+              <a class="btn btn-lg blue hidden-print margin-bottom-5" onclick="javascript:window.print();"> Print
+                  <i class="fa fa-print"></i>
+              </a>
+          </div>
+
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+{{> footer_new}}
+{{> scripts_new}}

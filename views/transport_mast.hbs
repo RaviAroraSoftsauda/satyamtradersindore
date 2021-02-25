@@ -1,0 +1,412 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+
+                               
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" id="formheading">
+                                            <span>Add</span> Transport
+                                        </div>
+                                        <div class="panel-body">
+                                            {{!-- <form method="POST" action="/raw_material_mast/raw_location_mast_add" enctype="" id="addcategory" class="validate"></form> --}}
+                        <form method="POST" action="/transport_mast/add" enctype="" id="transportmast" class="validate">
+                                                <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                 <div class="form-group  form-md-line-input clearfix">
+                                                   <label for="" class="control-label col-md-3">Name:</label>
+                                                        <div class="col-md-9">
+                                                       <input class="form-control ac_name"required placeholder="Name"
+                                                            name="ac_name" value="" type="text"autofocus />
+                                                             <input class="form-control vhpxtransport" placeholder="Name"
+                                                            name="vhpxtransport" id="vhpxtransport" value="" type="hidden"/>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                            <div class="col-sm-12 col-md-6">
+                                                 <div class="form-group  form-md-line-input clearfix">
+                                                   <label for="" class="control-label col-md-3">Opening Bal:</label>
+                                                        <div class="col-md-3">
+                                                       <input class="form-control ac_opbal" placeholder="Opening Bal"
+                                                            name="ac_opbal" value="" type="text">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                       <select class="form-control prbank  ac_open_type select2"  name="ac_open_type" id="ac_open_type" placeholder="Select" >
+                                                            <option value=""></option>
+                                                         <option value="Debit" selected="Debit">Debit</option>
+                                                           <option value="Credit">Credit</option>
+                                                        </select>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                        </div>
+                                                <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Group Name: </label>
+                                                    <div class="col-md-9">
+                                                       <select class="form-control prbank ac_groupname select2" name="ac_groupname" 
+                                                                        id="ac_groupname" placeholder="Select group">
+                                                                    <option value=""></option>
+                                                                    {{#each g_mast}}
+                                                                   <option value="{{this._id}}">{{this.group_name}}</option>
+                                                                 {{/each}}
+                                                            </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">PAN No:</label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control ac_pan" placeholder="PAN No"
+                                                            name="ac_pan" value="" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                        </div>
+                                              <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Remarks: </label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control ac_rmks" placeholder="Remarks"
+                                                            name="ac_rmks" value="" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Address:</label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control ac_add1" placeholder="Address"
+                                                            name="ac_add1" value="" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                        </div>
+                                             <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                 <label class="control-label col-md-3 itsalink" data-toggle="modal"
+                                                              data-target="#addcity">City<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <select class="form-control prbank ac_city select2"   required name="ac_city" 
+                                                                        id="ac_city" placeholder="Select city">
+                                                                    <option value=""></option>
+                                                                    {{#each city}}
+                                                                   <option value="{{this._id}}">{{this.city_name}}</option>
+                                                                 {{/each}}
+                                                            </select>
+                                                      </div>
+                                                 </div>
+                                            </div>   
+                                            {{!-- end of col --}}
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">State:</label>
+                                                    <div class="col-md-9">
+                                                     <select class="form-control prbank ac_state select2" name="ac_state" 
+                                                                        id="ac_state" placeholder="Select state">
+                                                                    <option value=""></option>
+                                                                    {{#each state_master}}
+                                                                   <option value="{{this._id}}">{{this.state_name}}</option>
+                                                                 {{/each}}
+                                                            </select>   
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">CST: </label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control ac_cst" placeholder="CST"
+                                                            name="ac_cst" value="" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">GSTIN:</label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control ac_gstin" placeholder="GSTIN"
+                                                            name="ac_gstin" value="" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                        </div>
+                                       
+                                       
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Email.: </label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control ac_email" placeholder="Email"
+                                                            name="ac_email" value="" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Off No:</label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control ac_phoff" placeholder="Off No"
+                                                            name="ac_phoff" value="" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                        </div>
+                                         <div class="row">
+                                           <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Resi No:</label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control ac_phres" placeholder="Resi No"
+                                                            name="ac_phres" value="" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                             <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Mobile No: </label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control ac_phmob" placeholder="Mobile No"
+                                                            name="ac_phmob" value="" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                        </div>
+                                         <div class="row">
+                                             <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Fax:</label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control ac_phfax" placeholder="Fax"
+                                                            name="ac_phfax" value="" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                               <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Contact Person: </label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control ac_cont" placeholder="Contact Person"
+                                                            name="ac_cont" value="" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                        </div>
+                                        <div class="row">
+                                           
+                                            {{!-- end of col --}}
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">WebSite:</label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control ac_website" placeholder="WebSite"
+                                                            name="ac_website" value="" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                        </div>
+                                               <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3"></label>
+                                                        <div class="col-md-9">
+                                                            <button type="submit" name="save" class="btn btn-success lock-transport">Submit</button>
+                                                            <button type="reset" class="btn btn-primary cancelmaster"
+                                                                data-form-ad-action="/add_city/city_add">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                           Transport Master List
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table id="product_detail_table" class="product_detail_table table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Action</th>
+                                                            <th>Sno.</th>
+                                                            <th>Name</th>
+                                                            <th>Op Bal</th>
+                                                            <th>Group Name</th>
+                                                            <th>PAN No</th>
+                                                            <th>Remarks</th>
+                                                            <th>Address</th>
+                                                            <th>City</th>
+                                                            <th>State</th>
+                                                            <th>CST</th>
+                                                            <th>GSTIN</th>
+                                                            <th>WebSite</th>
+                                                            <th>Email</th>
+                                                            <th>Off No</th>
+                                                            <th>Resi No</th>
+                                                            <th>Mobile No</th>
+                                                            <th>Fax</th>
+                                                            <th>Contact Person</th>
+                                                           
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{#each transportmast as |value key|}}
+                                                        <tr>
+                                                            <td>
+                                                                <div class="btn-group dropdown">
+                                                                    <button class="btn btn-xs blue dropdown-toggle"
+                                                                        type="button" data-toggle="dropdown"
+                                                                        aria-expanded="false"> Actions
+                                                                        <i class="fa fa-angle-down"></i>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu pull-left" role="menu" style="width:150px">
+                                                                        <li>
+                                                                            <a href="javascript:void(0);" class="edit_transport_mast"
+                                                                                data-id="{{this._id}}">
+                                                                                <i class="icon-pencil"></i> Edit </a>
+                                                                        </li>
+                                                                        <li class="divider"> </li>
+                                                                        <li>
+                                                                            
+                                                                            <a href="javascript:void(0);" class="delete_transport_mast"
+                                                                                data-id="{{this._id}}">
+                                                                                <i class="icon-trash"></i> Delete
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </td>
+                                                            <td>{{sum @index 1}}</td>
+                                                            <td>{{this.ac_name}}</td>
+                                                            <td>{{this.ac_opbal}}</td>
+                                                            <td>{{this.ac_groupname.group_name}}</td>
+                                                            <td>{{this.ac_pan}}</td>
+                                                            <td>{{this.ac_rmks}}</td>
+                                                            <td>{{this.ac_add1}}</td>
+                                                            <td>{{this.ac_city.city_name}}</td>
+                                                            <td>{{this.ac_state.state_name}}</td>
+                                                            <td>{{this.ac_cst}}</td>
+                                                            <td>{{this.ac_gstin}}</td>
+                                                            <td>{{this.ac_website}}</td>
+                                                            <td>{{this.ac_email}}</td>
+                                                            <td>{{this.ac_phoff}}</td>
+                                                            <td>{{this.ac_phres}}</td>
+                                                            <td>{{this.ac_phmob}}</td>
+                                                             <td>{{this.ac_phfax}}</td>
+                                                             <td>{{this.ac_cont}}</td>
+                                                        </tr>
+                                                {{/each}}
+
+
+                                               </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                    <th class="excludesearch"></th>
+                                                            <th>Sno.</th>
+                                                            <th>Name</th>
+                                                            <th>Op Bal</th>
+                                                           <th>Group Name</th>
+                                                           <th>PAN No</th>
+                                                            <th>Remarks</th>
+                                                            <th>Address</th>
+                                                            <th>City</th>
+                                                            <th>State</th>
+                                                            <th>CST</th>
+                                                            <th>GSTIN</th>
+                                                            <th>WebSite</th>
+                                                            <th>Email</th>
+                                                             <th>Off No</th>
+                                                            <th>Resi No</th>
+                                                            <th>Mobile No</th>
+                                                            <th>Fax</th>
+                                                            <th>Contact Person</th>
+                                                            
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

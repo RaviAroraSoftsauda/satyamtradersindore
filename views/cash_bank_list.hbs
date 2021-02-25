@@ -1,0 +1,165 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Contract List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{#if err}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{err}}</strong>
+                                    </div>
+                                    {{/if}}
+                                    {{#if errors}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{errors}}</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                                    <div class="panel panel-primary table light " id="tableportlet">
+                                        <div class="panel-heading">
+                                           Cash/Bank List
+                                            <div class="misc pull-right">
+                                                <div class="buttons">
+                                                   
+                                                     <a href="/cash_bank/cash_bank">
+                                                        <button class="btn btn-link" type="button"><i class="fa fa-plus"></i>Add
+                                                           Bank/Cash Entry</button>
+                                                    </a>
+                                                  </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body" id="portletbody">
+                                            {{!-- {{cashmast}} --}}
+                                            <table class="product_detail_table dttable table table-striped table-bordered table-hover"
+                                                id="product_detail_table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Action</th>
+                                                        <th>Entry No</th>
+                                                        <th>Book</th>
+                                                        <th>Entry Date</th>
+                                                        <th>Type</th>
+                                                        <th>Cash/Bank</th>
+                                                        <th>Remarks</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{#each cashmast as |value key|}}
+                                                      {{#ifCond this._id.main_bk "CB"}}  
+                                                    <tr>
+                                                          <td class="excludesearch">
+                                                            <div class="btn-group dropdown">
+                                                                <button class="btn btn-xs blue dropdown-toggle" type="button"
+                                                                    data-toggle="dropdown" aria-expanded="false">
+                                                                    Actions
+                                                                    <i class="fa fa-angle-down"></i>
+                                                                </button>
+                                                                <ul class="dropdown-menu pull-left" role="menu" style="width:150px">
+                                                                    <li>
+                                                                        <a href="/cash_bank/cashbank_update?vouc_code={{value._id.vouc_code}}&amp;cjsp={{this._id.c_j_s_p}}">
+                                                                            <i class="fa fa-pencil"></i> Edit
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                         <a href="/cash_bank/cashbank_delete?vouc_code={{this._id.vouc_code}}&amp;cjsp={{this._id.c_j_s_p}}&amp;mainbk={{this._id.main_bk}}" class="delbutton"
+                                                                            data-id="{{this._id}}">
+                                                                            <i class="icon-trash"></i> Delete
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/cash_bank/cashbank_print?vouc_code={{this._id.vouc_code}}&amp;cjsp={{this._id.c_j_s_p}}&amp;mainbk={{this._id.main_bk}}">
+                                                                            <i class="fa fa-print"></i> Print
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td> 
+                                                        <td style="text-align: center">{{this._id.vouc_code}}</td>
+                                                        <td>{{this._id.c_j_s_p}}</td>
+                                                        <td style="text-align: center">{{dateformat this._id.cash_date 'DD/MM/YYYY'}}</td>
+                                                        <td style="text-align: center">{{this._id.cash_type}}</td>
+                                                        <td style="text-align: left">
+                                                            {{#cashbaname   ../accname  this._id.cash_bank_name}}{{/cashbaname}}
+                                                        </td>
+                                                        <td style="text-align: left">{{this._id.cash_remarks}}</td>
+                                                    </tr>
+                                                    {{/ifCond}}  
+                                                    {{/each}}
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th class="excludesearch mastercheckbox"></th>
+                                                        <th>Entry No</th>
+                                                        <th>Book</th>
+                                                        <th>Entry Date</th>
+                                                        <th>Type</th>
+                                                        <th>Cash/Bank</th>
+                                                        <th>Remarks</th>
+                                                        {{!-- <th class="excludesearch noExport">Action</th> --}}
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- END EXAMPLE TABLE PORTLET-->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+{{> footer_new}}
+{{> scripts_new}}

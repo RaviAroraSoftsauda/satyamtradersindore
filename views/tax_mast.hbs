@@ -1,0 +1,314 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+
+                               
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" id="formheading">
+                                            <span>Add</span> Tax Master 
+                                        </div>
+                                        <div class="panel-body">
+                                            {{!-- <form method="POST" action="/raw_material_mast/raw_location_mast_add" enctype="" id="addcategory" class="validate"></form> --}}
+                                             <form method="POST" action="/tax_mast/tax_mast_add" enctype="" id="addcategory" class="validate">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Tax Head: </label>
+                                                            <div class="col-md-9">
+                                                            <input class="form-control tx_Thead" required placeholder="Tax Head"
+                                                                    name="tx_Thead" type="text" autofocus>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                        <label for="" class="control-label col-md-3">TDS Account:</label>
+                                                                <div class="col-md-9">
+                                                                <select class="form-control tx_TDSAC prbank TDS"   name="tx_TDSAC" id="tx_TDSAC" placeholder="Select TDS Account">
+                                                                    <option value=""></option>
+                                                                    {{!-- {{#each TDS}}
+                                                                    <option value="{{this._id}}">{{this.ACName}}</option>
+                                                                    {{/each}} --}}
+                                                                </select>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                            <div class="form-group form-md-line-input clearfix">
+                                                                <label for="" class="control-label col-md-4">Section Code</label>
+                                                                <div class="col-md-8">
+                                                                    <input class="form-control tx_ScCode" id="tx_ScCode" placeholder="Section Code" type="text" 
+                                                                    name="tx_ScCode"> 
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-4">
+                                                            <div class="form-group form-md-line-input clearfix">
+                                                                <label for="" class="control-label col-md-4">TDS %</label>
+                                                                <div class="col-md-8">
+                                                                    <input class="form-control" id="tx_TDS" placeholder="TDS %" type="number" 
+                                                                    name="tx_TDS"> 
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-4">
+                                                            <div class="form-group form-md-line-input clearfix">
+                                                                <label for="" class="control-label col-md-4">GST %</label>
+                                                                <div class="col-md-8">
+                                                                    <input class="form-control tx_GST" id="tx_GST" placeholder="GST %" type="number" 
+                                                                    name="tx_GST"> 
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                        <label for="" class="control-label col-md-3">SGST Receivable:</label>
+                                                                <div class="col-md-9">
+                                                                <select class="form-control prbank tx_SGSTR TAX"  name="tx_SGSTR" id="tx_SGSTR" placeholder="Select SGST Receivable">
+                                                                    <option value=""></option>
+                                                                {{!-- {{#each tax}}
+                                                                <option value="{{this._id}}">{{this.ACName}}</option>
+                                                                {{/each}} --}}
+                                                                </select>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                        <label for="" class="control-label col-md-3">SGST Payable:</label>
+                                                                <div class="col-md-9">
+                                                                <select class="form-control prbank tx_SGSTP TAX"  name="tx_SGSTP" id="tx_SGSTP" placeholder="Select SGST Payable">
+                                                                    <option value=""></option>
+                                                                {{!-- {{#each tax}}
+                                                                <option value="{{this._id}}">{{this.ACName}}</option>
+                                                                {{/each}} --}}
+                                                                </select>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                        <label for="" class="control-label col-md-3">CGST Receivable:</label>
+                                                                <div class="col-md-9">
+                                                                <select class="form-control prbank tx_CGSTR TAX"  name="tx_CGSTR" id="tx_CGSTR" placeholder="Select CGST Receivable">
+                                                                    <option value=""></option>
+                                                                {{!-- {{#each tax}}
+                                                                    <option value="{{this._id}}">{{this.ACName}}</option>
+                                                                {{/each}} --}}
+                                                                </select>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                        <label for="" class="control-label col-md-3">CGST Payable:</label>
+                                                                <div class="col-md-9">
+                                                                <select class="form-control prbank tx_CGSTP TAX"  name="tx_CGSTP" id="tx_CGSTP" placeholder="Select CGST Payable">
+                                                                    <option value=""></option>
+                                                                {{!-- {{#each tax}}
+                                                                <option value="{{this._id}}">{{this.ACName}}</option>
+                                                                {{/each}} --}}
+                                                                </select>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                        <label for="" class="control-label col-md-3">IGST Receivable:</label>
+                                                                <div class="col-md-9">
+                                                                <select class="form-control prbank tx_IGSTR TAX"  name="tx_IGSTR" id="tx_IGSTR" placeholder="Select IGST Receivable">
+                                                                    <option value=""></option>
+                                                                {{!-- {{#each tax}}
+                                                                <option value="{{this._id}}">{{this.ACName}}</option>
+                                                                {{/each}} --}}
+                                                                </select>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                        <label for="" class="control-label col-md-3">IGST Payable:</label>
+                                                                <div class="col-md-9">
+                                                                <select class="form-control prbank tx_IGSTP TAX"  name="tx_IGSTP" id="tx_IGSTP" placeholder="Select IGST Payable">
+                                                                    <option value=""></option>
+                                                                {{!-- {{#each tax}}
+                                                                <option value="{{this._id}}">{{this.ACName}}</option>
+                                                                {{/each}} --}}
+                                                                </select>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3"></label>
+                                                        <div class="col-md-9">
+                                                            <button type="submit" name="save" class="btn btn-success">Submit</button>
+                                                            <button type="reset" class="btn btn-primary cancelmaster"
+                                                                data-form-ad-action="/add_city/city_add">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            Tax Master List
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table id="product_detail_table" class="product_detail_table table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                                <th>Action</th>
+                                                                <th>Sno.</th>
+                                                                <th>Tax Head</th>
+                                                                <th>TDS Account</th>
+                                                                <th>Section Code</th>
+                                                                <th>TDS %</th>
+                                                                <th>GST %</th>
+                                                                <th>SGST Receivable</th>
+                                                                <th>SGST Payable</th>
+                                                                <th>CGST Receivable</th>
+                                                                <th>CGST Payable</th>
+                                                                <th>IGST Receivable</th>
+                                                                <th>IGST Payable</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{#each tax_mast as |value key|}}
+                                                        <tr>
+                                                            <td>
+                                                                <div class="btn-group dropdown">
+                                                                    <button class="btn btn-xs blue dropdown-toggle"
+                                                                        type="button" data-toggle="dropdown"
+                                                                        aria-expanded="false"> Actions
+                                                                        <i class="fa fa-angle-down"></i>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu pull-left" role="menu" style="width:150px">
+                                                                        <li>
+                                                                            <a href="javascript:void(0);" class="edit_tax_mast"
+                                                                                data-id="{{this._id}}">
+                                                                                <i class="icon-pencil"></i> Edit </a>
+                                                                        </li>
+                                                                        <li class="divider"> </li>
+                                                                        <li>
+                                                                            
+                                                                            <a href="javascript:void(0);" class="delete_tax_mast"
+                                                                                data-id="{{this._id}}">
+                                                                                <i class="icon-trash"></i> Delete
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </td>
+                                                            <td>{{sum @index 1}}</td>
+                                                            <td>{{this.tx_Thead}}</td>
+                                                            <td>{{this.tx_TDSAC.ACName}}</td>
+                                                            <td>{{this.tx_ScCode}}</td>
+                                                            <td>{{this.tx_TDS}}</td>
+                                                            <td>{{this.tx_GST}}</td>
+                                                            <td>{{this.tx_SGSTR.ACName}}</td>
+                                                            <td>{{this.tx_SGSTP.ACName}}</td>
+                                                            <td>{{this.tx_CGSTR.ACName}}</td>
+                                                            <td>{{this.tx_CGSTR.ACName}}</td>
+                                                            <td>{{this.tx_IGSTR.ACName}}</td>
+                                                            <td>{{this.tx_IGSTP.ACName}}</td>
+                                                        </tr>
+                                                {{/each}}
+
+
+                                               </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                    <th class="excludesearch"></th>
+                                                            <th>Sno.</th>
+                                                                <th>Tax Head</th>
+                                                                <th>TDS Account</th>
+                                                                <th>Section Code</th>
+                                                                <th>TDS %</th>
+                                                                <th>GST %</th>
+                                                                <th>SGST Receivable</th>
+                                                                <th>SGST Payable</th>
+                                                                <th>CGST Receivable</th>
+                                                                <th>CGST Payable</th>
+                                                                <th>IGST Receivable</th>
+                                                                <th>IGST Payable</th>
+                                                            
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+{{> footer_new}}
+{{> scripts_new}}

@@ -1,0 +1,102 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb pull-right">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Add Form
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    Add Form
+                                </div>
+                                <form method="POST" action="/party/party_add" class="form validate" novalidate>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label for="" class="control-label col-md-2">Name</label> 
+                                                    <div class="col-md-10">
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                {{!-- end of form-group --}}
+                                            </div>
+                                            {{!-- end of col --}}
+                                            <div class="col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label for="" class="control-label col-md-2">Password</label> 
+                                                    <div class="col-md-10">
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                {{!-- end of form-group --}}
+                                            </div>
+                                            {{!-- end of col --}}
+                                        </div>
+                                        {{!-- end of row --}}
+                                    </div>
+                                    {{!-- end of panel-body --}}
+                                    <div class="panel-footer">
+                                        <div class="action clearfix">
+                                            <div class="col-md-6">
+                                                <div class="col-md-9 col-md-push-3">
+                                                    <button type="submit" name="save" class="btn btn-success save-party">Submit</button>
+                                                    <button type="reset" class="btn btn-danger">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{!-- end of panel-footer --}}
+                                </form>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+{{> footer_new}}
+{{> scripts_new}}

@@ -1,0 +1,183 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb pull-right">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                </small>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-content">
+                    <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-primary">
+                                     <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-7">
+                                                       <section class="invoice">
+                                                        <div class="row">
+                                                        <div class="col-xs-12">
+                                                        {{div_com.ac_addone}}
+                                                        <p style='color:black'><b>Subject to {{div_com.ac_state}} Jurisdiction</b></p>
+                                                        <p style='color:black;'><b>!!Shree Ganesh!!</b></p>
+                                                        <p style='color:black;'><b>{{compnm}}</b></p>
+                                                        <h2 class="page-header" style="text-align: center;color:black;margin-top: -8px;border: 1px solid;padding-bottom: 0px;"></h2>
+                                                        </div><!-- /.col -->
+                                                                </div>
+                                                                <!-- info row -->
+                                                                <div class="col-sm-6">
+                                                                      <p style='color:black;'><b>{{div_com.ac_add1}}</b></p>
+                                                                      <p style='color:black;'><b>{{div_com.ac_add2}},</b></p>
+                                                                      <p style='color:black;'><b>{{div_com.ac_place}},{{div_com.ac_state}}</b></p>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                      <p style='color:black;'><b>Tel : {{div_com.ac_ph}}</b></p>
+                                                                      <p style='color:black;'><b>Fax  : {{div_com.ac_phr}}</b></p>
+                                                                      <p style='color:black;'><b>Email: {{div_com.ac_email}}</b></p>
+                                                                      <p style='color:black;'><b>Website: {{div_com.ac_web}}</b></p>
+                                                                </div>
+                                                              
+                                                            <div class="col-sm-9">
+                                                                      <p style='color:black;'><b>GSTIN </b></p>
+                                                                      <p style='color:black;'><u>CONFIRMATION NO :{{contract.main_bk}}/{{dateformat div_com.sdate 'YY'}}-{{datet div_com.edate 'YY'}}/{{contract.vouc_code}}</u></p>
+                                                                      <hr style="text-align: center;border: 1px solid;width: 962px;">
+                                                                      <p style='color:black;'>We confirm on behaif and for the account and risk of under-mentioned Buyers & Sellers,the following transaction.</p>
+                                                                </div>
+                                                                  
+                                                                <div class="col-sm-3">
+                                                                    <p style='color:black;'><b><U>DATE :{{dateformat contract.sd_date 'DD/MM/YYYY'}}</U></b></p>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                      <p style='color:black;float:left'>BUYERS    :&nbsp;&nbsp;&nbsp; 
+                                                                      <p>{{contract.br_code.party_name}}</p>
+                                                                      <p style="margin-left: 72px;">{{contract.br_code.address1}},{{contract.br_code.address2}}</p>
+                                                                      <p style="margin-left: 72px;"><u>{{contract.br_code.city_name.city_name}}({{contract.br_code.state_name.state_name}})</u></p>
+                                                                      </p>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                      <p style='color:black;float:left'>VAT TIN    :&nbsp;&nbsp;&nbsp; 
+                                                                      <p>08682562191</p>
+                                                                      <p style="margin-left: 72px;">FSSAI     : {{contract.br_code.fssai}}</p>
+                                                                      <p style="margin-left: 72px;">GST TIN : {{contract.br_code.gstin}}</p>
+                                                                      <p style="margin-left: 72px;">{{contract.br_code.phone_ofc}},{{contract.br_code.phone_resi}}</p>
+                                                                      </p>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <p style='color:black;float:left'>SELLERS    :&nbsp;&nbsp;  
+                                                                    <p>{{contract.sl_code.party_name}}</p>
+                                                                    <p style="margin-left: 72px;">{{contract.sl_code.address1}},{{contract.sl_code.address2}}</p>
+                                                                    <p style="margin-left: 72px;"><u>{{contract.sl_code.city_name.city_name}}({{contract.sl_code.state_name.state_name}})</u></p>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <p style='color:black;float:left'>VAT TIN   :&nbsp;&nbsp;
+                                                                    <p>23682901589</p>
+                                                                    <p style="margin-left: 72px;">CST IN</p>
+                                                                    <p style="margin-left: 72px;">GST TIN :{{contract.sl_code.gstin}}</p>
+                                                                    <p style="margin-left: 72px;">FSSAI   :{{contract.sl_code.gstin}}</p>
+                                                                      </p>
+                                                                </div>
+                                                                <div class="col-sm-12">
+                                                                    <p style='color:black;'>PRODUCT   <b>:</b>
+                                                                      {{#each contract.sauda2.contract_sauda_group as |value key|}}
+                                                                      {{this.p_code}}
+                                                                      {{/each}}
+                                                                      </p>
+                                                                    <p style='color:black;'>BRAND     <b style="margin-left: 21px;">:</b>  
+                                                                      {{#each contract.sauda2.contract_sauda_group as |value key|}}
+                                                                      {{this.brand_code}}
+                                                                      {{/each}}</p>
+                                                                    <p style='color:black;'>QUANTITY  <b>:</b>
+                                                                      {{#each contract.sauda2.contract_sauda_group as |value key|}}
+                                                                      {{this.wght}}
+                                                                      {{/each}}</p>
+                                                                    </p>
+                                                                    <p style='color:black;'>PRICE     <b style="margin-left: 28px;">:</b>
+                                                                        {{#each contract.sauda2.contract_sauda_group as |value key|}}
+                                                                      {{this.amount}}
+                                                                      {{/each}}</p>
+                                                                    </p>
+                                                                    <p style='color:black;'>BAGS      <b style="margin-left: 32px;">:</b>
+                                                                        {{#each contract.sauda2.contract_sauda_group as |value key|}}
+                                                                      {{this.bag}}/{{this.pck_unit}}
+                                                                      {{/each}}</p>
+                                                                    </p>
+                                                                    <p style='color:black;'>DELIVERY  <b>:</b> Goods to within to</p>
+                                                                    </br> 
+                                                                </div>
+
+                                                                <div class="col-sm-12">
+                                                                  <p style='color:black;'>Kindly sign the duplicate copy of this confirmation as token of your acceptance of above terms and conditions and return the same to us.However, Your failure to return the same duly signed duly signed document does does not in any way affect of alter the validity of confirmation</p>
+                                                              
+                                                                </div>
+                                                                
+                                                              
+                                                                <div class="col-sm-4">
+                                                                    <p style='color:black;'><b><u>BUYERS:</u></b></p>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <p style='color:black;'><b><u>AS BROKERS:</u></b></p>
+                                                                    <p style='color:black;'><b>FOR {{div_com.com_name}}</b></p>
+                                                                </div>
+
+                                                            <div class="col-sm-4">
+                                                                    <p style='color:black;'><b><u>SELLERS:</u></b></p>
+                                                                </div>
+                                                            
+                                                              <br>
+                                                              <div class="col-xs-12">
+                                                                    
+                                                              </div>
+                                                          </div>
+                                                        </div>
+                                                        <div class="row no-print">
+                                                          <div class="col-xs-12">
+                                                            <a  onclick="myFunction();" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+                                                            </button>
+                                                          </div>
+                                                        </div>
+                                                      </section>
+                                                    </div>        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

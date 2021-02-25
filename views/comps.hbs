@@ -1,0 +1,352 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{com_name}} -{{div_mast}}- {{dateformat sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usernm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+<div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    Componenets
+                                </div>
+                                    <div class="panel-body">
+                                  
+                            <h3>Form Validation</h3>
+                            <p>
+                                Add "novalidate" Attribute in Form andalso add "validate" class in form
+                            </p>
+                            <ul>
+                                <li>required :- For required</li>
+                                <li>alphas :- For only Alphabets</li>
+                                <li>number :- For Only numbers including Decimal</li>
+                                <li>digits :- For Only Integers</li>
+                            </ul>
+                            
+                            <h3>Select2</h3>
+
+                            <p>Add "select2" class to select to turn into select2</p>
+                            <p>Add "city" class to turn select to City Select With Data</p>
+                            <p>Add "party" class for party select</p>
+
+
+                            <h3>Custom Alerts</h3>
+
+                            <pre>
+                                swal({
+                                    icon:'warning', // "success" is also an option, It changes Icon
+                                    title: "Sure", // Title of Box
+                                    text:'Are you sure you want to delete it?', // Description of Box
+                                    buttons: ["Cancel","Confirm"], // Name of Buttons
+                                    dangerMode:true // only For Delete
+                                }).then((willDelete) => {
+                                    if (willDelete)  {
+                                        // if user clicks on confirm this will run
+                                    }
+                                });
+                            </pre> <br>
+
+<pre>
+        swal({
+            title:'Improper Selection', // Title of Box
+            text:'Please select Atlest/only one', // Description in Box
+            buttons:false, // If no buttons required
+            timer:1500 // Auto close
+        })
+                            </pre>
+
+                            <h3>Add Shortcuts</h3>
+                            <p>To add shortcuts Go to custom js End page</p>
+
+                            <pre>
+                                Mousetrap.bind('p m', function (e) {
+                                    e.preventDefault();
+                                    // your code
+                                    //i.e
+                                    var link = 'http://' + window.location.host + '/party/party_list';
+                                    window.location.replace(link);
+                                });
+                            </pre>
+
+                            <h3>Enter</h3>
+
+                            <p>Add "nofocus" class for not going with enter</p>
+
+
+                            <h3>Case </h3>
+
+                            <p>In top_bar.hbs page in Body tag add class</p>
+                            <ul>
+                                <li>lowercase</li>
+                                <li>uppercase</li>
+                                <li>titlecase</li>
+                                <li>sentencecase</li>
+                            </ul>
+
+
+                            <h3>Table</h3>
+
+                            <pre>
+                                {
+  "draw": 1,
+  "recordsTotal": 57,
+  "recordsFiltered": 57,
+  "data": [
+    [
+      "Airi",
+      "Satou",
+      "Accountant",
+      "Tokyo",
+      "28th Nov 08",
+      "$162,700"
+    ],
+    [
+      "Angelica",
+      "Ramos",
+      "Chief Executive Officer (CEO)",
+      "London",
+      "9th Oct 09",
+      "$1,200,000"
+    ],
+    [
+      "Ashton",
+      "Cox",
+      "Junior Technical Author",
+      "San Francisco",
+      "12th Jan 09",
+      "$86,000"
+    ],
+    [
+      "Bradley",
+      "Greer",
+      "Software Engineer",
+      "London",
+      "13th Oct 12",
+      "$132,000"
+    ],
+    [
+      "Brenden",
+      "Wagner",
+      "Software Engineer",
+      "San Francisco",
+      "7th Jun 11",
+      "$206,850"
+    ],
+    [
+      "Brielle",
+      "Williamson",
+      "Integration Specialist",
+      "New York",
+      "2nd Dec 12",
+      "$372,000"
+    ],
+    [
+      "Bruno",
+      "Nash",
+      "Software Engineer",
+      "London",
+      "3rd May 11",
+      "$163,500"
+    ],
+    [
+      "Caesar",
+      "Vance",
+      "Pre-Sales Support",
+      "New York",
+      "12th Dec 11",
+      "$106,450"
+    ],
+    [
+      "Cara",
+      "Stevens",
+      "Sales Assistant",
+      "New York",
+      "6th Dec 11",
+      "$145,600"
+    ],
+    [
+      "Cedric",
+      "Kelly",
+      "Senior Javascript Developer",
+      "Edinburgh",
+      "29th Mar 12",
+      "$433,060"
+    ]
+  ]
+}
+                            </pre>
+
+                            <h3>Charts</h3>
+
+                            <pre>
+
+    if($('#bars').length == 1){ // condition so it runs only on Homepage
+        google.charts.load('current', {packages: ['corechart','bar']}); // include charts type
+        google.charts.setOnLoadCallback(drawCharts); // call function once chart is loaded
+    }
+
+ drawCharts(){
+    totalsauda(); // chart 1
+    barchart(); // chart 2
+}
+
+
+function totalsauda() {
+
+    // Get Data in Array Format
+    // google.visualization.arrayToDataTable()
+    // use above function to convert array to Datatable for Charts
+
+    var data = google.visualization.arrayToDataTable([
+      ['Sauda', 'total'],
+      ['Completed', 11],
+      ['Pending', 2],
+      ['In Process', 6],
+    ]);
+
+    
+    // Charts options
+    var options = {
+      title: "Total Sauda's",
+      is3D: true,
+      legend:'left',
+      legendposition:'center',
+      width:'100%',
+      height:'100%',
+      chartArea: {
+          left: "3%",
+          top: "3%",
+          height: "94%",
+          width: "94%"
+      },
+      pieSliceText: 'value',
+    };
+
+
+    // bind Chart to HTML
+
+    // Id of Div is totalsauda
+
+    var totalsaudapie = new google.visualization.PieChart(document.getElementById('totalsauda'));
+    
+    // adding click event on chart for getting table data with ajax
+    google.visualization.events.addListener(totalsaudapie, 'select', totalsaudaclick);
+    
+    // finally drawing charts on page
+    totalsaudapie.draw(data, options);
+
+    // click event here we will call ajax & we will know what was clicked
+    function totalsaudaclick() {
+        var selectedItem = totalsaudapie.getSelection()[0];
+
+        if (selectedItem) 
+        {
+          var topping = data.getValue(selectedItem.row, 0);
+          alert('The user selected ' + topping);
+        }
+    }
+
+}
+
+function barchart() {
+
+    var data = google.visualization.arrayToDataTable([
+      ['Sauda', 'total'],
+      ['Completed', 11],
+      ['Pending', 2],
+      ['In Process', 6],
+    ]);
+
+    var options = {
+      title: "Total Bars",
+      is3D: true,
+      legend:'bottom',
+      legendposition:'center',
+      width:'100%',
+      height:'100%',
+      bars: 'vertical',
+      chartArea: {
+          left: "3%",
+          top: "3%",
+          height: "94%",
+          width: "94%"
+      },
+      pieSliceText: 'value',
+    };
+
+    var bars = new google.charts.Bar(document.getElementById('bars'));
+    google.visualization.events.addListener(bars, 'select', barsclick);
+    
+    bars.draw(data, options);
+
+    function barsclick() {
+        var selectedItem = bars.getSelection()[0];
+
+        if (selectedItem) 
+        {
+          var topping = data.getValue(selectedItem.row, 0);
+          alert('The user selected ' + topping);
+        }
+    }
+
+}
+                            </pre>
+                                    </div>
+                                    {{!-- end of panel-body --}}
+                                    <div class="panel-footer">
+                                        This is Footer
+                                    </div>
+                                    {{!-- end of panel-footer --}}
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+
+{{> footer_new}}
+{{> scripts_new}}

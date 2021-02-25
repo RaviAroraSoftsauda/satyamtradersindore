@@ -1,0 +1,447 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb pull-right">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+               <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{#if err}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{err}}</strong>
+                                    </div>
+                                    {{/if}}
+                                    {{#if errors}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{errors}}</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            {{!-- end of alerts row --}}
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                      Cash/Bank Update Entry
+                                      <a style="float: right;color: white">Press F4 For Chq Return</a>
+                                        </div>
+                                              {{#each cashmast as |value key|}}
+                                                {{#ifCond this.srno "0"}}  
+                                        <form method="POST" action="/cash_bank/update/{{this._id}}" class="" novalidate
+                                            enctype="" id="CashBankUpdateForm_id">
+                                           <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Entry No: </label>
+                                                              <div class="col-md-6">
+                                                                   <select class="form-control"  name="cashtypebank" id="c_j_s_p" readonly data-Module="Cash/Bank">
+                                                                        {{#each ../vouchMast}}
+                                                                            <option value="{{this.Vo_book}}" {{#equal ../this.c_j_s_p Vo_book}} selected=""{{/equal}}>{{this.Vo_book}}</option>
+                                                                        {{/each}}
+                                                                 </select>
+                                                            </div>
+                                                             <div class="col-md-3">
+                                                                <input type="text" name="vouc_code"  placeholder="Deal Number" 
+                                                                value="{{this.vouc_code}}" readonly  class="form-control vouc_code" tabindex="2" autofocus/>
+                                                                <input type="hidden" name="Form" id="Form" value="CashBankUpdate">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Entry Date: </label>
+                                                             <div class="col-md-4">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control datemask cash_edate"
+                                                                        name="cash_edate" id="offerstartdate" value="{{dateformat this.cash_date 'DD/MM/YYYY'}}"
+                                                                        autocomplete="off" tabindex="3"  />
+                                                                        <span class="input-group-btn">
+                                                                        <button class="btn default date-range-toggle isprop"
+                                                                            type="button" id="offerstartdatebtn"
+                                                                            tabindex="-1">
+                                                                            <i class="fa fa-calendar"></i>
+                                                                        </button>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                      <div class="col-sm-12 col-md-5">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Type: </label>
+                                                             <div class="col-md-9">
+                                                                <div class="input-group">
+                                                                     {{#ifCond this.cash_type "CONTRA"}}      
+                                                                   <select class="form-control prbank select2" readonly  name="cash_type"  onchange="getcashbank()" id="cashtype" placeholder="Select Type">
+                                                                    <option value=""></option>
+                                                                    <option value="RECEIPT"{{#equal this.cash_type "RECEIPT"}} selected=""{{/equal}} >RECEIPT</option>
+                                                                    <option value="PAYMENT"{{#equal this.cash_type "PAYMENT"}} selected=""{{/equal}}>PAYMENT</option>
+                                                                    <option value="CONTRA"{{#equal this.cash_type "CONTRA"}} selected=""{{/equal}}>CONTRA</option>
+                                                                    </select>
+                                                                     {{else}}
+                                                                      <select class="form-control prbank select2"  name="cash_type"  onchange="getcashbank()" id="cashtype" placeholder="Select Type">
+                                                                    <option value=""></option>
+                                                                    <option value="RECEIPT"{{#equal this.cash_type "RECEIPT"}} selected=""{{/equal}} >RECEIPT</option>
+                                                                    <option value="PAYMENT"{{#equal this.cash_type "PAYMENT"}} selected=""{{/equal}}>PAYMENT</option>
+                                                                    <option value="CONTRA"{{#equal this.cash_type "CONTRA"}} selected=""{{/equal}}>CONTRA</option>
+                                                                    </select>
+                                                                    {{/ifCond}}
+                                                                 </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="form-group clearfix">
+                                                           <label class="control-label col-md-3">Cash/Bank</label>
+                                                            <div class="col-md-9">
+                                                                <div class="input-group select2-bootstrap-prepend">
+                                                                    <select name="cash_bank_name" id="cash_bank_name" class="form-control cashbankname" required>
+                                                                        <option value="{{this.cash_bank_name._id}}" selected>{{this.cash_bank_name.ACName}}</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{/ifCond}}
+                                                {{/each}}
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="table-responsive adjustmentstable">
+                                                            <table class="table tabler">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th style="width: 2em"></th>
+                                                                        <th style="width: 20em">Account Name</th>
+                                                                        <th style="width: 6em">Cheq NO</th>
+                                                                        <th style="width: 7em">Cheq Date</th>
+                                                                        <th style="width: 7em">Amount</th>
+                                                                        {{#each addlessmast.Add_Less_Parameter_Master_Array as |value key|}}
+                                                                        {{#ifCond this.Deduction_Par 'Y'}}
+                                                                        <th style="width: 7em">{{this.Description}}</th>
+                                                                        {{/ifCond}}
+                                                                        {{/each}}
+                                                                        <th>Narration1</th>
+                                                                        <th>Narration2</th>
+                                                                        <th style="width: 3em">Delete</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    
+                                                                    {{#each cashmast as |value key|}}
+                                                                     {{#ifCondNot this.srno "100"}} 
+                                                                    <tr class="contract_wrapper-{{sum @index 1}}" id="rohit{{sum @index 1}}">
+                                                                        <td {{#ifCond this.Chaq_Return 'Y'}}style="background-color:#ff6666"{{/ifCond}}>
+                                                                            {{#ifCondNot this.Chaq_Return 'Y'}}
+                                                                                <input type="radio" name="CheckReturn" id="CheckReturn{{sum @index 1}}" value="{{sum @index 1}}" onclick="showAdjustEntryInCbUpdate({{sum @index 1}})">
+                                                                            {{/ifCondNot}}   
+                                                                        </td>        
+                                                                        <td>
+                                                                             {{#ifCond this.cash_type "CONTRA"}}
+                                                                            <select name="cashac_name[{{sum @index 1}}]" id="cashac_name{{sum @index 1}}" class="form-control cashbankname"
+                                                                             required  style="width: 100%;text-align: -webkit-right;">
+                                                                             <option value="{{this.cashac_name._id}}" selected>{{this.cashac_name.ACName}}</option>
+                                                                            </select>
+                                                                            {{else}}
+                                                                              <select name="cashac_name[{{sum @index 1}}]" id="cashac_name{{sum @index 1}}" class="form-control AllAccount"
+                                                                             required  style="width: 100%;text-align: -webkit-right;">
+                                                                             <option value="{{this.cashac_name._id}}" selected>{{this.cashac_name.ACName}}</option>
+                                                                            </select>
+                                                                            {{/ifCond}}
+                                                                        </td>
+                                                                        <td >
+                                                                            <input type="hidden" name="maincashid[{{sum @index 1}}]" id="cash_bank_id{{sum @index 1}}" value="{{this._id}}">
+                                                                             <input type="hidden" name="cashtrn" value="{{sum @index 1}}" id="cashtrn{{sum @index 1}}" 
+                                                                            class="form-control" style="width: 102px;text-align: -webkit-right;"/>
+                                                                            <input type="text" name="cash_chequeno[{{sum @index 1}}]" id="cashchequeno{{sum @index 1}}" 
+                                                                                class="form-control  cash_chequeno"  {{#ifCond this.Chaq_Return 'Y'}}style="background-color:#ff6666"{{/ifCond}} value="{{this.cash_chequeno}}"
+                                                                                 />
+                                                                        </td>
+                                                                        <td>
+                                                                           <input type="text" name="cash_chequedate"
+                                                                                id="cashchequedate{{sum @index 1}}"
+                                                                                class="form-control datepicker"  {{#ifCond this.Chaq_Return 'Y'}}style="background-color:#ff6666"{{/ifCond}} value="{{this.cash_chequedate}}"
+                                                                                />
+                                                                        </td>
+                                                                        <td>
+                                                                             <input type="number" name="cash_amount[{{sum @index 1}}]" onkeydown="getOutStanding({{sum @index 1}},event)"
+                                                                                required id="cashamount{{sum @index 1}}"  oninput='calcashbank({{sum @index 1}})'
+                                                                                class="form-control cash_amount" {{#ifCond this.Chaq_Return 'Y'}}style="background-color:#ff6666"{{/ifCond}} value="{{this.cash_amount}}"/>
+                                                                        </td>
+                                                                        {{#ShowAddLessInCashBank ../addlessmast.Add_Less_Parameter_Master_Array this.addlessParameter this.div_code this.srno this.Chaq_Return}}{{/ShowAddLessInCashBank}}
+                                                                        {{!-- {{#each ../addlessmast.Add_Less_Parameter_Master_Array as |groupvalue key|}}
+                                                                        {{#ifCond groupvalue.Deduction_Par 'Y'}}
+                                                                        <td>
+                                                                            <input type="hidden" value="{{sum @index 1}}" name="YDed_Par_len" id="YDed_Par_len1">
+                                                                            <input type="text" name="YDed_Par_value[1]" value="0"
+                                                                            id="YDed_Par_value1{{sum @index 1}}" oninput='calcashbank(1)'
+                                                                            class="form-control"  style="text-align: -webkit-right;" >
+                                                                            <input type="hidden" value="{{groupvalue.Description}}" name="YDed_Par_dsc[{{sum @index 1}}]" id="YDed_Par_dsc1{{sum @index 1}}">
+                                                                            <input type="hidden" value="{{groupvalue._id}}" name="YDed_Par_dsc_id[{{sum @index 1}}]" id="YDed_Par_dsc_id1{{sum @index 1}}">
+                                                                            <input type="hidden" value="{{groupvalue.Parameter_Type}}" name="YDed_Par_typ[{{sum @index 1}}]" id="YDed_Par_typ1{{sum @index 1}}">/DataStrigify
+                                                                        </td>
+                                                                        {{/ifCond}}
+                                                                        {{/each}} --}}
+                                                                        <td>
+                                                                            <input type="hidden" name="cash_narr[{{sum @index 1}}]" id="cashnarr{{sum @index 1}}" value="{{this.cash_narr}}">
+                                                                            <input type="text" name="cash_narrone[{{sum @index 1}}]"
+                                                                            id="cashnarrone{{sum @index 1}}"  oninput='calcashbank({{sum @index 1}})'
+                                                                            class="form-control cash_narrone"  {{#ifCond this.Chaq_Return 'Y'}}style="background-color:#ff6666"{{/ifCond}} value="{{this.cash_narrone}}"> 
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="hidden" name="YPara_Array[{{sum @index 1}}]" id="YPara_Array{{sum @index 1}}" value="{{this.addlessParameter}}">
+                                                                            <input type="hidden" name="Add_Amount_Deduction[{{sum @index 1}}]" id="Add_Amount_Deduction{{sum @index 1}}" value="{{this.Add_Amount_Deduction}}">
+                                                                            <input type="hidden" name="Less_Amount_Deduction[{{sum @index 1}}]" id="Less_Amount_Deduction{{sum @index 1}}" value="{{this.Less_Amount_Deduction}}">
+                                                                            <input type="hidden" name="outSaveArr[{{sum @index 1}}]" id="outSaveArr{{sum @index 1}}" value="{{this.outStandingArr}}">
+                                                                            <input type="text" name="cash_narrtwo[{{sum @index 1}}]"
+                                                                            id="cashnarrtwo{{sum @index 1}}"  oninput='calcashbank({{sum @index 1}})'
+                                                                            class="form-control cash_narrtwo amountfocus" {{#ifCond this.Chaq_Return 'Y'}}style="background-color:#ff6666"{{/ifCond}} value="{{this.cash_narrtwo}}"/>
+                                                                        </td>
+                                                                        <td> 
+                                                                            <a onclick='delCashBankArr("{{sum @index 1}}");' style='cursor:pointer;'><i class='fa fa-times' style='font-size: 20px;color: red;margin-left:12px;'></i></a>
+                                                                        </td>
+                                                                    </tr>
+                                                                    {{/ifCondNot}}
+                                                                    {{/each}}
+                                                                    <tr id="contract_div">
+                                                                        <td></td>
+                                                                        <th>Total</th>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td>
+                                                                        {{#each cashmast as |value key|}}
+                                                                        {{#ifCond this.srno "0"}} 
+                                                                        {{#ifCondNot this.srno "100"}}     
+                                                                                <input type="text" name="totcash_amt" id="totcash_amt"
+                                                                                placeholder="Total" class="form-control totcash_amt"style="text-align: -webkit-right;" value="{{this.totcash_amt}}"
+                                                                                readonly  oninput='calcashbank(1)' tabindex="-1">
+                                                                        {{/ifCondNot}}
+                                                                        {{/ifCond}}
+                                                                        {{/each}}
+                                                                        </td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="row" id="showAdjustEntryInCbUpdate" style="background-color: greenyellow"></div>
+                                                        <button type="button" class="btn btn-primary addcashbank center-block nofocus" id="add">Add Entry</button>
+                                                    </div>
+                                                </div> 
+                                                
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Remarks: </label>
+                                                            <div class="col-md-9">
+                                                            {{#each cashmast as |value key|}}
+                                                            {{#ifCond this.srno "0"}}  
+                                                            <textarea name="cash_remarks" id="cash_remarks" class="form-control delv_load">{{this.cash_remarks}}</textarea>
+                                                            {{/ifCond}}
+                                                            {{/each}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                               
+                                            <div class="panel-footer">
+                                                <div class="action clearfix">
+                                                    <div class="col-md-12">
+                                                        <div align="center">
+                                                            <button type="button" id="CashBankUpdateBtn" onclick="CashBankUpdateOnClick()" name="save" class="btn btn-info">Submit</button>
+                                                            <a href="/cash_bank/cash_bank_list" class="btn btn-warning" style="margin-top: 1.5em">Back</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </form>
+                                        {{!-- {{/each}} --}}
+                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="OutStandingModel" >
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" style="margin-left: -38px; width: 1232px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="float: left">Pending OutStanding</h4>
+                <a style="float: right;"><i class='fa fa-times'  data-dismiss="modal" style='font-size: 20px;color: red;margin-left:12px;'></i></a>
+            </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <form action="">
+                            <div class="table-responsive" >
+                                <div class="brand_add_container clearfix">
+                                    <div class="table-responsive adjustmentstable">
+                                        <table class="tabler">
+                                            <thead style="background-color:#4b77be;color: white;" id="OutStandingModelHead">
+                                            </thead>
+                                            <tbody class="out_repeat_row">
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td><input type="number" name="totPandingAmt" id="totPandingAmt" class="form-control" readonly></td>
+                                                    <td>
+                                                        {{!-- <input type="number" name="totReceiveAmt" id="totReceiveAmt" class="form-control" readonly> --}}
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class='addsauda'></div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                                                {{!-- end of row --}}
+                </div>
+                <div class="modal-footer" id="OutstandingModelSaveButton">
+                    <button type="button" class="btn btn-primary" onclick="GetOutStInCB()">Save</button>
+                </div>
+                {{!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> --}}
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+{{!-- Party Modal --}}
+<div class="modal" tabindex="-1" role="dialog" id="CheqReturn">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" style="margin-left: -38px; width: 1232px;">
+            <div class="modal-header" tyle="height: 1em">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Cheque Return Entry</h4>
+            </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form action="">
+                            <div class="col-md-12">
+                                <div class="form-group clearfix">
+                                    <input type="radio" checked name="chaqReturnEntryRadio" id="chaqReturnEntryRadio1" value="Mark Chaq Return">&nbsp; Mark Chaq Return &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" name="chaqReturnEntryRadio" id="" value="Pass Return Voucher">&nbsp; Pass Return Voucher &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" name="chaqReturnEntryRadio" id="" value="Pass Represent Voucher">&nbsp; Pass Represent Voucher
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group  clearfix">
+                                    <label class="col-sm-2 control-label">Entry No:</label>
+                                        <div class="col-md-3">
+                                            <select class="form-control" name="cashtypebank" id="c_j_s_p_chaq" data-Module="Cash/Bank" onchange="getBookInCheqReturn()">
+                                                {{#each vouchMast}}
+                                                    <option value="{{this.Vo_book}}">{{this.Vo_book}}</option>
+                                                {{/each}}
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" name="vouc_code" id="vouc_code_chaq"
+                                            value="" class="form-control vouc_code" tabindex="2" autofocus/>
+                                            <input type="hidden" name="ChaqReturnSno" id="ChaqReturnSno">
+                                        </div>
+                                        <label class="col-sm-1 control-label">Date:</label>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control datemask cash_edate BillDate"
+                                                name="cash_edate" id="ReturnDate_chaq" value="{{dateformat this.cash_date 'DD/MM/YYYY'}}"
+                                                autocomplete="off" tabindex="3" />
+                                        </div>  
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group clearfix">
+                                    <label class="col-sm-2 control-label">Remarks: </label>
+                                    <div class="col-md-10">
+                                        <input name="cash_remarks" id="cash_remarks_chaq" class="form-control" onkeydown="focusChaqReturnSaveButton(event)">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="hideSaleModel">Close</button>
+                    <button type="button" class="btn btn-primary" id="SaveChaqReturnEntry" onclick="SaveChaqReturnEntry()"> Save </button>
+                </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+{{> footer_new}}
+{{> scripts_new}}
+<style>
+    .tabler>tbody>tr>td, .tabler>tbody>tr>th, .tabler>tfoot>tr>td, .tabler>tfoot>tr>th, .tabler>thead>tr>td, .tabler>thead>tr>th {
+    padding: 0px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+strong{
+    font-size: 14px;
+}
+</style>

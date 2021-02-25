@@ -1,0 +1,449 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb pull-right">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    Payment (Draft) Entry
+                                </div>
+                                <div class="alert alert-success brandsuccess" style="display:none;"></div>
+                                <div class="alert alert-danger branddanger" style="display:none;"></div>
+                                <form method="POST" action="/payment_entry/update/{{payment_entry.id}}" class="form validate" novalidate>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Ref Number</label>
+                                                    <div class="col-md-5">
+                                                        <input name="c_j_s_p" placeholder="Ref Number" value="{{payment_entry.c_j_s_p}}" value="PAY"
+                                                            class="form-control c_j_s_p" autofocus>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <input type="text" name="vouc_code" value="{{payment_entry.vouc_code}}" placeholder="Payment Number"
+                                                              class="form-control digits">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Entry Date</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control datemask" name="pay_date"
+                                                            id="offerstartdate" value="{{dateformat payment_entry.pay_date 'DD/MM/YYYY'}}"
+                                                            autocomplete="off" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Buyer</label>
+                                                    <div class="col-md-9">
+                                                        {{#list party 'B' payment_entry.br_code 'brcont' 'br_code'}}
+                                                        {{this.party_name}},{{this.city_name.city_name}}
+                                                        {{/list}}
+                                                        {{!-- {{#listbsrtopt party 'B' 'br_code' 'slcodepaymnt' 'select2' 'required'}}
+                                                        {{this.party_name}},{{this.city_name.city_name}}
+                                                        {{/listbsrtopt}} --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Seller</label>
+                                                    <div class="col-md-9">
+                                                        {{#list party 'S' payment_entry.sl_code 'kind' 'sl_code'}}
+                                                        {{this.party_name}},{{this.city_name.city_name}}
+                                                        {{/list}}
+                                                        {{!-- {{#listbsrtopt party 'S' 'sl_code' 'brcodepayment' 'select2' 'required'}}
+                                                        {{this.party_name}},{{this.city_name.city_name}}
+                                                        {{/listbsrtopt}} --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="table-responsive adjustmentstable">
+                                                {{!-- <button class="btn btn-danger btn-link canceladjustment center-block" type="button">Close</button> --}}
+                                                <table class="table table-condensed">
+                                                <thead>
+                                                <tr>
+                                                <th>Bill No</th>
+                                                <th>Bill Date</th>
+                                                <th>Bargain Amount</th>
+                                                <th>Current Bal</th>
+                                                <th>Rec Amt</th>
+                                                <th>Deduction Amt</th>
+                                                <th>Balance</th>
+                                                <th>Remarks</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                  {{#each payment_entry.outstadingid.payment_sauda_group as |value key|}}
+                                                {{!-- <tr class="paymentsllerrows">
+                                                    <td colspan="8" class="tablerowheadings">
+                                                       {{../payment_entry.sl_code}}
+                                                    </td>
+                                                </tr> --}}
+                                                <tr class="paymentsllerrows">
+                                                <td><input type="text"  name="payment_sauda_group[{{@index}}][vouc_code]" value="{{this.vouc_code}}" id="vouc_code"   class="form-control wght" readonly></td>
+                                                <td><input type="text" name="payment_sauda_group[{{@index}}][sd_date]" id="sd_date" value="{{this.sd_date}}"   class="form-control" readonly></td>
+                                                <td><input type="text"  name="payment_sauda_group[{{@index}}][barg_amt]" id="bill_amt" value="{{this.barg_amt}}" class="form-control" readonly></td>
+                                                <td><input type="text"  name="payment_sauda_group[{{@index}}][tot_ammount]" id="currbill_amt{{@index}}" value="{{this.tot_ammount}}"  class="form-control amount" readonly></td>
+                                                <td><input type="text" autocomplete="off" name="payment_sauda_group[{{@index}}][outs_rec]" value="{{this.outs_rec}}" id="outs_rec{{@index}}" oninput="paycalc({{@index}})" class="form-control digits"></td>
+                                                <td><input type="text" autocomplete="off" name="payment_sauda_group[{{@index}}][dtcton_amt]" value="{{this.dtcton_amt}}" data-vcode="{{@index}}" id="dtcton_amt{{this.vouc_code}}" class="form-control deductionamount numerals" readonly></td>
+                                                <td><input type="text" autocomplete="off"  name="payment_sauda_group[{{@index}}][outs_bal]" value="{{this.outs_bal}}"  id="outs_bal{{@index}}" class="form-control outs_bal"></td>
+                                                <td><input type="text" autocomplete="off" name="payment_sauda_group[{{@index}}][rmks]"  value="{{this.rmks}}"  id="rmks" class="form-control"></td>
+                                               </tr>
+                                               {{/each}} 
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td><input type="text" name="chkddamt" id="chkddamt" value="{{payment_entry.chkddamt}}" placeholder="DD/Chk Amount" class="form-control digits chkddamt" readonly></td>
+                                                    <td><input type="text" name="chkdddt" value="{{payment_entry.chkdddt}}" id="chkdddt" placeholder="Deducations" class="form-control chkdddt" readonly></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                            </table>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+                                        <div class="row ifnoentry">
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">DD/Chk Amount</label>
+                                                    <div class="col-md-9">
+                                                        {{!-- <input type="text" name="chkddamt" placeholder="DD/Chk Amount"
+                                                            class="form-control digits chkddamt" disabled readonly> --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Deductions</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" name="chkdddt" placeholder="Deducations"
+                                                            class="form-control chkdddt" disabled readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+                                       
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="col-md-12">
+                                                    <div class="row adjustmentstable">
+                                                    <div class="col-md-8 deliverydata${callback}"></div>
+                                                    <div class="col-md-4">
+                                                    <div class="panel panel-default">
+                                                    <div class="table-responsive">
+                                                    <table class="product_detail_table">
+                                                    <thead>
+                                                    {{!-- <tr>
+                                                    <th colspan="4">Bill No :</th>
+                                                    </tr> --}}
+                                                    <tr>
+                                                    <th>+/-</th>
+                                                    <th>Expense</th>
+                                                    <th>%</th>
+                                                    <th>Amount</th>
+                                                    </tr>
+                                                    </thead>
+                                                    
+                                                    <tbody>
+                                                     {{#each payment_entry.expenseid.expense_group as |value key|}}
+                                                            <tr>
+                                                                <td>{{this.expense_type}}<input type="hidden"  name="expense_group[{{@index}}][expense_type]" value="{{this.expense_type}}"></td>
+                                                                <td>{{this.expense_name}}<input type="hidden"  name="expense_group[{{@index}}][expense_name]" value="{{this.expense_name}}"></td>
+                                                                <td></td>
+                                                                <td><input type="text"  name="expense_group[{{@index}}][amountexpence]" value="{{this.amountexpence}}" data-id="{{this.vouch_code}}" id="amountexpence"  class="form-control amountcal amountexpence{{this.vouch_code}} digits"></td>
+                                                            </tr>
+                                                     {{/each}}
+                                                        <tr>
+                                                        <td style="color:red">Total</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td><input type="text" name="totamountexpence" value="{{payment_entry.expenseid.totamountexpence}}" oninput="" id="totamountexpence" class="form-control digits" readonly></td> 
+                                                        </tr>
+                                                        <tr>
+                                                        <td colspan="4"><input type="button" value="OK" id="expencesauda'+ callback +'" data-box="'+ callback +'" class="btn btn-primary btn-block expencesauda" /></td> 
+                                                        </tr>
+                                                        </tbody>
+                                                        </table>
+                                                        </div>
+                                                        </div>
+                                                        </div>
+                                                        </div>
+                                                        </div>
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input form-radio clearfix">
+                                                    <label class="control-label col-md-3">Payment Type</label>
+                                                    <div class="col-md-9">
+                                                        <div class="radio-inline">
+                                                            <label>
+                                                                <input type="radio" name="chkddtyp" {{#equal payment_entry.chkddtyp 'cash'}}checked=""{{/equal}} id="optionsRadios1"
+                                                                    value="cash">
+                                                                Cash
+                                                            </label>
+                                                        </div>
+                                                        {{!-- end of radio --}}
+                                                        <div class="radio-inline">
+                                                            <label>
+                                                                <input type="radio" name="chkddtyp" {{#equal payment_entry.chkddtyp 'bankdd'}}checked=""{{/equal}} id="optionsRadios1"
+                                                                    value="bankdd">
+                                                                Bank DD
+                                                            </label>
+                                                        </div>
+                                                        {{!-- end of radio --}}
+                                                        <div class="radio-inline">
+                                                            <label>
+                                                                <input type="radio" name="chkddtyp" {{#equal payment_entry.chkddtyp 'bankchq'}}checked=""{{/equal}} id="optionsRadios1"
+                                                                    value="bankchq">
+                                                                Bank Chq
+                                                            </label>
+                                                        </div>
+                                                        {{!-- end of radio --}}
+                                                        <div class="radio-inline">
+                                                            <label>
+                                                                <input type="radio" name="chkddtyp" {{#equal payment_entry.chkddtyp 'rtgsneft'}}checked=""{{/equal}} id="optionsRadios1"
+                                                                    value="rtgsneft">
+                                                                RTGS/NEFT
+                                                            </label>
+                                                        </div>
+                                                        {{!-- end of radio --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Date</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" name="chkpaydddt" value="{{payment_entry.chkpaydddt}}" id="chkpaydddt" placeholder="Date"
+                                                            class="form-control datemask datep">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-12">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">DD/Chq/UTR Number Bank Name</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" name="chkddno" value="{{payment_entry.chkddno}}" id="chkddno" placeholder="DD/Chq/UTR Number Bank Name"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+                                        <div class="row">
+
+                                            <div class="col-sm-6 col-md-12">
+                                                <div class="form-group form-md-line-input form-radio clearfix">
+                                                    <label class="control-label col-md-3">Deposited Ac. No</label>
+                                                    <div class="col-md-9">
+                                                        <div class="radio-inline">
+                                                            <label>
+                                                                <input type="radio" name="dep_ac" {{#equal payment_entry.dep_ac 'Y'}}checked=""{{/equal}} value="Y">
+                                                                Option 1
+                                                            </label>
+                                                        </div>
+                                                        {{!-- end of radio --}}
+                                                        <div class="radio-inline">
+                                                            <label>
+                                                                <input type="radio" name="dep_ac" {{#equal payment_entry.dep_ac 'Y'}}checked=""{{/equal}} value="Y">
+                                                                Option 2
+                                                            </label>
+                                                        </div>
+                                                        {{!-- end of radio --}}
+                                                        <div class="radio-inline">
+                                                            <label>
+                                                                <input type="radio" name="dep_ac" {{#equal payment_entry.dep_ac 'Y'}}checked=""{{/equal}} value="Y">
+                                                                Option 3
+                                                            </label>
+                                                        </div>
+                                                        {{!-- end of radio --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Deposited</label>
+                                                    <div class="col-md-9">
+                                                         <select class="form-control select2" name="dep_bnk" id="dep_bnk">
+                                                            <option value="">Select Bankk</option>
+                                                            {{#each bank}}
+                                                            <option value="{{this._id}}" {{#equal ../payment_entry.dep_bnk id}}selected=""{{/equal}}>{{this.bank_name}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Courier</label>
+                                                    <div class="col-md-9">
+                                                        <select class="form-control select2" name="courier" id="courier">
+                                                            {{#each courier}}
+                                                            <option value="{{this._id}}" {{#equal ../payment_entry.courier id}}selected=""{{/equal}}>{{this.courier_name}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Recpt No</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" name="cou_rec" value="{{payment_entry.cou_rec}}" id="cou_rec" placeholder="Total Ammount"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Charges</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" name="cou_chgs" value="{{payment_entry.cou_chgs}}" id="cou_chgs" placeholder="Charges"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Remarks</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" name="rmks1" value="{{payment_entry.rmks1}}" id="rmks1" placeholder="Remarks"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Remarks</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" name="rmks2" value="{{payment_entry.rmks2}}" id="rmks2" placeholder="Remarks"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="" class="control-label col-md-3"></label>
+                                                    <div class="col-md-9">
+                                                        <div class="btn-group">
+                                                            <input type="hidden" name="printormessage" id="printormessage" value="submit">
+                                                            <button type="button" class="btn btn-default submitn activeevent shiftfocus" data-act="submit">Submit</button>
+                                                            <button type="button" class="btn btn-default submitn shiftfocus" data-act="print">Submit & Print</button>
+                                                            <button type="button" class="btn btn-default submitn shiftfocus" data-act="msg">Submit & Message</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+                                    </div>
+                                    {{!-- end of panel-body --}}
+                                    <div class="panel-footer">
+                                        <div class="action clearfix">
+                                            <div class="col-md-9">
+                                                <div class="col-md-9 col-md-push-2">
+                                                    {{!-- <div class="btn-group"> --}}
+                                                        <input type="hidden" name="printormessage" id="printormessage" value="submit">  {{!-- submit/message/print --}}
+                                                        <button type="submit" name="save" class="btn btn-success paymentsubmit" data-action="submit" >Submit</button>
+                                                        {{!-- <button type="submit" name="save" class="btn btn-info paymentsubmit" data-action="message" >Submit & Message</button>
+                                                        <button type="submit" name="save" class="btn btn-subprint paymentsubmit" data-action="print" >Submit & Print</button> --}}
+                                                        <button type="reset" class="btn btn-danger resetpaymententry">Cancel</button>
+                                                    {{!-- </div> --}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{!-- end of panel-footer --}}
+                                </form>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+
+
+
+
+{{> footer_new}}
+{{> scripts_new}}

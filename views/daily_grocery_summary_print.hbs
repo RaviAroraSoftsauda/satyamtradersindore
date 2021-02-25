@@ -1,0 +1,147 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<style>
+body { 
+  font-size: 12px; 
+}
+tr.noBorder td {
+  border-bottom: 0;
+  border-top: 0;
+}
+.tabler>tbody>tr>td, .tabler>tbody>tr>th, .tabler>tfoot>tr>td, .tabler>tfoot>tr>th, .tabler>thead>tr>td, .tabler>thead>tr>th {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 2px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+@media print {
+    @page{
+        margin-top: 1em;
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+   table{
+       width: 100%;
+   }
+}
+</style>
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <div class="page-container">
+            <div class="page-content-wrapper">
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <div class="page-title">
+                           <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                    </ul>
+                                </small>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+    <div style="width: 96%;margin: 1%" align="center" >
+        <table id="table1" class="tabler" border="1" style="width: 100%">
+                <th colspan="6" style="text-align: center; font-size: 18px; padding: 0%">Form No. 5</th>
+            </tr>
+            <tr>
+                  <th colspan="6" style="text-align: left; font-size: 18px; padding: 0%">GROCERY MARKETS & SHOPS BOARD</th> 
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align: left; font-size: 14px;">(For Greater Bombay, Thane & Rajgad Districts)</br>Madhyavarti Suvidha Imarat .6th Floor, Fruit Market</br>
+                Turbhe, Navi Mumbai - 400 705.</br>Tel No :- 2784 2376 * 2784 4119 * 2784 4188</td>
+                <td colspan="2" style="text-align: right; font-size: 14px;" valign="top">CASH/CHEQUE RECEIPT </td>
+            </tr>
+            <tr>
+                <th colspan="6" style="text-align: left; font-size: 12px;"> Name  &nbsp;&nbsp; &nbsp;&nbsp;<b style="font-size: 18px;">{{division.div_mast}}</b></th>
+            </tr>
+            <tr>
+                 <th colspan="2" style="text-align: left; font-size: 12px;">Regn No <b style="font-size: 16px;">{{division.groceryMarketRegNo}}</b> </th>
+                 <th colspan="4" style="text-align: left; font-size: 12px;">Telephone :<b style="font-size: 16px;">&nbsp;&nbsp;{{division.ac_pho}}</b> </th>
+            </tr>
+              <tr>
+                 <th colspan="2" style="text-align: left; font-size: 12px;">Toli No &nbsp;<b style="font-size: 16px;"> {{toliName}}</b></th>
+                  <th colspan="4" style="text-align: left; font-size: 12px;">Table No :&nbsp;&nbsp;<b style="font-size: 16px;">&nbsp;&nbsp;{{toliCode}}</b> </th>
+            </tr>
+            <tr>
+                 <th colspan="6" style="text-align: left; font-size: 12px;">Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 18px;">{{ start_date }}&nbsp;&nbsp;To&nbsp;&nbsp;{{ end_date}} </b></th>
+            </tr>
+        </table>
+        {{!-- Table Start --}}
+        <table align="center" id="groceryPrint" class="tabler" border="1" style="width: 100%">
+             <thead >
+                <tr>
+                    <th style="text-align: center; font-size: 12px; width: 1em;">Date</th>
+                    <th style="text-align: center; font-size: 12px;  width: 9em; ">Amount payable</br>by Wages</th>
+                    <th style="text-align: center; font-size: 12px;width: 3em">The Employer</br>Levy</th>
+                    <th style="text-align: center; font-size: 12px; width: 8em">Cash Received</br>Wages</th>
+                    <th style="text-align: center; font-size: 12px; width: 5em">From Toli</br>Levy</th>
+                    <th style="text-align: center; font-size: 12px; width: 4em">Total</th>
+                </tr>
+             </thead>
+             <tbody>
+                 <tr>
+                    <td style="text-align: center; font-size: 14px; height: 37em;" valign="top">{{#each GrocArray as |groupvalue key|}} {{groupvalue.date}}</br> {{/each}}</td>
+                    <td style="text-align: right; font-size: 14px;" valign="top">{{#each GrocArray as |groupvalue key|}} {{groupvalue.tot_basic}}</br> {{/each}}</td>
+                    <td style="text-align: right; font-size: 14px;" valign="top">{{#each GrocArray as |groupvalue key|}} {{groupvalue.tot_levy}}</br> {{/each}}</td>
+                    <td style="text-align: center; font-size: 14px;" valign="top">{{#each GrocArray as |groupvalue key|}} --</br> {{/each}}</td>
+                    <td style="text-align: center; font-size: 14px;" valign="top">{{#each GrocArray as |groupvalue key|}} --</br> {{/each}}</td>
+                    <td style="text-align: right; font-size: 14px;" valign="top">{{#each GrocArray as |groupvalue key|}} {{groupvalue.tot_Amt}}</br> {{/each}}</td>
+                 </tr>
+             </tbody>
+             <tfoot>
+                 <tr>
+                     <th style="text-align: left; font-size: 17px;">Totals Rs</th>
+                     <th style="text-align: right; font-size: 17px;">{{totbasic}}</th>
+                     <th style="text-align: right; font-size: 17px;">{{totlevy}}</th>
+                     <th></th>
+                     <th></th>
+                     <th style="text-align: right; font-size: 17px;">{{totAmt}}</th>
+                 </tr>
+                 <tr>
+                     <td colspan="2"  style="font-size:14px; text-align: left; font-size: 10px;">Subject to realistion exemted from stamp duty as per Govt. latter No UWA/1073/191803 LAB-IV Dated 16th Oct !973</b></td>
+                     <td colspan="4" style="font-size:14px; text-align: left ; font-size: 10px;"><b>Note : In accordance with the provisions of C-30(5) of the Scheme, you are required to pay the Levy & the gross
+                      wages within 3 days after the end of relevant fortnight failing wich the Board shall have to withdraw the supply of workers under provision of C-42(6) of the Scheme which please note</b></td>
+                 </tr>
+                  <tr class="noBorder">
+                     <td  colspan="2"  style="font-size:14px; text-align: left; font-size: 16px;">Wages&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;{{totbasic}}</td>
+                       <td  colspan="2"  style="font-size:14px; text-align: left; font-size: 16px;">UTR No&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</td>
+                       <td  colspan="2"  style="font-size:14px; text-align: left; font-size: 16px;">For Office Use Only Checked and found correct</td>
+                 </tr>
+                <tr class="noBorder">
+                        <td  colspan="2"  style="font-size:14px; text-align: left; font-size: 16px;">Levy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;{{totlevy}}</td>
+                        <td  colspan="2"  style="font-size:14px; text-align: left; font-size: 16px;">Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;{{dateformat Date.now "DD/MM/YYYY"}}</td>
+                        <td  colspan="2"  style="font-size:14px; text-align: left; font-size: 16px;"></td>
+                 </tr >
+                 <tr class="noBorder">
+                        <td colspan="2"  style="font-size:14px; text-align: left; font-size: 16px;">Other&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</td>
+                        <td colspan="2"  style="font-size:14px; text-align: left; font-size: 16px;">Bank&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</td>
+                        <td colspan="2"  style="font-size:14px; text-align: left; font-size: 16px;"></td>
+                 </tr>
+                  <tr class="noBorder">
+                        <td colspan="2" valign="bottom" style="font-size:14px;  text-align: left; font-size: 16px;">Total&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;{{totAmt}}</td>
+                        <td colspan="2" valign="bottom"  style="font-size:14px; text-align: center; font-size: 16px;">Employer's Sign&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td colspan="2" valign="bottom" style="font-size:14px; text-align: center; font-size: 16px;">T Clerk's Sign</td>
+                 </tr>
+             </tfoot>
+        </table>
+        {{!-- Table End --}}
+                    <a class="btn btn-lg blue hidden-print margin-bottom-5" onclick="printinvoice()" id="hideprintbtn" style="margin-top: 2em"> Print
+                    <i class="fa fa-print"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

@@ -1,0 +1,260 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<style>
+body { 
+  font-size: 12px; 
+}
+@media print {
+    @page{
+        margin-top: 0px;
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+    table tr.tx_invoice > td{
+        background-color: #c9c7c1 !important;
+    }
+   table{
+       width: 100%;
+   }
+   table tfoot{
+       page-break-inside: avoid;
+   }
+}
+.tabler>tbody>tr>td, .tabler>tbody>tr>th, .tabler>tfoot>tr>td, .tabler>tfoot>tr>th, .tabler>thead>tr>td, .tabler>thead>tr>th {
+    padding: 1px;
+    line-height: 1.42857143;
+    vertical-align: center;
+}
+.tableOut>tbody>tr>td, .tableOut>tbody>tr>th, .tableOut>tfoot>tr>td, .tableOut>tfoot>tr>th, .tableOut>thead>tr>td, .tableOut>thead>tr>th {
+    padding: 1px;
+    line-height: 1;
+    vertical-align: center;
+}
+.gray{
+    background-color: #c9c7c1;
+}
+</style>
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <div class="page-container">
+            <div class="page-content-wrapper">
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <div class="page-title">
+                           <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                    </ul>
+                                </small>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 95%;margin: 2em" align="center" >
+                     <div class="row" style="width: 100%">
+                        <center style="font-size: 12px">|| jai jai shri venkatesh ||</center>
+                    </div>
+                    <div class="row" style="width: 100%">
+                        <b style="float: left;font-size: 13px;">GSTIN : {{division.ac_gstin}}</b>
+                        <b style="float: right;font-size: 13px;"><i class="fa fa-phone-square"></i> {{division.ac_mobno}}</b>
+                    </div>
+                    <div class="row" style="width: 100%">
+                        <b style="float: left;font-size: 13px;">FSSAINNo : {{division.FSSAINo}}</b>
+                        <b style="float: right;font-size: 13px;padding: 0px">{{division.ac_pho}}</b>
+                    </div>
+                    <div class="row" style="width: 100%">
+                        <b style="float: left;font-size: 13px;">PAN : {{division.ac_pan}}</b>
+                    </div>
+                    <table class="tabler" style="width: 100%;">
+                        <tr>
+                            <td rowspan="4" style="width: 100px"><img src="{{division.filepath}}" width="100px" height="80px"></td>
+                            <td><center style="font-size: 13px;font-family:Georgia, 'Times New Roman', Times, serif;font-weight: 1000">{{division.div_mast}}</center></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><center style="font-size: 12px;font-family:'Courier New', Courier, monospace;font-weight: 800">Export Quality</center></td>
+                            <td style="width: 100px"></td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                {{!-- border: 1px solid black; --}}
+                                <div style="width: 400px;padding: 5px;">
+                                    <center style="font-size: 13px;font-family:'Courier New', Courier, monospace;font-weight: 800;">General Merchant & Commission Agent</center>
+                                </div>
+                            </td>
+                            <td style="width: 100px"></td>
+                        </tr>
+                        <tr>
+                            <td><center style="font-size: 12px;font-family:'Courier New', Courier, monospace;font-weight: 800">{{division.ac_add2}}</center></td>
+                            <td style="width: 100px"></td>
+                        </tr>
+                    </table>
+                    <table border="1" id="table1" style="width: 100%">
+                        <tr class="">
+                            <td colspan="4" style="padding: 1px">
+                                <center style="font-size: 13px;font-family:Georgia, 'Times New Roman', Times, serif;font-weight: 1000;float: center">Invoice</center>
+                                <b style="font-size: 13px;font-weight: 1000;float: left">Invoice No : {{GaruAavak.vouc_code}}</b>
+                                <b style="font-size: 13px;font-weight: 1000;float: right">Invoice Date : {{dateformat GaruAavak.entry_Date "DD/MM/YYYY"}}</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 2px;border-bottom: none;border-top: none;border-right: none"><b>Name</b></td>
+                            <td style="padding: 2px;border-bottom: none;border-top: none;border-left: none"><b style="font-size: 16px;">{{GaruAavak.party_Code.ACName}}</b></td>
+                            <td style="padding: 2px;border-bottom: none;border-top: none;border-right: none"><b>Broker</b></td>
+                            <td style="padding: 2px;border-bottom: none;border-top: none;border-left: none"><b style="font-size: 14px;">{{GaruAavak.broker_Code.ACName}}</b></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 7em; padding: 2px;border-bottom: none;border-top: none;border-right: none"><b>Address</b></td>
+                            <td style="width: 30em; padding: 2px;border-bottom: none;border-top: none;border-left: none">{{GaruAavak.party_Code.Address1}},{{GaruAavak.party_Code.ac_add2}},{{GaruAavak.party_Code.Area}}</td>
+                            <td style="width: 8em; padding: 2px;border-bottom: none;border-top: none;border-right: none"><b>Transport</b></td>
+                            <td style="padding: 2px;border-bottom: none;border-top: none;border-left: none"></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 2px;border-bottom: none;border-top: none;border-right: none"><b>GSTIN</b></br><b>FSSAINNo</b></td>
+                            <td style="padding: 2px;border-bottom: none;border-top: none;border-left: none">{{GaruAavak.party_Code.GSTIN}},  <b>PAN</b> : {{GaruAavak.party_Code.PanNumber}}</br>{{GaruAavak.party_Code.ac_fccino}}</td>
+                            <td style="padding: 2px;border-bottom: none;border-top: none;border-right: none"><b>Vehicle No</b></td>
+                            <td style="padding: 2px;border-bottom: none;border-top: none;border-left: none">{{GaruAavak.lorry_Wagon_No}}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 2px;border-bottom: none;border-top: none;border-right: none"><b>State</b></td>
+                            <td style="padding: 2px;border-bottom: none;border-top: none;border-left: none"><h6 style="float: left;margin: 0px">{{GaruAavak.party_Code.CityName.StateName.StateName}}</h6><h6 style="float: right;margin: 0px">State Code : {{GaruAavak.party_Code.CityName.StateName.StateCode}}</h6></td>
+                            <td style="padding: 2px;border-bottom: none;border-top: none;border-right: none"></td>
+                            <td style="padding: 2px;border-bottom: none;border-top: none;border-left: none"></td>
+                        </tr>
+                    </table>
+                    <table class="tabler" align="center" border="1" id="groceryPrint" style="width: 100%">
+                        <thead>
+                        <tr>
+                            <th style="width: 1em;">SrNo</th>
+                                <th style="text-align: left; font-size: 14px;">Item Description</th>
+                                <th style="text-align: right; font-size: 14px;width: 6em">HSN Code</th>
+                                <th style="text-align: right; font-size: 14px; width: 5em">Bags</th>
+                                <th style="text-align: right; font-size: 14px; width: 6em">Net-Wt</th>
+                                <th style="text-align: right; font-size: 14px; width: 4em">GST %</th>
+                                <th style="text-align: right; font-size: 14px; width: 4em">Rate</th>
+                                <th style="text-align: right; font-size: 14px; width: 9em">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: center; height: 25em; font-size: 14px;" valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}} {{sum @index 1}}</br> {{/each}}</td>
+                                <td style="text-align: left; font-size: 14px;" valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}} {{groupvalue.item_Code_Desc.item_title}}</br> {{/each}}</td>
+                                <td style="text-align: right; font-size: 14px;" valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}} {{groupvalue.item_Code_Desc.apmc_code}}</br> {{/each}}</td>
+                                <td style="text-align: right; font-size: 14px;" valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}} {{groupvalue.qntty}}</br> {{/each}}</td>
+                                <td style="text-align: right; font-size: 14px;" valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}} {{groupvalue.net_Wt}}</br> {{/each}}</td>
+                                <td style="text-align: right; font-size: 14px;" valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}} {{groupvalue.GST}}</br> {{/each}}</td>
+                                <td style="text-align: right; font-size: 14px;" valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}} {{groupvalue.rate}}</br> {{/each}}</td>
+                                <td style="text-align: right; font-size: 14px;" valign="top">{{#each GaruAavak.garu_Aavak_Group as |groupvalue key|}} {{groupvalue.amount}}</br> {{/each}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" style="text-align: left; font-size: 15px; height: 2em"><Strong>Total</Strong>
+                                </td>
+                                <td style="text-align: right; font-size: 14px;">{{#totQttyInSaleEntry GaruAavak.garu_Aavak_Group}}{{/totQttyInSaleEntry}}</td>
+                                <td style="text-align: right; font-size: 14px;">{{#tot_netWtInSaleEntry GaruAavak.garu_Aavak_Group}}{{/tot_netWtInSaleEntry}}</td>
+                                <td colspan="2" style="text-align: left; font-size: 14px; padding-left: 4px;"><b style="font-size: 12px">Total Amount Before Tax</b></td>
+                                <td style="text-align: right; font-size: 14px;"><b style="float: right;font-size: 14px">{{#tot_Amount GaruAavak.garu_Aavak_Group}}{{/tot_Amount}}</b></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" valign="top"  style="font-size:14px; text-align: left;height: 5em; font-size: 12px;border-right: none;border-bottom: none;"> 
+                                    <h6 style="font-weight: 600; margin: 1px">Amount in words RUPEES.</br>{{#SaleBilamountinword GaruAavak.gross_Amt}}{{/SaleBilamountinword}}only.</h6>
+                                    <b style="font-size: 13px">Bank Details</b>
+                                    <div style="width: 400px; border: 1px solid black;padding: 2px;;margin: 1px">
+                                        <h6 style="font-weight: 600; margin: 1px">{{division.bank1}} : A/C No. {{division.bank2}}</br>
+                                        RTGS/NEFT/IFSC CODE : {{division.bank3}}</br>
+                                        BRANCH : {{division.bank_add}}
+                                        </h6>
+                                    </div>
+                                    <b style="font-size: 12px;float: left">Previous Dues</b></br>
+                                    <div style="width: 400px;height: 90px; border: 1px solid black;padding: 0px;float: left;margin: 1px;font-size: 12px;font-weight: 550">
+                                        <table class="tableOut">
+                                            <tr>
+                                                <td>Date</td>
+                                                <td>Bill No</td>
+                                                <td>Bill Amount</td>
+                                                <td>Outstanding Amount</td>
+                                            </tr>
+                                            {{#each outstanding as |groupvalue key|}}
+                                                <tr>
+                                                    <td style="text-align: center">{{dateformat groupvalue.cash_date 'DD/MM/YYYY'}}</td>
+                                                    <td style="text-align: center">{{groupvalue.main_bk}}/{{groupvalue.vouc_code}}</td>
+                                                    <td style="text-align: center">{{groupvalue.Bill_Amount}}</td>
+                                                    <td style="text-align: center">{{groupvalue.outstanding_balance}}</td>
+                                                </tr>
+                                            {{/each}}
+                                        </table>
+                                    </div>
+                                </td>
+                                <td valign="top" colspan="3" style="font-size: 13px;border-left: none;border-bottom: none">
+                                    <div style="width: 200px; border: 1px solid black;padding: 4px;float: right;margin: 2px">
+                                    {{#each GaruAavak.add_details as |groupvalue key|}}
+                                        {{#each ../AddLessParameter as |group key|}}
+                                            {{#ifCond_id groupvalue.particular_add group._id}}
+                                            {{#ifGreter groupvalue.particular_amount 0}}{{group.Description}}  <b style="float: right">{{groupvalue.particular_amount}}</b></br>{{/ifGreter}}
+                                            {{/ifCond_id}}
+                                        {{/each}}
+                                    {{/each}}
+                                    {{#each GaruAavak.less_details as |groupvalue key|}}
+                                        {{#each ../AddLessParameter as |group key|}}
+                                            {{#ifCond_id groupvalue.particular_less group._id}}
+                                            {{#ifGreter groupvalue.particular_amtless 0}}{{group.Description}}  <b style="float: right">- {{groupvalue.particular_amtless}}</b></br>{{/ifGreter}}
+                                            {{/ifCond_id}}
+                                        {{/each}}
+                                    {{/each}}
+                                    </div>
+                                    <div style="width: 200px;height: 27px; border: 1px solid black;padding: 4px;float: right;margin: 2px;font-size: 14px;font-weight: 800">
+                                        Net Amount<b style="float: right;font-size: 14px">{{GaruAavak.gross_Amt}}</b>
+                                    </div>
+                                    <div style="width: 100%;height: 100%;padding-bottom: 0px;padding-top: 25px;float: right;margin: 2px;font-size: 14px;font-weight: 800;">
+                                       <center style="font-size: 14px;font-weight: 800;">FOR : {{division.div_mast}}</center>
+                                    </div>
+                                </td>
+                            </tr>
+                            {{!-- <tr>
+                                <td colspan="7" style="border-left: none;border-top: none;border-bottom: none">
+                                    <div style="width: 200px;height: 27px; border: 1px solid black;padding: 4px;float: right;margin: 2px;font-size: 14px;font-weight: 800">
+                                        Net Amount<b style="float: right;font-size: 14px">{{GaruAavak.gross_Amt}}</b>
+                                    </div>
+                                    <div style="width: 400px;height: 85px; border: 1px solid black;padding: 0px;float: left;margin: 1px;font-size: 12px;font-weight: 550">
+                                        {{#each outstanding as |groupvalue key|}}
+                                            a</br>
+                                        {{/each}}
+                                    </div>
+                                </td>
+                            </tr> --}}
+                            <tr>
+                                <td colspan="5" style="border-left: none;border-top: none;border-right: none">
+                                    <div style="width: 400px; border: 1px solid black;padding: 4px;float: center;margin: 1px;font-size: 13px;font-weight: 550">
+                                        I/We hereby certity that the foods/food mentioned in this invoice is/are warranted to be of the
+                                        nature and quality which it/these purport/purports to be. Certified that the particulars given above are true and correct
+                                    </div>
+                                </td>
+                                <td colspan="3" valign="bottom" style="border-left: none;border-top: none">
+                                    
+                                    <center style="font-size: 14px;font-weight: 800;">Authorised signatory</center>
+                                </td>
+                            </tr>
+                            {{!-- <tr>
+                                <td  colspan="4" valign="top"  style="font-size:14px; text-align: left; height: 5em; font-size: 16px;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pre Dues Rs. {{outstanding_bal}}</br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No tax is payble on reverse charge</td>
+                                <td  colspan="3" valign="top"  style="font-size:14px; text-align: right; height: 5em; font-size: 17px;  padding-bottom: 7px; padding-right: 5px;"></td>
+                            </tr> --}}
+                        </tfoot>
+
+                    </table>
+                <a class="btn btn-lg blue hidden-print margin-bottom-5" onclick="printinvoice()" id="hideprintbtn" style="margin-top: 2em"> Print
+                <i class="fa fa-print"></i></a>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

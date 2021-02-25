@@ -1,0 +1,210 @@
+{{> header}}
+{{> nav}}
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+              
+            <h1 class="page-header">Sauda Details</h1>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="result_filter_section">
+                <form method="POST" action="" id="order_filter_form">
+                      <div id="form-group">
+                        <label>Period</label>
+                        <input type="text" class="form-control" name="filterstartdate" value="{{dateformat Date.now '01/04/2018'}}" id="filterstartdate" autocomplete="off"/> 
+                        {{!-- <input type="date" class="form-control" name="filterstartdate" value="{{dateformat Date.now '01/04/2018'}}" id="filterstartdate" autocomplete="off"/>  --}}
+                    </div>  
+                    <div id="form-group">
+                        <label>To </label>
+                        <input type="text" class="form-control" name="filterenddate" value="{{dateformat Date.now 'DD/MM/YYYY'}}" id="filterenddate" autocomplete="off"/>
+                    </div>
+                     <div id="form-group">
+                        <label>Seller</label>
+                        {{#listbsrt party 'S' 'sl_code' 'slcode'}}  
+                                {{this.party_name}}
+                         {{/listbsrt}}
+                    </div>
+                    <div id="form-group">
+                        <label>Seller Broker</label>
+                        {{#listbsrt party 'T' 'sb_code' 'sbcode'}}
+                                {{this.party_name}}
+                            {{/listbsrt}}
+                    </div>
+                     <div id="form-group">
+                        <label>Buyer</label>
+                          {{#listbsrt party 'B' 'br_code' 'brcode'}}
+                                {{this.party_name}}
+                            {{/listbsrt}}
+                    </div>
+                    <div id="form-group">
+                        <label>Buyer Broker</label>
+                           {{#listbsrt party 'R' 'bb_code' 'bbcode'}}
+                                {{this.party_name}}
+                            {{/listbsrt}}
+                    </div>
+                   <div id="form-group">
+                       
+                        <input type="radio" class="form-checkbox" name="formfilter" id="sd_date" value="sd_date" checked/>
+                         <label>Date Wise</label>
+                         <input type="radio" class="form-checkbox" name="formfilter" id="sl_brok" value="sl_brok"/>
+                        <label>Seller</label>
+                        <input type="radio" class="form-checkbox" name="formfilter" id="sb_brok" value="sb_brok"/>
+                        <label>Seller Broker</label>
+                        <input type="radio" class="form-checkbox" name="formfilter" id="br_brok" value="br_brok"/>
+                        <label>Buyer</label>
+                        <input type="radio" class="form-checkbox"  name="formfilter" id="bb_brok" value="bb_brok"/>
+                        <label>Buyer Broker</label>
+                    </div>
+                    <input type="button" class="btn btn-success" name="filtersubmit" id="contractfiltersubmit" value="submit" value="submit"/>
+                </form>
+            </div>
+        </div>
+            <div class="col-lg-12" style="margin-top: 22px;">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bell fa-fw"></i>Sauda LIST
+                </div>
+                <div class="table-responsive">
+                    <table>
+              
+                 <thead id="sddate" style="display:none">
+                    <tr>
+                        <th>Date</th>
+                        <th>Contract Nubmer</th>
+                        <th>Buyer</th>
+                        <th>Seller</th>
+                        <th>Product</th>
+                        <th>Bag</th>
+                        <th>Pack</th>
+                        <th>Wght</th>
+                        <th>Rate</th>
+                        <th>Amount</th>
+                        <th>Dispatch</th>
+                        <th>Balance</th>
+                        <th>Seller Broker</th>
+                        <th>Buyer Broker</th>
+                    </tr>      
+                </thead> 
+                 <thead id="brbrok" style="display:none">
+                    <tr>
+                        <th>Date</th>
+                        <th>Contract Nubmer</th>
+                        <th>Seller</th>
+                        <th>Seller Broker</th>
+                        <th>Product</th>
+                        <th>Bag</th>
+                        <th>Pack</th>
+                        <th>Wght</th>
+                        <th>Rate</th>
+                        <th>Amount</th>
+                        <th>Dispatch</th>
+                        <th>Balance</th>
+                        <th>Buyer</th>
+                        <th>Buyer Broker</th>
+                    </tr>      
+                </thead> 
+                 <thead id="slbrok" style="display:none">
+                    <tr>
+                        <th>Date</th>
+                        <th>Contract Nubmer</th>
+                        <th>Buyer</th>
+                        <th>Seller Broker</th>
+                        <th>Product</th>
+                        <th>Bag</th>
+                        <th>Pack</th>
+                        <th>Wght</th>
+                        <th>Rate</th>
+                        <th>Amount</th>
+                        <th>Dispatch</th>
+                        <th>Balance</th>
+                        <th>Seller</th>
+                        <th>Buyer Broker</th>
+                    </tr>      
+                </thead> 
+                 <thead id="sbbrok" style="display:none">
+                    <tr>
+                        <th>Date</th>
+                        <th>Contract Nubmer</th>
+                        <th>Buyer</th>
+                        <th>Seller Broker</th>
+                        <th>Product</th>
+                        <th>Bag</th>
+                        <th>Pack</th>
+                        <th>Wght</th>
+                        <th>Rate</th>
+                        <th>Amount</th>
+                        <th>Dispatch</th>
+                        <th>Balance</th>
+                        <th>Seller</th>
+                        <th>Buyer Broker</th>
+                    </tr>      
+                </thead> 
+                 <thead id="bbbrok" style="display:none">
+                    <tr>
+                        <th>Date</th>
+                        <th>Contract Nubmer</th>
+                        <th>Seller</th>
+                        <th>Seller Broker</th>
+                        <th>Product</th>
+                        <th>Bag</th>
+                        <th>Pack</th>
+                        <th>Wght</th>
+                        <th>Rate</th>
+                        <th>Amount</th>
+                        <th>Dispatch</th>
+                        <th>Balance</th>
+                        <th>Buyer</th>
+                        <th>Buyer Broker</th>
+                    </tr>      
+                </thead> 
+                <tbody class="contract_detail_body">
+                    {{!-- {{#each contract as |contractvalue key|}}
+                        {{#each contractvalue.sauda2.contract_sauda_group as |saudavalue key|}}
+                            <tr>
+                                <td>{{dateformat contractvalue.sd_date 'DD/MM/YYYY'}}</td>
+                                <td>{{contractvalue.vouc_code}}</td>
+                                <td>{{contractvalue.sl_code.party_name}}</td>
+                                <td>{{saudavalue.p_code}}</td>
+                                <td>{{saudavalue.brand_code}}</td>
+                                <td>{{saudavalue.bag}}</td>
+                                <td>{{saudavalue.pck}}</td>
+                                <td>{{saudavalue.pck_unit}}</td>
+                                <td>{{saudavalue.wght}}</td>
+                                <td>{{saudavalue.sd_rate}}</td>
+                                <td>{{saudavalue.s_rate}}</td>
+                                <td>{{saudavalue.b_rate}}</td>
+                                <td>{{saudavalue.w_q}}</td>
+                                <td>{{saudavalue.wghtunit}}</td>
+                                <td>{{saudavalue.rateper}}</td>
+                                <td>{{saudavalue.amount}}</td>
+                                <td>{{saudavalue.pcktype}}</td>
+                                <td>{{saudavalue.g_n}}</td>
+                                <td>{{saudavalue.ipack}}</td>
+                                <td>{{saudavalue.slbrk_rt}}</td>
+                                <td>{{saudavalue.slbrk_type}}</td>
+                                <td>{{saudavalue.slbrk_amt}}</td>
+                                <td>{{saudavalue.brbrk_rt}}</td>
+                                <td>{{saudavalue.brbrk_typ}}</td>
+                                <td>{{saudavalue.brbrk_amt}}</td> --}}
+                                {{!-- <td>{{saudavalue.slbrk_rte}}</td>
+                                <td>{{saudavalue.slbrk_typ}}</td> --}}
+                         </tr>
+                            {{!-- {{/each}}
+                    {{/each}}  --}}
+                </tbody>
+            </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                </div>
+          
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<!-- /#page-wrapper -->
+{{> footer}}

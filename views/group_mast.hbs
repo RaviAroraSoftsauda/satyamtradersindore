@@ -1,0 +1,279 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" id="formheading">
+                                            <span>Add</span>Group
+                                        </div>
+                                        <div class="panel-body">
+                                            {{!-- <form method="POST" action="/group_mast/gmast_add" enctype="" id="addcategory"
+                                                class="validate"></form> --}}
+                                            <form enctype="" id="groupMast" class="validate">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Order: </label>
+                                                            <div class="col-md-9">
+                                                                <input class="form-control gm_order" placeholder="Order"
+                                                                    value="{{last}}" name="gm_order" required type="number"
+                                                                    autofocus>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label for="" class="control-label col-md-3">Main Group
+                                                                Name:</label>
+                                                            <div class="col-md-9">
+                                                                <select class="form-control sub_group  prbank select2"
+                                                                    name="sub_group" id="sub_group" placeholder="Select Main Group">
+                                                                    <option value=""></option>
+                                                                    <option value="Primary">Primary</option>
+                                                                    {{#each g_mast}}
+                                                                    <option value="{{this.GroupName}}">{{this.GroupName}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Group Name: </label>
+                                                            <div class="col-md-9">
+                                                                <input class="form-control group_name" required
+                                                                    placeholder="Group Name" name="group_name" value=""
+                                                                    type="text" />
+                                                                <input class="form-control vhpxgroup" placeholder="Group Name"
+                                                                    name="vhpxgroup" id="vhpxgroup" value="" type="hidden" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Group Type:</label>
+                                                            <div class="col-md-9">
+
+                                                                <select class="form-control group_type  prbank select2"
+                                                                    name="group_type" id="group_type" placeholder="Select Group type">
+                                                                    <option value=""></option>
+                                                                    <option value="Income">Income</option>
+                                                                    <option value="Expenditure">Expenditure</option>
+                                                                    <option value="Liabilities">Liabilities</option>
+                                                                    <option value="Assets">Assets</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Maintain Outstanding:
+                                                            </label>
+                                                            <div class="col-md-9">
+                                                                <select class="form-control main_out  prbank select2"
+                                                                    name="main_out" id="main_out" placeholder="Select">
+                                                                    {{!-- <option value=""></option> --}}
+                                                                    <option value="Y">Y</option>
+                                                                    <option value="N">N</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Suppress in Group
+                                                                Wise TB :</label>
+                                                            <div class="col-md-9">
+                                                                <select class="form-control supp_gwt  prbank select2"
+                                                                    name="supp_gwt" id="supp_gwt" placeholder="Select">
+                                                                    {{!-- <option value=""></option> --}}
+                                                                    <option value="Y">Y</option>
+                                                                    <option value="N">N</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Address: </label>
+                                                            <div class="col-md-9">
+                                                                <select class="form-control Address  prbank select2"
+                                                                    name="Address" id="Address" placeholder="Select">
+                                                                    {{!-- <option value=""></option> --}}
+                                                                    <option value="Y">Y</option>
+                                                                    <option value="N">N</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group  form-md-line-input clearfix">
+                                                            <label class="col-sm-3 control-label">Ledger:</label>
+                                                            <div class="col-md-9">
+                                                                <select class="form-control Ladger  prbank select2"
+                                                                    name="Ledger" id="Ledger" placeholder="Select">
+                                                                    {{!-- <option value=""></option> --}}
+                                                                    <option value="Y">Y</option>
+                                                                    <option value="N">N</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3"></label>
+                                                        <div class="col-md-9">
+                                                            <button type="submit" name="save" class="btn btn-success lock-group">Submit</button>
+                                                            <button type="reset" class="btn btn-primary cancelmaster"
+                                                                data-form-ad-action="/add_city/city_add">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            Group List
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table id="product_detail_table" class="product_detail_table table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Action</th>
+                                                            <th>Sno.</th>
+                                                            <th>Order</th>
+                                                            <th>Main Group</th>
+                                                            <th>Group Name</th>
+                                                            <th>Group Type</th>
+                                                            <th>Maintain </br>Outstanding</th>
+                                                            <th>Suppress in </br>Group Wise TB</th>
+                                                            <th>Address</th>
+                                                            <th>Ladger</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{#each g_mast as |value key|}}
+                                                        <tr>
+                                                            <td>
+                                                                <div class="btn-group dropdown">
+                                                                    <button class="btn btn-xs blue dropdown-toggle"
+                                                                        type="button" data-toggle="dropdown"
+                                                                        aria-expanded="false"> Actions
+                                                                        <i class="fa fa-angle-down"></i>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu pull-left" role="menu"
+                                                                        style="width:150px">
+                                                                        <li>
+                                                                            <a href="javascript:void(0);" class="edit_group_mast"
+                                                                                data-id="{{this._id}}">
+                                                                                <i class="icon-pencil"></i> Edit </a>
+                                                                        </li>
+                                                                        <li class="divider"> </li>
+                                                                        <li>
+
+                                                                            <a href="javascript:void(0);" class="delete-group"
+                                                                                data-id="{{this._id}}">
+                                                                                <i class="icon-trash"></i> Delete
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </td>
+                                                            <td>{{sum @index 1}}</td>
+                                                            <td>{{this.Order}}</td>
+                                                            <td>{{this.MainGroupName}}</td>
+                                                            <td>{{this.GroupName}}</td>
+                                                            <td>{{this.GroupType}}</td>
+                                                            <td>{{this.MaintainOs}}</td>
+                                                            <td>{{this.Suppress}}</td>
+                                                            <td>{{this.Address}}</td>
+                                                            <td>{{this.Ledger}}</td>
+                                                        </tr>
+                                                        {{/each}}
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th class="excludesearch"></th>
+                                                            {{!-- <th>Action</th> --}}
+                                                            <th>Sno.</th>
+                                                            <th>Order</th>
+                                                            <th>Main Group</th>
+                                                            <th>Group Name</th>
+                                                            <th>Group Type</th>
+                                                            <th>Maintain </br>Outstanding</th>
+                                                            <th>Suppress in </br>Group Wise TB</th>
+                                                            <th>Address</th>
+                                                            <th>Ladger</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

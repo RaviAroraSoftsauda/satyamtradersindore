@@ -1,0 +1,239 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Contract List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{#if err}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{err}}</strong>
+                                    </div>
+                                    {{/if}}
+                                    {{#if errors}}
+                                    <div class="alert alert-danger">
+                                        <strong>{{errors}}</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary table light " id="tableportlet">
+                                        <div class="panel-heading">
+                                           TDS Challan
+                                        </div>
+                                        <div class="panel-body" id="portletbody">
+                                            <form>    
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Period</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control" name="filterstartdate" 
+                                                                    value="{{dateformat  sdate 'DD/MM/YYYY'}} to {{dateformat Date.now 'DD/MM/YYYY'}}" id="contractrange"
+                                                                    autocomplete="off" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-4">Party Name</label>
+                                                            <div class="col-md-8">
+                                                                <select class="form-control prbank AllAccountWithOutCashBank" name="party"
+                                                                    placeholder="Please Select"  id="party" autofocus>
+                                                                    <option value=""></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-4">Tax Type</label>
+                                                            <div class="col-md-8">
+                                                                <select class="form-control prbank Tax_Master" name="Tax_Type"
+                                                                    placeholder="Please Select" id= "Tax_Type">
+                                                                    <option value=""></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group clearfix">
+                                                            <label for="" class="control-label col-md-3">Division</label>
+                                                            <div class="col-md-9">
+                                                                <select class="form-control prbank Division select2" name="Division"
+                                                                    placeholder="Please Select" id= "Division">
+                                                                    <option value=""></option>
+                                                                    {{#each division as |value key|}}
+                                                                    <option value="{{this._id}}">{{this.div_mast}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group clearfix">
+                                                            <div class="col-md-1"><input type="radio" name="challan_No" id="challan_No" value="Sent"></div><label for="" class="control-label col-md-2">Sent</label>
+                                                            <div class="col-md-1"><input type="radio" name="challan_No" id="challan_No" value="Due"></div><label for="" class="control-label col-md-2">Due</label>
+                                                            <div class="col-md-1"><input checked type="radio" name="challan_No" id="challan_No" value="All"></div><label for="" class="control-label col-md-2">All</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <div class="form-group clearfix">
+                                                            <button type="button" class="btn btn-success" name="filtersubmit"
+                                                                id="ShowTds_Challan_List" value="submit">Proceed..</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <div class="form-group clearfix">
+                                                            <button type="button" class="btn btn-success" name="filtersubmit"
+                                                                id="ShowTds_Challan_List_Return" value="submit">Return</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- END EXAMPLE TABLE PORTLET-->
+                                </div>
+                            </div>
+                            <div id="TDS_Challan_list"></div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+<div class="modal fade" role="dialog" id="UpdateTaxVoucherModal">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="float: left;">Challan Number For Selected Bills</h4>
+                <a style="float: right;"><i class='fa fa-times'  data-dismiss="modal" style='font-size: 20px;color: red;margin-left:12px;'></i></a>
+            </div>
+            <form  class="" novalidateenctype="" id="UpdateTaxVoucherForm">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group clearfix">
+                            <label class="col-sm-3 control-label">Challan No </label>
+                            <div class="col-md-9">
+                                <input class="form-control challan_no" placeholder="Challan No"
+                                    name="challan_no" id="challan_no" value="" type="text" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                            <div class="form-group clearfix">
+                            <label for="" class="control-label col-md-3">Challan Date</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control challan_date BillDate" id="challan_date" required 
+                                    name="challan_date"/>
+                                </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group clearfix">
+                            <label class="col-sm-3 control-label">Bank</label>
+                            <div class="col-md-9">
+                                <select type="text" class="form-control bankrenclName prbank" id="Bank" 
+                                    name="Bank" style="width: 100%"/>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-sm-12 col-md-6">
+                        <div class="form-group clearfix">
+                            <label class="col-sm-3 control-label">BSR Code</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control BSR_Code" id="BSR_Code" 
+                                    name="BSR_Code" placeholder="BSR Code"/>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-sm-12 col-md-6">
+                        <div class="form-group clearfix">
+                            <label class="col-sm-3 control-label">Chq No</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control Chq_No" id="Chq_No" 
+                                    name="Chq_No" placeholder="Chq No"/>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-sm-12 col-md-6">
+                        <div class="form-group clearfix">
+                            <label class="col-sm-3 control-label">Chq Date</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control Chq_Date BillDate" id="Chq_Date" 
+                                    name="Chq_Date"/>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-sm-12 col-md-6">
+                        <div class="form-group clearfix">
+                            <label class="col-sm-3 control-label">Selected Amt Of Bills </label>
+                            <div class="col-md-9">
+                                <input type="number" class="form-control Selected_Amt_Of_Bills nofocus" id="Selected_Amt_Of_Bills" 
+                                    name="Selected_Amt_Of_Bills"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group clearfix">
+                            <div class="col-md-12" align="center">
+                                <button type="button" name="save" id="UpdateTaxVoucherCheckbox" class="btn btn-success UpdateTaxVoucherCheckbox">Submit</button>
+                                <button type="reset" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+{{> footer_new}}
+{{> scripts_new}}

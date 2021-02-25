@@ -1,0 +1,315 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+
+                               
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" id="formheading">
+                                            <span>Add</span> Supplier
+                                        </div>
+                                        <div class="panel-body">
+                                            {{!-- <form method="POST" action="/raw_material_mast/raw_location_mast_add" enctype="" id="addcategory" class="validate"></form> --}}
+                               <form method="POST" action="/supplier_mast/update/{{s_mast._id}}" class="form validate"
+                                    novalidate>
+                                                <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Supplier Name: </label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control ac_name" placeholder="Supplier Name"
+                                                            name="ac_name"value="{{s_mast.ac_name}}" type="text"autofocus required/>
+                                                               <input  type="hidden" class="form-control " 
+                                                            id="vhpxsupplier"   value="{{s_mast._id}}"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                             <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Address: </label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control ac_add1" placeholder="Address"
+                                                            name="ac_add1" value="{{s_mast.ac_add1}}" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                        </div>
+                                                <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Address2: </label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control ac_add2" placeholder="Address2"
+                                                            name="ac_add2"  value="{{s_mast.ac_add2}}" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                            <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="control-label col-md-3">City<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                                 <div class="col-md-9">
+                                                                           <!-- city_name -->
+                                                                
+                                                                  <select class="form-control prbank ac_city select2" required name="ac_city" 
+                                                                        id="ac_city" placeholder="Select city">
+                                                                    <option value=""></option>
+                                                                    {{#each city}}
+                                                                   <option value="{{this._id}}"{{#equal ../s_mast.ac_city id}} selected=""{{/equal}}>{{this.city_name}}</option>
+                                                                 {{/each}}
+                                                            </select>
+                                                        
+                                                     </div>
+                                                 </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                        </div>
+                                              <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">Mobile No: </label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control ac_phmob" placeholder="Mobile No"
+                                                            name="ac_phmob"  value="{{s_mast.ac_phmob}}"type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                    <label class="col-sm-3 control-label">GST Tin:</label>
+                                                    <div class="col-md-9">
+                                                       <input class="form-control ac_gstin" placeholder="GST Tin:"
+                                                            name="ac_gstin" value="{{s_mast.ac_gstin}}" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                        </div>
+                                         <div class="row">
+                                             <div class="col-sm-12 col-md-6">
+                                                 <div class="form-group  form-md-line-input clearfix">
+                                                   <label for="" class="control-label col-md-3">Opening Bal:</label>
+                                                        <div class="col-md-3">
+                                                       <input class="form-control ac_opbal" placeholder="Opening Bal"
+                                                            name="ac_opbal" value="{{s_mast.ac_opbal}}" type="text">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                       <select class="form-control prbank  ac_open_type select2"  name="ac_open_type" id="ac_open_type" placeholder="Select" >
+                                                            <option value=""></option>
+                                                             <option value="Debit"{{#equal s_mast.ac_open_type "Debit"}} selected="Debit"{{/equal}}>Debit</option>
+                                                           <option value="Credit"{{#equal s_mast.ac_open_type "Credit"}} selected=""{{/equal}}>Credit</option>
+                                                        </select>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            {{!-- end of col --}}
+                                        
+                                            {{!-- end of col --}}
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="form-group  form-md-line-input clearfix">
+                                                   <label for="" class="control-label col-md-3"data-toggle="modal"
+                                                              data-target="#addcity">Party Group<span class="required"
+                                                            aria-required="true">*</span></label>
+                                                       <div class="col-md-9">
+                                                        <!-- city_name -->
+                                                            <select class="form-control ac_groupname prbank select2" name="ac_groupname" 
+                                                                        id="ac_groupname" placeholder="Select group" required>
+                                                                    <option value=""></option>
+                                                                    {{#each g_mast}}
+                                                                   <option value="{{this._id}}"{{#equal ../s_mast.ac_groupname id}} selected=""{{/equal}}>{{this.group_name}}</option>
+                                                                 {{/each}}
+                                                            </select>
+                                                     </div>
+                                                   </div>
+                                                 </div>
+                                            {{!-- end of col --}}
+                                        </div>
+                                          <div class="repeat clearfix">
+                                            <div class="form-group clearfix">
+                                                <div class="col-lg-12">
+                                                    <h3 class="form-section">Bank Accounts
+                                                        <input data-repeater-create type="button" value="+" class="btn btn-primary pull-right addbank" /></h3>
+                                                </div>
+                                            </div>
+                                        
+                                            <div data-repeater-list="ac_bank">
+                                                    {{#each s_mast.ac_bank as |value key|}}  
+                                                <div class="form-group bankrow clearfix" data-repeater-item>
+                                                    <button class="delbankbtn" data-repeater-delete type="button"><i
+                                                            class="fa fa-close"></i> </button>
+                                                          <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                             <label class="control-label col-md-3">Bank Name</label>
+                                                            <div class="col-md-9">
+                                                                <select class="form-control bank_name select2" name="ac_bank[{{@index}}][bank_name]"
+                                                                    placeholder="Please Select Bank">
+                                                                    <option value="">Select Bank</option>
+                                                                    {{#each ../bank}}
+                                                                        <option value="{{this._id}}" data-serialnum="{{this._id}}" {{#equal ../bank_name this._id}}selected=""{{/equal}}>{{this.bank_name}}</option>
+                                                                        {{/each}}
+                                                                </select>
+                                                            </div>
+                                                 </div>
+                                            </div>
+                                                    {{!-- end of col --}}
+                                                   <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Bank Address</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text"  class="form-control ac_bank" name="ac_bank[{{@index}}][bank_add]"
+                                                            placeholder="Bank Address" value="{{this.bank_add}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                </div>
+
+  
+                                                  <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                            <label class="control-label col-md-3 itsalink" >City</label>
+                                                    <div class="col-md-9">
+                                                        <!-- city_name -->
+                                                       <select class="form-control  select2"  name="ac_bank[{{@index}}][bank_city]" 
+                                                                        id="bank_city" placeholder="Select city">
+                                                                    <option value=""></option>
+                                                                    {{#each ../city}}
+                                                                   <option value="{{this._id}}" {{#equal ../bank_city this._id}}selected=""{{/equal}}>{{this.city_name}}</option>
+                                                                 {{/each}}
+                                                            </select>
+                                                     </div>
+                                                 </div>
+                                            </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                             <label class="control-label col-md-3">PIN NO</label>
+                                                               <div class="col-md-9">
+                                                                  <input type="text" class="form-control digits"name="ac_bank[{{@index}}][bank_pin]" 
+                                                                        placeholder="PIN NO" value="{{this.bank_pin}}">
+                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                             <label class="control-label col-md-3">FAX/PH</label>
+                                                                <div class="col-md-9">
+                                                                 <input type="text" class="form-control" name="ac_bank[{{@index}}][bank_fax]"  placeholder="Fax/Ph"
+                                                                      value="{{this.bank_fax}}">
+                                                              </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                           <label class="control-label col-md-3">IFSC</label>
+                                                               <div class="col-md-9">
+                                                                  <input type="text" class="form-control " name="ac_bank[{{@index}}][bank_ifsc]" 
+                                                                        placeholder="IFSC"  value="{{this.bank_ifsc}}">
+                                                             </div>
+                                                    </div>
+                                            </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                             <label class="control-label col-md-3">AccountNo</label>
+                                                               <div class="col-md-9">
+                                                                  <input type="text" class="form-control " name="ac_bank[{{@index}}][bnk_ac_no]" 
+                                                                        placeholder="AccountNo"  value="{{this.bnk_ac_no}}">
+                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                    {{!-- end of col --}}
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="form-group form-md-line-input clearfix">
+                                                             <label class="control-label col-md-3">SWIFT CODE</label>
+                                                                <div class="col-md-9">
+                                                                 <input type="text" class="form-control amounfocus" placeholder="SWIFT CODE"name="ac_bank[{{@index}}][swift_code]" 
+                                                                      value="{{this.swift_code}}">
+                                                              </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                             </div> 
+                                                {{/each}}
+                                                {{!-- end of repeater item --}}
+                                            </div>
+                                        </div>  
+                                          
+                                               <div class="row">
+                                                    <div class="form-group clearfix">
+                                                        <label for="" class="control-label col-md-3"></label>
+                                                        <div class="col-md-9">
+                                                            <button type="submit" name="save" class="btn btn-success update-supplier">Submit</button>
+                                                            <button type="reset" class="btn btn-primary cancelmaster"
+                                                                data-form-ad-action="/add_city/city_add">Cancel</button>
+                                                         </div>
+                                                </div>
+                                            </div>
+                                         </form>
+                                    </div>
+                                    {{!-- end of panel-footer --}}
+                               
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+{{> footer_new}}
+{{> scripts_new}}

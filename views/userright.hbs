@@ -1,0 +1,265 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+
+<div class="page-wrapper-row full-height">
+  <div class="page-wrapper-middle">
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+      <!-- BEGIN CONTENT -->
+      <div class="page-content-wrapper">
+        <!-- BEGIN CONTENT BODY -->
+        <!-- BEGIN PAGE HEAD-->
+        <div class="page-head">
+          <div class="container-fluid">
+            <!-- BEGIN PAGE TITLE -->
+            <div class="page-title">
+              <h1>{{compnm}} -{{divnm}}- {{dateformat sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                'DD/MM/YYYY'}} {{usrnm}}
+                <small>
+
+                  <!-- BEGIN PAGE BREADCRUMBS -->
+                  <ul class="page-breadcrumb breadcrumb">
+                    <li>
+                      <a href="/userright/index">Home</a>
+                      <i class="fa fa-circle"></i>
+                    </li>
+                    <li>
+                      User Rights
+                    </li>
+                  </ul>
+                  <!-- END PAGE BREADCRUMBS -->
+                </small>
+              </h1>
+            </div>
+            <!-- END PAGE TITLE -->
+          </div>
+        </div>
+        <!-- END PAGE HEAD-->
+        <!-- BEGIN PAGE CONTENT BODY -->
+        <div class="page-content">
+          <div class="container-fluid">
+            <!-- BEGIN PAGE CONTENT INNER -->
+            <div class="page-content-inner">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="panel panel-primary">
+                    <div class="panel-heading" id="formheading">
+                      User Rights
+                    </div>
+                    <form method="POST" action="/userright/add" enctype="" id="order_filter_form">
+                      <div class="panel-body">
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="form-group clearfix">
+                              <label for="" class="control-label col-md-4">First Name</label>
+                              <div class="col-md-8">
+                                <input type="text" class="form-control" required name="first_name" id="usrnm"
+                                  placeholder="First Name">
+                              </div>
+                            </div>
+                            {{!-- end of form-group --}}
+                          </div>
+                          {{!-- end of col --}}
+                          <div class="col-md-4">
+                            <div class="form-group clearfix">
+                              <label for="" class="control-label col-md-4">Last Name</label>
+                              <div class="col-md-8">
+                                <input type="text" class="form-control" name="last_name" id="usrpwd" placeholder="Last Name">
+                              </div>
+                            </div>
+                            {{!-- end of form-group --}}
+                          </div>
+                          {{!-- end of col --}}
+                          <div class="col-md-4">
+                            <div class="form-group clearfix">
+                              <label for="" class="control-label col-md-4">User Name</label>
+                              <div class="col-md-8">
+                                <input type="text" class="form-control" name="usrnm" id="usrnm" required placeholder="User Name">
+                              </div>
+                            </div>
+                            {{!-- end of form-group --}}
+                          </div>
+                          {{!-- end of col --}}
+                        </div>
+                        {{!-- end of row --}}
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="form-group clearfix">
+                              <label for="" class="control-label col-md-4">Password</label>
+                              <div class="col-md-8">
+                                <input type="password" class="form-control" required id="usrpwd" name="usrpwd"
+                                  placeholder="Password">
+                              </div>
+                            </div>
+                            {{!-- end of form-group --}}
+                          </div>
+                          {{!-- end of col --}}
+                          <div class="col-md-4">
+                            <div class="form-group clearfix">
+                              <label for="" class="control-label col-md-4">Email</label>
+                              <div class="col-md-8">
+                                <input type="email" class="form-control" name="emailid" placeholder="emailid">
+                              </div>
+                            </div>
+                            {{!-- end of form-group --}}
+                          </div>
+                          {{!-- end of col --}}
+                          <div class="col-md-4">
+                            <div class="form-group clearfix">
+                              <label for="" class="control-label col-md-4">Phone No:</label>
+                              <div class="col-md-8">
+                                <input type="text" class="form-control" name="phone_num" id="phone_num" placeholder="Phone Number">
+                              </div>
+                            </div>
+                            {{!-- end of form-group --}}
+                          </div>
+                          {{!-- end of col --}}
+                        </div>
+                        {{!-- end of row --}}
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group clearfix">
+                              <label for="" class="control-label col-md-3">More Details</label>
+                              <div class="col-md-9">
+                                <textarea style="height: 35px;" class="form-control" name="details" id="details"
+                                  placeholder="More Details"></textarea>
+                              </div>
+                            </div>
+                            {{!-- end of form-group --}}
+                          </div>
+                          {{!-- end of col --}}
+                          <div class="col-md-6">
+                            <div class="form-group clearfix">
+                              <label for="" class="control-label col-md-3">Master</label>
+                              <div class="col-md-9">
+                                <select name="masterid" class="select2 form-control">
+                                  {{#each masterlogin}}
+                                  <option value="{{this._id}}">{{this.custname}}</option>
+                                  {{/each}}
+                                </select>
+                              </div>
+                            </div>
+                            {{!-- end of form-group --}}
+                          </div>
+                          {{!-- end of col --}}
+                        </div>
+                        {{!-- end of row --}}
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group clearfix">
+                              <label for="" class="control-label col-md-2">Company Name</label>
+                              <div class="col-md-10 compnamechecks">
+                                {{#each div_com}}
+                                <label for="{{this._id}}" class="checkbox-inline checkboxradiotop" style="width:30%"><input
+                                    type="checkbox" id="{{this._id}}" value="{{this._id}}" name="co_code[]">{{this.com_name}}</label>
+                                {{/each}}
+                              </div>
+                            </div>
+                            {{!-- end of form-group --}}
+                          </div>
+                          {{!-- end of col --}}
+                        </div>
+                        {{!-- end of row --}}
+                        <hr>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group clearfix">
+                              <label for="" class="control-label col-md-2">Division Name</label>
+                              <div class="col-md-10 compnamechecks">
+                                {{#each div_mast}}
+                                <label for="{{this._id}}" class="checkbox-inline checkboxradiotop" style="width:30%"><input
+                                    type="checkbox" id="{{this._id}}" value="{{this._id}}" name="div_code[]">
+                                  {{this.div_mast}}</label>
+                                {{/each}}
+                              </div>
+                            </div>
+                            {{!-- end of form-group --}}
+                          </div>
+                          {{!-- end of col --}}
+                        </div>
+                        {{!-- end of row --}}
+                        <hr>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group clearfix">
+                              <label for="" class="control-label col-md-2">Administrator</label>
+                              <div class="col-md-3">
+                                <select class="form-control" name="administrator" id="administrator">
+                                  <option>Select</option>
+                                  <option>Yes</option>
+                                  <option>No</option>
+                                </select>
+                              </div>
+                            </div>
+                            {{!-- end of form-group --}}
+                          </div>
+                          {{!-- end of col --}}
+                        </div>
+                        {{!-- end of row --}}
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="table-responsive">
+                              <table class="table table-bordered table-striped">
+                                <thead>
+                                  <tr>
+                                    <th>S No. <input type="checkbox" class="admincheckbox"></th>
+                                    <th>Master</th>
+                                    <th>Add</th>
+                                    <th>View</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {{#each securitymast as |value key|}}
+                                  <tr>
+                                    <td>{{sum @index 1}}</td>
+                                    <td>{{this.right_name}}</td>
+                                    <td class="addcell"><input type="checkbox" name="admin[]" value="{{this.right_name}}-A"></td>
+                                    <td class="viewcell"><input type="checkbox" name="admin[]" value="{{this.right_name}}-V"></td>
+                                    <td class="editcell"><input type="checkbox" name="admin[]" value="{{this.right_name}}-E"></td>
+                                    <td class="delcell"><input type="checkbox" name="admin[]" value="{{this.right_name}}-D"></td>
+                                  </tr>
+                                  {{/each}}
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {{!-- end of panel-body --}}
+                      <div class="panel-footer">
+                        <div class="action clearfix">
+                          <div class="col-md-6">
+                            <div class="col-md-9 col-md-push-3">
+                              <button type="submit" name="save" id="" class="btn btn-success">Submit</button>
+                              <button type="reset" class="btn btn-danger">Cancel</button>
+                            </div>
+                          </div>
+                        </div>
+                        {{!-- end of form group --}}
+                      </div>
+                      {{!-- end of panel-footer --}}
+                    </form>
+                  </div>
+                </div>
+              </div>
+              {{!-- end of row --}}
+            </div>
+            <!-- END PAGE CONTENT INNER -->
+          </div>
+        </div>
+        <!-- END PAGE CONTENT BODY -->
+        <!-- END CONTENT BODY -->
+      </div>
+      <!-- END CONTENT -->
+    </div>
+    <!-- END CONTAINER -->
+  </div>
+</div>
+
+
+{{> footer_new}}
+{{> scripts_new}}

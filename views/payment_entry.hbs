@@ -1,0 +1,364 @@
+{{> header_new}}
+{{> top_bar_new}}
+{{> menu_new}}
+
+
+<div class="page-wrapper-row full-height">
+    <div class="page-wrapper-middle">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{compnm}} -{{divnm}}- {{dateformat  sdate 'DD/MM/YYYY'}} - {{dateformat edate
+                                'DD/MM/YYYY'}} {{usrnm}}
+                                <small>
+                                    <!-- BEGIN PAGE BREADCRUMBS -->
+                                    <ul class="page-breadcrumb breadcrumb pull-right">
+                                        <li>
+                                            <a href="/userright/index">Home</a>
+                                            <i class="fa fa-circle"></i>
+                                        </li>
+                                        <li>
+                                            Party List
+                                        </li>
+                                    </ul>
+                                    <!-- END PAGE BREADCRUMBS -->
+                                </small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN PAGE CONTENT BODY -->
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    Payment (Draft) Entry
+                                </div>
+                                <div class="alert alert-success brandsuccess" style="display:none;"></div>
+                                <div class="alert alert-danger branddanger" style="display:none;"></div>
+                                <form method="POST" action="/payment_entry/add" class="form validate" novalidate>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Ref Number</label>
+                                                    <div class="col-md-5">
+                                                        <input name="c_j_s_p" placeholder="Ref Number" value="PAY"
+                                                            class="form-control c_j_s_p" autofocus>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <input type="text" name="vouc_code" placeholder="Payment Number"
+                                                             value="{{maxno payment_entry}}" class="form-control digits">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Entry Date</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control datemask" name="pay_date"
+                                                            id="offerstartdate" value="{{dateformat Date.now 'DD/MM/YYYY'}}"
+                                                            autocomplete="off" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Buyer</label>
+                                                    <div class="col-md-9">
+                                                        {{#listbsrtopt party 'B' 'br_code' 'slcodepaymnt' 'select2' 'required'}}
+                                                        {{this.party_name}},{{this.city_name.city_name}}
+                                                        {{/listbsrtopt}}
+                                                        {{!-- {{#listbsrt party 'B' 'br_code' 'slcodepaymnt'}}
+                                                        {{this.party_name}},{{this.city_name.city_name}}
+                                                        {{/listbsrt}} --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Seller</label>
+                                                    <div class="col-md-9">
+                                                        {{#listbsrtopt party 'S' 'sl_code' 'brcodepayment' 'select2' 'required'}}
+                                                        {{this.party_name}},{{this.city_name.city_name}}
+                                                        {{/listbsrtopt}}
+                                                        {{!-- {{#listbsrt party 'S' 'sl_code' 'brcodepayment'}}
+                                                        {{this.party_name}},{{this.city_name.city_name}}
+                                                        {{/listbsrt}} --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="delivery_repeat_row">
+                                                    {{!-- <div class="col-sm-12 "></div> --}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+                                        <div class="row ifnoentry">
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">DD/Chk Amount</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" name="chkddamt" placeholder="DD/Chk Amount"
+                                                            class="form-control number chkddamt" disabled readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Deductions</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" name="chkdddt" placeholder="Deducations"
+                                                            class="form-control chkdddt" disabled readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="expence_repeat_row"></div>
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input form-radio clearfix">
+                                                    <label class="control-label col-md-3">Payment Type</label>
+                                                    <div class="col-md-9">
+                                                        <div class="radio-inline">
+                                                            <label>
+                                                                <input type="radio" name="chkddtyp" id="optionsRadios1"
+                                                                    value="cash" class="cash">
+                                                                Cash
+                                                            </label>
+                                                        </div>
+                                                        {{!-- end of radio --}}
+                                                        <div class="radio-inline">
+                                                            <label>
+                                                                <input type="radio" name="chkddtyp" id="optionsRadios1"
+                                                                    value="bankdd">
+                                                                Bank DD
+                                                            </label>
+                                                        </div>
+                                                        {{!-- end of radio --}}
+                                                        <div class="radio-inline">
+                                                            <label>
+                                                                <input type="radio" name="chkddtyp" id="optionsRadios1"
+                                                                    value="bankchq">
+                                                                Bank Chq
+                                                            </label>
+                                                        </div>
+                                                        {{!-- end of radio --}}
+                                                        <div class="radio-inline">
+                                                            <label>
+                                                                <input type="radio" name="chkddtyp" id="optionsRadios1"
+                                                                    value="rtgsneft">
+                                                                RTGS/NEFT
+                                                            </label>
+                                                        </div>
+                                                        {{!-- end of radio --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Date</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" name="chkpaydddt" id="chkpaydddt" placeholder="Date"
+                                                            class="form-control datemask datep">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-12">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">DD/Chq/UTR Number Bank Name</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" name="chkddno" id="chkddno" placeholder="DD/Chq/UTR Number Bank Name"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+                                        <div class="row">
+
+                                            <div class="col-sm-6 col-md-12">
+                                                <div class="form-group form-md-line-input form-radio clearfix">
+                                                    <label class="control-label col-md-3">Deposited Ac. No</label>
+                                                    <div class="col-md-9">
+                                                        <div class="radio-inline">
+                                                            <label>
+                                                                <input type="radio" name="dep_ac" value="Y">
+                                                                Option 1
+                                                            </label>
+                                                        </div>
+                                                        {{!-- end of radio --}}
+                                                        <div class="radio-inline">
+                                                            <label>
+                                                                <input type="radio" name="dep_ac" value="Y">
+                                                                Option 2
+                                                            </label>
+                                                        </div>
+                                                        {{!-- end of radio --}}
+                                                        <div class="radio-inline">
+                                                            <label>
+                                                                <input type="radio" name="dep_ac" value="Y">
+                                                                Option 3
+                                                            </label>
+                                                        </div>
+                                                        {{!-- end of radio --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Deposited</label>
+                                                    <div class="col-md-9">
+                                                        <select class="form-control select2" name="dep_bnk" id="dep_bnk" placeholder="Select Deposited">
+                                                            <option value=""></option>
+                                                            {{#each bank}}
+                                                            <option value="{{this._id}}">{{this.bank_name}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Courier</label>
+                                                    <div class="col-md-9">
+                                                        <select class="form-control select2" name="courier" id="courier" placeholder="Select Courier">
+                                                            <option value=""></option>
+                                                            {{#each courier}}
+                                                            <option value="{{this._id}}">{{this.courier_name}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Recpt No</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" name="cou_rec" id="cou_rec" placeholder="Total Ammount"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Charges</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" name="cou_chgs" id="cou_chgs" placeholder="Charges"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Remarks</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" name="rmks1" id="rmks1" placeholder="Remarks"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group form-md-line-input clearfix">
+                                                    <label class="control-label col-md-3">Remarks</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" name="rmks2" id="rmks2" placeholder="Remarks"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="" class="control-label col-md-3"></label>
+                                                    <div class="col-md-9">
+                                                        <div class="btn-group">
+                                                            <input type="hidden" name="printormessage" id="printormessage" value="submit">
+                                                            <button type="button" class="btn btn-default submitn activeevent shiftfocus" data-act="submit">Submit</button>
+                                                            <button type="button" class="btn btn-default submitn shiftfocus" data-act="print">Submit & Print</button>
+                                                            <button type="button" class="btn btn-default submitn shiftfocus" data-act="msg">Submit & Message</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{!-- end of row --}}
+                                    </div>
+                                    {{!-- end of panel-body --}}
+                                    <div class="panel-footer">
+                                        <div class="action clearfix">
+                                            <div class="col-md-9">
+                                                <div class="col-md-9 col-md-push-2">
+                                                    {{!-- <div class="btn-group"> --}}
+                                                        <input type="hidden" name="printormessage" id="printormessage" value="submit">  {{!-- submit/message/print --}}
+                                                        <button type="submit" name="save" class="btn btn-success paymentsubmit" data-action="submit" >Submit</button>
+                                                        {{!-- <button type="submit" name="save" class="btn btn-info paymentsubmit" data-action="message" >Submit & Message</button>
+                                                        <button type="submit" name="save" class="btn btn-subprint paymentsubmit" data-action="print" >Submit & Print</button> --}}
+                                                        <button type="reset" class="btn btn-danger resetpaymententry">Cancel</button>
+                                                    {{!-- </div> --}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{!-- end of panel-footer --}}
+                                </form>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+
+
+
+
+{{> footer_new}}
+{{> scripts_new}}
